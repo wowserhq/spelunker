@@ -1,4 +1,14 @@
 {
+  "name": "@wowserhq/spelunker",
+  "private": true,
+  "description": "Database explorer for World of Warcraft servers",
+  "author": "Wowser Contributors",
+  "repository": "github:wowserhq/spelunker",
+  "license": "MIT",
+  "keywords": [
+    "spelunker",
+    "wowser"
+  ],
   "devDependencies": {
     "lerna": "^2.5.1"
   }
