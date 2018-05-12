@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "@wowserhq/eslint-config",
+    "eslint-config-airbnb/rules/react",
+    "eslint-config-airbnb/rules/react-a11y"
+  ],
+  "rules": {
+    "jsx-a11y/anchor-is-valid": "never",
+    "react/prop-types": ["never"]
+  },
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  }
+}
