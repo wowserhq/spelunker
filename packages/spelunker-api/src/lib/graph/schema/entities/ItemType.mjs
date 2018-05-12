@@ -9,6 +9,7 @@ import CollectionType from '../CollectionType';
 import CurrencyType from '../CurrencyType';
 
 import ItemDisplayInfoType from './ItemDisplayInfoType';
+import ItemLootType from './ItemLootType';
 import ItemQualityType from './ItemQualityType';
 import NPCLootType from './NPCLootType';
 import NPCSaleType from './NPCSaleType';
@@ -23,6 +24,9 @@ export default new GraphQLObjectType({
     quality: { type: ItemQualityType },
 
     displayInfo: { type: ItemDisplayInfoType },
+
+    containedIn: CollectionType.definitionFor(ItemLootType),
+    contains: CollectionType.definitionFor(ItemLootType),
     droppedBy: CollectionType.definitionFor(NPCLootType),
     soldBy: CollectionType.definitionFor(NPCSaleType),
   }),

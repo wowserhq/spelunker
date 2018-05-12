@@ -3,6 +3,7 @@ import DatabaseEntity from '../db/Entity';
 import { worldConnection } from '../db/connections';
 
 import ItemDisplayInfo from './ItemDisplayInfo';
+import ItemLoot from './ItemLoot';
 import NPCLoot from './NPCLoot';
 import NPCSale from './NPCSale';
 
@@ -37,6 +38,16 @@ class Item extends DatabaseEntity {
 
   async displayInfo() {
     return ItemDisplayInfo.find(this.data.displayid);
+  }
+
+  async containedIn(args) {
+    const query = ItemLoot.query.where({ Item: this.id });
+    return new Collection(query, args);
+  }
+
+  async contains(args) {
+    const query = ItemLoot.query.where({ Entry: this.id });
+    return new Collection(query, args);
   }
 
   async droppedBy(args) {
