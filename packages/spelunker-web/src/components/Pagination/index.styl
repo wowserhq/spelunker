@@ -1,0 +1,42 @@
+.pagination {
+  position: relative
+  font-size: .9em
+
+  ul {
+    list-style-type: none
+    display: flex
+    height: 1em
+    justify-content: left
+    align-items: center
+    padding: 0
+    margin: 15px 0
+
+    li {
+      a {
+        padding: 8px
+        color: darken(#FFCC00, 50%)
+        cursor: pointer
+
+        &.active {
+          color: #FFCC00
+        }
+      }
+
+      &.spacer {
+        padding: 5px
+        color: darken(#FFFFFF, 60%)
+      }
+    }
+  }
+
+  .legend {
+    position: absolute
+    top: 0
+    right: 0
+    color: darken(#FFFFFF, 60%)
+  }
+
+  * + & ul {
+    margin-top: 25px
+  }
+}
