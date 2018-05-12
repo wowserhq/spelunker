@@ -15,19 +15,19 @@ const fetchNPC = gql`
     npc(id: $id) {
       id
       name
-      spawns {
-        totalCount
-      }
       drops {
-        totalCount
-      }
-      starts {
         totalCount
       }
       ends {
         totalCount
       }
       sells {
+        totalCount
+      }
+      spawns {
+        totalCount
+      }
+      starts {
         totalCount
       }
     }
@@ -40,11 +40,11 @@ const NPC = ({ match }) => {
     <Query query={fetchNPC} variables={{ id }}>
       {({ data }) => {
         const { npc: {
-          spawns: { totalCount: spawnCount },
           drops: { totalCount: dropCount },
-          starts: { totalCount: startCount },
           ends: { totalCount: endCount },
           sells: { totalCount: sellCount },
+          spawns: { totalCount: spawnCount },
+          starts: { totalCount: startCount },
         } } = data;
 
         return (
@@ -68,6 +68,13 @@ const NPC = ({ match }) => {
                 match={match}
               />}
 
+              {sellCount > 0 && <Tab
+                label={`Sells (${sellCount})`}
+                component={SellsTab}
+                path="sells"
+                match={match}
+              />}
+
               {startCount > 0 && <Tab
                 label={`Starts (${startCount})`}
                 component={StartsTab}
@@ -79,13 +86,6 @@ const NPC = ({ match }) => {
                 label={`Ends (${endCount})`}
                 component={EndsTab}
                 path="ends"
-                match={match}
-              />}
-
-              {sellCount > 0 && <Tab
-                label={`Sells (${sellCount})`}
-                component={SellsTab}
-                path="sells"
                 match={match}
               />}
             </TabbedBox>

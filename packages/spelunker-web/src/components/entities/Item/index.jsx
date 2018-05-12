@@ -22,16 +22,16 @@ const fetchItem = gql`
       displayInfo {
         icon
       }
-      droppedBy {
-        totalCount
-      }
-      soldBy {
-        totalCount
-      }
       containedIn {
         totalCount
       }
       contains {
+        totalCount
+      }
+      droppedBy {
+        totalCount
+      }
+      soldBy {
         totalCount
       }
     }
@@ -72,6 +72,13 @@ const Item = ({ match }) => {
             </Box>
 
             <TabbedBox>
+              {droppedByCount > 0 && <Tab
+                label={`Dropped by (${droppedByCount})`}
+                component={DroppedByTab}
+                path="dropped-by"
+                match={match}
+              />}
+
               {containedInCount > 0 && <Tab
                 label={`Contained in (${containedInCount})`}
                 component={ContainedInTab}
@@ -83,13 +90,6 @@ const Item = ({ match }) => {
                 label={`Contains (${containCount})`}
                 component={ContainsTab}
                 path="contains"
-                match={match}
-              />}
-
-              {droppedByCount > 0 && <Tab
-                label={`Dropped by (${droppedByCount})`}
-                component={DroppedByTab}
-                path="dropped-by"
                 match={match}
               />}
 
