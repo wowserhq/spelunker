@@ -4,6 +4,7 @@
   "description": "Web client for Spelunker",
   "author": "Wowser Contributors",
   "repository": "github:wowserhq/spelunker",
+  "private": true,
   "license": "MIT",
   "scripts": {
     "build": "webpack --progress",
