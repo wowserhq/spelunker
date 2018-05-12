@@ -1,0 +1,9 @@
+export API_PORT=3001
+export API_URI=http://localhost:$API_PORT/graphql
+export DATA_DIR='/Applications/World of Warcraft/Data'
+export DATABASE_AUTH_URI=mysql://user:pass@host/auth_database
+export DATABASE_CHARACTERS_URI=mysql://user:pass@host/characters_database
+export DATABASE_WORLD_URI=mysql://user:pass@host/world_database
+export DEBUG=spelunker:*,knex:*
+export PIPELINE_URI=http://localhost:$API_PORT/pipeline
+export WEB_PORT=3000
