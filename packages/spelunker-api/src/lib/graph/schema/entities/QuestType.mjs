@@ -7,6 +7,7 @@ import {
 
 import CollectionType from '../CollectionType';
 
+import GameObjectType from './GameObjectType';
 import NPCType from './NPCType';
 
 export default new GraphQLObjectType({
@@ -17,8 +18,8 @@ export default new GraphQLObjectType({
     description: { type: new GraphQLNonNull(GraphQLString) },
 
     endedBy: CollectionType.definitionFor(NPCType),
-    endedByObject: CollectionType.definitionFor(NPCType),
+    endedByObject: CollectionType.definitionFor(GameObjectType),
     startedBy: CollectionType.definitionFor(NPCType),
-    startedByObject: CollectionType.definitionFor(NPCType),
+    startedByObject: CollectionType.definitionFor(GameObjectType),
   }),
 });
