@@ -10,7 +10,11 @@ const GameIcon = (props) => {
     file = `Interface\\Icons\\${props.file}.blp`;
   }
 
-  const className = [props.className, styles.icon].join(' ');
+  const className = [
+    props.className,
+    styles.icon,
+    props.asBackground ? styles.asBackground : undefined,
+  ].join(' ');
   return (
     <GameImage
       {...props}
