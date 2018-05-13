@@ -15,6 +15,7 @@ import MapType from './entities/MapType';
 import NPCType from './entities/NPCType';
 import QuestType from './entities/QuestType';
 import RaceType from './entities/RaceType';
+import SpellType from './entities/SpellType';
 
 const finderFor = (type) => {
   return {
@@ -54,5 +55,8 @@ export default new GraphQLObjectType({
 
     races: CollectionType.definitionFor(RaceType),
     race: finderFor(RaceType),
+
+    spells: CollectionType.definitionFor(SpellType),
+    spell: finderFor(SpellType),
   },
 });

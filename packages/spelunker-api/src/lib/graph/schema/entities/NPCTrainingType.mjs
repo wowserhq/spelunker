@@ -4,7 +4,9 @@ import {
 } from '../../../graphql';
 
 import CurrencyType from '../CurrencyType';
+
 import NPCType from './NPCType';
+import SpellType from './SpellType';
 
 export default new GraphQLObjectType({
   name: 'NPCTraining',
@@ -12,5 +14,6 @@ export default new GraphQLObjectType({
     cost: { type: CurrencyType },
 
     npc: { type: new GraphQLNonNull(NPCType) },
+    spell: { type: new GraphQLNonNull(SpellType) },
   }),
 });

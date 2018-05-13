@@ -9,6 +9,7 @@ import Map from '../entities/Map';
 import NPC from '../entities/NPC';
 import Quest from '../entities/Quest';
 import Race from '../entities/Race';
+import Spell from '../entities/Spell';
 
 export default {
   accounts: async (args) => new Collection(Account.query, args),
@@ -37,4 +38,7 @@ export default {
 
   races: async (args) => new Collection(Race.query, args),
   race: async ({ id }) => Race.find(id),
+
+  spells: async (args) => new Collection(Spell.query, args),
+  spell: async ({ id }) => Spell.find(id),
 };

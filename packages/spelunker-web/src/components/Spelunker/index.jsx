@@ -27,6 +27,8 @@ import Quest from '../entities/Quest';
 import QuestList from '../entities/Quest/List';
 import Race from '../entities/Race';
 import RaceList from '../entities/Race/List';
+import Spell from '../entities/Spell';
+import SpellList from '../entities/Spell/List';
 
 import ProjectLink from './ProjectLink';
 
@@ -52,6 +54,7 @@ const Spelunker = () => (
               <li><NavLink to="/objects">Objects</NavLink></li>
               <li><NavLink to="/quests">Quests</NavLink></li>
               <li><NavLink to="/races">Races</NavLink></li>
+              <li><NavLink to="/spells">Spells</NavLink></li>
             </ul>
           </nav>
         </header>
@@ -83,6 +86,9 @@ const Spelunker = () => (
 
           <Route path="/races/:id" component={Race} />
           <Route path="/races" component={RaceList} />
+
+          <Route path="/spells/:id" component={Spell} />
+          <Route path="/spells" component={SpellList} />
 
           <Route
             exact

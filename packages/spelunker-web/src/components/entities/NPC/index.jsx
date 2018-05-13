@@ -10,6 +10,7 @@ import NPCReference from './Reference';
 import SellsTab from './tabs/Sells';
 import SpawnsTab from './tabs/Spawns';
 import StartsTab from './tabs/Starts';
+import TeachesTab from './tabs/Teaches';
 
 const fetchNPC = gql`
   query($id: Int!) {
@@ -32,6 +33,9 @@ const fetchNPC = gql`
       starts {
         totalCount
       }
+      teaches {
+        totalCount
+      }
     }
   }
 `;
@@ -47,6 +51,7 @@ const NPC = ({ match }) => {
           sells: { totalCount: sellCount },
           spawns: { totalCount: spawnCount },
           starts: { totalCount: startCount },
+          teaches: { totalCount: teachCount },
         } } = data;
 
         return (
@@ -90,6 +95,13 @@ const NPC = ({ match }) => {
                 label={`Ends (${endCount})`}
                 component={EndsTab}
                 path="ends"
+                match={match}
+              />}
+
+              {teachCount > 0 && <Tab
+                label={`Teaches (${teachCount})`}
+                component={TeachesTab}
+                path="teaches"
                 match={match}
               />}
             </TabbedBox>
