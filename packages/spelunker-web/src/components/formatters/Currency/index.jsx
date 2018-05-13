@@ -1,6 +1,6 @@
 import React from 'react';
 
-import GameImage from '../../images/GameImage';
+import GameIcon from '../../images/GameIcon';
 import number from '../number';
 
 const Currency = ({ value }) => {
@@ -17,21 +17,21 @@ const Currency = ({ value }) => {
       {gold ? (
         <span>
           {number(gold)}
-          <GameImage file="Interface\MoneyFrame\UI-GoldIcon.blp" />
+          <GameIcon file="Interface\MoneyFrame\UI-GoldIcon.blp" />
         </span>
       ) : null}
 
       {silver ? (
         <span>
           {silver}
-          <GameImage file="Interface\MoneyFrame\UI-SilverIcon.blp" />
+          <GameIcon file="Interface\MoneyFrame\UI-SilverIcon.blp" />
         </span>
       ) : null}
 
       {copper ? (
         <span>
           {copper}
-          <GameImage file="Interface\MoneyFrame\UI-CopperIcon.blp" />
+          <GameIcon file="Interface\MoneyFrame\UI-CopperIcon.blp" />
         </span>
       ) : null}
     </span>

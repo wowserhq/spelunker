@@ -1,6 +1,6 @@
 import React from 'react';
 
-import GameImage from './GameImage';
+import GameIcon from './GameIcon';
 
 const QuestgiverIcon = (props) => {
   if (props.count < 1) {
@@ -8,7 +8,7 @@ const QuestgiverIcon = (props) => {
   }
 
   return (
-    <GameImage
+    <GameIcon
       {...props}
       file="Interface\GossipFrame\AvailableQuestIcon.blp"
     />
