@@ -4,11 +4,14 @@ import gql from 'graphql-tag';
 import Box from '../../Box';
 import Query from '../../Query';
 
+import ClassReference from './Reference';
+
 const fetchClass = gql`
   query($id: Int!) {
     class(id: $id) {
       id
       name
+      filename
     }
   }
 `;
@@ -21,7 +24,9 @@ const Class = ({ match }) => {
         return (
           <div>
             <Box>
-              <legend>{data.class.name}</legend>
+              <legend>
+                <ClassReference class={data.class} />
+              </legend>
             </Box>
           </div>
         );

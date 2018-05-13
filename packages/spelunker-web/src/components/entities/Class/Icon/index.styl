@@ -1,0 +1,21 @@
+.icon img {
+  transform-origin: top left
+}
+
+$classes = {
+  warrior: translate(0, 0)
+  paladin: translate(0, -50.2%)
+  hunter: translate(0, -25.1%)
+  rogue: translate(-49.4%, 0)
+  priest: translate(-49.4%, -25.1%)
+  deathknight: translate(-24.7%, -50.2%)
+  shaman: translate(-24.7%, -25.1%)
+  mage: translate(-24.7%, 0)
+  warlock: translate(-74.3%, -25.1%)
+  druid: translate(-74.3%, 0)
+}
+
+for $class, $translate in $classes
+  .{$class} img {
+    transform: scale(4) $translate
+  }
