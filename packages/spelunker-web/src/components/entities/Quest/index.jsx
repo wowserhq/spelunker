@@ -7,6 +7,7 @@ import Query from '../../Query';
 import EndedByTab from './tabs/EndedBy';
 import EndedByObjectTab from './tabs/EndedByObject';
 import StartedByTab from './tabs/StartedBy';
+import StartedByItemTab from './tabs/StartedByItem';
 import StartedByObjectTab from './tabs/StartedByObject';
 
 const fetchQuest = gql`
@@ -14,16 +15,19 @@ const fetchQuest = gql`
     quest(id: $id) {
       id
       name
-      startedBy {
-        totalCount
-      }
       endedBy {
         totalCount
       }
-      startedByObject {
+      endedByObject {
         totalCount
       }
-      endedByObject {
+      startedBy {
+        totalCount
+      }
+      startedByItem {
+        totalCount
+      }
+      startedByObject {
         totalCount
       }
     }
@@ -36,10 +40,11 @@ const Quest = ({ match }) => {
     <Query query={fetchQuest} variables={{ id }}>
       {({ data }) => {
         const { quest: {
-          startedBy: { totalCount: startedByCount },
           endedBy: { totalCount: endedByCount },
-          startedByObject: { totalCount: startedByObjectCount },
           endedByObject: { totalCount: endedByObjectCount },
+          startedBy: { totalCount: startedByCount },
+          startedByItem: { totalCount: startedByItemCount },
+          startedByObject: { totalCount: startedByObjectCount },
         } } = data;
 
         return (
@@ -74,6 +79,13 @@ const Quest = ({ match }) => {
                 label={`Ended by object (${endedByObjectCount})`}
                 component={EndedByObjectTab}
                 path="ended-by-object"
+                match={match}
+              />}
+
+              {startedByItemCount > 0 && <Tab
+                label={`Started by item (${startedByItemCount})`}
+                component={StartedByItemTab}
+                path="started-by-item"
                 match={match}
               />}
             </TabbedBox>

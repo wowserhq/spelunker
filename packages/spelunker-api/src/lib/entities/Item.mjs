@@ -7,6 +7,7 @@ import ItemDisplayInfo from './ItemDisplayInfo';
 import ItemLoot from './ItemLoot';
 import NPCLoot from './NPCLoot';
 import NPCSale from './NPCSale';
+import Quest from './Quest';
 
 class Item extends DatabaseEntity {
   static get connection() {
@@ -63,6 +64,11 @@ class Item extends DatabaseEntity {
 
   async soldBy(args) {
     const query = NPCSale.query.where({ item: this.id });
+    return new Collection(query, args);
+  }
+
+  async starts(args) {
+    const query = Quest.query.where({ ID: this.startquest });
     return new Collection(query, args);
   }
 }

@@ -5,6 +5,7 @@ import { worldConnection } from '../db/connections';
 import GameObject from './GameObject';
 import GameObjectQuestFinisher from './GameObjectQuestFinisher';
 import GameObjectQuestStarter from './GameObjectQuestStarter';
+import Item from './Item';
 import NPC from './NPC';
 import NPCQuestFinisher from './NPCQuestFinisher';
 import NPCQuestStarter from './NPCQuestStarter';
@@ -64,6 +65,11 @@ class Quest extends DatabaseEntity {
     ).where({
       [NPCQuestStarter.fqColumn('quest')]: this.id,
     });
+    return new Collection(query, args);
+  }
+
+  async startedByItem(args) {
+    const query = Item.query.where({ startquest: this.id });
     return new Collection(query, args);
   }
 

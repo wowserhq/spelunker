@@ -11,6 +11,7 @@ import ContainsTab from './tabs/Contains';
 import DroppedByTab from './tabs/DroppedBy';
 import ItemReference from './Reference';
 import SoldByTab from './tabs/SoldBy';
+import StartsTab from './tabs/Starts';
 
 const fetchItem = gql`
   query($id: Int!) {
@@ -38,6 +39,9 @@ const fetchItem = gql`
       soldBy {
         totalCount
       }
+      starts {
+        totalCount
+      }
     }
   }
 `;
@@ -54,6 +58,7 @@ const Item = ({ match }) => {
           contains: { totalCount: containCount },
           droppedBy: { totalCount: droppedByCount },
           soldBy: { totalCount: soldByCount },
+          starts: { totalCount: startCount },
         } = item;
 
         return (
@@ -109,6 +114,13 @@ const Item = ({ match }) => {
                 label={`Sold by (${soldByCount})`}
                 component={SoldByTab}
                 path="sold-by"
+                match={match}
+              />}
+
+              {startCount > 0 && <Tab
+                label={`Starts (${startCount})`}
+                component={StartsTab}
+                path="starts"
                 match={match}
               />}
             </TabbedBox>

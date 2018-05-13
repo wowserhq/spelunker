@@ -14,6 +14,7 @@ import ItemLootType from './ItemLootType';
 import ItemQualityType from './ItemQualityType';
 import NPCLootType from './NPCLootType';
 import NPCSaleType from './NPCSaleType';
+import QuestType from './QuestType';
 
 export default new GraphQLObjectType({
   name: 'Item',
@@ -31,5 +32,6 @@ export default new GraphQLObjectType({
     contains: CollectionType.definitionFor(ItemLootType),
     droppedBy: CollectionType.definitionFor(NPCLootType),
     soldBy: CollectionType.definitionFor(NPCSaleType),
+    starts: CollectionType.definitionFor(QuestType),
   }),
 });
