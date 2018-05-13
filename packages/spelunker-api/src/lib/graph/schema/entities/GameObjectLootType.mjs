@@ -8,11 +8,11 @@ import GameObjectType from './GameObjectType';
 import ItemType from './ItemType';
 
 export default new GraphQLObjectType({
-  name: 'GameObjectItemLoot',
+  name: 'GameObjectLoot',
   fields: () => ({
     chance: { type: new GraphQLNonNull(GraphQLFloat) },
 
-    npc: { type: new GraphQLNonNull(GameObjectType) },
     item: { type: new GraphQLNonNull(ItemType) },
+    object: { type: new GraphQLNonNull(GameObjectType) },
   }),
 });

@@ -5,6 +5,7 @@ import Box, { Tab, TabbedBox } from '../../Box';
 import Currency from '../../formatters/Currency';
 import Query from '../../Query';
 
+import ContainedInObjectTab from './tabs/ContainedInObject';
 import ContainedInTab from './tabs/ContainedIn';
 import ContainsTab from './tabs/Contains';
 import DroppedByTab from './tabs/DroppedBy';
@@ -23,6 +24,9 @@ const fetchItem = gql`
         icon
       }
       containedIn {
+        totalCount
+      }
+      containedInObject {
         totalCount
       }
       contains {
@@ -46,6 +50,7 @@ const Item = ({ match }) => {
         const { item } = data;
         const {
           containedIn: { totalCount: containedInCount },
+          containedInObject: { totalCount: containedInObjectCount },
           contains: { totalCount: containCount },
           droppedBy: { totalCount: droppedByCount },
           soldBy: { totalCount: soldByCount },
@@ -83,6 +88,13 @@ const Item = ({ match }) => {
                 label={`Contained in (${containedInCount})`}
                 component={ContainedInTab}
                 path="contained-in"
+                match={match}
+              />}
+
+              {containedInObjectCount > 0 && <Tab
+                label={`Contained in object (${containedInObjectCount})`}
+                component={ContainedInObjectTab}
+                path="contained-in-object"
                 match={match}
               />}
 

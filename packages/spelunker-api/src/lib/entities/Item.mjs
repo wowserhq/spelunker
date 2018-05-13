@@ -2,6 +2,7 @@ import Collection from '../core/Collection';
 import DatabaseEntity from '../db/Entity';
 import { worldConnection } from '../db/connections';
 
+import GameObjectLoot from './GameObjectLoot';
 import ItemDisplayInfo from './ItemDisplayInfo';
 import ItemLoot from './ItemLoot';
 import NPCLoot from './NPCLoot';
@@ -42,6 +43,11 @@ class Item extends DatabaseEntity {
 
   async containedIn(args) {
     const query = ItemLoot.query.where({ Item: this.id });
+    return new Collection(query, args);
+  }
+
+  async containedInObject(args) {
+    const query = GameObjectLoot.query.where({ Item: this.id });
     return new Collection(query, args);
   }
 

@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import Box, { Tab, TabbedBox } from '../../Box';
 import Query from '../../Query';
 
+import ContainsTab from './tabs/Contains';
 import EndsTab from './tabs/Ends';
 import SpawnsTab from './tabs/Spawns';
 import StartsTab from './tabs/Starts';
@@ -13,13 +14,16 @@ const fetchGameObject = gql`
     object(id: $id) {
       id
       name
+      contains {
+        totalCount
+      }
+      ends {
+        totalCount
+      }
       spawns {
         totalCount
       }
       starts {
-        totalCount
-      }
-      ends {
         totalCount
       }
     }
@@ -32,9 +36,10 @@ const GameObject = ({ match }) => {
     <Query query={fetchGameObject} variables={{ id }}>
       {({ data }) => {
         const { object: {
+          contains: { totalCount: containCount },
+          ends: { totalCount: endCount },
           spawns: { totalCount: spawnCount },
           starts: { totalCount: startCount },
-          ends: { totalCount: endCount },
         } } = data;
 
         return (
@@ -48,6 +53,13 @@ const GameObject = ({ match }) => {
                 label={`Spawns (${spawnCount})`}
                 component={SpawnsTab}
                 path="spawns"
+                match={match}
+              />}
+
+              {containCount > 0 && <Tab
+                label={`Contains (${containCount})`}
+                component={ContainsTab}
+                path="contains"
                 match={match}
               />}
 

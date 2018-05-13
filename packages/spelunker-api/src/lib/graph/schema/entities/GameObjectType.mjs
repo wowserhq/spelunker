@@ -17,9 +17,9 @@ export default new GraphQLObjectType({
     id: { type: new GraphQLNonNull(GraphQLInt) },
     name: { type: new GraphQLNonNull(GraphQLString) },
 
+    contains: CollectionType.definitionFor(GameObjectLootType),
     ends: CollectionType.definitionFor(QuestType),
     spawns: CollectionType.definitionFor(GameObjectSpawnType),
     starts: CollectionType.definitionFor(QuestType),
-    contains: CollectionType.definitionFor(GameObjectLootType),
   }),
 });
