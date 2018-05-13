@@ -18,6 +18,7 @@ export default new GraphQLObjectType({
   fields: () => ({
     id: { type: new GraphQLNonNull(GraphQLInt) },
     name: { type: new GraphQLNonNull(GraphQLString) },
+    subname: { type: GraphQLString },
 
     drops: CollectionType.definitionFor(NPCLootType),
     ends: CollectionType.definitionFor(QuestType),

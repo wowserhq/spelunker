@@ -6,6 +6,7 @@ import Query from '../../Query';
 
 import DropsTab from './tabs/Drops';
 import EndsTab from './tabs/Ends';
+import NPCReference from './Reference';
 import SellsTab from './tabs/Sells';
 import SpawnsTab from './tabs/Spawns';
 import StartsTab from './tabs/Starts';
@@ -15,6 +16,7 @@ const fetchNPC = gql`
     npc(id: $id) {
       id
       name
+      subname
       drops {
         totalCount
       }
@@ -50,7 +52,9 @@ const NPC = ({ match }) => {
         return (
           <div>
             <Box>
-              <legend>{data.npc.name}</legend>
+              <legend>
+                <NPCReference npc={data.npc} />
+              </legend>
             </Box>
 
             <TabbedBox>
