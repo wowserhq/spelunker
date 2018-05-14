@@ -12,6 +12,7 @@ const fetchSpell = gql`
     spell(id: $id) {
       id
       name
+      icon
       taughtBy {
         totalCount
       }

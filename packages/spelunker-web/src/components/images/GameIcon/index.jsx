@@ -6,8 +6,11 @@ import styles from './index.styl';
 
 const GameIcon = (props) => {
   let file = props.file;
+  if (!file.includes('\\')) {
+    file = `Interface\\Icons\\${file}`;
+  }
   if (!file.includes('.')) {
-    file = `Interface\\Icons\\${props.file}.blp`;
+    file = `${file}.blp`;
   }
 
   const className = [
