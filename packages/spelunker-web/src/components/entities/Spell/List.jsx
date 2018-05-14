@@ -30,14 +30,14 @@ const SpellList = () => (
         <Table>
           <thead>
             <tr>
-              <th>#</th>
+              <th field="id">#</th>
               <th>Name</th>
             </tr>
           </thead>
           <tbody>
             {results.map(spell => (
               <tr key={spell.id}>
-                <td>{spell.id}</td>
+                <td field="id">{spell.id}</td>
                 <td>
                   <SpellReference spell={spell} />
                 </td>

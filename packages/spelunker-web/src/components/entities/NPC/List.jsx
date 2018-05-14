@@ -30,14 +30,14 @@ const NPCList = () => (
         <Table>
           <thead>
             <tr>
-              <th>#</th>
+              <th field="id">#</th>
               <th>Name</th>
             </tr>
           </thead>
           <tbody>
             {results.map(npc => (
               <tr key={npc.id}>
-                <td>{npc.id}</td>
+                <td field="id">{npc.id}</td>
                 <td>
                   <NPCReference npc={npc} />
                 </td>

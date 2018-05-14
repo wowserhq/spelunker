@@ -33,14 +33,14 @@ const StartedByItemTab = ({ match }) => {
         <Table>
           <thead>
             <tr>
-              <th>#</th>
+              <th field="id">#</th>
               <th>Name</th>
             </tr>
           </thead>
           <tbody>
             {results.map(item => (
               <tr key={item.id}>
-                <td>{item.id}</td>
+                <td field="id">{item.id}</td>
                 <td>
                   <ItemReference item={item} />
                 </td>

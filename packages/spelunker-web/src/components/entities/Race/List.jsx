@@ -30,14 +30,14 @@ const RaceList = () => (
         <Table>
           <thead>
             <tr>
-              <th>#</th>
+              <th field="id">#</th>
               <th>Name</th>
             </tr>
           </thead>
           <tbody>
             {results.map(race => (
               <tr key={race.id}>
-                <td>{race.id}</td>
+                <td field="id">{race.id}</td>
                 <td>
                   <RaceReference race={race} />
                 </td>

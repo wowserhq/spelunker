@@ -30,14 +30,14 @@ const ClassList = () => (
         <Table>
           <thead>
             <tr>
-              <th>#</th>
+              <th field="id">#</th>
               <th>Name</th>
             </tr>
           </thead>
           <tbody>
             {results.map(klass => (
               <tr key={klass.id}>
-                <td>{klass.id}</td>
+                <td field="id">{klass.id}</td>
                 <td>
                   <ClassReference class={klass} />
                 </td>

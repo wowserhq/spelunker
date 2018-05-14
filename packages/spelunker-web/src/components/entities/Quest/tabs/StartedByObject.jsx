@@ -33,14 +33,14 @@ const StartedByObjectTab = ({ match }) => {
         <Table>
           <thead>
             <tr>
-              <th>#</th>
+              <th field="id">#</th>
               <th>Name</th>
             </tr>
           </thead>
           <tbody>
             {results.map(object => (
               <tr key={object.id}>
-                <td>{object.id}</td>
+                <td field="id">{object.id}</td>
                 <td>
                   <GameObjectReference object={object} />
                 </td>

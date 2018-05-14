@@ -46,7 +46,7 @@ const CharactersTab = ({ match }) => {
         <Table>
           <thead>
             <tr>
-              <th>#</th>
+              <th field="id">#</th>
               <th>Name</th>
               <th>Race</th>
               <th>Class</th>
@@ -58,7 +58,7 @@ const CharactersTab = ({ match }) => {
           <tbody>
             {results.map(character => (
               <tr key={character.id}>
-                <td>{character.id}</td>
+                <td field="id">{character.id}</td>
                 <td>
                   <CharacterReference character={character} />
                 </td>

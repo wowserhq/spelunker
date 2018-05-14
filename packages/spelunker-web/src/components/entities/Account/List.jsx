@@ -30,14 +30,14 @@ const AccountList = () => (
         <Table>
           <thead>
             <tr>
-              <th>#</th>
+              <th field="id">#</th>
               <th>Name</th>
             </tr>
           </thead>
           <tbody>
             {results.map(account => (
               <tr key={account.id}>
-                <td>{account.id}</td>
+                <td field="id">{account.id}</td>
                 <td>
                   <AccountReference account={account} />
                 </td>

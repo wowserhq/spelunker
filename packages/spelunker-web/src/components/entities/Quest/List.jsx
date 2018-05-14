@@ -30,14 +30,14 @@ const QuestList = () => (
         <Table>
           <thead>
             <tr>
-              <th>#</th>
+              <th field="id">#</th>
               <th>Name</th>
             </tr>
           </thead>
           <tbody>
             {results.map(quest => (
               <tr key={quest.id}>
-                <td>{quest.id}</td>
+                <td field="id">{quest.id}</td>
                 <td>
                   <QuestReference quest={quest} />
                 </td>

@@ -30,14 +30,14 @@ const MapList = () => (
         <Table>
           <thead>
             <tr>
-              <th>#</th>
+              <th field="id">#</th>
               <th>Name</th>
             </tr>
           </thead>
           <tbody>
             {results.map(map => (
               <tr key={map.id}>
-                <td>{map.id}</td>
+                <td field="id">{map.id}</td>
                 <td>
                   <MapReference map={map} />
                 </td>

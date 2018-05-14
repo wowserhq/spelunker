@@ -37,7 +37,7 @@ const TeachesTab = ({ match }) => {
         <Table>
           <thead>
             <tr>
-              <th>#</th>
+              <th field="id">#</th>
               <th>Name</th>
               <th>Cost</th>
             </tr>
@@ -45,7 +45,7 @@ const TeachesTab = ({ match }) => {
           <tbody>
             {results.map(({ cost, spell }) => (
               <tr key={spell.id}>
-                <td>{spell.id}</td>
+                <td field="id">{spell.id}</td>
                 <td>
                   <SpellReference spell={spell} />
                 </td>
