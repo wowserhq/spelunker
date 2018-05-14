@@ -6,6 +6,7 @@ import Query from '../../Query';
 
 import EndedByTab from './tabs/EndedBy';
 import EndedByObjectTab from './tabs/EndedByObject';
+import QuestReference from './Reference';
 import StartedByTab from './tabs/StartedBy';
 import StartedByItemTab from './tabs/StartedByItem';
 import StartedByObjectTab from './tabs/StartedByObject';
@@ -50,7 +51,9 @@ const Quest = ({ match }) => {
         return (
           <div>
             <Box>
-              <legend>{data.quest.name}</legend>
+              <h1>
+                <QuestReference quest={data.quest} />
+              </h1>
             </Box>
 
             <TabbedBox>

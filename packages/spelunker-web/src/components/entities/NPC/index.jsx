@@ -57,9 +57,9 @@ const NPC = ({ match }) => {
         return (
           <div>
             <Box>
-              <legend>
+              <h1>
                 <NPCReference npc={data.npc} />
-              </legend>
+              </h1>
             </Box>
 
             <TabbedBox>

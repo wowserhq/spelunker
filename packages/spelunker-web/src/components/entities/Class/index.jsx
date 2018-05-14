@@ -24,9 +24,9 @@ const Class = ({ match }) => {
         return (
           <div>
             <Box>
-              <legend>
+              <h1>
                 <ClassReference class={data.class} />
-              </legend>
+              </h1>
             </Box>
           </div>
         );

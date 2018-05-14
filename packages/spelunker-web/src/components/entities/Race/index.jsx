@@ -4,6 +4,8 @@ import gql from 'graphql-tag';
 import Box from '../../Box';
 import Query from '../../Query';
 
+import RaceReference from './Reference';
+
 const fetchRace = gql`
   query($id: Int!) {
     race(id: $id) {
@@ -21,7 +23,9 @@ const Race = ({ match }) => {
         return (
           <div>
             <Box>
-              <legend>{data.race.name}</legend>
+              <h1>
+                <RaceReference race={data.race} />
+              </h1>
             </Box>
           </div>
         );

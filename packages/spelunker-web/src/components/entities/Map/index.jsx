@@ -5,6 +5,7 @@ import Box, { Tab, TabbedBox } from '../../Box';
 import Query from '../../Query';
 
 import GameObjectSpawnsTab from './tabs/GameObjectSpawns';
+import MapReference from './Reference';
 import NPCSpawnsTab from './tabs/NPCSpawns';
 
 const fetchMap = gql`
@@ -35,7 +36,9 @@ const Map = ({ match }) => {
         return (
           <div>
             <Box>
-              <legend>{data.map.name}</legend>
+              <h1>
+                <MapReference map={data.map} />
+              </h1>
             </Box>
 
             <TabbedBox>

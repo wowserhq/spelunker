@@ -95,7 +95,7 @@ const Spelunker = () => (
             path="/"
             render={() => (
               <Box>
-                <legend>Welcome to Spelunker!</legend>
+                <h1>Welcome to Spelunker!</h1>
 
                 <p>
                   This page will soon™ have search capabilities.

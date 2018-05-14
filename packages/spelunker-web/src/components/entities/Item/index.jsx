@@ -64,9 +64,9 @@ const Item = ({ match }) => {
         return (
           <div>
             <Box>
-              <legend>
+              <h1>
                 <ItemReference item={item} link={false} />
-              </legend>
+              </h1>
 
               {item.buyPrice > 0 && (
                 <p>

@@ -6,6 +6,7 @@ import Query from '../../Query';
 
 import ContainsTab from './tabs/Contains';
 import EndsTab from './tabs/Ends';
+import GameObjectReference from './Reference';
 import SpawnsTab from './tabs/Spawns';
 import StartsTab from './tabs/Starts';
 
@@ -45,7 +46,9 @@ const GameObject = ({ match }) => {
         return (
           <div>
             <Box>
-              <legend>{data.object.name}</legend>
+              <h1>
+                <GameObjectReference object={data.object} />
+              </h1>
             </Box>
 
             <TabbedBox>

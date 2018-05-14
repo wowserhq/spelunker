@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import Box, { Tab, TabbedBox } from '../../Box';
 import Query from '../../Query';
 
+import CharacterReference from './Reference';
 import InventoryTab from './tabs/Inventory';
 
 const fetchCharacter = gql`
@@ -30,7 +31,9 @@ const Character = ({ match }) => {
         return (
           <div>
             <Box>
-              <legend>{data.character.name}</legend>
+              <h1>
+                <CharacterReference character={data.character} />
+              </h1>
             </Box>
 
             <TabbedBox>

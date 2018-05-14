@@ -31,9 +31,9 @@ const Spell = ({ match }) => {
         return (
           <div>
             <Box>
-              <legend>
+              <h1>
                 <SpellReference spell={data.spell} />
-              </legend>
+              </h1>
             </Box>
 
             <TabbedBox>
