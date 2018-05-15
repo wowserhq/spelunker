@@ -1,0 +1,44 @@
+.icon {
+  max-width: 2em
+
+  img {
+    transform-origin: top left
+  }
+}
+
+$races = {
+  human-male: translate(0, 0)
+  human-female: translate(0, -50%)
+
+  orc-male: translate(-37.5%, -25%)
+  orc-female: translate(-37.5%, -75%)
+
+  dwarf-male: translate(-12.5%, 0)
+  dwarf-female: translate(-12.5%, -50%)
+
+  nightelf-male: translate(-37.5%, 0)
+  nightelf-female: translate(-37.5%, -50%)
+
+  scourge-male: translate(-12.5%, -25%)
+  scourge-female: translate(-12.5%, -75%)
+
+  tauren-male: translate(0, -25%)
+  tauren-female: translate(0, -75%)
+
+  gnome-male: translate(-25%, 0)
+  gnome-female: translate(-25%, -50%)
+
+  troll-male: translate(-25%, -25%)
+  troll-female: translate(-25%, -75%)
+
+  bloodelf-male: translate(-50%, -25%)
+  bloodelf-female: translate(-50%, -75%)
+
+  draenei-male: translate(-50%, 0)
+  draenei-female: translate(-50%, -50%)
+}
+
+for $race, $translate in $races
+  .{$race} img {
+    transform: scale(8) $translate
+  }

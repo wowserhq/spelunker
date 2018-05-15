@@ -11,6 +11,7 @@ const fetchRace = gql`
     race(id: $id) {
       id
       name
+      filename
     }
   }
 `;
