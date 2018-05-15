@@ -2,7 +2,9 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import Box from '../../Box';
+import ClassReference from '../Class/Reference';
 import Collection from '../../Collection';
+import RaceReference from '../Race/Reference';
 import Table from '../../Table';
 
 import CharacterReference from './Reference';
@@ -13,11 +15,22 @@ const listCharacters = gql`
       totalCount
       results {
         ...CharacterReference
+        race {
+          ...RaceReference
+        }
+        class {
+          ...ClassReference
+        }
+        gender
+        level
+        xp
       }
     }
   }
 
   ${CharacterReference.fragment}
+  ${ClassReference.fragment}
+  ${RaceReference.fragment}
 `;
 
 const CharacterList = () => (
@@ -32,6 +45,11 @@ const CharacterList = () => (
             <tr>
               <th field="id">#</th>
               <th>Name</th>
+              <th>Race</th>
+              <th>Class</th>
+              <th>Gender</th>
+              <th>Level</th>
+              <th>XP</th>
             </tr>
           </thead>
           <tbody>
@@ -41,6 +59,15 @@ const CharacterList = () => (
                 <td>
                   <CharacterReference character={character} />
                 </td>
+                <td>
+                  <RaceReference race={character.race} />
+                </td>
+                <td>
+                  <ClassReference class={character.class} />
+                </td>
+                <td>{character.gender}</td>
+                <td>{character.level}</td>
+                <td>{character.xp}</td>
               </tr>
             ))}
           </tbody>
