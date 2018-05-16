@@ -3,6 +3,7 @@ import Account from '../entities/Account';
 import Character from '../entities/Character';
 import Class from '../entities/Class';
 import Collection from '../core/Collection';
+import Faction from '../entities/Faction';
 import GameObject from '../entities/GameObject';
 import Item from '../entities/Item';
 import Map from '../entities/Map';
@@ -20,6 +21,9 @@ export default {
 
   classes: async (args) => new Collection(Class.query, args),
   class: async ({ id }) => Class.find(id),
+
+  factions: async (args) => new Collection(Faction.query, args),
+  faction: async ({ id }) => Faction.find(id),
 
   items: async (args) => new Collection(Item.query, args),
   item: async ({ id }) => Item.find(id),

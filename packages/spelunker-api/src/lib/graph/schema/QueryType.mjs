@@ -9,6 +9,7 @@ import CollectionType from './CollectionType';
 import AccountType from './entities/AccountType';
 import CharacterType from './entities/CharacterType';
 import ClassType from './entities/ClassType';
+import FactionType from './entities/FactionType';
 import GameObjectType from './entities/GameObjectType';
 import ItemType from './entities/ItemType';
 import MapType from './entities/MapType';
@@ -37,6 +38,9 @@ export default new GraphQLObjectType({
 
     classes: CollectionType.definitionFor(ClassType),
     class: finderFor(ClassType),
+
+    factions: CollectionType.definitionFor(FactionType),
+    faction: finderFor(FactionType),
 
     items: CollectionType.definitionFor(ItemType),
     item: finderFor(ItemType),

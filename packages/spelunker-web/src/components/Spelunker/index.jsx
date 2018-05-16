@@ -15,6 +15,8 @@ import Character from '../entities/Character';
 import CharacterList from '../entities/Character/List';
 import Class from '../entities/Class';
 import ClassList from '../entities/Class/List';
+import Faction from '../entities/Faction';
+import FactionList from '../entities/Faction/List';
 import GameObject from '../entities/GameObject';
 import GameObjectList from '../entities/GameObject/List';
 import Item from '../entities/Item';
@@ -49,6 +51,7 @@ const Spelunker = () => (
               <li><NavLink to="/accounts">Accounts</NavLink></li>
               <li><NavLink to="/characters">Characters</NavLink></li>
               <li><NavLink to="/classes">Classes</NavLink></li>
+              <li><NavLink to="/factions">Factions</NavLink></li>
               <li><NavLink to="/items">Items</NavLink></li>
               <li><NavLink to="/maps">Maps</NavLink></li>
               <li><NavLink to="/npcs">NPCs</NavLink></li>
@@ -69,6 +72,9 @@ const Spelunker = () => (
 
           <Route path="/classes/:id" component={Class} />
           <Route path="/classes" component={ClassList} />
+
+          <Route path="/factions/:id" component={Faction} />
+          <Route path="/factions" component={FactionList} />
 
           <Route path="/items/:id" component={Item} />
           <Route path="/items" component={ItemList} />
