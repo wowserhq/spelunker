@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 
 import Box from '../../Box';
 import Query from '../../Query';
+import Title from '../../Spelunker/Title';
 
 import RaceReference from './Reference';
 
@@ -22,13 +23,13 @@ const Race = ({ match }) => {
     <Query query={fetchRace} variables={{ id }}>
       {({ data }) => {
         return (
-          <div>
+          <Title path={[data.race.name, 'Races']}>
             <Box>
               <h1>
                 <RaceReference race={data.race} />
               </h1>
             </Box>
-          </div>
+          </Title>
         );
       }}
     </Query>

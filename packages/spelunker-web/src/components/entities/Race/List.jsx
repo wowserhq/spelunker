@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import Box from '../../Box';
 import Collection from '../../Collection';
 import Table from '../../Table';
+import Title from '../../Spelunker/Title';
 
 import RaceReference from './Reference';
 
@@ -22,6 +23,8 @@ const listRaces = gql`
 
 const RaceList = () => (
   <Box>
+    <Title path={['Races']} />
+
     <Collection
       field="races"
       query={listRaces}

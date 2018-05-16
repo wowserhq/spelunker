@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 
 import Box, { Tab, TabbedBox } from '../../Box';
 import Query from '../../Query';
+import Title from '../../Spelunker/Title';
 
 import GameObjectSpawnsTab from './tabs/GameObjectSpawns';
 import MapReference from './Reference';
@@ -34,7 +35,7 @@ const Map = ({ match }) => {
         } } = data;
 
         return (
-          <div>
+          <Title path={[data.map.name, 'Maps']}>
             <Box>
               <h1>
                 <MapReference map={data.map} />
@@ -56,7 +57,7 @@ const Map = ({ match }) => {
                 match={match}
               />}
             </TabbedBox>
-          </div>
+          </Title>
         );
       }}
     </Query>

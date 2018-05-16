@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 
 import Box, { Tab, TabbedBox } from '../../Box';
 import Query from '../../Query';
+import Title from '../../Spelunker/Title';
 
 import SpellReference from './Reference';
 import TaughtByTab from './tabs/TaughtBy';
@@ -30,7 +31,8 @@ const Spell = ({ match }) => {
         } } = data;
 
         return (
-          <div>
+          <Title path={[data.spell.name, 'Spells']}>
+
             <Box>
               <h1>
                 <SpellReference spell={data.spell} />
@@ -45,7 +47,7 @@ const Spell = ({ match }) => {
                 match={match}
               />}
             </TabbedBox>
-          </div>
+          </Title>
         );
       }}
     </Query>

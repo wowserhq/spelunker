@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import Box from '../../Box';
 import Collection from '../../Collection';
 import Table from '../../Table';
+import Title from '../../Spelunker/Title';
 
 import ClassReference from './Reference';
 
@@ -22,6 +23,8 @@ const listClasses = gql`
 
 const ClassList = () => (
   <Box>
+    <Title path={['Classes']} />
+
     <Collection
       field="classes"
       query={listClasses}

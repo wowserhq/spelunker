@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import Box from '../../Box';
 import Collection from '../../Collection';
 import Table from '../../Table';
+import Title from '../../Spelunker/Title';
 
 import GameObjectReference from './Reference';
 
@@ -22,6 +23,8 @@ const listGameObjects = gql`
 
 const GameObjectList = () => (
   <Box>
+    <Title path={['Objects']} />
+
     <Collection
       field="objects"
       query={listGameObjects}

@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import Box, { Tab, TabbedBox } from '../../Box';
 import Currency from '../../formatters/Currency';
 import Query from '../../Query';
+import Title from '../../Spelunker/Title';
 
 import ContainedInObjectTab from './tabs/ContainedInObject';
 import ContainedInTab from './tabs/ContainedIn';
@@ -62,7 +63,7 @@ const Item = ({ match }) => {
         } = item;
 
         return (
-          <div>
+          <Title path={[item.name, 'Items']}>
             <Box>
               <h1>
                 <ItemReference item={item} link={false} />
@@ -124,7 +125,7 @@ const Item = ({ match }) => {
                 match={match}
               />}
             </TabbedBox>
-          </div>
+          </Title>
         );
       }}
     </Query>

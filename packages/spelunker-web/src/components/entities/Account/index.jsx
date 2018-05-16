@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 
 import Box, { Tab, TabbedBox } from '../../Box';
 import Query from '../../Query';
+import Title from '../../Spelunker/Title';
 
 import AccountReference from './Reference';
 import CharactersTab from './tabs/Characters';
@@ -29,7 +30,7 @@ const Account = ({ match }) => {
         } } = data;
 
         return (
-          <div>
+          <Title path={[data.account.name, 'Accounts']}>
             <Box>
               <h1>
                 <AccountReference account={data.account} />
@@ -44,7 +45,7 @@ const Account = ({ match }) => {
                 match={match}
               />}
             </TabbedBox>
-          </div>
+          </Title>
         );
       }}
     </Query>

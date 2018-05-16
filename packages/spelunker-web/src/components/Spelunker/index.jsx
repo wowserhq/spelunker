@@ -31,6 +31,7 @@ import Spell from '../entities/Spell';
 import SpellList from '../entities/Spell/List';
 
 import ProjectLink from './ProjectLink';
+import Title from './Title';
 
 import styles from './index.styl';
 import './links.styl';
@@ -94,13 +95,15 @@ const Spelunker = () => (
             exact
             path="/"
             render={() => (
-              <Box>
-                <h1>Welcome to Spelunker!</h1>
+              <Title>
+                <Box>
+                  <h1>Welcome to Spelunker!</h1>
 
-                <p>
-                  This page will soon™ have search capabilities.
-                </p>
-              </Box>
+                  <p>
+                    This page will soon™ have search capabilities.
+                  </p>
+                </Box>
+              </Title>
             )}
           />
         </Switch>

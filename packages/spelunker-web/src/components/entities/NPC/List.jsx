@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import Box from '../../Box';
 import Collection from '../../Collection';
 import Table from '../../Table';
+import Title from '../../Spelunker/Title';
 
 import NPCReference from './Reference';
 
@@ -22,6 +23,8 @@ const listNPCs = gql`
 
 const NPCList = () => (
   <Box>
+    <Title path={['NPCs']} />
+
     <Collection
       field="npcs"
       query={listNPCs}

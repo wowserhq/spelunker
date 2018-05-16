@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 
 import Box, { Tab, TabbedBox } from '../../Box';
 import Query from '../../Query';
+import Title from '../../Spelunker/Title';
 
 import DropsTab from './tabs/Drops';
 import EndsTab from './tabs/Ends';
@@ -55,7 +56,7 @@ const NPC = ({ match }) => {
         } } = data;
 
         return (
-          <div>
+          <Title path={[data.npc.name, 'NPCs']}>
             <Box>
               <h1>
                 <NPCReference npc={data.npc} />
@@ -105,7 +106,7 @@ const NPC = ({ match }) => {
                 match={match}
               />}
             </TabbedBox>
-          </div>
+          </Title>
         );
       }}
     </Query>

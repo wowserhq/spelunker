@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 
 import Box, { Tab, TabbedBox } from '../../Box';
 import Query from '../../Query';
+import Title from '../../Spelunker/Title';
 
 import EndedByTab from './tabs/EndedBy';
 import EndedByObjectTab from './tabs/EndedByObject';
@@ -49,7 +50,7 @@ const Quest = ({ match }) => {
         } } = data;
 
         return (
-          <div>
+          <Title path={[data.quest.name, 'Quests']}>
             <Box>
               <h1>
                 <QuestReference quest={data.quest} />
@@ -92,7 +93,7 @@ const Quest = ({ match }) => {
                 match={match}
               />}
             </TabbedBox>
-          </div>
+          </Title>
         );
       }}
     </Query>

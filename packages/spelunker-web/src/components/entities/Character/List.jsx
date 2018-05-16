@@ -6,6 +6,7 @@ import ClassReference from '../Class/Reference';
 import Collection from '../../Collection';
 import RaceReference from '../Race/Reference';
 import Table from '../../Table';
+import Title from '../../Spelunker/Title';
 
 import CharacterReference from './Reference';
 
@@ -34,7 +35,10 @@ const listCharacters = gql`
 `;
 
 const CharacterList = () => (
+
   <Box>
+    <Title path={['Characters']} />
+
     <Collection
       field="characters"
       query={listCharacters}

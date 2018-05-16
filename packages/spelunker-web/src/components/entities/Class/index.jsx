@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 
 import Box from '../../Box';
 import Query from '../../Query';
+import Title from '../../Spelunker/Title';
 
 import ClassReference from './Reference';
 
@@ -22,13 +23,13 @@ const Class = ({ match }) => {
     <Query query={fetchClass} variables={{ id }}>
       {({ data }) => {
         return (
-          <div>
+          <Title path={[data.class.name, 'Classes']}>
             <Box>
               <h1>
                 <ClassReference class={data.class} />
               </h1>
             </Box>
-          </div>
+          </Title>
         );
       }}
     </Query>

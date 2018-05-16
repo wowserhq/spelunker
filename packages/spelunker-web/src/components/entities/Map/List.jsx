@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import Box from '../../Box';
 import Collection from '../../Collection';
 import Table from '../../Table';
+import Title from '../../Spelunker/Title';
 
 import MapReference from './Reference';
 
@@ -22,6 +23,8 @@ const listMaps = gql`
 
 const MapList = () => (
   <Box>
+    <Title path={['Maps']} />
+
     <Collection
       field="maps"
       query={listMaps}
