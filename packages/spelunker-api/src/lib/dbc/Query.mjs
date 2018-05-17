@@ -18,14 +18,11 @@ class DBCQuery extends Query {
 
     this.offset = 0;
     this.limit = undefined;
-
-    this.results = null;
   }
 
   slice(offset, limit) {
     this.offset = offset;
     this.limit = limit;
-    this.results = null;
     return this;
   }
 
@@ -53,7 +50,7 @@ class DBCQuery extends Query {
     }
 
     const end = this.limit ? this.offset + this.limit : undefined;
-    return resolve(records.slice(this.offset, end));
+    resolve(records.slice(this.offset, end));
   }
 }
 

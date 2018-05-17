@@ -25,8 +25,8 @@ class DatabaseQuery extends Query {
 
   then(resolve, reject) {
     log(this.knex.toString());
-    return this.knex.then(results => {
-      return resolve(results && this.build(results));
+    this.knex.then(results => {
+      resolve(results && this.build(results));
     }).catch(reject);
   }
 }
