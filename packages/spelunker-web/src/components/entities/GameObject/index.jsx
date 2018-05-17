@@ -37,18 +37,21 @@ const GameObject = ({ match }) => {
   return (
     <Query query={fetchGameObject} variables={{ id }}>
       {({ data }) => {
-        const { object: {
+        const { object } = data;
+        const {
+          name,
+
           contains: { totalCount: containCount },
           ends: { totalCount: endCount },
           spawns: { totalCount: spawnCount },
           starts: { totalCount: startCount },
-        } } = data;
+        } = object;
 
         return (
-          <Title path={[data.object.name, 'Objects']}>
+          <Title path={[name, 'Objects']}>
             <Box>
               <h1>
-                <GameObjectReference object={data.object} />
+                <GameObjectReference object={object} />
               </h1>
             </Box>
 

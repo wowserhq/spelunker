@@ -25,15 +25,18 @@ const Account = ({ match }) => {
   return (
     <Query query={fetchAccount} variables={{ id }}>
       {({ data }) => {
-        const { account: {
+        const { account } = data;
+        const {
+          name,
+
           characters: { totalCount: characterCount },
-        } } = data;
+        } = account;
 
         return (
-          <Title path={[data.account.name, 'Accounts']}>
+          <Title path={[name, 'Accounts']}>
             <Box>
               <h1>
-                <AccountReference account={data.account} />
+                <AccountReference account={account} />
               </h1>
             </Box>
 

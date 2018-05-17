@@ -29,16 +29,19 @@ const Map = ({ match }) => {
   return (
     <Query query={fetchMap} variables={{ id }}>
       {({ data }) => {
-        const { map: {
+        const { map } = data;
+        const {
+          name,
+
           npcSpawns: { totalCount: npcSpawnCount },
           objectSpawns: { totalCount: objectSpawnCount },
-        } } = data;
+        } = map;
 
         return (
-          <Title path={[data.map.name, 'Maps']}>
+          <Title path={[name, 'Maps']}>
             <Box>
               <h1>
-                <MapReference map={data.map} />
+                <MapReference map={map} />
               </h1>
             </Box>
 

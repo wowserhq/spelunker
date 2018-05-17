@@ -25,15 +25,18 @@ const Character = ({ match }) => {
   return (
     <Query query={fetchCharacter} variables={{ id }}>
       {({ data }) => {
-        const { character: {
+        const { character } = data;
+        const {
+          name,
+
           inventory: { totalCount: inventoryCount },
-        } } = data;
+        } = character;
 
         return (
-          <Title path={[data.character.name, 'Characters']}>
+          <Title path={[name, 'Characters']}>
             <Box>
               <h1>
-                <CharacterReference character={data.character} />
+                <CharacterReference character={character} />
               </h1>
             </Box>
 

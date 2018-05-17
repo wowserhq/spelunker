@@ -22,11 +22,13 @@ const Race = ({ match }) => {
   return (
     <Query query={fetchRace} variables={{ id }}>
       {({ data }) => {
+        const { race } = data;
+        const { name } = race;
         return (
-          <Title path={[data.race.name, 'Races']}>
+          <Title path={[name, 'Races']}>
             <Box>
               <h1>
-                <RaceReference race={data.race} />
+                <RaceReference race={race} />
               </h1>
             </Box>
           </Title>

@@ -21,11 +21,13 @@ const Faction = ({ match }) => {
   return (
     <Query query={fetchFaction} variables={{ id }}>
       {({ data }) => {
+        const { faction } = data;
+        const { name } = faction;
         return (
-          <Title path={[data.faction.name, 'Factions']}>
+          <Title path={[name, 'Factions']}>
             <Box>
               <h1>
-                <FactionReference faction={data.faction} />
+                <FactionReference faction={faction} />
               </h1>
             </Box>
           </Title>

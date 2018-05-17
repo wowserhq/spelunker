@@ -26,16 +26,19 @@ const Spell = ({ match }) => {
   return (
     <Query query={fetchSpell} variables={{ id }}>
       {({ data }) => {
-        const { spell: {
+        const { spell } = data;
+        const {
+          name,
+
           taughtBy: { totalCount: taughtByCount },
-        } } = data;
+        } = spell;
 
         return (
-          <Title path={[data.spell.name, 'Spells']}>
+          <Title path={[name, 'Spells']}>
 
             <Box>
               <h1>
-                <SpellReference spell={data.spell} />
+                <SpellReference spell={spell} />
               </h1>
             </Box>
 

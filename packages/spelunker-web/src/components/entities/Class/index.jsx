@@ -22,11 +22,13 @@ const Class = ({ match }) => {
   return (
     <Query query={fetchClass} variables={{ id }}>
       {({ data }) => {
+        const { class: klass } = data;
+        const { name } = klass;
         return (
-          <Title path={[data.class.name, 'Classes']}>
+          <Title path={[name, 'Classes']}>
             <Box>
               <h1>
-                <ClassReference class={data.class} />
+                <ClassReference class={klass} />
               </h1>
             </Box>
           </Title>

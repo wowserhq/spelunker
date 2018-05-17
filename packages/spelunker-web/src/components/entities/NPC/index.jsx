@@ -46,20 +46,23 @@ const NPC = ({ match }) => {
   return (
     <Query query={fetchNPC} variables={{ id }}>
       {({ data }) => {
-        const { npc: {
+        const { npc } = data;
+        const {
+          name,
+
           drops: { totalCount: dropCount },
           ends: { totalCount: endCount },
           sells: { totalCount: sellCount },
           spawns: { totalCount: spawnCount },
           starts: { totalCount: startCount },
           teaches: { totalCount: teachCount },
-        } } = data;
+        } = npc;
 
         return (
-          <Title path={[data.npc.name, 'NPCs']}>
+          <Title path={[name, 'NPCs']}>
             <Box>
               <h1>
-                <NPCReference npc={data.npc} />
+                <NPCReference npc={npc} />
               </h1>
             </Box>
 

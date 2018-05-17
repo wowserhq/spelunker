@@ -17,6 +17,7 @@ const fetchQuest = gql`
     quest(id: $id) {
       id
       name
+      description
       endedBy {
         totalCount
       }
@@ -41,20 +42,27 @@ const Quest = ({ match }) => {
   return (
     <Query query={fetchQuest} variables={{ id }}>
       {({ data }) => {
-        const { quest: {
+        const { quest } = data;
+        const {
+          name,
+          description,
           endedBy: { totalCount: endedByCount },
           endedByObject: { totalCount: endedByObjectCount },
           startedBy: { totalCount: startedByCount },
           startedByItem: { totalCount: startedByItemCount },
           startedByObject: { totalCount: startedByObjectCount },
-        } } = data;
+        } = quest;
 
         return (
-          <Title path={[data.quest.name, 'Quests']}>
+          <Title path={[name, 'Quests']}>
             <Box>
               <h1>
-                <QuestReference quest={data.quest} />
+                <QuestReference quest={quest} />
               </h1>
+
+              <p>
+                {description}
+              </p>
             </Box>
 
             <TabbedBox>
