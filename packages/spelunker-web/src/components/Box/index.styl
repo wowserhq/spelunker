@@ -3,17 +3,75 @@
   position: relative
   padding: 20px
   margin-bottom: 20px
+  font-size: 1rem
   border-radius: 5px
-  box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0,
-              rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset
-  background: rgba(0, 0, 0, 0.3)
+  box-shadow: rgba(255, 255, 255, .1) 0 1px 0,
+              rgba(0, 0, 0, .8) 0 1px 7px 0px inset
+  background: rgba(0, 0, 0, .3)
 
-  legend {
-    padding-bottom: 6px
-    font-size: 20px
+  h1, h2, h3 {
+    margin: 1.5em 0 0.7em
     color: #FFFFFF
+    font-weight: normal
+  }
+
+  h1 {
+    font-size: 1.333em
+    padding-bottom: .4em
     border-bottom: 1px solid #121212
     box-shadow: 0 1px #2E2E2E
+
+    &:first-child {
+      margin-top: 0
+    }
+  }
+
+  h2, h3 {
+    box-sizing: content-box
+    display: inline-block
+    height: 1.7em
+    position: relative
+    left: -21px
+    padding: 0 21px
+    font-size: .93em
+    line-height: 1.7em
+    color: #FFCC00
+    background: linear-gradient(to right, darken(#610006, 60%), #610006 20%, #610006 80%, darken(#610006, 30%) 100%)
+    border-top: 1px solid lighten(#610006, 10%)
+    border-bottom: 1px solid darken(#610006, 75%)
+    border-radius: 0 0 0 5px
+    box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1)
+
+    clip-path: polygon(0 -5%, 100% -5%, 92% 50%, 100% 105%, 0 105%)
+
+    &:before {
+      content: ''
+      display: block
+      width: 5px
+      height: @width
+      position: absolute
+      top: -@width
+      left: 0
+      background: radial-gradient(circle at top right, transparent 4px, lighten(#610006, 5%) 5px, darken(#610006, 100%) 100%)
+    }
+  }
+
+  p, ul {
+    font-size: .93em
+  }
+
+  ul {
+    list-style-position: outside
+    list-style-type: square
+    padding-left: 20px
+
+    li {
+      padding: .5em 0
+    }
+
+    ul {
+      margin-top: 1em
+    }
   }
 
   > *:last-child {
