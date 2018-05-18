@@ -2,7 +2,6 @@ import React from 'react';
 
 import styles from './index.styl';
 
-
 const GameImageBackground = (props) => {
   const className = [
     props.className,
