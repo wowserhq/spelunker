@@ -1,7 +1,9 @@
 import Collection from '../core/Collection';
 import DatabaseEntity from '../db/Entity';
+import FixedColumnQuery from '../db/FixedColumnQuery';
 import { worldConnection } from '../db/connections';
 
+import Faction from './Faction';
 import GameObject from './GameObject';
 import GameObjectQuestFinisher from './GameObjectQuestFinisher';
 import GameObjectQuestStarter from './GameObjectQuestStarter';
@@ -35,6 +37,22 @@ class Quest extends DatabaseEntity {
     return this.data.LogDescription;
   }
 
+  get requiredMoney() {
+    const value = this.data.RewardMoney;
+    if (value >= 0) {
+      return null;
+    }
+    return -value;
+  }
+
+  get rewardMoney() {
+    const value = this.data.RewardMoney;
+    if (value <= 0) {
+      return null;
+    }
+    return value;
+  }
+
   async endedBy(args) {
     const query = NPC.query.join(
       NPCQuestFinisher.fqTableName,
@@ -53,6 +71,129 @@ class Quest extends DatabaseEntity {
       GameObject.fqColumn('entry')
     ).where({
       [GameObjectQuestFinisher.fqColumn('quest')]: this.id,
+    });
+    return new Collection(query, args);
+  }
+
+  async providedItem() {
+    const id = this.data.StartItem;
+    if (!id) {
+      return null;
+    }
+    return Item.find(id);
+  }
+
+  async requiredFactions(args) {
+    const query = FixedColumnQuery.for({
+      label: `requiredFactions for quest ${this.id}`,
+      end: 2,
+      resolve: (i) => {
+        const {
+          [`RequiredFactionId${i}`]: id,
+          [`RequiredFactionValue${i}`]: value,
+        } = this.data;
+
+        if (!id) {
+          return null;
+        }
+
+        return {
+          value,
+          faction: async () => Faction.find(id),
+        };
+      },
+    });
+    return new Collection(query, args);
+  }
+
+  async requiredNPCs(args) {
+    const query = FixedColumnQuery.for({
+      label: `requiredNPCs for quest ${this.id}`,
+      end: 4,
+      resolve: (i) => {
+        const {
+          [`RequiredNpcOrGo${i}`]: id,
+          [`RequiredNpcOrGoCount${i}`]: count,
+        } = this.data;
+
+        if (!id || id < 0) {
+          return null;
+        }
+
+        return {
+          count,
+          npc: async () => NPC.find(id),
+        };
+      },
+    });
+    return new Collection(query, args);
+  }
+
+  async requiredObjects(args) {
+    const query = FixedColumnQuery.for({
+      label: `requiredObjects for quest ${this.id}`,
+      end: 4,
+      resolve: (i) => {
+        const {
+          [`RequiredNpcOrGo${i}`]: id,
+          [`RequiredNpcOrGoCount${i}`]: count,
+        } = this.data;
+
+        if (!id || id > 0) {
+          return null;
+        }
+
+        return {
+          count,
+          object: async () => GameObject.find(id),
+        };
+      },
+    });
+    return new Collection(query, args);
+  }
+
+  async rewardChoiceItems(args) {
+    const query = FixedColumnQuery.for({
+      label: `rewardChoiceItems for quest ${this.id}`,
+      end: 6,
+      resolve: (i) => {
+        const {
+          [`RewardChoiceItemID${i}`]: id,
+          [`RewardChoiceItemQuantity${i}`]: count,
+        } = this.data;
+
+        if (!id) {
+          return null;
+        }
+
+        return {
+          count,
+          item: async () => Item.find(id),
+        };
+      },
+    });
+    return new Collection(query, args);
+  }
+
+  async rewardItems(args) {
+    const query = FixedColumnQuery.for({
+      label: `rewardItems for quest ${this.id}`,
+      end: 4,
+      resolve: (i) => {
+        const {
+          [`RewardItem${i}`]: id,
+          [`RewardAmount${i}`]: count,
+        } = this.data;
+
+        if (!id) {
+          return null;
+        }
+
+        return {
+          count,
+          item: async () => Item.find(id),
+        };
+      },
     });
     return new Collection(query, args);
   }

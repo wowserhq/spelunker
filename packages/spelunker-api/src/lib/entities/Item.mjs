@@ -62,6 +62,26 @@ class Item extends DatabaseEntity {
     return new Collection(query, args);
   }
 
+  async providedFor(args) {
+    const query = Quest.query.where({ StartItem: this.id });
+    return new Collection(query, args);
+  }
+
+  async rewardFrom(args) {
+    const query = Quest.query
+      .orWhere({ RewardItem1: this.id })
+      .orWhere({ RewardItem2: this.id })
+      .orWhere({ RewardItem3: this.id })
+      .orWhere({ RewardItem4: this.id })
+      .orWhere({ RewardChoiceItemID1: this.id })
+      .orWhere({ RewardChoiceItemID2: this.id })
+      .orWhere({ RewardChoiceItemID3: this.id })
+      .orWhere({ RewardChoiceItemID4: this.id })
+      .orWhere({ RewardChoiceItemID5: this.id })
+      .orWhere({ RewardChoiceItemID6: this.id });
+    return new Collection(query, args);
+  }
+
   async soldBy(args) {
     const query = NPCSale.query.where({ item: this.id });
     return new Collection(query, args);
