@@ -11,6 +11,7 @@ import ContainedInTab from './tabs/ContainedIn';
 import ContainsTab from './tabs/Contains';
 import DroppedByTab from './tabs/DroppedBy';
 import ItemReference from './Reference';
+import ObjectiveOfTab from './tabs/ObjectiveOf';
 import ProvidedForTab from './tabs/ProvidedFor';
 import RewardFromTab from './tabs/RewardFrom';
 import SoldByTab from './tabs/SoldBy';
@@ -37,6 +38,9 @@ const fetchItem = gql`
         totalCount
       }
       droppedBy {
+        totalCount
+      }
+      objectiveOf {
         totalCount
       }
       providedFor {
@@ -66,6 +70,7 @@ const Item = ({ match }) => {
           containedInObject: { totalCount: containedInObjectCount },
           contains: { totalCount: containCount },
           droppedBy: { totalCount: droppedByCount },
+          objectiveOf: { totalCount: objectiveOfCount },
           providedFor: { totalCount: providedForCount },
           rewardFrom: { totalCount: rewardFromCount },
           soldBy: { totalCount: soldByCount },
@@ -118,6 +123,13 @@ const Item = ({ match }) => {
                 label={`Contains (${containCount})`}
                 component={ContainsTab}
                 path="contains"
+                match={match}
+              />}
+
+              {objectiveOfCount > 0 && <Tab
+                label={`Objective of (${objectiveOfCount})`}
+                component={ObjectiveOfTab}
+                path="objective-of"
                 match={match}
               />}
 

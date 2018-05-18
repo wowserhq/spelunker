@@ -28,6 +28,7 @@ export default new GraphQLObjectType({
     endedByObject: CollectionType.definitionFor(GameObjectType),
     providedItem: { type: ItemType },
     requiredFactions: CollectionType.definitionFor(QuestFactionType),
+    requiredItems: CollectionType.definitionFor(QuestItemType),
     requiredNPCs: CollectionType.definitionFor(QuestNPCType),
     requiredObjects: CollectionType.definitionFor(QuestGameObjectType),
     rewardChoiceItems: CollectionType.definitionFor(QuestItemType),

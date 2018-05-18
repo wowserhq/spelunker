@@ -62,6 +62,17 @@ class Item extends DatabaseEntity {
     return new Collection(query, args);
   }
 
+  async objectiveOf(args) {
+    const query = Quest.query
+      .orWhere({ RequiredItemId1: this.id })
+      .orWhere({ RequiredItemId2: this.id })
+      .orWhere({ RequiredItemId3: this.id })
+      .orWhere({ RequiredItemId4: this.id })
+      .orWhere({ RequiredItemId5: this.id })
+      .orWhere({ RequiredItemId6: this.id });
+    return new Collection(query, args);
+  }
+
   async providedFor(args) {
     const query = Quest.query.where({ StartItem: this.id });
     return new Collection(query, args);

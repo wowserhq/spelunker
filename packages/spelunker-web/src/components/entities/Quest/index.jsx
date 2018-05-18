@@ -38,6 +38,15 @@ const fetchQuest = gql`
           }
         }
       }
+      requiredItems {
+        totalCount
+        results {
+          count
+          item {
+            ...ItemReference
+          }
+        }
+      }
       requiredNPCs {
         totalCount
         results {
@@ -113,6 +122,7 @@ const Quest = ({ match }) => {
 
           providedItem,
           requiredFactions,
+          requiredItems,
           requiredNPCs,
           requiredObjects,
           rewardChoiceItems,
@@ -160,6 +170,12 @@ const Quest = ({ match }) => {
                 {requiredFactions.results.map(({ value, faction }) => (
                   <li>
                     <FactionReference faction={faction} /> ({value})
+                  </li>
+                ))}
+
+                {requiredItems.results.map(({ count, item }) => (
+                  <li>
+                    <ItemReference item={item} /> {count}x
                   </li>
                 ))}
 

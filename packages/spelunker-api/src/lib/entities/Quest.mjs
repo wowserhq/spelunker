@@ -106,6 +106,29 @@ class Quest extends DatabaseEntity {
     return new Collection(query, args);
   }
 
+  async requiredItems(args) {
+    const query = FixedColumnQuery.for({
+      label: `requiredItems for quest ${this.id}`,
+      end: 6,
+      resolve: (i) => {
+        const {
+          [`RequiredItemId${i}`]: id,
+          [`RequiredItemCount${i}`]: count,
+        } = this.data;
+
+        if (!id) {
+          return null;
+        }
+
+        return {
+          count,
+          item: async () => Item.find(id),
+        };
+      },
+    });
+    return new Collection(query, args);
+  }
+
   async requiredNPCs(args) {
     const query = FixedColumnQuery.for({
       label: `requiredNPCs for quest ${this.id}`,

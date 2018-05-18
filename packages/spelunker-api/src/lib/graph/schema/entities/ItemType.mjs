@@ -31,6 +31,7 @@ export default new GraphQLObjectType({
     containedInObject: CollectionType.definitionFor(GameObjectLootType),
     contains: CollectionType.definitionFor(ItemLootType),
     droppedBy: CollectionType.definitionFor(NPCLootType),
+    objectiveOf: CollectionType.definitionFor(QuestType),
     providedFor: CollectionType.definitionFor(QuestType),
     rewardFrom: CollectionType.definitionFor(QuestType),
     soldBy: CollectionType.definitionFor(NPCSaleType),
