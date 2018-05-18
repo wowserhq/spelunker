@@ -2,6 +2,11 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import Box, { Tab, TabbedBox } from '../../Box';
+import Currency from '../../formatters/Currency';
+import FactionReference from '../Faction/Reference';
+import GameObjectReference from '../GameObject/Reference';
+import ItemReference from '../Item/Reference';
+import NPCReference from '../NPC/Reference';
 import Query from '../../Query';
 import Title from '../../Spelunker/Title';
 
@@ -18,6 +23,58 @@ const fetchQuest = gql`
       id
       name
       description
+      requiredMoney
+      rewardMoney
+
+      providedItem {
+        ...ItemReference
+      }
+      requiredFactions {
+        totalCount
+        results {
+          value
+          faction {
+            ...FactionReference
+          }
+        }
+      }
+      requiredNPCs {
+        totalCount
+        results {
+          count
+          npc {
+            ...NPCReference
+          }
+        }
+      }
+      requiredObjects {
+        totalCount
+        results {
+          count
+          object {
+            ...GameObjectReference
+          }
+        }
+      }
+      rewardChoiceItems {
+        totalCount
+        results {
+          count
+          item {
+            ...ItemReference
+          }
+        }
+      }
+      rewardItems {
+        totalCount
+        results {
+          count
+          item {
+            ...ItemReference
+          }
+        }
+      }
+
       endedBy {
         totalCount
       }
@@ -35,6 +92,11 @@ const fetchQuest = gql`
       }
     }
   }
+
+  ${FactionReference.fragment}
+  ${GameObjectReference.fragment}
+  ${ItemReference.fragment}
+  ${NPCReference.fragment}
 `;
 
 const Quest = ({ match }) => {
@@ -46,6 +108,16 @@ const Quest = ({ match }) => {
         const {
           name,
           description,
+          requiredMoney,
+          rewardMoney,
+
+          providedItem,
+          requiredFactions,
+          requiredNPCs,
+          requiredObjects,
+          rewardChoiceItems,
+          rewardItems,
+
           endedBy: { totalCount: endedByCount },
           endedByObject: { totalCount: endedByObjectCount },
           startedBy: { totalCount: startedByCount },
@@ -63,6 +135,74 @@ const Quest = ({ match }) => {
               <p>
                 {description}
               </p>
+
+              {providedItem && (
+                <div>
+                  <h2>Provided item</h2>
+
+                  <ul>
+                    <li>
+                      <ItemReference item={providedItem} />
+                    </li>
+                  </ul>
+                </div>
+              )}
+
+              <h2>Requirements</h2>
+
+              <ul>
+                {requiredMoney && (
+                  <li>
+                    <Currency value={requiredMoney} />
+                  </li>
+                )}
+
+                {requiredFactions.results.map(({ value, faction }) => (
+                  <li>
+                    <FactionReference faction={faction} /> ({value})
+                  </li>
+                ))}
+
+                {requiredNPCs.results.map(({ count, npc }) => (
+                  <li>
+                    Slay <NPCReference npc={npc} /> {count}x
+                  </li>
+                ))}
+
+                {requiredObjects.results.map(({ count, object }) => (
+                  <li>
+                    <GameObjectReference object={object} /> {count}x
+                  </li>
+                ))}
+              </ul>
+
+              <h2>Rewards</h2>
+
+              <ul>
+                {rewardMoney && (
+                  <li>
+                    <Currency value={rewardMoney} />
+                  </li>
+                )}
+
+                {rewardItems.results.map(({ count, item }) => (
+                  <li>
+                    <ItemReference item={item} /> {count}x
+                  </li>
+                ))}
+
+                {rewardChoiceItems.totalCount > 0 && (
+                  <li>One of:
+                    <ul>
+                      {rewardChoiceItems.results.map(({ count, item }) => (
+                        <li>
+                          <ItemReference item={item} /> {count}x
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                )}
+              </ul>
             </Box>
 
             <TabbedBox>
