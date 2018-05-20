@@ -8,6 +8,7 @@ import GameObjectReference from '../GameObject/Reference';
 import ItemReference from '../Item/Reference';
 import NPCReference from '../NPC/Reference';
 import Query from '../../Query';
+import SpellReference from '../Spell/Reference';
 import Title from '../../Spelunker/Title';
 
 import EndedByTab from './tabs/EndedBy';
@@ -83,6 +84,9 @@ const fetchQuest = gql`
           }
         }
       }
+      rewardSpell {
+        ...SpellReference
+      }
 
       endedBy {
         totalCount
@@ -106,6 +110,7 @@ const fetchQuest = gql`
   ${GameObjectReference.fragment}
   ${ItemReference.fragment}
   ${NPCReference.fragment}
+  ${SpellReference.fragment}
 `;
 
 const Quest = ({ match }) => {
@@ -127,6 +132,7 @@ const Quest = ({ match }) => {
           requiredObjects,
           rewardChoiceItems,
           rewardItems,
+          rewardSpell,
 
           endedBy: { totalCount: endedByCount },
           endedByObject: { totalCount: endedByObjectCount },
@@ -216,6 +222,12 @@ const Quest = ({ match }) => {
                         </li>
                       ))}
                     </ul>
+                  </li>
+                )}
+
+                {rewardSpell && (
+                  <li>
+                    <SpellReference spell={rewardSpell} />
                   </li>
                 )}
               </ul>

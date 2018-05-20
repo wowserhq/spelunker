@@ -11,6 +11,7 @@ import Item from './Item';
 import NPC from './NPC';
 import NPCQuestFinisher from './NPCQuestFinisher';
 import NPCQuestStarter from './NPCQuestStarter';
+import Spell from './Spell';
 
 class Quest extends DatabaseEntity {
   static get connection() {
@@ -219,6 +220,20 @@ class Quest extends DatabaseEntity {
       },
     });
     return new Collection(query, args);
+  }
+
+  async rewardDisplaySpell() {
+    if (!this.data.RewardDisplaySpell) {
+      return null;
+    }
+    return Spell.find(this.data.RewardDisplaySpell);
+  }
+
+  async rewardSpell() {
+    if (!this.data.RewardSpell) {
+      return null;
+    }
+    return Spell.find(this.data.RewardSpell);
   }
 
   async startedBy(args) {
