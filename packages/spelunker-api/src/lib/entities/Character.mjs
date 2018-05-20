@@ -1,11 +1,11 @@
-import Collection from '../core/Collection.mjs';
+import Collection from '../core/Collection';
 import DatabaseEntity from '../db/Entity';
 import { characterConnection } from '../db/connections';
 
 import Account from './Account';
 import CharacterItem from './CharacterItem';
-import Race from './Race.mjs';
-import Class from './Class.mjs';
+import Class from './Class';
+import Race from './Race';
 
 class Character extends DatabaseEntity {
   static get connection() {
