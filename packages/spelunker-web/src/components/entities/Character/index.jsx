@@ -13,8 +13,7 @@ import InventoryTab from './tabs/Inventory';
 const fetchCharacter = gql`
   query($id: Int!) {
     character(id: $id) {
-      id
-      name
+      ...CharacterReference
 
       completedQuests {
         totalCount
