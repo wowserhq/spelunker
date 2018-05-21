@@ -6,7 +6,7 @@ Database explorer for World of Warcraft servers.
 
 Licensed under the [**MIT** license](LICENSE.md).
 
-![Spelunker](https://user-images.githubusercontent.com/378235/39959963-d4eb92ea-5654-11e8-8563-158713f2d237.png)
+![Spelunker](https://user-images.githubusercontent.com/378235/40316324-435d347a-5d1e-11e8-8d40-0e1dd2635213.png)
 
 ## Features
 
