@@ -1,12 +1,12 @@
 import DatabaseEntity from '../db/Entity';
-import { characterConnection } from '../db/connections';
+import { charactersConnection } from '../db/connections';
 
 import Character from './Character';
 import Item from './Item';
 
 class CharacterItem extends DatabaseEntity {
   static get connection() {
-    return characterConnection;
+    return charactersConnection;
   }
 
   static get tableName() {

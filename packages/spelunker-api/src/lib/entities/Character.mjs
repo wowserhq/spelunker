@@ -1,6 +1,6 @@
 import Collection from '../core/Collection';
 import DatabaseEntity from '../db/Entity';
-import { characterConnection } from '../db/connections';
+import { charactersConnection } from '../db/connections';
 
 import Account from './Account';
 import CharacterItem from './CharacterItem';
@@ -9,7 +9,7 @@ import Race from './Race';
 
 class Character extends DatabaseEntity {
   static get connection() {
-    return characterConnection;
+    return charactersConnection;
   }
 
   static get tableName() {
