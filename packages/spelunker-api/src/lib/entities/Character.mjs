@@ -4,8 +4,11 @@ import { charactersConnection } from '../db/connections';
 
 import Account from './Account';
 import CharacterItem from './CharacterItem';
+import CharacterQuestStatus from './CharacterQuestStatus';
+import CharacterQuestStatusRewarded from './CharacterQuestStatusRewarded';
 import Class from './Class';
 import Race from './Race';
+import Quest from './Quest';
 
 class Character extends DatabaseEntity {
   static get connection() {
@@ -42,6 +45,22 @@ class Character extends DatabaseEntity {
 
   async class() {
     return Class.find(this.data.class);
+  }
+
+  async completedQuests(args) {
+    const query = Quest.query.join(
+      CharacterQuestStatusRewarded.fqTableName,
+      CharacterQuestStatusRewarded.fqColumn('quest'),
+      Quest.fqColumn('ID')
+    ).where({
+      [CharacterQuestStatusRewarded.fqColumn('guid')]: this.id,
+    });
+    return new Collection(query, args);
+  }
+
+  async currentQuests(args) {
+    const query = CharacterQuestStatus.query.where({ guid: this.id });
+    return new Collection(query, args);
   }
 
   async inventory(args) {

@@ -11,8 +11,10 @@ import CollectionType from '../CollectionType';
 import AccountType from './AccountType';
 import ClassType from './ClassType';
 import CharacterItemType from './CharacterItemType';
+import CharacterQuestType from './CharacterQuestType';
 import GenderType from './GenderType';
 import MapType from './MapType';
+import QuestType from './QuestType';
 import RaceType from './RaceType';
 
 export default new GraphQLObjectType({
@@ -35,6 +37,8 @@ export default new GraphQLObjectType({
     orientation: { type: GraphQLFloat },
 
     account: { type: new GraphQLNonNull(AccountType) },
+    completedQuests: CollectionType.definitionFor(QuestType),
+    currentQuests: CollectionType.definitionFor(CharacterQuestType),
     inventory: CollectionType.definitionFor(CharacterItemType),
   }),
 });

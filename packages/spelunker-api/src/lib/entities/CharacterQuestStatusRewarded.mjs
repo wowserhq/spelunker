@@ -1,0 +1,14 @@
+import DatabaseEntity from '../db/Entity';
+import { charactersConnection } from '../db/connections';
+
+class CharacterQuestStatusRewarded extends DatabaseEntity {
+  static get connection() {
+    return charactersConnection;
+  }
+
+  static get tableName() {
+    return 'character_queststatus_rewarded';
+  }
+}
+
+export default CharacterQuestStatusRewarded;
