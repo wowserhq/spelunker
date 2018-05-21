@@ -31,10 +31,6 @@ class FixedColumnQuery extends Query {
   }
 
   then(resolve) {
-    if (!resolve) {
-      return null;
-    }
-
     if (!this.results) {
       log(`fetching ${this.label}`);
 
