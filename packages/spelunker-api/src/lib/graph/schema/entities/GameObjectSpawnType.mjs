@@ -12,11 +12,12 @@ export default new GraphQLObjectType({
   name: 'GameObjectSpawn',
   fields: () => ({
     id: { type: new GraphQLNonNull(GraphQLInt) },
-    object: { type: new GraphQLNonNull(GameObjectType) },
-    map: { type: MapType },
     x: { type: GraphQLFloat },
     y: { type: GraphQLFloat },
     z: { type: GraphQLFloat },
     orientation: { type: GraphQLFloat },
+
+    object: { type: new GraphQLNonNull(GameObjectType) },
+    map: { type: new GraphQLNonNull(MapType) },
   }),
 });
