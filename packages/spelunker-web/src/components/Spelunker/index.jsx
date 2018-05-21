@@ -10,6 +10,8 @@ import {
 
 import Account from '../entities/Account';
 import AccountList from '../entities/Account/List';
+import Area from '../entities/Area';
+import AreaList from '../entities/Area/List';
 import Box from '../Box';
 import Character from '../entities/Character';
 import CharacterList from '../entities/Character/List';
@@ -49,6 +51,7 @@ const Spelunker = () => (
             <ul>
               <li><NavLink exact to="/">Spelunker</NavLink></li>
               <li><NavLink to="/accounts">Accounts</NavLink></li>
+              <li><NavLink to="/areas">Areas</NavLink></li>
               <li><NavLink to="/characters">Characters</NavLink></li>
               <li><NavLink to="/classes">Classes</NavLink></li>
               <li><NavLink to="/factions">Factions</NavLink></li>
@@ -66,6 +69,9 @@ const Spelunker = () => (
         <Switch>
           <Route path="/accounts/:id" component={Account} />
           <Route path="/accounts" component={AccountList} />
+
+          <Route path="/areas/:id" component={Area} />
+          <Route path="/areas" component={AreaList} />
 
           <Route path="/characters/:id" component={Character} />
           <Route path="/characters" component={CharacterList} />

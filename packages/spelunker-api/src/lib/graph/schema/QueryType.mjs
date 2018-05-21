@@ -7,6 +7,7 @@ import {
 import CollectionType from './CollectionType';
 
 import AccountType from './entities/AccountType';
+import AreaType from './entities/AreaType';
 import CharacterType from './entities/CharacterType';
 import ClassType from './entities/ClassType';
 import FactionType from './entities/FactionType';
@@ -32,6 +33,9 @@ export default new GraphQLObjectType({
   fields: {
     accounts: CollectionType.definitionFor(AccountType),
     account: finderFor(AccountType),
+
+    areas: CollectionType.definitionFor(AreaType),
+    area: finderFor(AreaType),
 
     characters: CollectionType.definitionFor(CharacterType),
     character: finderFor(CharacterType),

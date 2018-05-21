@@ -1,5 +1,6 @@
 
 import Account from '../entities/Account';
+import Area from '../entities/Area';
 import Character from '../entities/Character';
 import Class from '../entities/Class';
 import Collection from '../core/Collection';
@@ -15,6 +16,9 @@ import Spell from '../entities/Spell';
 export default {
   accounts: async (args) => new Collection(Account.query, args),
   account: async ({ id }) => Account.find(id),
+
+  areas: async (args) => new Collection(Area.query, args),
+  area: async ({ id }) => Area.find(id),
 
   characters: async (args) => new Collection(Character.query, args),
   character: async ({ id }) => Character.find(id),
