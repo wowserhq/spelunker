@@ -6,6 +6,7 @@ import Account from './Account';
 import CharacterItem from './CharacterItem';
 import CharacterQuestStatus from './CharacterQuestStatus';
 import CharacterQuestStatusRewarded from './CharacterQuestStatusRewarded';
+import CharacterReputation from './CharacterReputation';
 import Class from './Class';
 import Race from './Race';
 import Quest from './Quest';
@@ -70,6 +71,11 @@ class Character extends DatabaseEntity {
 
   async race() {
     return Race.find(this.data.race);
+  }
+
+  async reputation(args) {
+    const query = CharacterReputation.query.where({ guid: this.id });
+    return new Collection(query, args);
   }
 }
 

@@ -9,6 +9,7 @@ import CharacterReference from './Reference';
 import CompletedQuestsTab from './tabs/CompletedQuests';
 import CurrentQuestsTab from './tabs/CurrentQuests';
 import InventoryTab from './tabs/Inventory';
+import ReputationTab from './tabs/Reputation';
 
 const fetchCharacter = gql`
   query($id: Int!) {
@@ -22,6 +23,9 @@ const fetchCharacter = gql`
         totalCount
       }
       inventory {
+        totalCount
+      }
+      reputation {
         totalCount
       }
     }
@@ -42,6 +46,7 @@ const Character = ({ match }) => {
           completedQuests: { totalCount: completedQuestCount },
           currentQuests: { totalCount: currentQuestCount },
           inventory: { totalCount: inventoryCount },
+          reputation: { totalCount : reputationCount },
         } = character;
 
         return (
@@ -71,6 +76,13 @@ const Character = ({ match }) => {
                 label={`Completed quests (${completedQuestCount})`}
                 component={CompletedQuestsTab}
                 path="completed-quests"
+                match={match}
+              />}
+
+              {reputationCount > 0 && <Tab
+                label={`Reputation (${reputationCount})`}
+                component={ReputationTab}
+                path="reputation"
                 match={match}
               />}
             </TabbedBox>

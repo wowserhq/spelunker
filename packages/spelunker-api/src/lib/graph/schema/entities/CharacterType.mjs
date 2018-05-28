@@ -12,6 +12,7 @@ import AccountType from './AccountType';
 import ClassType from './ClassType';
 import CharacterItemType from './CharacterItemType';
 import CharacterQuestType from './CharacterQuestType';
+import CharacterReputationType from './CharacterReputationType';
 import GenderType from './GenderType';
 import MapType from './MapType';
 import QuestType from './QuestType';
@@ -40,5 +41,6 @@ export default new GraphQLObjectType({
     completedQuests: CollectionType.definitionFor(QuestType),
     currentQuests: CollectionType.definitionFor(CharacterQuestType),
     inventory: CollectionType.definitionFor(CharacterItemType),
+    reputation: CollectionType.definitionFor(CharacterReputationType),
   }),
 });
