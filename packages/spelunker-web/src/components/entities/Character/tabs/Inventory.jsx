@@ -37,6 +37,7 @@ const InventoryTab = ({ match }) => {
         <Table>
           <thead>
             <tr>
+              <th field="id">#</th>
               <th>Item</th>
               <th>Count</th>
             </tr>
@@ -44,6 +45,7 @@ const InventoryTab = ({ match }) => {
           <tbody>
             {results.map(({ id, item, count }) => (
               <tr key={id}>
+                <td field="id">{item.id}</td>
                 <td>
                   <ItemReference item={item} />
                 </td>
