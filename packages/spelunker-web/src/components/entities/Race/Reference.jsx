@@ -4,12 +4,17 @@ import { Link } from 'react-router-dom';
 
 import RaceIcon from './Icon';
 
-const RaceReference = ({ race }) => (
+const RaceReference = ({ race, iconSize, withoutIcon, withoutName }) => (
   <Link to={`/races/${race.id}`}>
-    <RaceIcon race={race} />
-    {race.name}
+    {!withoutIcon && <RaceIcon race={race} size={iconSize} />}
+    {!withoutName && race.name}
   </Link>
 );
+
+RaceReference.defaultProps = {
+  withoutIcon: false,
+  withoutName: false,
+};
 
 RaceReference.fragment = gql`
   fragment RaceReference on Race {
