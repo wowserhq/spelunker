@@ -4,9 +4,9 @@ import GameIcon from '../../../images/GameIcon';
 
 import styles from './index.styl';
 
-const ClassIcon = ({ class: klass }) => {
+const ClassIcon = ({ class: klass, size }) => {
   const style = styles[klass.filename.toLowerCase()];
-  const className = [styles.icon, style].join(' ');
+  const className = [styles.icon, styles[size], style].join(' ');
   return (
     <GameIcon
       file="Interface\GLUES\CHARACTERCREATE\UI-CHARACTERCREATE-CLASSES.BLP"
@@ -14,6 +14,10 @@ const ClassIcon = ({ class: klass }) => {
       asBackground
     />
   );
+};
+
+ClassIcon.defaultProps = {
+  size: 'normal',
 };
 
 export default ClassIcon;
