@@ -7,7 +7,7 @@ class NPCQuestFinisher extends DatabaseEntity {
   }
 
   static get tableName() {
-    return 'creature_queststarter';
+    return 'creature_questender';
   }
 }
 

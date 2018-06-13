@@ -7,7 +7,7 @@ class GameObjectQuestFinisher extends DatabaseEntity {
   }
 
   static get tableName() {
-    return 'gameobject_queststarter';
+    return 'gameobject_questender';
   }
 }
 
