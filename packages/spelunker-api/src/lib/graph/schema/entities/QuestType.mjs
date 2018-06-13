@@ -14,6 +14,7 @@ import QuestFactionType from './QuestFactionType';
 import QuestItemType from './QuestItemType';
 import QuestNPCType from './QuestNPCType';
 import QuestGameObjectType from './QuestGameObjectType';
+import SideType from './SideType';
 import SpellType from './SpellType';
 
 export default new GraphQLObjectType({
@@ -36,6 +37,7 @@ export default new GraphQLObjectType({
     rewardItems: CollectionType.definitionFor(QuestItemType),
     rewardDisplaySpell: { type: SpellType },
     rewardSpell: { type: SpellType },
+    sides: { type: new GraphQLList(SideType) },
     startedBy: CollectionType.definitionFor(NPCType),
     startedByItem: CollectionType.definitionFor(ItemType),
     startedByObject: CollectionType.definitionFor(GameObjectType),

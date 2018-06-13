@@ -11,6 +11,7 @@ import Item from './Item';
 import NPC from './NPC';
 import NPCQuestFinisher from './NPCQuestFinisher';
 import NPCQuestStarter from './NPCQuestStarter';
+import Side from './Side';
 import Spell from './Spell';
 
 class Quest extends DatabaseEntity {
@@ -234,6 +235,16 @@ class Quest extends DatabaseEntity {
       return null;
     }
     return Spell.find(this.data.RewardSpell);
+  }
+
+  async sides() {
+    const mask = this.data.AllowableRaces;
+
+    const sides = await Side.query;
+    if (mask) {
+      return sides.filter(side => mask & side.racemask);
+    }
+    return sides;
   }
 
   async startedBy(args) {
