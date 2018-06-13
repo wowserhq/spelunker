@@ -30,6 +30,7 @@ import Quest from '../entities/Quest';
 import QuestList from '../entities/Quest/List';
 import Race from '../entities/Race';
 import RaceList from '../entities/Race/List';
+import Side from '../entities/Side';
 import Spell from '../entities/Spell';
 import SpellList from '../entities/Spell/List';
 
@@ -97,6 +98,8 @@ const Spelunker = () => (
 
           <Route path="/races/:id" component={Race} />
           <Route path="/races" component={RaceList} />
+
+          <Route path="/sides/:id" component={Side} />
 
           <Route path="/spells/:id" component={Spell} />
           <Route path="/spells" component={SpellList} />
