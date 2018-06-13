@@ -1,7 +1,9 @@
 import knexQueryMethods from 'knex/lib/query/methods';
 
 import Query from '../core/Query';
-import { dbLog as log } from '../utils/logger';
+import logger from '../utils/logger';
+
+const log = logger('db');
 
 class DatabaseQuery extends Query {
   constructor(entity) {
@@ -15,8 +17,8 @@ class DatabaseQuery extends Query {
     return this;
   }
 
-  count() {
-    const knex = this.knex.clone().count();
+  totalCount() {
+    const knex = this.knex.clone().clearSelect().count();
     log(knex.toString());
     return knex.then(results => (
       results[0]['count(*)']

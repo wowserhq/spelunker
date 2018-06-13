@@ -8,6 +8,3 @@ const logger = (suffix) => {
 export default logger;
 
 export const log = logger('core');
-export const dbLog = logger('db');
-export const dbcLog = logger('dbc');
-export const graphLog = logger('graph');

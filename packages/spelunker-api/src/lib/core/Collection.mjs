@@ -1,7 +1,9 @@
 const MAX_RESULTS = 25;
 
 class Collection {
-  constructor(query, args) {
+  constructor(query, args = {}) {
+    this.query = query;
+
     this.offset = args.offset || 0;
     this.limit = args.limit || MAX_RESULTS;
 
@@ -16,12 +18,10 @@ class Collection {
     if (this.limit > MAX_RESULTS) {
       throw new Error(`limit must not exceed ${MAX_RESULTS}`);
     }
-
-    this.query = query;
   }
 
   async totalCount() {
-    return this.query.count();
+    return this.query.totalCount();
   }
 
   async results() {

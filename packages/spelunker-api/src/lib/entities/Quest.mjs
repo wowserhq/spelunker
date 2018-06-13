@@ -85,7 +85,7 @@ class Quest extends DatabaseEntity {
   }
 
   async requiredFactions(args) {
-    const query = FixedColumnQuery.for({
+    const query = FixedColumnQuery.for(Faction, {
       label: `requiredFactions for quest ${this.id}`,
       end: 2,
       resolve: (i) => {
@@ -108,7 +108,7 @@ class Quest extends DatabaseEntity {
   }
 
   async requiredItems(args) {
-    const query = FixedColumnQuery.for({
+    const query = FixedColumnQuery.for(Item, {
       label: `requiredItems for quest ${this.id}`,
       end: 6,
       resolve: (i) => {
@@ -131,7 +131,7 @@ class Quest extends DatabaseEntity {
   }
 
   async requiredNPCs(args) {
-    const query = FixedColumnQuery.for({
+    const query = FixedColumnQuery.for(NPC, {
       label: `requiredNPCs for quest ${this.id}`,
       end: 4,
       resolve: (i) => {
@@ -154,7 +154,7 @@ class Quest extends DatabaseEntity {
   }
 
   async requiredObjects(args) {
-    const query = FixedColumnQuery.for({
+    const query = FixedColumnQuery.for(GameObject, {
       label: `requiredObjects for quest ${this.id}`,
       end: 4,
       resolve: (i) => {
@@ -177,7 +177,7 @@ class Quest extends DatabaseEntity {
   }
 
   async rewardChoiceItems(args) {
-    const query = FixedColumnQuery.for({
+    const query = FixedColumnQuery.for(Item, {
       label: `rewardChoiceItems for quest ${this.id}`,
       end: 6,
       resolve: (i) => {
@@ -200,7 +200,7 @@ class Quest extends DatabaseEntity {
   }
 
   async rewardItems(args) {
-    const query = FixedColumnQuery.for({
+    const query = FixedColumnQuery.for(Item, {
       label: `rewardItems for quest ${this.id}`,
       end: 4,
       resolve: (i) => {

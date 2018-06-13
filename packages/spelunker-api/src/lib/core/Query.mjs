@@ -9,8 +9,8 @@ class Query {
     notImplemented(this, 'slice');
   }
 
-  count() {
-    notImplemented(this, 'count');
+  totalCount() {
+    notImplemented(this, 'totalCount');
   }
 
   then() {
