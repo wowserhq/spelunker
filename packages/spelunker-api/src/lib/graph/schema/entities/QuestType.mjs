@@ -13,6 +13,7 @@ import ClassType from './ClassType';
 import GameObjectType from './GameObjectType';
 import ItemType from './ItemType';
 import NPCType from './NPCType';
+import QuestCategoryType from './QuestCategoryType';
 import QuestFactionType from './QuestFactionType';
 import QuestItemType from './QuestItemType';
 import QuestNPCType from './QuestNPCType';
@@ -29,6 +30,8 @@ export default new GraphQLObjectType({
     description: { type: new GraphQLNonNull(GraphQLString) },
     requiredMoney: { type: GraphQLInt },
     rewardMoney: { type: GraphQLInt },
+
+    category: { type: QuestCategoryType },
 
     classes: { type: new GraphQLList(ClassType) },
     endedBy: CollectionType.definitionFor(NPCType),

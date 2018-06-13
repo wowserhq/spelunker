@@ -1,4 +1,3 @@
-import ApolloClient from 'apollo-boost';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import {
@@ -36,11 +35,10 @@ import SpellList from '../entities/Spell/List';
 
 import ProjectLink from './ProjectLink';
 import Title from './Title';
+import client from './graphql-client';
 
 import styles from './index.styl';
 import './links.styl';
-
-const client = new ApolloClient({ uri: process.env.API_URI });
 
 const Spelunker = () => (
   <ApolloProvider client={client}>

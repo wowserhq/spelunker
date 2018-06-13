@@ -13,6 +13,7 @@ const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLSchema,
+  GraphQLUnionType,
 } = graphql;
 
 export {
@@ -25,4 +26,5 @@ export {
   GraphQLObjectType,
   GraphQLString,
   GraphQLSchema,
+  GraphQLUnionType,
 };

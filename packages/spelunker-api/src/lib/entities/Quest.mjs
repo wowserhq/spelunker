@@ -12,6 +12,7 @@ import Item from './Item';
 import NPC from './NPC';
 import NPCQuestFinisher from './NPCQuestFinisher';
 import NPCQuestStarter from './NPCQuestStarter';
+import QuestCategory from './QuestCategory';
 import Race from './Race';
 import Side from './Side';
 import Spell from './Spell';
@@ -59,6 +60,10 @@ class Quest extends DatabaseEntity {
       return null;
     }
     return value;
+  }
+
+  async category() {
+    return QuestCategory.find(this.data.QuestSortID);
   }
 
   async classes() {
