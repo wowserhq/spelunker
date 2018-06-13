@@ -3,6 +3,7 @@ import DatabaseEntity from '../db/Entity';
 import FixedColumnQuery from '../db/FixedColumnQuery';
 import { worldConnection } from '../db/connections';
 
+import Class from './Class';
 import Faction from './Faction';
 import GameObject from './GameObject';
 import GameObjectQuestFinisher from './GameObjectQuestFinisher';
@@ -11,6 +12,7 @@ import Item from './Item';
 import NPC from './NPC';
 import NPCQuestFinisher from './NPCQuestFinisher';
 import NPCQuestStarter from './NPCQuestStarter';
+import Race from './Race';
 import Side from './Side';
 import Spell from './Spell';
 
@@ -24,11 +26,15 @@ class Quest extends DatabaseEntity {
   }
 
   static get primaryKey() {
-    return 'ID';
+    return this.fqColumn('ID');
   }
 
-  get id() {
-    return this.data.ID;
+  static get query() {
+    return super.query.leftJoin(
+      'quest_template_addon',
+      this.primaryKey,
+      'quest_template_addon.ID',
+    ).select('*').select(`${this.primaryKey} AS id`);
   }
 
   get name() {
@@ -53,6 +59,11 @@ class Quest extends DatabaseEntity {
       return null;
     }
     return value;
+  }
+
+  async classes() {
+    const mask = this.data.AllowableClasses;
+    return Class.findByMask(mask);
   }
 
   async endedBy(args) {
@@ -83,6 +94,11 @@ class Quest extends DatabaseEntity {
       return null;
     }
     return Item.find(id);
+  }
+
+  async races(args) {
+    const mask = this.data.AllowableRaces;
+    return Race.findByMask(mask, args);
   }
 
   async requiredFactions(args) {

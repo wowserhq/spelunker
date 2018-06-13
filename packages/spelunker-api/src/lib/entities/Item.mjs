@@ -99,7 +99,9 @@ class Item extends DatabaseEntity {
   }
 
   async starts(args) {
-    const query = Quest.query.where({ ID: this.startquest });
+    const query = Quest.query.where({
+      [Quest.fqColumn('ID')]: this.startquest,
+    });
     return new Collection(query, args);
   }
 }

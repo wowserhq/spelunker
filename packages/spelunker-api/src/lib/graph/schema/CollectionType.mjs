@@ -25,12 +25,13 @@ class CollectionType extends GraphQLObjectType {
     return type;
   }
 
-  static definitionFor(wrappedType) {
+  static definitionFor(wrappedType, args = {}) {
     return {
       type: this.for(wrappedType),
       args: {
         limit: { type: GraphQLInt },
         offset: { type: GraphQLInt },
+        ...args,
       },
     };
   }
