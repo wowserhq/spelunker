@@ -3,8 +3,8 @@ import gql from 'graphql-tag';
 
 import Collection from '../../../Collection';
 import ItemReference from '../../Item/Reference';
-import Table from '../../../Table';
-import percent from '../../../formatters/percent';
+import Table, { ChanceColumn, prefixAccessors } from '../../../Table';
+import itemColumns from '../../Item/columns';
 
 const listContainedInForItem = gql`
   query($id: Int!, $offset: Int) {
@@ -29,29 +29,18 @@ const ContainedInTab = ({ match }) => {
   const { id } = match.params;
   return (
     <Collection
-      field="item.containedIn"
+      accessor="item.containedIn"
       query={listContainedInForItem}
       variables={{ id }}
     >
       {({ results }) => (
-        <Table>
-          <thead>
-            <tr>
-              <th>Chance</th>
-              <th>Container</th>
-            </tr>
-          </thead>
-          <tbody>
-            {results.map(({ chance, container }) => (
-              <tr key={container.id}>
-                <td>{percent(chance)}</td>
-                <td>
-                  <ItemReference item={container} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <Table
+          data={results}
+          columns={[
+            ...prefixAccessors(itemColumns, 'container'),
+            <ChanceColumn />,
+          ]}
+        />
       )}
     </Collection>
   );

@@ -7,6 +7,7 @@ import Table from '../../Table';
 import Title from '../../Spelunker/Title';
 
 import ClassReference from './Reference';
+import classColumns from './columns';
 
 const listClasses = gql`
   query($offset: Int) {
@@ -26,28 +27,14 @@ const ClassList = () => (
     <Title path={['Classes']} />
 
     <Collection
-      field="classes"
+      accessor="classes"
       query={listClasses}
     >
       {({ results }) => (
-        <Table>
-          <thead>
-            <tr>
-              <th field="id">#</th>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {results.map(klass => (
-              <tr key={klass.id}>
-                <td field="id">{klass.id}</td>
-                <td>
-                  <ClassReference class={klass} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <Table
+          data={results}
+          columns={classColumns}
+        />
       )}
     </Collection>
   </Box>

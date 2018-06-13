@@ -2,9 +2,9 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import Collection from '../../../Collection';
-import Currency from '../../../formatters/Currency';
 import SpellReference from '../../Spell/Reference';
-import Table from '../../../Table';
+import Table, { CurrencyColumn, prefixAccessors } from '../../../Table';
+import spellColumns from '../../Spell/columns';
 
 const listTeachesForNPC = gql`
   query($id: Int!, $offset: Int) {
@@ -29,33 +29,18 @@ const TeachesTab = ({ match }) => {
   const { id } = match.params;
   return (
     <Collection
-      field="npc.teaches"
+      accessor="npc.teaches"
       query={listTeachesForNPC}
       variables={{ id }}
     >
       {({ results }) => (
-        <Table>
-          <thead>
-            <tr>
-              <th field="id">#</th>
-              <th>Name</th>
-              <th>Cost</th>
-            </tr>
-          </thead>
-          <tbody>
-            {results.map(({ cost, spell }) => (
-              <tr key={spell.id}>
-                <td field="id">{spell.id}</td>
-                <td>
-                  <SpellReference spell={spell} />
-                </td>
-                <td>
-                  <Currency value={cost} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <Table
+          data={results}
+          columns={[
+            ...prefixAccessors(spellColumns, 'spell'),
+            <CurrencyColumn label="Cost" accessor="cost" />,
+          ]}
+        />
       )}
     </Collection>
   );

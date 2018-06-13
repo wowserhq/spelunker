@@ -1,9 +1,13 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
+import ClassReference from '../../Class/Reference';
 import Collection from '../../../Collection';
+import QuestCategory from '../../Quest/Category';
 import QuestReference from '../../Quest/Reference';
+import RaceReference from '../../Race/Reference';
 import Table from '../../../Table';
+import questColumns from '../../Quest/columns';
 
 const listObjectiveOfForFaction = gql`
   query($id: Int!, $offset: Int) {
@@ -13,41 +17,39 @@ const listObjectiveOfForFaction = gql`
         totalCount
         results {
           ...QuestReference
+          category {
+            ...QuestCategory
+          }
+          classes {
+            ...ClassReference
+          }
+          races(exclusive: true) {
+            ...RaceReference
+          }
         }
       }
     }
   }
 
+  ${ClassReference.fragment}
+  ${QuestCategory.fragment}
   ${QuestReference.fragment}
+  ${RaceReference.fragment}
 `;
 
 const ObjectiveOfTab = ({ match }) => {
   const { id } = match.params;
   return (
     <Collection
-      field="faction.objectiveOf"
+      accessor="faction.objectiveOf"
       query={listObjectiveOfForFaction}
       variables={{ id }}
     >
       {({ results }) => (
-        <Table>
-          <thead>
-            <tr>
-              <th field="id">#</th>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {results.map(quest => (
-              <tr key={quest.id}>
-                <td field="id">{quest.id}</td>
-                <td>
-                  <QuestReference quest={quest} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <Table
+          data={results}
+          columns={questColumns}
+        />
       )}
     </Collection>
   );

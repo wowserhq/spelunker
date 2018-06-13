@@ -13,7 +13,7 @@ const Collection = (props, { router }) => {
     <Query {...props} variables={variables}>
       {(result) => {
         const { data } = result;
-        const collection = valueByPath(data, props.field);
+        const collection = valueByPath(data, props.accessor);
 
         const pagination = (
           <Pagination

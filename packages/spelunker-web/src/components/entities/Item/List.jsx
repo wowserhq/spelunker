@@ -7,6 +7,7 @@ import Table from '../../Table';
 import Title from '../../Spelunker/Title';
 
 import ItemReference from './Reference';
+import itemColumns from './columns';
 
 const listItems = gql`
   query($offset: Int) {
@@ -26,28 +27,14 @@ const ItemList = () => (
     <Title path={['Items']} />
 
     <Collection
-      field="items"
+      accessor="items"
       query={listItems}
     >
       {({ results }) => (
-        <Table>
-          <thead>
-            <tr>
-              <th field="id">#</th>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {results.map(item => (
-              <tr key={item.id}>
-                <td field="id">{item.id}</td>
-                <td>
-                  <ItemReference item={item} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <Table
+          data={results}
+          columns={itemColumns}
+        />
       )}
     </Collection>
   </Box>

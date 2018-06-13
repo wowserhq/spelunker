@@ -21,8 +21,7 @@ import StartedByObjectTab from './tabs/StartedByObject';
 const fetchQuest = gql`
   query($id: Int!) {
     quest(id: $id) {
-      id
-      name
+      ...QuestReference
       description
       requiredMoney
       rewardMoney
@@ -110,6 +109,7 @@ const fetchQuest = gql`
   ${GameObjectReference.fragment}
   ${ItemReference.fragment}
   ${NPCReference.fragment}
+  ${QuestReference.fragment}
   ${SpellReference.fragment}
 `;
 

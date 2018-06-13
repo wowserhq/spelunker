@@ -2,9 +2,9 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import Collection from '../../../Collection';
-import Currency from '../../../formatters/Currency';
 import ItemReference from '../../Item/Reference';
-import Table from '../../../Table';
+import Table, { CurrencyColumn, prefixAccessors } from '../../../Table';
+import itemColumns from '../../Item/columns';
 
 const listSellsForNPC = gql`
   query($id: Int!, $offset: Int) {
@@ -32,35 +32,19 @@ const SellsTab = ({ match }) => {
   const { id } = match.params;
   return (
     <Collection
-      field="npc.sells"
+      accessor="npc.sells"
       query={listSellsForNPC}
       variables={{ id }}
     >
       {({ results }) => (
-        <Table>
-          <thead>
-            <tr>
-              <th>Item</th>
-              <th>Cost</th>
-              <th>Sells for</th>
-            </tr>
-          </thead>
-          <tbody>
-            {results.map(({ item }) => (
-              <tr key={item.id}>
-                <td>
-                  <ItemReference item={item} />
-                </td>
-                <td>
-                  <Currency value={item.buyPrice} />
-                </td>
-                <td>
-                  <Currency value={item.sellPrice} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <Table
+          data={results}
+          columns={[
+            ...prefixAccessors(itemColumns, 'item'),
+            <CurrencyColumn label="Cost" accessor="item.buyPrice" />,
+            <CurrencyColumn label="Sells for" accessor="item.sellPrice" />,
+          ]}
+        />
       )}
     </Collection>
   );

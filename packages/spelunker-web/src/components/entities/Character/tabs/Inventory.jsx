@@ -3,7 +3,8 @@ import gql from 'graphql-tag';
 
 import Collection from '../../../Collection';
 import ItemReference from '../../Item/Reference';
-import Table from '../../../Table';
+import Table, { Column, prefixAccessors } from '../../../Table';
+import itemColumns from '../../Item/columns';
 
 const listInventoryForCharacter = gql`
   query($id: Int!, $offset: Int) {
@@ -29,31 +30,18 @@ const InventoryTab = ({ match }) => {
   const { id } = match.params;
   return (
     <Collection
-      field="character.inventory"
+      accessor="character.inventory"
       query={listInventoryForCharacter}
       variables={{ id }}
     >
       {({ results }) => (
-        <Table>
-          <thead>
-            <tr>
-              <th field="id">#</th>
-              <th>Item</th>
-              <th>Count</th>
-            </tr>
-          </thead>
-          <tbody>
-            {results.map(({ id, item, count }) => (
-              <tr key={id}>
-                <td field="id">{item.id}</td>
-                <td>
-                  <ItemReference item={item} />
-                </td>
-                <td>{count}</td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <Table
+          data={results}
+          columns={[
+            ...prefixAccessors(itemColumns, 'item'),
+            <Column id="count" label="Count" accessor="count" />,
+          ]}
+        />
       )}
     </Collection>
   );

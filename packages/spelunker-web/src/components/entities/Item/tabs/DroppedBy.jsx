@@ -3,8 +3,8 @@ import gql from 'graphql-tag';
 
 import Collection from '../../../Collection';
 import NPCReference from '../../NPC/Reference';
-import Table from '../../../Table';
-import percent from '../../../formatters/percent';
+import Table, { ChanceColumn, prefixAccessors } from '../../../Table';
+import npcColumns from '../../NPC/columns';
 
 const listDroppedByForItem = gql`
   query($id: Int!, $offset: Int) {
@@ -29,29 +29,18 @@ const DroppedByTab = ({ match }) => {
   const { id } = match.params;
   return (
     <Collection
-      field="item.droppedBy"
+      accessor="item.droppedBy"
       query={listDroppedByForItem}
       variables={{ id }}
     >
       {({ results }) => (
-        <Table>
-          <thead>
-            <tr>
-              <th>Chance</th>
-              <th>NPC</th>
-            </tr>
-          </thead>
-          <tbody>
-            {results.map(({ chance, npc }) => (
-              <tr key={npc.id}>
-                <td>{percent(chance)}</td>
-                <td>
-                  <NPCReference npc={npc} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <Table
+          data={results}
+          columns={[
+            ...prefixAccessors(npcColumns, 'npc'),
+            <ChanceColumn />,
+          ]}
+        />
       )}
     </Collection>
   );

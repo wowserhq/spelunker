@@ -7,6 +7,7 @@ import Table from '../../Table';
 import Title from '../../Spelunker/Title';
 
 import MapReference from './Reference';
+import mapColumns from './columns';
 
 const listMaps = gql`
   query($offset: Int) {
@@ -26,28 +27,14 @@ const MapList = () => (
     <Title path={['Maps']} />
 
     <Collection
-      field="maps"
+      accessor="maps"
       query={listMaps}
     >
       {({ results }) => (
-        <Table>
-          <thead>
-            <tr>
-              <th field="id">#</th>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {results.map(map => (
-              <tr key={map.id}>
-                <td field="id">{map.id}</td>
-                <td>
-                  <MapReference map={map} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <Table
+          data={results}
+          columns={mapColumns}
+        />
       )}
     </Collection>
   </Box>

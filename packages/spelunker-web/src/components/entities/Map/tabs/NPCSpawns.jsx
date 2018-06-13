@@ -3,7 +3,8 @@ import gql from 'graphql-tag';
 
 import Collection from '../../../Collection';
 import NPCReference from '../../NPC/Reference';
-import Table from '../../../Table';
+import Table, { Column, IDColumn } from '../../../Table';
+import { NPCReferenceColumn } from '../../NPC/columns';
 
 const listNPCSpawnsForMap = gql`
   query($id: Int!, $offset: Int) {
@@ -18,6 +19,12 @@ const listNPCSpawnsForMap = gql`
           z
           npc {
             ...NPCReference
+            ends {
+              totalCount
+            }
+            starts {
+              totalCount
+            }
           }
         }
       }
@@ -31,33 +38,21 @@ const NPCSpawnsTab = ({ match }) => {
   const { id } = match.params;
   return (
     <Collection
-      field="map.npcSpawns"
+      accessor="map.npcSpawns"
       query={listNPCSpawnsForMap}
       variables={{ id }}
     >
       {({ results }) => (
-        <Table>
-          <thead>
-            <tr>
-              <th>NPC</th>
-              <th>X</th>
-              <th>Y</th>
-              <th>Z</th>
-            </tr>
-          </thead>
-          <tbody>
-            {results.map(({ id, npc, x, y, z }) => (
-              <tr key={id}>
-                <td>
-                  <NPCReference npc={npc} />
-                </td>
-                <td>{x}</td>
-                <td>{y}</td>
-                <td>{z}</td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <Table
+          data={results}
+          columns={[
+            <IDColumn />,
+            <NPCReferenceColumn accessor="npc" />,
+            <Column id="x" label="X" accessor="x" />,
+            <Column id="y" label="Y" accessor="y" />,
+            <Column id="z" label="Z" accessor="z" />,
+          ]}
+        />
       )}
     </Collection>
   );

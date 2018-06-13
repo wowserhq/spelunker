@@ -3,7 +3,8 @@ import gql from 'graphql-tag';
 
 import Collection from '../../../Collection';
 import GameObjectReference from '../../GameObject/Reference';
-import Table from '../../../Table';
+import Table, { Column, IDColumn } from '../../../Table';
+import { GameObjectReferenceColumn } from '../../GameObject/columns';
 
 const listObjectSpawnsForMap = gql`
   query($id: Int!, $offset: Int) {
@@ -31,33 +32,21 @@ const GameObjectSpawnsTab = ({ match }) => {
   const { id } = match.params;
   return (
     <Collection
-      field="map.objectSpawns"
+      accessor="map.objectSpawns"
       query={listObjectSpawnsForMap}
       variables={{ id }}
     >
       {({ results }) => (
-        <Table>
-          <thead>
-            <tr>
-              <th>Object</th>
-              <th>X</th>
-              <th>Y</th>
-              <th>Z</th>
-            </tr>
-          </thead>
-          <tbody>
-            {results.map(({ id, object, x, y, z }) => (
-              <tr key={id}>
-                <td>
-                  <GameObjectReference object={object} />
-                </td>
-                <td>{x}</td>
-                <td>{y}</td>
-                <td>{z}</td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <Table
+          data={results}
+          columns={[
+            <IDColumn />,
+            <GameObjectReferenceColumn accessor="object" />,
+            <Column id="x" label="X" accessor="x" />,
+            <Column id="y" label="Y" accessor="y" />,
+            <Column id="z" label="Z" accessor="z" />,
+          ]}
+        />
       )}
     </Collection>
   );

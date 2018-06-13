@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import Collection from '../../../Collection';
 import ItemReference from '../../Item/Reference';
 import Table from '../../../Table';
+import itemColumns from '../../Item/columns';
 
 const listStartedByItemForQuest = gql`
   query($id: Int!) {
@@ -25,29 +26,15 @@ const StartedByItemTab = ({ match }) => {
   const { id } = match.params;
   return (
     <Collection
-      field="quest.startedByItem"
+      accessor="quest.startedByItem"
       query={listStartedByItemForQuest}
       variables={{ id }}
     >
       {({ results }) => (
-        <Table>
-          <thead>
-            <tr>
-              <th field="id">#</th>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {results.map(item => (
-              <tr key={item.id}>
-                <td field="id">{item.id}</td>
-                <td>
-                  <ItemReference item={item} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <Table
+          data={results}
+          columns={itemColumns}
+        />
       )}
     </Collection>
   );

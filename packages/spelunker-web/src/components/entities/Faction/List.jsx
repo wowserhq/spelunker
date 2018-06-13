@@ -7,6 +7,7 @@ import Table from '../../Table';
 import Title from '../../Spelunker/Title';
 
 import FactionReference from './Reference';
+import factionColumns from './columns';
 
 const listFactions = gql`
   query($offset: Int) {
@@ -26,28 +27,14 @@ const FactionList = () => (
     <Title path={['Factions']} />
 
     <Collection
-      field="factions"
+      accessor="factions"
       query={listFactions}
     >
       {({ results }) => (
-        <Table>
-          <thead>
-            <tr>
-              <th field="id">#</th>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {results.map(faction => (
-              <tr key={faction.id}>
-                <td field="id">{faction.id}</td>
-                <td>
-                  <FactionReference faction={faction} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <Table
+          data={results}
+          columns={factionColumns}
+        />
       )}
     </Collection>
   </Box>

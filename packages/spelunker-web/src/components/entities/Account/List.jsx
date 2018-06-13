@@ -5,6 +5,7 @@ import Box from '../../Box';
 import Collection from '../../Collection';
 import Table from '../../Table';
 import Title from '../../Spelunker/Title';
+import accountColumns from '../Account/columns';
 
 import AccountReference from './Reference';
 
@@ -26,28 +27,14 @@ const AccountList = () => (
     <Title path={['Accounts']} />
 
     <Collection
-      field="accounts"
+      accessor="accounts"
       query={listAccounts}
     >
       {({ results }) => (
-        <Table>
-          <thead>
-            <tr>
-              <th field="id">#</th>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {results.map(account => (
-              <tr key={account.id}>
-                <td field="id">{account.id}</td>
-                <td>
-                  <AccountReference account={account} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <Table
+          data={results}
+          columns={accountColumns}
+        />
       )}
     </Collection>
   </Box>

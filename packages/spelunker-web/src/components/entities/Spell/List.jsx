@@ -7,6 +7,7 @@ import Table from '../../Table';
 import Title from '../../Spelunker/Title';
 
 import SpellReference from './Reference';
+import spellColumns from './columns';
 
 const listSpells = gql`
   query($offset: Int) {
@@ -26,28 +27,14 @@ const SpellList = () => (
     <Title path={['Spells']} />
 
     <Collection
-      field="spells"
+      accessor="spells"
       query={listSpells}
     >
       {({ results }) => (
-        <Table>
-          <thead>
-            <tr>
-              <th field="id">#</th>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {results.map(spell => (
-              <tr key={spell.id}>
-                <td field="id">{spell.id}</td>
-                <td>
-                  <SpellReference spell={spell} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <Table
+          data={results}
+          columns={spellColumns}
+        />
       )}
     </Collection>
   </Box>

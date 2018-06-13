@@ -3,8 +3,8 @@ import gql from 'graphql-tag';
 
 import Collection from '../../../Collection';
 import ItemReference from '../../Item/Reference';
-import Table from '../../../Table';
-import percent from '../../../formatters/percent';
+import Table, { ChanceColumn } from '../../../Table';
+import itemColumns from '../../Item/columns';
 
 const listContainsForGameObject = gql`
   query($id: Int!, $offset: Int) {
@@ -29,29 +29,18 @@ const ContainsTab = ({ match }) => {
   const { id } = match.params;
   return (
     <Collection
-      field="object.contains"
+      accessor="object.contains"
       query={listContainsForGameObject}
       variables={{ id }}
     >
       {({ results }) => (
-        <Table>
-          <thead>
-            <tr>
-              <th>Chance</th>
-              <th>Item</th>
-            </tr>
-          </thead>
-          <tbody>
-            {results.map(({ chance, item }) => (
-              <tr key={item.id}>
-                <td>{percent(chance)}</td>
-                <td>
-                  <ItemReference item={item} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <Table
+          data={results}
+          columns={[
+            ...itemColumns,
+            <ChanceColumn />,
+          ]}
+        />
       )}
     </Collection>
   );

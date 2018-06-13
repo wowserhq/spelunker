@@ -7,6 +7,7 @@ import Table from '../../Table';
 import Title from '../../Spelunker/Title';
 
 import NPCReference from './Reference';
+import npcColumns from './columns';
 
 const listNPCs = gql`
   query($offset: Int) {
@@ -26,28 +27,14 @@ const NPCList = () => (
     <Title path={['NPCs']} />
 
     <Collection
-      field="npcs"
+      accessor="npcs"
       query={listNPCs}
     >
       {({ results }) => (
-        <Table>
-          <thead>
-            <tr>
-              <th field="id">#</th>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {results.map(npc => (
-              <tr key={npc.id}>
-                <td field="id">{npc.id}</td>
-                <td>
-                  <NPCReference npc={npc} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <Table
+          data={results}
+          columns={npcColumns}
+        />
       )}
     </Collection>
   </Box>

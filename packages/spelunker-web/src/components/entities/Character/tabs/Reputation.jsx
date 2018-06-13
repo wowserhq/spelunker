@@ -3,7 +3,8 @@ import gql from 'graphql-tag';
 
 import Collection from '../../../Collection';
 import FactionReference from '../../Faction/Reference';
-import Table from '../../../Table';
+import Table, { Column, prefixAccessors } from '../../../Table';
+import factionColumns from '../../Faction/columns';
 
 const listReputationForCharacter = gql`
   query($id: Int!, $offset: Int) {
@@ -28,31 +29,18 @@ const ReputationTab = ({ match }) => {
   const { id } = match.params;
   return (
     <Collection
-      field="character.reputation"
+      accessor="character.reputation"
       query={listReputationForCharacter}
       variables={{ id }}
     >
       {({ results }) => (
-        <Table>
-          <thead>
-            <tr>
-              <th field="id">#</th>
-              <th>Faction</th>
-              <th>Standing</th>
-            </tr>
-          </thead>
-          <tbody>
-            {results.map(({ faction, standing }) => (
-              <tr key={faction.id}>
-                <td field="id">{faction.id}</td>
-                <td>
-                  <FactionReference faction={faction} />
-                </td>
-                <td>{standing}</td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <Table
+          data={results}
+          columns={[
+            ...prefixAccessors(factionColumns, 'faction'),
+            <Column id="standing" label="Standing" accessor="standing" />,
+          ]}
+        />
       )}
     </Collection>
   );

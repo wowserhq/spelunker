@@ -3,7 +3,8 @@ import gql from 'graphql-tag';
 
 import Collection from '../../../Collection';
 import MapReference from '../../Map/Reference';
-import Table from '../../../Table';
+import Table, { Column, IDColumn } from '../../../Table';
+import { MapReferenceColumn } from '../../Map/columns';
 
 const listSpawnsForNPC = gql`
   query($id: Int!, $offset: Int) {
@@ -31,33 +32,21 @@ const SpawnsTab = ({ match }) => {
   const { id } = match.params;
   return (
     <Collection
-      field="npc.spawns"
+      accessor="npc.spawns"
       query={listSpawnsForNPC}
       variables={{ id }}
     >
       {({ results }) => (
-        <Table>
-          <thead>
-            <tr>
-              <th>Map</th>
-              <th>X</th>
-              <th>Y</th>
-              <th>Z</th>
-            </tr>
-          </thead>
-          <tbody>
-            {results.map(({ id, map, x, y, z }) => (
-              <tr key={id}>
-                <td>
-                  <MapReference map={map} />
-                </td>
-                <td>{x}</td>
-                <td>{y}</td>
-                <td>{z}</td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <Table
+          data={results}
+          columns={[
+            <IDColumn />,
+            <MapReferenceColumn accessor="map" />,
+            <Column id="x" label="X" accessor="x" />,
+            <Column id="y" label="Y" accessor="y" />,
+            <Column id="z" label="Z" accessor="z" />,
+          ]}
+        />
       )}
     </Collection>
   );
