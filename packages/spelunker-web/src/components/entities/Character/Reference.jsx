@@ -21,10 +21,12 @@ CharacterReference.fragment = gql`
     gender
 
     class {
+      id
       filename
     }
 
     race {
+      id
       filename
     }
   }
