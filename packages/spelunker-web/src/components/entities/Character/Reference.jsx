@@ -19,12 +19,10 @@ CharacterReference.fragment = gql`
     id
     name
     gender
-
     class {
       id
       filename
     }
-
     race {
       id
       filename
