@@ -2,6 +2,7 @@ import {
   GraphQLInt,
   GraphQLNonNull,
   GraphQLObjectType,
+  GraphQLString,
 } from '../../graphql';
 
 import CollectionType from './CollectionType';
@@ -17,13 +18,14 @@ import MapType from './entities/MapType';
 import NPCType from './entities/NPCType';
 import QuestType from './entities/QuestType';
 import RaceType from './entities/RaceType';
+import SideType from './entities/SideType';
 import SpellType from './entities/SpellType';
 
-const finderFor = (type) => {
+const finderFor = (type, idType = GraphQLInt) => {
   return {
     type,
     args: {
-      id: { type: new GraphQLNonNull(GraphQLInt) },
+      id: { type: new GraphQLNonNull(idType) },
     },
   };
 };
@@ -63,6 +65,9 @@ export default new GraphQLObjectType({
 
     races: CollectionType.definitionFor(RaceType),
     race: finderFor(RaceType),
+
+    sides: CollectionType.definitionFor(SideType),
+    side: finderFor(SideType, GraphQLString),
 
     spells: CollectionType.definitionFor(SpellType),
     spell: finderFor(SpellType),

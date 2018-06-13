@@ -11,6 +11,7 @@ import Map from '../entities/Map';
 import NPC from '../entities/NPC';
 import Quest from '../entities/Quest';
 import Race from '../entities/Race';
+import Side from '../entities/Side';
 import Spell from '../entities/Spell';
 
 export default {
@@ -46,6 +47,9 @@ export default {
 
   races: async (args) => new Collection(Race.query, args),
   race: async ({ id }) => Race.find(id),
+
+  sides: async (args) => new Collection(Side.query, args),
+  side: async ({ id }) => Side.find(id),
 
   spells: async (args) => new Collection(Spell.query, args),
   spell: async ({ id }) => Spell.find(id),
