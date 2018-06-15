@@ -20,14 +20,10 @@ import StartsTab from './tabs/Starts';
 const fetchItem = gql`
   query($id: Int!) {
     item(id: $id) {
-      id
-      name
+      ...ItemReference
       buyPrice
       sellPrice
-      quality
-      displayInfo {
-        icon
-      }
+
       containedIn {
         totalCount
       }
@@ -57,6 +53,8 @@ const fetchItem = gql`
       }
     }
   }
+
+  ${ItemReference.fragment}
 `;
 
 const Item = ({ match }) => {

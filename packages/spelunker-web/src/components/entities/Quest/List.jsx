@@ -2,14 +2,10 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import Box from '../../Box';
-import ClassReference from '../Class/Reference';
 import Collection from '../../Collection';
-import RaceReference from '../Race/Reference';
 import Table from '../../Table';
 import Title from '../../Spelunker/Title';
 
-import QuestCategory from './Category';
-import QuestReference from './Reference';
 import questColumns from './columns';
 
 const listQuests = gql`
@@ -17,24 +13,12 @@ const listQuests = gql`
     quests(offset: $offset) {
       totalCount
       results {
-        ...QuestReference
-        category {
-          ...QuestCategory
-        }
-        classes {
-          ...ClassReference
-        }
-        races(exclusive: true) {
-          ...RaceReference
-        }
+        ...questColumns
       }
     }
   }
 
-  ${ClassReference.fragment}
-  ${QuestCategory.fragment}
-  ${QuestReference.fragment}
-  ${RaceReference.fragment}
+  ${questColumns.fragment}
 `;
 
 const QuestList = () => (

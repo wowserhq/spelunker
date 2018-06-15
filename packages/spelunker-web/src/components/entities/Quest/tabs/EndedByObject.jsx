@@ -2,7 +2,6 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import Collection from '../../../Collection';
-import GameObjectReference from '../../GameObject/Reference';
 import Table from '../../../Table';
 import gameObjectColumns from '../../GameObject/columns';
 
@@ -13,13 +12,13 @@ const listEndedByObjectForQuest = gql`
       endedByObject {
         totalCount
         results {
-          ...GameObjectReference
+          ...gameObjectColumns
         }
       }
     }
   }
 
-  ${GameObjectReference.fragment}
+  ${gameObjectColumns.fragment}
 `;
 
 const EndedByObjectTab = ({ match }) => {

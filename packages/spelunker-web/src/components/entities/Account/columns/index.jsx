@@ -1,10 +1,12 @@
 import React from 'react';
+import gql from 'graphql-tag';
 
+import AccountReference from '../Reference';
 import { IDColumn, PlaceholderColumn } from '../../../Table';
 
 import AccountReferenceColumn from './ReferenceColumn';
 
-export default [
+const columns = [
   <IDColumn />,
   <AccountReferenceColumn />,
   <PlaceholderColumn label="Online" />,
@@ -12,6 +14,15 @@ export default [
   <PlaceholderColumn label="OS" />,
 ];
 
+columns.fragment = gql`
+  fragment accountColumns on Account {
+    ...AccountReference
+  }
+
+  ${AccountReference.fragment}
+`;
+
 export {
   AccountReferenceColumn,
+  columns as default,
 };

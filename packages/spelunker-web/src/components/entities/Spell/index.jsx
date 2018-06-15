@@ -11,14 +11,15 @@ import TaughtByTab from './tabs/TaughtBy';
 const fetchSpell = gql`
   query($id: Int!) {
     spell(id: $id) {
-      id
-      name
-      icon
+      ...SpellReference
+
       taughtBy {
         totalCount
       }
     }
   }
+
+  ${SpellReference.fragment}
 `;
 
 const Spell = ({ match }) => {

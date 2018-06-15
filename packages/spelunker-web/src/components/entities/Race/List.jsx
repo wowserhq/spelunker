@@ -6,7 +6,6 @@ import Collection from '../../Collection';
 import Table from '../../Table';
 import Title from '../../Spelunker/Title';
 
-import RaceReference from './Reference';
 import raceColumns from './columns';
 
 const listRaces = gql`
@@ -14,12 +13,12 @@ const listRaces = gql`
     races(offset: $offset) {
       totalCount
       results {
-        ...RaceReference
+        ...raceColumns
       }
     }
   }
 
-  ${RaceReference.fragment}
+  ${raceColumns.fragment}
 `;
 
 const RaceList = () => (

@@ -6,7 +6,6 @@ import Collection from '../../Collection';
 import Table from '../../Table';
 import Title from '../../Spelunker/Title';
 
-import GameObjectReference from './Reference';
 import gameObjectColumns from './columns';
 
 const listGameObjects = gql`
@@ -14,12 +13,12 @@ const listGameObjects = gql`
     objects(offset: $offset) {
       totalCount
       results {
-        ...GameObjectReference
+        ...gameObjectColumns
       }
     }
   }
 
-  ${GameObjectReference.fragment}
+  ${gameObjectColumns.fragment}
 `;
 
 const GameObjectList = () => (

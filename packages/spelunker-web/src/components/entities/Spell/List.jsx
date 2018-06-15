@@ -6,7 +6,6 @@ import Collection from '../../Collection';
 import Table from '../../Table';
 import Title from '../../Spelunker/Title';
 
-import SpellReference from './Reference';
 import spellColumns from './columns';
 
 const listSpells = gql`
@@ -14,12 +13,12 @@ const listSpells = gql`
     spells(offset: $offset) {
       totalCount
       results {
-        ...SpellReference
+        ...spellColumns
       }
     }
   }
 
-  ${SpellReference.fragment}
+  ${spellColumns.fragment}
 `;
 
 const SpellList = () => (

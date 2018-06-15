@@ -2,7 +2,6 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import Collection from '../../../Collection';
-import ItemReference from '../../Item/Reference';
 import Table, { Column, prefixAccessors } from '../../../Table';
 import itemColumns from '../../Item/columns';
 
@@ -16,14 +15,14 @@ const listInventoryForCharacter = gql`
           id
           count
           item {
-            ...ItemReference
+            ...itemColumns
           }
         }
       }
     }
   }
 
-  ${ItemReference.fragment}
+  ${itemColumns.fragment}
 `;
 
 const InventoryTab = ({ match }) => {

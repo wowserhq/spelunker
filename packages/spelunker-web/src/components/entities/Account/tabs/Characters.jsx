@@ -1,10 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import CharacterReference from '../../Character/Reference';
-import ClassReference from '../../Class/Reference';
 import Collection from '../../../Collection';
-import RaceReference from '../../Race/Reference';
 import Table from '../../../Table';
 import characterColumns from '../../Character/columns';
 
@@ -15,24 +12,13 @@ const listCharactersForAccount = gql`
       characters(offset: $offset) {
         totalCount
         results {
-          ...CharacterReference
-          race {
-            ...RaceReference
-          }
-          class {
-            ...ClassReference
-          }
-          gender
-          level
-          xp
+          ...characterColumns
         }
       }
     }
   }
 
-  ${CharacterReference.fragment}
-  ${ClassReference.fragment}
-  ${RaceReference.fragment}
+  ${characterColumns.fragment}
 `;
 
 const CharactersTab = ({ match }) => {

@@ -5,21 +5,20 @@ import Box from '../../Box';
 import Collection from '../../Collection';
 import Table from '../../Table';
 import Title from '../../Spelunker/Title';
-import accountColumns from '../Account/columns';
 
-import AccountReference from './Reference';
+import accountColumns from './columns';
 
 const listAccounts = gql`
   query($offset: Int) {
     accounts(offset: $offset) {
       totalCount
       results {
-        ...AccountReference
+        ...accountColumns
       }
     }
   }
 
-  ${AccountReference.fragment}
+  ${accountColumns.fragment}
 `;
 
 const AccountList = () => (

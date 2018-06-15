@@ -11,14 +11,15 @@ import ObjectiveOfTab from './tabs/ObjectiveOf';
 const fetchFaction = gql`
   query($id: Int!) {
     faction(id: $id) {
-      id
-      name
+      ...FactionReference
 
       objectiveOf {
         totalCount
       }
     }
   }
+
+  ${FactionReference.fragment}
 `;
 
 const Faction = ({ match }) => {

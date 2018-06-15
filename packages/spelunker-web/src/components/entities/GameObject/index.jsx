@@ -14,8 +14,8 @@ import StartsTab from './tabs/Starts';
 const fetchGameObject = gql`
   query($id: Int!) {
     object(id: $id) {
-      id
-      name
+      ...GameObjectReference
+
       contains {
         totalCount
       }
@@ -30,6 +30,8 @@ const fetchGameObject = gql`
       }
     }
   }
+
+  ${GameObjectReference.fragment}
 `;
 
 const GameObject = ({ match }) => {

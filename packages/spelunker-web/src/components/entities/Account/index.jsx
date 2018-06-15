@@ -11,13 +11,15 @@ import CharactersTab from './tabs/Characters';
 const fetchAccount = gql`
   query($id: Int!) {
     account(id: $id) {
-      id
-      name
+      ...AccountReference
+
       characters {
         totalCount
       }
     }
   }
+
+  ${AccountReference.fragment}
 `;
 
 const Account = ({ match }) => {

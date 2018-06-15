@@ -1,11 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import ClassReference from '../../Class/Reference';
 import Collection from '../../../Collection';
-import QuestCategory from '../../Quest/Category';
-import QuestReference from '../../Quest/Reference';
-import RaceReference from '../../Race/Reference';
 import Table from '../../../Table';
 import questColumns from '../../Quest/columns';
 
@@ -16,25 +12,13 @@ const listCompletedQuestsForCharacter = gql`
       completedQuests(offset: $offset) {
         totalCount
         results {
-          ...QuestReference
-          category {
-            ...QuestCategory
-          }
-          classes {
-            ...ClassReference
-          }
-          races(exclusive: true) {
-            ...RaceReference
-          }
+          ...questColumns
         }
       }
     }
   }
 
-  ${ClassReference.fragment}
-  ${RaceReference.fragment}
-  ${QuestCategory.fragment}
-  ${QuestReference.fragment}
+  ${questColumns.fragment}
 `;
 
 const CompletedQuestsTab = ({ match }) => {

@@ -2,7 +2,6 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import Collection from '../../../Collection';
-import SpellReference from '../../Spell/Reference';
 import Table, { CurrencyColumn, prefixAccessors } from '../../../Table';
 import spellColumns from '../../Spell/columns';
 
@@ -15,14 +14,14 @@ const listTeachesForNPC = gql`
         results {
           cost
           spell {
-            ...SpellReference
+            ...spellColumns
           }
         }
       }
     }
   }
 
-  ${SpellReference.fragment}
+  ${spellColumns.fragment}
 `;
 
 const TeachesTab = ({ match }) => {

@@ -2,7 +2,6 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import Collection from '../../../Collection';
-import ItemReference from '../../Item/Reference';
 import Table, { ChanceColumn } from '../../../Table';
 import itemColumns from '../../Item/columns';
 
@@ -15,14 +14,14 @@ const listContainsForGameObject = gql`
         results {
           chance
           item {
-            ...ItemReference
+            ...itemColumns,
           }
         }
       }
     }
   }
 
-  ${ItemReference.fragment}
+  ${itemColumns.fragment}
 `;
 
 const ContainsTab = ({ match }) => {

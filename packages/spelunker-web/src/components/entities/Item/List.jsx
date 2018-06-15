@@ -6,7 +6,6 @@ import Collection from '../../Collection';
 import Table from '../../Table';
 import Title from '../../Spelunker/Title';
 
-import ItemReference from './Reference';
 import itemColumns from './columns';
 
 const listItems = gql`
@@ -14,12 +13,12 @@ const listItems = gql`
     items(offset: $offset) {
       totalCount
       results {
-        ...ItemReference
+        ...itemColumns
       }
     }
   }
 
-  ${ItemReference.fragment}
+  ${itemColumns.fragment}
 `;
 
 const ItemList = () => (

@@ -5,21 +5,20 @@ import Box from '../../Box';
 import Collection from '../../Collection';
 import Table from '../../Table';
 import Title from '../../Spelunker/Title';
-import areaColumns from '../Area/columns';
 
-import AreaReference from './Reference';
+import areaColumns from './columns';
 
 const listAreas = gql`
   query($offset: Int) {
     areas(offset: $offset) {
       totalCount
       results {
-        ...AreaReference
+        ...areaColumns
       }
     }
   }
 
-  ${AreaReference.fragment}
+  ${areaColumns.fragment}
 `;
 
 const AreaList = () => (

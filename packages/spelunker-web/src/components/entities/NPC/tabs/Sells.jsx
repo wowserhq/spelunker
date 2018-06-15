@@ -2,7 +2,6 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import Collection from '../../../Collection';
-import ItemReference from '../../Item/Reference';
 import Table, { CurrencyColumn, prefixAccessors } from '../../../Table';
 import itemColumns from '../../Item/columns';
 
@@ -16,7 +15,7 @@ const listSellsForNPC = gql`
           maxCount
           restockTime
           item {
-            ...ItemReference
+            ...itemColumns
             buyPrice
             sellPrice
           }
@@ -25,7 +24,7 @@ const listSellsForNPC = gql`
     }
   }
 
-  ${ItemReference.fragment}
+  ${itemColumns.fragment}
 `;
 
 const SellsTab = ({ match }) => {

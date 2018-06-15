@@ -2,9 +2,8 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import Collection from '../../../Collection';
-import ItemReference from '../../Item/Reference';
 import Table, { ChanceColumn, prefixAccessors } from '../../../Table';
-import itemColumns from '../../Item/columns';
+import itemColumns from '../columns';
 
 const listContainedInForItem = gql`
   query($id: Int!, $offset: Int) {
@@ -15,14 +14,14 @@ const listContainedInForItem = gql`
         results {
           chance
           container {
-            ...ItemReference
+            ...itemColumns
           }
         }
       }
     }
   }
 
-  ${ItemReference.fragment}
+  ${itemColumns.fragment}
 `;
 
 const ContainedInTab = ({ match }) => {

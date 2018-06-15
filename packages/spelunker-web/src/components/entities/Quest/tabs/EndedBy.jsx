@@ -2,7 +2,6 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import Collection from '../../../Collection';
-import NPCReference from '../../NPC/Reference';
 import Table from '../../../Table';
 import npcColumns from '../../NPC/columns';
 
@@ -13,13 +12,13 @@ const listEndedByForQuest = gql`
       endedBy {
         totalCount
         results {
-          ...NPCReference
+          ...npcColumns
         }
       }
     }
   }
 
-  ${NPCReference.fragment}
+  ${npcColumns.fragment}
 `;
 
 const EndedByTab = ({ match }) => {

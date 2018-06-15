@@ -2,37 +2,23 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import Box from '../../Box';
-import ClassReference from '../Class/Reference';
 import Collection from '../../Collection';
-import RaceReference from '../Race/Reference';
 import Table from '../../Table';
 import Title from '../../Spelunker/Title';
-import characterColumns from '../Character/columns';
 
-import CharacterReference from './Reference';
+import characterColumns from './columns';
 
 const listCharacters = gql`
   query($offset: Int) {
     characters(offset: $offset) {
       totalCount
       results {
-        ...CharacterReference
-        race {
-          ...RaceReference
-        }
-        class {
-          ...ClassReference
-        }
-        gender
-        level
-        xp
+        ...characterColumns
       }
     }
   }
 
-  ${CharacterReference.fragment}
-  ${ClassReference.fragment}
-  ${RaceReference.fragment}
+  ${characterColumns.fragment}
 `;
 
 const CharacterList = () => (

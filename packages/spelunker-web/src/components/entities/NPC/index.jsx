@@ -16,9 +16,8 @@ import TeachesTab from './tabs/Teaches';
 const fetchNPC = gql`
   query($id: Int!) {
     npc(id: $id) {
-      id
-      name
-      subname
+      ...NPCReference
+
       drops {
         totalCount
       }
@@ -39,6 +38,8 @@ const fetchNPC = gql`
       }
     }
   }
+
+  ${NPCReference.fragment}
 `;
 
 const NPC = ({ match }) => {

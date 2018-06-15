@@ -6,7 +6,6 @@ import Collection from '../../Collection';
 import Table from '../../Table';
 import Title from '../../Spelunker/Title';
 
-import MapReference from './Reference';
 import mapColumns from './columns';
 
 const listMaps = gql`
@@ -14,12 +13,12 @@ const listMaps = gql`
     maps(offset: $offset) {
       totalCount
       results {
-        ...MapReference
+        ...mapColumns
       }
     }
   }
 
-  ${MapReference.fragment}
+  ${mapColumns.fragment}
 `;
 
 const MapList = () => (

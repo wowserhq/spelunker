@@ -10,11 +10,11 @@ import ClassReference from './Reference';
 const fetchClass = gql`
   query($id: Int!) {
     class(id: $id) {
-      id
-      name
-      filename
+      ...ClassReference
     }
   }
+
+  ${ClassReference.fragment}
 `;
 
 const Class = ({ match }) => {

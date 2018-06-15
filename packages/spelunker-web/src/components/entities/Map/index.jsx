@@ -12,8 +12,8 @@ import NPCSpawnsTab from './tabs/NPCSpawns';
 const fetchMap = gql`
   query($id: Int!) {
     map(id: $id) {
-      id
-      name
+      ...MapReference
+
       npcSpawns {
         totalCount
       }
@@ -22,6 +22,8 @@ const fetchMap = gql`
       }
     }
   }
+
+  ${MapReference.fragment}
 `;
 
 const Map = ({ match }) => {

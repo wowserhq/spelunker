@@ -2,7 +2,6 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import Collection from '../../../Collection';
-import FactionReference from '../../Faction/Reference';
 import Table, { Column, prefixAccessors } from '../../../Table';
 import factionColumns from '../../Faction/columns';
 
@@ -15,14 +14,14 @@ const listReputationForCharacter = gql`
         results {
           standing
           faction {
-            ...FactionReference
+            ...factionColumns
           }
         }
       }
     }
   }
 
-  ${FactionReference.fragment}
+  ${factionColumns.fragment}
 `;
 
 const ReputationTab = ({ match }) => {

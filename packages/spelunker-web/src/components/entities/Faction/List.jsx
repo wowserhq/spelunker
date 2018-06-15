@@ -6,7 +6,6 @@ import Collection from '../../Collection';
 import Table from '../../Table';
 import Title from '../../Spelunker/Title';
 
-import FactionReference from './Reference';
 import factionColumns from './columns';
 
 const listFactions = gql`
@@ -14,12 +13,12 @@ const listFactions = gql`
     factions(offset: $offset) {
       totalCount
       results {
-        ...FactionReference
+        ...factionColumns
       }
     }
   }
 
-  ${FactionReference.fragment}
+  ${factionColumns.fragment}
 `;
 
 const FactionList = () => (

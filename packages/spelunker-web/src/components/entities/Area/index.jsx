@@ -10,10 +10,11 @@ import AreaReference from './Reference';
 const fetchArea = gql`
   query($id: Int!) {
     area(id: $id) {
-      id
-      name
+      ...AreaReference
     }
   }
+
+  ${AreaReference.fragment}
 `;
 
 const Area = ({ match }) => {

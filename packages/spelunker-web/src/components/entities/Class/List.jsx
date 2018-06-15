@@ -6,7 +6,6 @@ import Collection from '../../Collection';
 import Table from '../../Table';
 import Title from '../../Spelunker/Title';
 
-import ClassReference from './Reference';
 import classColumns from './columns';
 
 const listClasses = gql`
@@ -14,12 +13,12 @@ const listClasses = gql`
     classes(offset: $offset) {
       totalCount
       results {
-        ...ClassReference
+        ...classColumns
       }
     }
   }
 
-  ${ClassReference.fragment}
+  ${classColumns.fragment}
 `;
 
 const ClassList = () => (

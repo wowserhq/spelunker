@@ -2,7 +2,6 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import Collection from '../../../Collection';
-import ItemReference from '../../Item/Reference';
 import Table from '../../../Table';
 import itemColumns from '../../Item/columns';
 
@@ -13,13 +12,13 @@ const listStartedByItemForQuest = gql`
       startedByItem {
         totalCount
         results {
-          ...ItemReference
+          ...itemColumns
         }
       }
     }
   }
 
-  ${ItemReference.fragment}
+  ${itemColumns.fragment}
 `;
 
 const StartedByItemTab = ({ match }) => {

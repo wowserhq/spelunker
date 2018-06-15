@@ -6,7 +6,6 @@ import Collection from '../../Collection';
 import Table from '../../Table';
 import Title from '../../Spelunker/Title';
 
-import NPCReference from './Reference';
 import npcColumns from './columns';
 
 const listNPCs = gql`
@@ -14,12 +13,12 @@ const listNPCs = gql`
     npcs(offset: $offset) {
       totalCount
       results {
-        ...NPCReference
+        ...npcColumns
       }
     }
   }
 
-  ${NPCReference.fragment}
+  ${npcColumns.fragment}
 `;
 
 const NPCList = () => (
