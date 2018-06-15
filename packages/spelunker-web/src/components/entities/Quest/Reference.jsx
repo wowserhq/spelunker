@@ -5,13 +5,14 @@ import { Link } from 'react-router-dom';
 import SideReference from '../Side/Reference';
 
 const QuestReference = ({ quest }) => (
-  <Link to={`/quests/${quest.id}`}>
+  <span>
     {quest.sides.map(side => (
       <SideReference side={side} withoutName />
     ))}
-
-    {quest.name}
-  </Link>
+    <Link to={`/quests/${quest.id}`}>
+      {quest.name}
+    </Link>
+  </span>
 );
 
 QuestReference.fragment = gql`
