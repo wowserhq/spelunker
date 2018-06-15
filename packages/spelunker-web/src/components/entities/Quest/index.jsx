@@ -241,13 +241,6 @@ const Quest = ({ match }) => {
                 match={match}
               />}
 
-              {endedByCount > 0 && <Tab
-                label={`Ended by (${endedByCount})`}
-                component={EndedByTab}
-                path="ended-by"
-                match={match}
-              />}
-
               {startedByObjectCount > 0 && <Tab
                 label={`Started by object (${startedByObjectCount})`}
                 component={StartedByObjectTab}
@@ -255,17 +248,24 @@ const Quest = ({ match }) => {
                 match={match}
               />}
 
-              {endedByObjectCount > 0 && <Tab
-                label={`Ended by object (${endedByObjectCount})`}
-                component={EndedByObjectTab}
-                path="ended-by-object"
-                match={match}
-              />}
-
               {startedByItemCount > 0 && <Tab
                 label={`Started by item (${startedByItemCount})`}
                 component={StartedByItemTab}
                 path="started-by-item"
+                match={match}
+              />}
+
+              {endedByCount > 0 && <Tab
+                label={`Ended by (${endedByCount})`}
+                component={EndedByTab}
+                path="ended-by"
+                match={match}
+              />}
+
+              {endedByObjectCount > 0 && <Tab
+                label={`Ended by object (${endedByObjectCount})`}
+                component={EndedByObjectTab}
+                path="ended-by-object"
                 match={match}
               />}
             </TabbedBox>
