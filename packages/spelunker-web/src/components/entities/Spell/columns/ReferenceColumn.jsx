@@ -2,8 +2,8 @@ import React from 'react';
 
 import SpellReference from '../Reference';
 
-const SpellReferenceColumn = ({ value }) => (
-  <SpellReference spell={value} />
+const SpellReferenceColumn = ({ value: spell }) => (
+  <SpellReference spell={spell} />
 );
 
 SpellReferenceColumn.defaultProps = {

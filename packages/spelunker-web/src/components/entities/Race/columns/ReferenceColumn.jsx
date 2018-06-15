@@ -2,8 +2,8 @@ import React from 'react';
 
 import RaceReference from '../Reference';
 
-const RaceReferenceColumn = ({ value }) => (
-  <RaceReference race={value} />
+const RaceReferenceColumn = ({ value: race }) => (
+  <RaceReference race={race} />
 );
 
 RaceReferenceColumn.defaultProps = {
