@@ -79,7 +79,7 @@ const Item = ({ match }) => {
           <Title path={[item.name, 'Items']}>
             <Box>
               <h1>
-                <ItemReference item={item} link={false} />
+                <ItemReference item={item} />
               </h1>
 
               {item.buyPrice > 0 && (
