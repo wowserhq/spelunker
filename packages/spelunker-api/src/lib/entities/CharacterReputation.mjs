@@ -13,11 +13,11 @@ class CharacterReputation extends DatabaseEntity {
     return 'character_reputation';
   }
 
-  async character() {
+  character() {
     return Character.find(this.data.guid);
   }
 
-  async faction() {
+  faction() {
     return Faction.find(this.data.faction);
   }
 }

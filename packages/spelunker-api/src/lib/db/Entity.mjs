@@ -28,7 +28,7 @@ class DatabaseEntity extends Entity {
     return new DatabaseQuery(this);
   }
 
-  static find(id) {
+  static async find(id) {
     return this.query.where({
       [this.primaryKey]: id,
     }).first();

@@ -1,3 +1,5 @@
+import { notImplemented } from '../utils/abstract';
+
 class Entity {
   constructor(data) {
     this.data = data;
@@ -10,6 +12,14 @@ class Entity {
         return entity.data[prop];
       },
     });
+  }
+
+  static async find() {
+    notImplemented(this, 'find');
+  }
+
+  static async build(data) {
+    return new this(data);
   }
 }
 

@@ -5,6 +5,8 @@ import {
   GraphQLObjectType,
 } from '../../graphql';
 
+import Collection from '../../core/Collection';
+
 const cache = new Map();
 
 class CollectionType extends GraphQLObjectType {
@@ -32,6 +34,10 @@ class CollectionType extends GraphQLObjectType {
         limit: { type: GraphQLInt },
         offset: { type: GraphQLInt },
         ...args,
+      },
+      resolve: (obj, args, context, info) => {
+        const query = obj[info.fieldName]();
+        return new Collection(query, args);
       },
     };
   }

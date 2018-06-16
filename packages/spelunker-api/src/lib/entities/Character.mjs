@@ -1,4 +1,3 @@
-import Collection from '../core/Collection';
 import DatabaseEntity from '../db/Entity';
 import { charactersConnection } from '../db/connections';
 
@@ -40,42 +39,39 @@ class Character extends DatabaseEntity {
     return this.data.position_z;
   }
 
-  async account() {
+  account() {
     return Account.find(this.data.account);
   }
 
-  async class() {
+  class() {
     return Class.find(this.data.class);
   }
 
-  async completedQuests(args) {
-    const query = Quest.query.join(
+  completedQuests() {
+    return Quest.query.join(
       CharacterQuestStatusRewarded.fqTableName,
       CharacterQuestStatusRewarded.fqColumn('quest'),
       Quest.fqColumn('ID')
     ).where({
       [CharacterQuestStatusRewarded.fqColumn('guid')]: this.id,
     });
-    return new Collection(query, args);
   }
 
-  async currentQuests(args) {
-    const query = CharacterQuestStatus.query.where({ guid: this.id });
-    return new Collection(query, args);
+  currentQuests() {
+    return CharacterQuestStatus.query.where({ guid: this.id });
   }
 
-  async inventory(args) {
-    const query = CharacterItem.query.where({ owner_guid: this.id });
-    return new Collection(query, args);
+  inventory() {
+    return CharacterItem.query.where({ owner_guid: this.id });
   }
 
-  async race() {
+  race() {
     return Race.find(this.data.race);
   }
 
-  async reputation(args) {
-    const query = CharacterReputation.query.where({ guid: this.id });
-    return new Collection(query, args);
+  reputation() {
+    return CharacterReputation.query.where({ guid: this.id });
+  }
   }
 }
 

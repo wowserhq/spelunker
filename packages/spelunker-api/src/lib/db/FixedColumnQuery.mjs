@@ -14,10 +14,10 @@ class FixedColumnQuery extends MemoryQuery {
     this.log = log;
   }
 
-  load() {
+  async load() {
     this.results = [];
     for (let i = this.start; i <= this.end; ++i) {
-      const entry = this.resolve(i);
+      const entry = await this.resolve(i);
       if (entry) {
         this.results.push(entry);
       }

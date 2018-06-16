@@ -1,4 +1,3 @@
-import Collection from '../core/Collection';
 import DatabaseEntity from '../db/Entity';
 import { worldConnection } from '../db/connections';
 
@@ -27,46 +26,40 @@ class NPC extends DatabaseEntity {
     return this.data.entry;
   }
 
-  async drops(args) {
-    const query = NPCLoot.query.where({ Entry: this.id });
-    return new Collection(query, args);
+  drops() {
+    return NPCLoot.query.where({ Entry: this.id });
   }
 
-  async ends(args) {
-    const query = Quest.query.join(
+  ends() {
+    return Quest.query.join(
       NPCQuestFinisher.fqTableName,
       NPCQuestFinisher.fqColumn('quest'),
       Quest.fqColumn('ID')
     ).where({
       [NPCQuestFinisher.fqColumn('id')]: this.id,
     });
-    return new Collection(query, args);
   }
 
-  async sells(args) {
-    const query = NPCSale.query.where({ entry: this.id });
-    return new Collection(query, args);
+  sells() {
+    return NPCSale.query.where({ entry: this.id });
   }
 
-  async spawns(args) {
-    const query = NPCSpawn.query.where({ id: this.id });
-    return new Collection(query, args);
+  spawns() {
+    return NPCSpawn.query.where({ id: this.id });
   }
 
-  async starts(args) {
-    const query = Quest.query.join(
+  starts() {
+    return Quest.query.join(
       NPCQuestStarter.fqTableName,
       NPCQuestStarter.fqColumn('quest'),
       Quest.fqColumn('ID')
     ).where({
       [NPCQuestStarter.fqColumn('id')]: this.id,
     });
-    return new Collection(query, args);
   }
 
-  async teaches(args) {
-    const query = NPCTraining.query.where({ ID: this.id });
-    return new Collection(query, args);
+  teaches() {
+    return NPCTraining.query.where({ ID: this.id });
   }
 }
 

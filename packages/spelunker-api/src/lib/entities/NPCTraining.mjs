@@ -40,11 +40,11 @@ class NPCTraining extends DatabaseEntity {
     return this.data.MoneyCost;
   }
 
-  async npc() {
+  npc() {
     return NPC.find(this.data.ID);
   }
 
-  async spell() {
+  spell() {
     return Spell.find(this.data.SpellID);
   }
 }

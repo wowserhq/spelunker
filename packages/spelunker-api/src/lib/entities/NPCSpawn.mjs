@@ -33,11 +33,11 @@ class NPCSpawn extends DatabaseEntity {
     return this.data.position_z;
   }
 
-  async map() {
+  map() {
     return Map.find(this.data.map);
   }
 
-  async npc() {
+  npc() {
     return NPC.find(this.data.id);
   }
 }

@@ -1,4 +1,3 @@
-import Collection from '../core/Collection';
 import DatabaseEntity from '../db/Entity';
 import { authConnection } from '../db/connections';
 
@@ -21,9 +20,8 @@ class Account extends DatabaseEntity {
     return this.data.username;
   }
 
-  async characters(args) {
-    const query = Character.query.where({ account: this.id });
-    return new Collection(query, args);
+  characters() {
+    return Character.query.where({ account: this.id });
   }
 }
 

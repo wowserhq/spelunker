@@ -17,13 +17,16 @@ class Query {
     notImplemented(this, 'then');
   }
 
-  build(data) {
+  async build(data) {
     if (Array.isArray(data)) {
-      return data.map(item => this.build(item));
+      const results = [];
+      for (const item of data) {
+        results.push(await this.build(item));
+      }
+      return results;
     }
 
-    const Entity = this.entity;
-    return new Entity(data);
+    return this.entity.build(data);
   }
 }
 

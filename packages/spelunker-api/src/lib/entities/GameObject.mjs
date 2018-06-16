@@ -1,4 +1,3 @@
-import Collection from '../core/Collection';
 import DatabaseEntity from '../db/Entity';
 import { worldConnection } from '../db/connections';
 
@@ -25,36 +24,32 @@ class GameObject extends DatabaseEntity {
     return this.data.entry;
   }
 
-  async contains(args) {
-    const query = GameObjectLoot.query.where({ Entry: this.id });
-    return new Collection(query, args);
+  contains() {
+    return GameObjectLoot.query.where({ Entry: this.id });
   }
 
-  async ends(args) {
-    const query = Quest.query.join(
+  ends() {
+    return Quest.query.join(
       GameObjectQuestFinisher.fqTableName,
       GameObjectQuestFinisher.fqColumn('quest'),
       Quest.fqColumn('ID')
     ).where({
       [GameObjectQuestFinisher.fqColumn('id')]: this.id,
     });
-    return new Collection(query, args);
   }
 
-  async spawns(args) {
-    const query = GameObjectSpawn.query.where({ id: this.id });
-    return new Collection(query, args);
+  spawns() {
+    return GameObjectSpawn.query.where({ id: this.id });
   }
 
-  async starts(args) {
-    const query = Quest.query.join(
+  starts() {
+    return Quest.query.join(
       GameObjectQuestStarter.fqTableName,
       GameObjectQuestStarter.fqColumn('quest'),
       Quest.fqColumn('ID')
     ).where({
       [GameObjectQuestStarter.fqColumn('id')]: this.id,
     });
-    return new Collection(query, args);
   }
 }
 

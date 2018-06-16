@@ -1,4 +1,3 @@
-import Collection from '../core/Collection';
 import DatabaseEntity from '../db/Entity';
 import { worldConnection } from '../db/connections';
 
@@ -38,48 +37,42 @@ class Item extends DatabaseEntity {
     return this.data.Quality;
   }
 
-  async displayInfo() {
+  displayInfo() {
     return ItemDisplayInfo.find(this.data.displayid);
   }
 
-  async containedIn(args) {
-    const query = ItemLoot.query.where({ Item: this.id });
-    return new Collection(query, args);
+  containedIn() {
+    return ItemLoot.query.where({ Item: this.id });
   }
 
-  async containedInObject(args) {
-    const query = GameObjectLoot.query.where({ Item: this.id });
-    return new Collection(query, args);
+  containedInObject() {
+    return GameObjectLoot.query.where({ Item: this.id });
   }
 
-  async contains(args) {
-    const query = ItemLoot.query.where({ Entry: this.id });
-    return new Collection(query, args);
+  contains() {
+    return ItemLoot.query.where({ Entry: this.id });
   }
 
-  async droppedBy(args) {
-    const query = NPCLoot.query.where({ Item: this.id });
-    return new Collection(query, args);
+  droppedBy() {
+    return NPCLoot.query.where({ Item: this.id });
   }
 
-  async objectiveOf(args) {
-    const query = Quest.query
+  objectiveOf() {
+    return Quest.query
       .orWhere({ RequiredItemId1: this.id })
       .orWhere({ RequiredItemId2: this.id })
       .orWhere({ RequiredItemId3: this.id })
       .orWhere({ RequiredItemId4: this.id })
       .orWhere({ RequiredItemId5: this.id })
       .orWhere({ RequiredItemId6: this.id });
-    return new Collection(query, args);
   }
 
-  async providedFor(args) {
-    const query = Quest.query.where({ StartItem: this.id });
-    return new Collection(query, args);
+  providedFor() {
+    return Quest.query.where({ StartItem: this.id });
   }
 
-  async rewardFrom(args) {
-    const query = Quest.query
+  rewardFrom() {
+    return Quest.query
       .orWhere({ RewardItem1: this.id })
       .orWhere({ RewardItem2: this.id })
       .orWhere({ RewardItem3: this.id })
@@ -90,19 +83,16 @@ class Item extends DatabaseEntity {
       .orWhere({ RewardChoiceItemID4: this.id })
       .orWhere({ RewardChoiceItemID5: this.id })
       .orWhere({ RewardChoiceItemID6: this.id });
-    return new Collection(query, args);
   }
 
-  async soldBy(args) {
-    const query = NPCSale.query.where({ item: this.id });
-    return new Collection(query, args);
+  soldBy() {
+    return NPCSale.query.where({ item: this.id });
   }
 
-  async starts(args) {
-    const query = Quest.query.where({
+  starts() {
+    return Quest.query.where({
       [Quest.fqColumn('ID')]: this.startquest,
     });
-    return new Collection(query, args);
   }
 }
 

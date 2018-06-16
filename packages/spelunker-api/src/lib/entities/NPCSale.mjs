@@ -21,11 +21,11 @@ class NPCSale extends DatabaseEntity {
     return this.data.incrtime;
   }
 
-  async item() {
+  item() {
     return Item.find(this.data.item);
   }
 
-  async npc() {
+  npc() {
     return NPC.find(this.data.entry);
   }
 }

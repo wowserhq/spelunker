@@ -16,11 +16,11 @@ class ItemLoot extends DatabaseEntity {
     return this.data.Chance;
   }
 
-  async container() {
+  container() {
     return Item.find(this.data.Entry);
   }
 
-  async item() {
+  item() {
     return Item.find(this.data.Item);
   }
 }

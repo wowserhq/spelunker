@@ -21,11 +21,11 @@ class CharacterItem extends DatabaseEntity {
     return this.data.guid;
   }
 
-  async item() {
+  item() {
     return Item.find(this.data.itemEntry);
   }
 
-  async owner() {
+  owner() {
     return Character.find(this.data.owner_guid);
   }
 }

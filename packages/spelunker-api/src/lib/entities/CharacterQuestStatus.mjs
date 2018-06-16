@@ -13,11 +13,11 @@ class CharacterQuestStatus extends DatabaseEntity {
     return 'character_queststatus';
   }
 
-  async character() {
+  character() {
     return Character.find(this.data.guid);
   }
 
-  async quest() {
+  quest() {
     return Quest.find(this.data.quest);
   }
 }

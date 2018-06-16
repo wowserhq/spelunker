@@ -1,4 +1,3 @@
-import Collection from '../core/Collection';
 import DatabaseEntity from '../db/Entity';
 import FixedColumnQuery from '../db/FixedColumnQuery';
 import { worldConnection } from '../db/connections';
@@ -62,38 +61,36 @@ class Quest extends DatabaseEntity {
     return value;
   }
 
-  async category() {
+  category() {
     return QuestCategory.find(this.data.QuestSortID);
   }
 
-  async classes() {
+  classes() {
     const mask = this.data.AllowableClasses;
     return Class.findByMask(mask);
   }
 
-  async endedBy(args) {
-    const query = NPC.query.join(
+  endedBy() {
+    return NPC.query.join(
       NPCQuestFinisher.fqTableName,
       NPCQuestFinisher.fqColumn('id'),
       NPC.fqColumn('entry')
     ).where({
       [NPCQuestFinisher.fqColumn('quest')]: this.id,
     });
-    return new Collection(query, args);
   }
 
-  async endedByObject(args) {
-    const query = GameObject.query.join(
+  endedByObject() {
+    return GameObject.query.join(
       GameObjectQuestFinisher.fqTableName,
       GameObjectQuestFinisher.fqColumn('id'),
       GameObject.fqColumn('entry')
     ).where({
       [GameObjectQuestFinisher.fqColumn('quest')]: this.id,
     });
-    return new Collection(query, args);
   }
 
-  async providedItem() {
+  providedItem() {
     const id = this.data.StartItem;
     if (!id) {
       return null;
@@ -101,16 +98,16 @@ class Quest extends DatabaseEntity {
     return Item.find(id);
   }
 
-  async races(args) {
+  races(args) {
     const mask = this.data.AllowableRaces;
     return Race.findByMask(mask, args);
   }
 
-  async requiredFactions(args) {
-    const query = FixedColumnQuery.for(Faction, {
+  requiredFactions() {
+    return FixedColumnQuery.for(Faction, {
       label: `requiredFactions for quest ${this.id}`,
       end: 2,
-      resolve: (i) => {
+      resolve: async (i) => {
         const {
           [`RequiredFactionId${i}`]: id,
           [`RequiredFactionValue${i}`]: value,
@@ -122,18 +119,17 @@ class Quest extends DatabaseEntity {
 
         return {
           value,
-          faction: async () => Faction.find(id),
+          faction: await Faction.find(id),
         };
       },
     });
-    return new Collection(query, args);
   }
 
-  async requiredItems(args) {
-    const query = FixedColumnQuery.for(Item, {
+  requiredItems() {
+    return FixedColumnQuery.for(Item, {
       label: `requiredItems for quest ${this.id}`,
       end: 6,
-      resolve: (i) => {
+      resolve: async (i) => {
         const {
           [`RequiredItemId${i}`]: id,
           [`RequiredItemCount${i}`]: count,
@@ -145,18 +141,17 @@ class Quest extends DatabaseEntity {
 
         return {
           count,
-          item: async () => Item.find(id),
+          item: await Item.find(id),
         };
       },
     });
-    return new Collection(query, args);
   }
 
-  async requiredNPCs(args) {
-    const query = FixedColumnQuery.for(NPC, {
+  requiredNPCs() {
+    return FixedColumnQuery.for(NPC, {
       label: `requiredNPCs for quest ${this.id}`,
       end: 4,
-      resolve: (i) => {
+      resolve: async (i) => {
         const {
           [`RequiredNpcOrGo${i}`]: id,
           [`RequiredNpcOrGoCount${i}`]: count,
@@ -168,18 +163,17 @@ class Quest extends DatabaseEntity {
 
         return {
           count,
-          npc: async () => NPC.find(id),
+          npc: await NPC.find(id),
         };
       },
     });
-    return new Collection(query, args);
   }
 
-  async requiredObjects(args) {
-    const query = FixedColumnQuery.for(GameObject, {
+  requiredObjects() {
+    return FixedColumnQuery.for(GameObject, {
       label: `requiredObjects for quest ${this.id}`,
       end: 4,
-      resolve: (i) => {
+      resolve: async (i) => {
         const {
           [`RequiredNpcOrGo${i}`]: id,
           [`RequiredNpcOrGoCount${i}`]: count,
@@ -191,18 +185,17 @@ class Quest extends DatabaseEntity {
 
         return {
           count,
-          object: async () => GameObject.find(id),
+          object: await GameObject.find(id),
         };
       },
     });
-    return new Collection(query, args);
   }
 
-  async rewardChoiceItems(args) {
-    const query = FixedColumnQuery.for(Item, {
+  rewardChoiceItems() {
+    return FixedColumnQuery.for(Item, {
       label: `rewardChoiceItems for quest ${this.id}`,
       end: 6,
-      resolve: (i) => {
+      resolve: async (i) => {
         const {
           [`RewardChoiceItemID${i}`]: id,
           [`RewardChoiceItemQuantity${i}`]: count,
@@ -214,18 +207,17 @@ class Quest extends DatabaseEntity {
 
         return {
           count,
-          item: async () => Item.find(id),
+          item: await Item.find(id),
         };
       },
     });
-    return new Collection(query, args);
   }
 
-  async rewardItems(args) {
-    const query = FixedColumnQuery.for(Item, {
+  rewardItems() {
+    return FixedColumnQuery.for(Item, {
       label: `rewardItems for quest ${this.id}`,
       end: 4,
-      resolve: (i) => {
+      resolve: async (i) => {
         const {
           [`RewardItem${i}`]: id,
           [`RewardAmount${i}`]: count,
@@ -237,21 +229,20 @@ class Quest extends DatabaseEntity {
 
         return {
           count,
-          item: async () => Item.find(id),
+          item: await Item.find(id),
         };
       },
     });
-    return new Collection(query, args);
   }
 
-  async rewardDisplaySpell() {
+  rewardDisplaySpell() {
     if (!this.data.RewardDisplaySpell) {
       return null;
     }
     return Spell.find(this.data.RewardDisplaySpell);
   }
 
-  async rewardSpell() {
+  rewardSpell() {
     if (!this.data.RewardSpell) {
       return null;
     }
@@ -268,31 +259,28 @@ class Quest extends DatabaseEntity {
     return sides;
   }
 
-  async startedBy(args) {
-    const query = NPC.query.join(
+  startedBy() {
+    return NPC.query.join(
       NPCQuestStarter.fqTableName,
       NPCQuestStarter.fqColumn('id'),
       NPC.fqColumn('entry')
     ).where({
       [NPCQuestStarter.fqColumn('quest')]: this.id,
     });
-    return new Collection(query, args);
   }
 
-  async startedByItem(args) {
-    const query = Item.query.where({ startquest: this.id });
-    return new Collection(query, args);
+  startedByItem() {
+    return Item.query.where({ startquest: this.id });
   }
 
-  async startedByObject(args) {
-    const query = GameObject.query.join(
+  startedByObject() {
+    return GameObject.query.join(
       GameObjectQuestStarter.fqTableName,
       GameObjectQuestStarter.fqColumn('id'),
       GameObject.fqColumn('entry')
     ).where({
       [GameObjectQuestStarter.fqColumn('quest')]: this.id,
     });
-    return new Collection(query, args);
   }
 }
 

@@ -17,11 +17,11 @@ class GameObjectLoot extends DatabaseEntity {
     return this.data.Chance;
   }
 
-  async item() {
+  item() {
     return Item.find(this.data.Item);
   }
 
-  async object() {
+  object() {
     return GameObject.find(this.data.Entry);
   }
 }

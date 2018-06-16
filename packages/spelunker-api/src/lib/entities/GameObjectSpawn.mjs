@@ -33,11 +33,11 @@ class GameObjectSpawn extends DatabaseEntity {
     return this.data.position_z;
   }
 
-  async map() {
+  map() {
     return Map.find(this.data.map);
   }
 
-  async object() {
+  object() {
     return GameObject.find(this.data.id);
   }
 }

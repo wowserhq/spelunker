@@ -17,11 +17,11 @@ class NPCLoot extends DatabaseEntity {
     return this.data.Chance;
   }
 
-  async item() {
+  item() {
     return Item.find(this.data.Item);
   }
 
-  async npc() {
+  npc() {
     return NPC.find(this.data.Entry);
   }
 }

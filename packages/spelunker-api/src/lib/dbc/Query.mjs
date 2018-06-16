@@ -19,23 +19,24 @@ class DBCQuery extends MemoryQuery {
     this.filepath = `DBFilesClient\\${this.id}.dbc`;
   }
 
-  preload() {
+  async preload() {
     const { id, filepath } = this;
 
     const file = mpq.files.get(filepath);
     const definition = DBC[id];
     const dbc = definition.dbc.decode(new DecodeStream(file.data));
-    const records = this.build(dbc.records);
+    const records = await this.build(dbc.records);
     log(`pre-loaded ${filepath}`);
     return records;
   }
 
-  load() {
-    this.results = cache.get(this.id);
-    if (!this.results) {
-      this.results = this.preload();
-      cache.set(this.id, this.results);
+  async load() {
+    let preloader = cache.get(this.id);
+    if (!preloader) {
+      preloader = this.preload();
+      cache.set(this.id, preloader);
     }
+    this.results = await preloader;
   }
 }
 

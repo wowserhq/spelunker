@@ -18,12 +18,16 @@ const data = [
   },
 ];
 
+let cache;
+
 class Side extends Entity {
   static get query() {
     return new MemoryQuery(this, {
-      load: (query) => {
-        // TODO: Performance is terrible here, re-creates dataset
-        query.results = query.build(data);
+      load: async (query) => {
+        if (!cache) {
+          cache = query.build(data);
+        }
+        query.results = await cache;
       },
     });
   }

@@ -1,4 +1,3 @@
-import Collection from '../core/Collection';
 import DBCEntity from '../dbc/Entity';
 
 import Character from './Character';
@@ -10,19 +9,16 @@ class Map extends DBCEntity {
     return 'Map';
   }
 
-  async characters(args) {
-    const query = Character.query.where({ map: this.id });
-    return new Collection(query, args);
+  characters() {
+    return Character.query.where({ map: this.id });
   }
 
-  async npcSpawns(args) {
-    const query = NPCSpawn.query.where({ map: this.id });
-    return new Collection(query, args);
+  npcSpawns() {
+    return NPCSpawn.query.where({ map: this.id });
   }
 
-  async objectSpawns(args) {
-    const query = GameObjectSpawn.query.where({ map: this.id });
-    return new Collection(query, args);
+  objectSpawns() {
+    return GameObjectSpawn.query.where({ map: this.id });
   }
 }
 
