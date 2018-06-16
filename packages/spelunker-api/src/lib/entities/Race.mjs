@@ -7,7 +7,7 @@ class Race extends DBCEntity {
     return 'ChrRaces';
   }
 
-  static async findByMask(mask, { exclusive = false }) {
+  static async findByMask(mask, { exclusive = false } = {}) {
     if (exclusive) {
       const sides = await Side.query;
       sides.forEach(side => {
