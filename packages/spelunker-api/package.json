@@ -7,7 +7,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "lint": "eslint src",
+    "lint": "eslint --ext js,mjs src",
     "start": "node --experimental-modules --trace-warnings src/index.mjs",
     "test": "exit 1",
     "watch": "DEBUG=spelunker:* nodemon --exec 'npm start'"
