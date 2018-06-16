@@ -24,6 +24,10 @@ class Race extends DBCEntity {
   get filename() {
     return this.data.clientFileString;
   }
+
+  side() {
+    return Side.find(this.data.faction);
+  }
 }
 
 export default Race;

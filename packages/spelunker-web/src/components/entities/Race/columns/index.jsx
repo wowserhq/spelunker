@@ -2,22 +2,28 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import RaceReference from '../Reference';
-import { IDColumn, PlaceholderColumn } from '../../../Table';
+import SideReference from '../../Side/Reference';
+import { IDColumn } from '../../../Table';
+import { SideReferenceColumn } from '../../Side/columns';
 
 import RaceReferenceColumn from './ReferenceColumn';
 
 const columns = [
   <IDColumn />,
   <RaceReferenceColumn />,
-  <PlaceholderColumn label="Side" />,
+  <SideReferenceColumn accessor="side" />,
 ];
 
 columns.fragment = gql`
   fragment raceColumns on Race {
     ...RaceReference
+    side {
+      ...SideReference
+    }
   }
 
   ${RaceReference.fragment}
+  ${SideReference.fragment}
 `;
 
 export {

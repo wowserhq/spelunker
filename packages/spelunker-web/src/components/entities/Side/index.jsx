@@ -1,16 +1,20 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import Box from '../../Box';
+import Box, { TabbedBox, Tab } from '../../Box';
 import Query from '../../Query';
 import Title from '../../Spelunker/Title';
 
+import RacesTab from './tabs/Races';
 import SideReference from './Reference';
 
 const fetchSide = gql`
   query($id: String!) {
     side(id: $id) {
       ...SideReference
+      races {
+        totalCount
+      }
     }
   }
 
@@ -25,6 +29,7 @@ const Side = ({ match }) => {
         const { side } = data;
         const {
           name,
+          races: { totalCount: raceCount },
         } = side;
 
         return (
@@ -34,6 +39,15 @@ const Side = ({ match }) => {
                 <SideReference side={side} />
               </h1>
             </Box>
+
+            <TabbedBox>
+              {raceCount > 0 && <Tab
+                label={`Races (${raceCount})`}
+                component={RacesTab}
+                path="races"
+                match={match}
+              />}
+            </TabbedBox>
           </Title>
         );
       }}
