@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint src",
-    "start": "node --experimental-modules src/index.mjs",
+    "start": "node --experimental-modules --trace-warnings src/index.mjs",
     "test": "exit 1",
     "watch": "DEBUG=spelunker:* nodemon --exec 'npm start'"
   },
