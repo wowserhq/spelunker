@@ -5,6 +5,8 @@ import Box, { TabbedBox, Tab } from '../../Box';
 import Query from '../../Query';
 import Title from '../../Spelunker/Title';
 
+import ExclusiveQuestsTab from './tabs/ExclusiveQuests';
+import QuestsTab from './tabs/Quests';
 import RacesTab from './tabs/Races';
 import SideReference from './Reference';
 
@@ -14,6 +16,12 @@ const fetchSide = gql`
       ...SideReference
       description
 
+      exclusiveQuests: quests(exclusive: true) {
+        totalCount
+      }
+      quests {
+        totalCount
+      }
       races {
         totalCount
       }
@@ -32,6 +40,8 @@ const Side = ({ match }) => {
         const {
           name,
           description,
+          exclusiveQuests: { totalCount: exclusiveQuestCount },
+          quests: { totalCount: questCount },
           races: { totalCount: raceCount },
         } = side;
 
@@ -52,6 +62,20 @@ const Side = ({ match }) => {
                 label={`Races (${raceCount})`}
                 component={RacesTab}
                 path="races"
+                match={match}
+              />}
+
+              {questCount > 0 && <Tab
+                label={`Quests (${questCount})`}
+                component={QuestsTab}
+                path="quests"
+                match={match}
+              />}
+
+              {exclusiveQuestCount > 0 && <Tab
+                label={`Exclusive quests (${exclusiveQuestCount})`}
+                component={ExclusiveQuestsTab}
+                path="exclusive-quests"
                 match={match}
               />}
             </TabbedBox>

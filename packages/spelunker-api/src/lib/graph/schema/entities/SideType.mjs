@@ -1,8 +1,14 @@
 import {
+  GraphQLBoolean,
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLString,
 } from '../../../graphql';
+
+import CollectionType from '../CollectionType';
+
+import QuestType from './QuestType';
+import RaceType from './RaceType';
 
 export default new GraphQLObjectType({
   name: 'Side',
@@ -11,5 +17,10 @@ export default new GraphQLObjectType({
     name: { type: new GraphQLNonNull(GraphQLString) },
     description: { type: new GraphQLNonNull(GraphQLString) },
     icon: { type: GraphQLString },
+
+    quests: CollectionType.definitionFor(QuestType, {
+      exclusive: { type: GraphQLBoolean },
+    }),
+    races: CollectionType.definitionFor(RaceType),
   }),
 });

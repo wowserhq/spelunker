@@ -1,6 +1,7 @@
 import MemoryEntity from '../core/memory/Entity';
 import glueStrings from '../mpq/files/GlueStrings';
 
+import Quest from './Quest';
 import Race from './Race';
 
 class Side extends MemoryEntity {
@@ -40,6 +41,20 @@ class Side extends MemoryEntity {
   get description() {
     const entry = `FACTION_INFO_${this.data.id.toUpperCase()}`;
     return glueStrings[entry];
+  }
+
+  get opposition() {
+    const id = this.data.id === 'alliance' ? 'horde' : 'alliance';
+    return Side.find(id);
+  }
+
+  async quests({ exclusive } = {}) {
+    const query = Quest.query.where('AllowableRaces', '&', this.racemask);
+    if (exclusive) {
+      const opposition = await this.opposition;
+      return query.whereNot('AllowableRaces', '&', opposition.racemask);
+    }
+    return query.orWhere('AllowableRaces', 0);
   }
 
   races() {
