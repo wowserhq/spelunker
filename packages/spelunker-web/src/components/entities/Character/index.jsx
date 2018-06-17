@@ -10,6 +10,7 @@ import CompletedQuestsTab from './tabs/CompletedQuests';
 import CurrentQuestsTab from './tabs/CurrentQuests';
 import InventoryTab from './tabs/Inventory';
 import ReputationTab from './tabs/Reputation';
+import UncompletedQuestsTab from './tabs/UncompletedQuests';
 
 const fetchCharacter = gql`
   query($id: Int!) {
@@ -26,6 +27,9 @@ const fetchCharacter = gql`
         totalCount
       }
       reputation {
+        totalCount
+      }
+      uncompletedQuests {
         totalCount
       }
     }
@@ -47,6 +51,7 @@ const Character = ({ match }) => {
           currentQuests: { totalCount: currentQuestCount },
           inventory: { totalCount: inventoryCount },
           reputation: { totalCount : reputationCount },
+          uncompletedQuests: { totalCount: uncompletedQuestCount },
         } = character;
 
         return (
@@ -76,6 +81,13 @@ const Character = ({ match }) => {
                 label={`Completed quests (${completedQuestCount})`}
                 component={CompletedQuestsTab}
                 path="completed-quests"
+                match={match}
+              />}
+
+              {uncompletedQuestCount > 0 && <Tab
+                label={`Uncompleted quests (${uncompletedQuestCount})`}
+                component={UncompletedQuestsTab}
+                path="uncompleted-quests"
                 match={match}
               />}
 

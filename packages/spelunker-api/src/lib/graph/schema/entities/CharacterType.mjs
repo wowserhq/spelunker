@@ -42,5 +42,6 @@ export default new GraphQLObjectType({
     currentQuests: CollectionType.definitionFor(CharacterQuestType),
     inventory: CollectionType.definitionFor(CharacterItemType),
     reputation: CollectionType.definitionFor(CharacterReputationType),
+    uncompletedQuests: CollectionType.definitionFor(QuestType),
   }),
 });

@@ -72,6 +72,32 @@ class Character extends DatabaseEntity {
   reputation() {
     return CharacterReputation.query.where({ guid: this.id });
   }
+
+  async uncompletedQuests() {
+    const race = await this.race();
+    const klass = await this.class();
+
+    return Quest.query.leftJoin(
+      CharacterQuestStatus.fqTableName,
+      (clause) => {
+        clause.on(
+          CharacterQuestStatus.fqColumn('quest'),
+          Quest.fqColumn('ID')
+        ).andOn(
+          CharacterQuestStatus.fqColumn('guid'),
+          this.id
+        );
+      }
+    )
+      .whereNull(CharacterQuestStatus.fqColumn('guid'))
+      .where((builder) => (
+        builder.where('AllowableRaces', 0)
+          .orWhere('AllowableRaces', '&', race.mask)
+      ))
+      .where((builder) => (
+        builder.where('AllowableClasses', 0)
+          .orWhere('AllowableClasses', '&', klass.mask)
+      ));
   }
 }
 
