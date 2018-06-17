@@ -12,6 +12,8 @@ const fetchSide = gql`
   query($id: String!) {
     side(id: $id) {
       ...SideReference
+      description
+
       races {
         totalCount
       }
@@ -29,6 +31,7 @@ const Side = ({ match }) => {
         const { side } = data;
         const {
           name,
+          description,
           races: { totalCount: raceCount },
         } = side;
 
@@ -38,6 +41,10 @@ const Side = ({ match }) => {
               <h1>
                 <SideReference side={side} />
               </h1>
+
+              <p>
+                {description}
+              </p>
             </Box>
 
             <TabbedBox>

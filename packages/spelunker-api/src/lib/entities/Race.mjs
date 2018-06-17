@@ -1,4 +1,5 @@
 import DBCEntity from '../dbc/Entity';
+import glueStrings from '../mpq/files/GlueStrings';
 
 import Side from './Side';
 
@@ -18,6 +19,11 @@ class Race extends DBCEntity {
     }
 
     return Race.query.filter(race => race.mask & mask);
+  }
+
+  get description() {
+    const entry = `RACE_INFO_${this.data.clientFileString.toUpperCase()}`;
+    return glueStrings[entry];
   }
 
   get filename() {

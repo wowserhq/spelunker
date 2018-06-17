@@ -1,4 +1,5 @@
 import MemoryEntity from '../core/memory/Entity';
+import glueStrings from '../mpq/files/GlueStrings';
 
 import Race from './Race';
 
@@ -34,6 +35,11 @@ class Side extends MemoryEntity {
       side.racemask |= race.mask;
     }
     return side;
+  }
+
+  get description() {
+    const entry = `FACTION_INFO_${this.data.id.toUpperCase()}`;
+    return glueStrings[entry];
   }
 
   races() {

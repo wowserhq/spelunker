@@ -12,6 +12,7 @@ export default new GraphQLObjectType({
   fields: () => ({
     id: { type: new GraphQLNonNull(GraphQLInt) },
     name: { type: new GraphQLNonNull(GraphQLString) },
+    description: { type: GraphQLString },
     filename: { type: new GraphQLNonNull(GraphQLString) },
 
     side: { type: SideType },

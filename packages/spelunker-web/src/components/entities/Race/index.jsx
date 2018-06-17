@@ -12,6 +12,7 @@ const fetchRace = gql`
   query($id: Int!) {
     race(id: $id) {
       ...RaceReference
+      description
       side {
         ...SideReference
       }
@@ -30,6 +31,7 @@ const Race = ({ match }) => {
         const { race } = data;
         const {
           name,
+          description,
           side,
         } = race;
         return (
@@ -39,8 +41,14 @@ const Race = ({ match }) => {
                 <RaceReference race={race} />
               </h1>
 
+              {side && (
+                <p>
+                  Side: <SideReference side={side} />
+                </p>
+              )}
+
               <p>
-                Side: <SideReference side={side} />
+                {description}
               </p>
             </Box>
           </Title>

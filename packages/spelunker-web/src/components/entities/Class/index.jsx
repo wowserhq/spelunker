@@ -11,6 +11,7 @@ const fetchClass = gql`
   query($id: Int!) {
     class(id: $id) {
       ...ClassReference
+      description
     }
   }
 
@@ -23,13 +24,20 @@ const Class = ({ match }) => {
     <Query query={fetchClass} variables={{ id }}>
       {({ data }) => {
         const { class: klass } = data;
-        const { name } = klass;
+        const {
+          name,
+          description,
+        } = klass;
         return (
           <Title path={[name, 'Classes']}>
             <Box>
               <h1>
                 <ClassReference class={klass} />
               </h1>
+
+              <p>
+                {description}
+              </p>
             </Box>
           </Title>
         );
