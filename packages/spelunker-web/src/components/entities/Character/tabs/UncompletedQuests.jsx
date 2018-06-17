@@ -40,8 +40,4 @@ const UncompletedQuestsTab = ({ match }) => {
   );
 };
 
-UncompletedQuestsTab.contextTypes = {
-  router: PropTypes.object.isRequired,
-};
-
 export default UncompletedQuestsTab;
