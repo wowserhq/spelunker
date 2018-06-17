@@ -20,7 +20,7 @@ const Table = ({ data, columns, keyField = 'id' }) => {
 
   const rows = data.map(row => (
     <tr
-      key={row[keyField]}
+      key={valueByPath(row, keyField)}
     >
       {columns.map((column, index) => {
         const cell = React.cloneElement(column, {

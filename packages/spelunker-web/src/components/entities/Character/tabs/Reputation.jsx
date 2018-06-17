@@ -35,6 +35,7 @@ const ReputationTab = ({ match }) => {
       {({ results }) => (
         <Table
           data={results}
+          keyField="faction.id"
           columns={[
             ...prefixAccessors(factionColumns, 'faction'),
             <Column id="standing" label="Standing" accessor="standing" />,

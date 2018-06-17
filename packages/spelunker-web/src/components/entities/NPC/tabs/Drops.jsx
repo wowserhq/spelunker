@@ -35,6 +35,7 @@ const DropsTab = ({ match }) => {
       {({ results }) => (
         <Table
           data={results}
+          keyField="item.id"
           columns={[
             ...prefixAccessors(itemColumns, 'item'),
             <ChanceColumn />,

@@ -38,6 +38,7 @@ const SellsTab = ({ match }) => {
       {({ results }) => (
         <Table
           data={results}
+          keyField="item.id"
           columns={[
             ...prefixAccessors(itemColumns, 'item'),
             <CurrencyColumn label="Cost" accessor="item.buyPrice" />,

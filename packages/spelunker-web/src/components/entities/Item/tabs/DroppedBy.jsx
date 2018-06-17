@@ -35,6 +35,7 @@ const DroppedByTab = ({ match }) => {
       {({ results }) => (
         <Table
           data={results}
+          keyField="npc.id"
           columns={[
             ...prefixAccessors(npcColumns, 'npc'),
             <ChanceColumn />,

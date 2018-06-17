@@ -35,6 +35,7 @@ const ContainedInObjectTab = ({ match }) => {
       {({ results }) => (
         <Table
           data={results}
+          keyField="object.id"
           columns={[
             ...prefixAccessors(gameObjectColumns, 'object'),
             <ChanceColumn />,

@@ -35,6 +35,7 @@ const CurrentQuestsTab = ({ match }) => {
       {({ results }) => (
         <Table
           data={results}
+          keyField="quest.id"
           columns={[
             ...prefixAccessors(questColumns, 'quest'),
             <Column id="status" label="Status" accessor="status" />,

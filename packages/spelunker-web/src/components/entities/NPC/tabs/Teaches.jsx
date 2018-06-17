@@ -35,6 +35,7 @@ const TeachesTab = ({ match }) => {
       {({ results }) => (
         <Table
           data={results}
+          keyField="spell.id"
           columns={[
             ...prefixAccessors(spellColumns, 'spell'),
             <CurrencyColumn label="Cost" accessor="cost" />,

@@ -35,6 +35,7 @@ const ContainsTab = ({ match }) => {
       {({ results }) => (
         <Table
           data={results}
+          keyField="item.id"
           columns={[
             ...itemColumns,
             <ChanceColumn />,

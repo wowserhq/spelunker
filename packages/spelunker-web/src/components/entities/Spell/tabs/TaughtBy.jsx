@@ -35,6 +35,7 @@ const TaughtByTab = ({ match }) => {
       {({ results }) => (
         <Table
           data={results}
+          keyField="npc.id"
           columns={[
             ...prefixAccessors(npcColumns, 'npc'),
             <CurrencyColumn label="Cost" accessor="cost" />,
