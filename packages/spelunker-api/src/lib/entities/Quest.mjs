@@ -67,7 +67,7 @@ class Quest extends DatabaseEntity {
 
   classes() {
     const mask = this.data.AllowableClasses;
-    return Class.findByMask(mask);
+    return Class.filterByMask(mask);
   }
 
   endedBy() {
@@ -100,7 +100,7 @@ class Quest extends DatabaseEntity {
 
   races(args) {
     const mask = this.data.AllowableRaces;
-    return Race.findByMask(mask, args);
+    return Race.filterByMask(mask, args);
   }
 
   requiredFactions() {

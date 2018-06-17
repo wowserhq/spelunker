@@ -6,7 +6,7 @@ class Class extends DBCEntity {
     return 'ChrClasses';
   }
 
-  static findByMask(mask) {
+  static filterByMask(mask) {
     return Class.query.filter(klass => klass.mask & mask);
   }
 
