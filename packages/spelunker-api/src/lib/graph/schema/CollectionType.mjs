@@ -35,8 +35,8 @@ class CollectionType extends GraphQLObjectType {
         offset: { type: GraphQLInt },
         ...args,
       },
-      resolve: (obj, args, context, info) => {
-        const query = obj[info.fieldName]();
+      resolve: async (obj, args, context, info) => {
+        const query = await obj[info.fieldName](args, context, info);
         return new Collection(query, args);
       },
     };

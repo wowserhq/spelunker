@@ -14,6 +14,10 @@ class Entity {
     });
   }
 
+  static get query() {
+    notImplemented(this, 'query');
+  }
+
   static async find() {
     notImplemented(this, 'find');
   }

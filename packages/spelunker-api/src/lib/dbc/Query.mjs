@@ -1,15 +1,13 @@
 import DBC from 'blizzardry/lib/dbc/entities';
 import restructure from 'blizzardry/lib/restructure';
 
-import MemoryQuery from '../core/MemoryQuery';
+import MemoryQuery from '../core/memory/Query';
 import logger from '../utils/logger';
 import mpq from '../mpq';
 
 const { DecodeStream } = restructure;
 
 const log = logger('dbc');
-
-const cache = new Map();
 
 class DBCQuery extends MemoryQuery {
   constructor(entity) {
@@ -31,12 +29,12 @@ class DBCQuery extends MemoryQuery {
   }
 
   async load() {
-    let preloader = cache.get(this.id);
-    if (!preloader) {
-      preloader = this.preload();
-      cache.set(this.id, preloader);
+    let cache = this.entity.cache;
+    if (!cache) {
+      cache = this.preload();
+      this.entity.cache = cache;
     }
-    this.results = await preloader;
+    return await cache;
   }
 }
 

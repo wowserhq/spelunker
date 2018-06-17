@@ -5,11 +5,21 @@ import RaceReference from '../../Race/Reference';
 
 const QuestRacesClassesColumn = ({ value: quest }) => (
   <span>
-    {quest.races.map(race => (
-      <RaceReference race={race} iconSize="small" withoutName />
+    {quest.races.results.map(race => (
+      <RaceReference
+        key={race.id}
+        race={race}
+        iconSize="small"
+        withoutName
+      />
     ))}
-    {quest.classes.map(klass => (
-      <ClassReference class={klass} iconSize="small" withoutName />
+    {quest.classes.results.map(klass => (
+      <ClassReference
+        key={klass.id}
+        class={klass}
+        iconSize="small"
+        withoutName
+      />
     ))}
   </span>
 );

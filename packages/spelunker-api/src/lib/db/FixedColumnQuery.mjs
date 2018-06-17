@@ -1,4 +1,4 @@
-import MemoryQuery from '../core/MemoryQuery';
+import MemoryQuery from '../core/memory/Query';
 import logger from '../utils/logger';
 
 const log = logger('db:fcq');
@@ -15,13 +15,14 @@ class FixedColumnQuery extends MemoryQuery {
   }
 
   async load() {
-    this.results = [];
+    const results = [];
     for (let i = this.start; i <= this.end; ++i) {
       const entry = await this.resolve(i);
       if (entry) {
-        this.results.push(entry);
+        results.push(entry);
       }
     }
+    return results;
   }
 }
 

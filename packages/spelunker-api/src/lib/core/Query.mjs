@@ -13,8 +13,8 @@ class Query {
     notImplemented(this, 'totalCount');
   }
 
-  then() {
-    notImplemented(this, 'then');
+  execute() {
+    notImplemented(this, 'execute');
   }
 
   async build(data) {

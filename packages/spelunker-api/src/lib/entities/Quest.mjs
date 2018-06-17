@@ -104,7 +104,7 @@ class Quest extends DatabaseEntity {
   }
 
   requiredFactions() {
-    return FixedColumnQuery.for(Faction, {
+    return new FixedColumnQuery(Faction, {
       label: `requiredFactions for quest ${this.id}`,
       end: 2,
       resolve: async (i) => {
@@ -126,7 +126,7 @@ class Quest extends DatabaseEntity {
   }
 
   requiredItems() {
-    return FixedColumnQuery.for(Item, {
+    return new FixedColumnQuery(Item, {
       label: `requiredItems for quest ${this.id}`,
       end: 6,
       resolve: async (i) => {
@@ -148,7 +148,7 @@ class Quest extends DatabaseEntity {
   }
 
   requiredNPCs() {
-    return FixedColumnQuery.for(NPC, {
+    return new FixedColumnQuery(NPC, {
       label: `requiredNPCs for quest ${this.id}`,
       end: 4,
       resolve: async (i) => {
@@ -170,7 +170,7 @@ class Quest extends DatabaseEntity {
   }
 
   requiredObjects() {
-    return FixedColumnQuery.for(GameObject, {
+    return new FixedColumnQuery(GameObject, {
       label: `requiredObjects for quest ${this.id}`,
       end: 4,
       resolve: async (i) => {
@@ -192,7 +192,7 @@ class Quest extends DatabaseEntity {
   }
 
   rewardChoiceItems() {
-    return FixedColumnQuery.for(Item, {
+    return new FixedColumnQuery(Item, {
       label: `rewardChoiceItems for quest ${this.id}`,
       end: 6,
       resolve: async (i) => {
@@ -214,7 +214,7 @@ class Quest extends DatabaseEntity {
   }
 
   rewardItems() {
-    return FixedColumnQuery.for(Item, {
+    return new FixedColumnQuery(Item, {
       label: `rewardItems for quest ${this.id}`,
       end: 4,
       resolve: async (i) => {
@@ -249,10 +249,10 @@ class Quest extends DatabaseEntity {
     return Spell.find(this.data.RewardSpell);
   }
 
-  async sides() {
+  sides() {
     const mask = this.data.AllowableRaces;
 
-    const sides = await Side.query;
+    const sides = Side.query;
     if (mask) {
       return sides.filter(side => mask & side.racemask);
     }

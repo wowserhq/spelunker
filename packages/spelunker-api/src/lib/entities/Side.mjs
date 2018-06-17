@@ -1,46 +1,39 @@
-import Entity from '../core/Entity';
-import MemoryQuery from '../core/MemoryQuery';
+import MemoryEntity from '../core/memory/Entity';
 
 import Race from './Race';
 
-const data = [
-  {
-    id: 'alliance',
-    name: 'Alliance',
-    icon: 'Interface\\WorldStateFrame\\AllianceIcon',
-    // TODO: Fetch races from ChrRaces.dbc
-    racemask: 1101,
-    faction: 0,
-  },
-  {
-    id: 'horde',
-    name: 'Horde',
-    icon: 'Interface\\WorldStateFrame\\HordeIcon',
-    // TODO: Fetch races from ChrRaces.dbc
-    racemask: 690,
-    faction: 1,
-  },
-];
-
-let cache;
-
-class Side extends Entity {
-  static get query() {
-    return new MemoryQuery(this, {
-      load: async (query) => {
-        if (!cache) {
-          cache = query.build(data);
-        }
-        query.results = await cache;
+class Side extends MemoryEntity {
+  static get data() {
+    return [
+      {
+        id: 'alliance',
+        name: 'Alliance',
+        icon: 'Interface\\WorldStateFrame\\AllianceIcon',
+        faction: 0,
       },
-    });
+      {
+        id: 'horde',
+        name: 'Horde',
+        icon: 'Interface\\WorldStateFrame\\HordeIcon',
+        faction: 1,
+      },
+    ];
   }
 
   static async find(id) {
-    const results = await this.query;
+    const results = await this.query.execute();
     return results.find(side => (
       side.id === id || side.faction === id
     ));
+  }
+
+  static async build(data) {
+    const side = new this(data);
+    const races = await side.races().execute();
+    for (const race of races) {
+      side.racemask |= race.mask;
+    }
+    return side;
   }
 
   races() {

@@ -25,11 +25,13 @@ class DatabaseQuery extends Query {
     ));
   }
 
-  then(resolve, reject) {
+  execute() {
     log(this.knex.toString());
-    this.knex.then(results => {
-      resolve(results && this.build(results));
-    }).catch(reject);
+    return this.knex.then(results => (
+      results && this.build(results)
+    )).catch(error => {
+      throw error;
+    });
   }
 }
 

@@ -5,9 +5,12 @@ class Class extends DBCEntity {
     return 'ChrClasses';
   }
 
-  static async findByMask(mask) {
-    const classes = await Class.query;
-    return classes.filter(klass => (1 << klass.id - 1) & mask);
+  static findByMask(mask) {
+    return Class.query.filter(klass => klass.mask & mask);
+  }
+
+  get mask() {
+    return (1 << (this.data.id - 1));
   }
 }
 

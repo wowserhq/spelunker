@@ -26,10 +26,14 @@ columns.fragment = gql`
       ...QuestCategory
     }
     classes {
-      ...ClassReference
+      results {
+        ...ClassReference
+      }
     }
     races(exclusive: true) {
-      ...RaceReference
+      results {
+        ...RaceReference
+      }
     }
   }
 

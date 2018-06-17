@@ -6,8 +6,8 @@ import SideReference from '../Side/Reference';
 
 const QuestReference = ({ quest }) => (
   <span>
-    {quest.sides.map(side => (
-      <SideReference side={side} withoutName />
+    {quest.sides.results.map(side => (
+      <SideReference key={side.id} side={side} withoutName />
     ))}
     <Link to={`/quests/${quest.id}`}>
       {quest.name}
@@ -20,7 +20,9 @@ QuestReference.fragment = gql`
     id
     name
     sides {
-      ...SideReference
+      results {
+        ...SideReference
+      }
     }
   }
 

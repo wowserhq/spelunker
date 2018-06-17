@@ -9,7 +9,7 @@ class Race extends DBCEntity {
 
   static async findByMask(mask, { exclusive = false } = {}) {
     if (exclusive) {
-      const sides = await Side.query;
+      const sides = await Side.query.execute();
       sides.forEach(side => {
         if ((mask & side.racemask) === side.racemask) {
           mask &= ~side.racemask;
@@ -17,12 +17,15 @@ class Race extends DBCEntity {
       });
     }
 
-    const races = await Race.query;
-    return races.filter(race => (1 << race.id - 1) & mask);
+    return Race.query.filter(race => race.mask & mask);
   }
 
   get filename() {
     return this.data.clientFileString;
+  }
+
+  get mask() {
+    return (1 << (this.data.id - 1));
   }
 
   side() {

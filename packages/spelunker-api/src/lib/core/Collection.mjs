@@ -25,7 +25,7 @@ class Collection {
   }
 
   async results() {
-    return this.query.slice(this.offset, this.limit);
+    return this.query.slice(this.offset, this.limit).execute();
   }
 }
 

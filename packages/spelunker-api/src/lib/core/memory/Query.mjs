@@ -1,7 +1,8 @@
-import Query from '../core/Query';
+import Query from '../Query';
+import { notImplemented } from '../../utils/abstract';
 
 class MemoryQuery extends Query {
-  constructor(entity, { label, load } = {}) {
+  constructor(entity, { label } = {}) {
     super(entity);
 
     this.label = label;
@@ -12,9 +13,6 @@ class MemoryQuery extends Query {
 
     this.filters = [];
     this.results = null;
-    if (!this.load) {
-      this.load = load;
-    }
   }
 
   filter(filter) {
@@ -28,9 +26,13 @@ class MemoryQuery extends Query {
     return this;
   }
 
+  async load() {
+    notImplemented(this, 'load');
+  }
+
   async filtered() {
     if (!this.results) {
-      await this.load(this);
+      this.results = await this.load();
     }
 
     if (!this.filters.length) {
@@ -53,18 +55,14 @@ class MemoryQuery extends Query {
     return results.length;
   }
 
-  async then(resolve) {
+  async execute() {
     if (this.log) {
       this.log(`fetching ${this.label}`);
     }
 
     const results = await this.filtered();
     const end = this.limit ? this.offset + this.limit : undefined;
-    resolve(results.slice(this.offset, end));
-  }
-
-  static for(...args) {
-    return new this(...args);
+    return results.slice(this.offset, end);
   }
 }
 

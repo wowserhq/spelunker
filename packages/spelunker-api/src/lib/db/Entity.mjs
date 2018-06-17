@@ -28,10 +28,10 @@ class DatabaseEntity extends Entity {
     return new DatabaseQuery(this);
   }
 
-  static async find(id) {
+  static find(id) {
     return this.query.where({
       [this.primaryKey]: id,
-    }).first();
+    }).first().execute();
   }
 
   static fqColumn(column) {

@@ -1,7 +1,6 @@
 import {
   GraphQLBoolean,
   GraphQLInt,
-  GraphQLList,
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLString,
@@ -33,16 +32,13 @@ export default new GraphQLObjectType({
 
     category: { type: QuestCategoryType },
 
-    classes: { type: new GraphQLList(ClassType) },
+    classes: CollectionType.definitionFor(ClassType),
     endedBy: CollectionType.definitionFor(NPCType),
     endedByObject: CollectionType.definitionFor(GameObjectType),
     providedItem: { type: ItemType },
-    races: {
-      type: new GraphQLList(RaceType),
-      args: {
-        exclusive: { type: GraphQLBoolean },
-      },
-    },
+    races: CollectionType.definitionFor(RaceType, {
+      exclusive: { type: GraphQLBoolean },
+    }),
     requiredFactions: CollectionType.definitionFor(QuestFactionType),
     requiredItems: CollectionType.definitionFor(QuestItemType),
     requiredNPCs: CollectionType.definitionFor(QuestNPCType),
@@ -51,7 +47,7 @@ export default new GraphQLObjectType({
     rewardItems: CollectionType.definitionFor(QuestItemType),
     rewardDisplaySpell: { type: SpellType },
     rewardSpell: { type: SpellType },
-    sides: { type: new GraphQLList(SideType) },
+    sides: CollectionType.definitionFor(SideType),
     startedBy: CollectionType.definitionFor(NPCType),
     startedByItem: CollectionType.definitionFor(ItemType),
     startedByObject: CollectionType.definitionFor(GameObjectType),
