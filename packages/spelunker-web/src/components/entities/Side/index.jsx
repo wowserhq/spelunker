@@ -1,7 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import Box, { TabbedBox, Tab } from '../../Box';
+import Box, { Tab, TabbedBox } from '../../Box';
 import Query from '../../Query';
 import Title from '../../Spelunker/Title';
 
@@ -65,17 +65,17 @@ const Side = ({ match }) => {
                 match={match}
               />}
 
-              {questCount > 0 && <Tab
-                label={`Quests (${questCount})`}
-                component={QuestsTab}
-                path="quests"
-                match={match}
-              />}
-
               {exclusiveQuestCount > 0 && <Tab
                 label={`Exclusive quests (${exclusiveQuestCount})`}
                 component={ExclusiveQuestsTab}
                 path="exclusive-quests"
+                match={match}
+              />}
+
+              {questCount > 0 && <Tab
+                label={`Quests (${questCount})`}
+                component={QuestsTab}
+                path="quests"
                 match={match}
               />}
             </TabbedBox>
