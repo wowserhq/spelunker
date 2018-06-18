@@ -1,6 +1,7 @@
 import DBCEntity from '../dbc/Entity';
 import glueStrings from '../mpq/files/GlueStrings';
 
+import Quest from './Quest';
 import Side from './Side';
 
 class Race extends DBCEntity {
@@ -32,6 +33,18 @@ class Race extends DBCEntity {
 
   get mask() {
     return (1 << (this.data.id - 1));
+  }
+
+  async quests({ exclusive } = {}) {
+    const query = Quest.query.where('AllowableRaces', '&', this.mask);
+    if (exclusive) {
+      const side = await this.side();
+      return query.whereRaw(
+        '(AllowableRaces & ?) != ?',
+        [side.racemask, side.racemask]
+      );
+    }
+    return query.orWhere('AllowableRaces', 0);
   }
 
   side() {

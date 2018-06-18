@@ -1,10 +1,12 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import Box from '../../Box';
+import Box, { Tab, TabbedBox } from '../../Box';
 import Query from '../../Query';
 import Title from '../../Spelunker/Title';
 
+import ExclusiveQuestsTab from './tabs/ExclusiveQuests';
+import QuestsTab from './tabs/Quests';
 import ClassReference from './Reference';
 
 const fetchClass = gql`
@@ -12,6 +14,13 @@ const fetchClass = gql`
     class(id: $id) {
       ...ClassReference
       description
+
+      exclusiveQuests: quests(exclusive: true) {
+        totalCount
+      }
+      quests {
+        totalCount
+      }
     }
   }
 
@@ -27,6 +36,9 @@ const Class = ({ match }) => {
         const {
           name,
           description,
+
+          exclusiveQuests: { totalCount: exclusiveQuestCount },
+          quests: { totalCount: questCount },
         } = klass;
         return (
           <Title path={[name, 'Classes']}>
@@ -39,6 +51,22 @@ const Class = ({ match }) => {
                 {description}
               </p>
             </Box>
+
+            <TabbedBox>
+              {exclusiveQuestCount > 0 && <Tab
+                label={`Exclusive quests (${exclusiveQuestCount})`}
+                component={ExclusiveQuestsTab}
+                path="exclusive-quests"
+                match={match}
+              />}
+
+              {questCount > 0 && <Tab
+                label={`Quests (${questCount})`}
+                component={QuestsTab}
+                path="quests"
+                match={match}
+              />}
+            </TabbedBox>
           </Title>
         );
       }}
