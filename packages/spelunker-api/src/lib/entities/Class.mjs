@@ -1,6 +1,8 @@
 import DBCEntity from '../dbc/Entity';
 import glueStrings from '../mpq/files/GlueStrings';
 
+import CharBaseInfo from './CharBaseInfo';
+import Race from './Race';
 import Quest from './Quest';
 
 class Class extends DBCEntity {
@@ -39,6 +41,14 @@ class Class extends DBCEntity {
       return query.whereNot('AllowableClasses', allMask);
     }
     return query.orWhere('AllowableClasses', 0);
+  }
+
+  async races() {
+    const links = await CharBaseInfo.query.filter(link => (
+      link.classID === this.id
+    )).execute();
+    const ids = links.map(link => link.raceID);
+    return Race.query.filter(race => ids.includes(race.id));
   }
 }
 

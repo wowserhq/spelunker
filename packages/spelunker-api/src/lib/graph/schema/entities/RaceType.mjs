@@ -8,6 +8,7 @@ import {
 
 import CollectionType from '../CollectionType';
 
+import ClassType from './ClassType';
 import QuestType from './QuestType';
 import SideType from './SideType';
 
@@ -21,6 +22,7 @@ export default new GraphQLObjectType({
 
     side: { type: SideType },
 
+    classes: CollectionType.definitionFor(ClassType),
     quests: CollectionType.definitionFor(QuestType, {
       exclusive: { type: GraphQLBoolean },
     }),

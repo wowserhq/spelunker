@@ -5,9 +5,10 @@ import Box, { Tab, TabbedBox } from '../../Box';
 import Query from '../../Query';
 import Title from '../../Spelunker/Title';
 
+import ClassReference from './Reference';
 import ExclusiveQuestsTab from './tabs/ExclusiveQuests';
 import QuestsTab from './tabs/Quests';
-import ClassReference from './Reference';
+import RacesTab from './tabs/Races';
 
 const fetchClass = gql`
   query($id: Int!) {
@@ -19,6 +20,9 @@ const fetchClass = gql`
         totalCount
       }
       quests {
+        totalCount
+      }
+      races {
         totalCount
       }
     }
@@ -39,6 +43,7 @@ const Class = ({ match }) => {
 
           exclusiveQuests: { totalCount: exclusiveQuestCount },
           quests: { totalCount: questCount },
+          races: { totalCount: raceCount },
         } = klass;
         return (
           <Title path={[name, 'Classes']}>
@@ -53,6 +58,13 @@ const Class = ({ match }) => {
             </Box>
 
             <TabbedBox>
+              {raceCount > 0 && <Tab
+                label={`Races (${raceCount})`}
+                component={RacesTab}
+                path="races"
+                match={match}
+              />}
+
               {exclusiveQuestCount > 0 && <Tab
                 label={`Exclusive quests (${exclusiveQuestCount})`}
                 component={ExclusiveQuestsTab}

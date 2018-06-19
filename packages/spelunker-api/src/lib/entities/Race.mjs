@@ -1,6 +1,8 @@
 import DBCEntity from '../dbc/Entity';
 import glueStrings from '../mpq/files/GlueStrings';
 
+import CharBaseInfo from './CharBaseInfo';
+import Class from './Class';
 import Quest from './Quest';
 import Side from './Side';
 
@@ -33,6 +35,14 @@ class Race extends DBCEntity {
 
   get mask() {
     return (1 << (this.data.id - 1));
+  }
+
+  async classes() {
+    const links = await CharBaseInfo.query.filter(link => (
+      link.raceID === this.id
+    )).execute();
+    const ids = links.map(link => link.classID);
+    return Class.query.filter(klass => ids.includes(klass.id));
   }
 
   async quests({ exclusive } = {}) {

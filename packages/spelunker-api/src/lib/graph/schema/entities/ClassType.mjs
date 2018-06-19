@@ -9,6 +9,7 @@ import {
 import CollectionType from '../CollectionType';
 
 import QuestType from './QuestType';
+import RaceType from './RaceType';
 
 export default new GraphQLObjectType({
   name: 'Class',
@@ -21,5 +22,6 @@ export default new GraphQLObjectType({
     quests: CollectionType.definitionFor(QuestType, {
       exclusive: { type: GraphQLBoolean },
     }),
+    races: CollectionType.definitionFor(RaceType),
   }),
 });
