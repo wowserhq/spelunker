@@ -5,7 +5,7 @@ import CharacterReference from '../Reference';
 import ClassReference from '../../Class/Reference';
 import RaceReference from '../../Race/Reference';
 import { ClassReferenceColumn } from '../../Class/columns';
-import { Column, IDColumn } from '../../../Table';
+import { Column, IDColumn } from '../../../core';
 import { RaceReferenceColumn } from '../../Race/columns';
 
 import CharacterReferenceColumn from './ReferenceColumn';

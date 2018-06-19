@@ -1,9 +1,8 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import Collection from '../../../Collection';
-import Table from '../../../Table';
 import questColumns from '../../Quest/columns';
+import { Collection, Table } from '../../../core';
 
 const listObjectiveOfForFaction = gql`
   query($id: Int!, $offset: Int) {

@@ -1,9 +1,13 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import Collection from '../../../Collection';
-import Table, { ChanceColumn, prefixAccessors } from '../../../Table';
 import npcColumns from '../../NPC/columns';
+import {
+  ChanceColumn,
+  Collection,
+  Table,
+  prefixAccessors,
+} from '../../../core';
 
 const listDroppedByForItem = gql`
   query($id: Int!, $offset: Int) {

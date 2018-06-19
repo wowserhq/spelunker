@@ -5,7 +5,7 @@ import ClassReference from '../../Class/Reference';
 import QuestCategory from '../Category';
 import QuestReference from '../Reference';
 import RaceReference from '../../Race/Reference';
-import { IDColumn, PlaceholderColumn } from '../../../Table';
+import { IDColumn, PlaceholderColumn } from '../../../core';
 
 import QuestCategoryColumn from './CategoryColumn';
 import QuestRacesClassesColumn from './RacesClassesColumn';

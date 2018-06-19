@@ -1,15 +1,13 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import Box, { Tab, TabbedBox } from '../../Box';
 import Currency from '../../formatters/Currency';
 import FactionReference from '../Faction/Reference';
 import GameObjectReference from '../GameObject/Reference';
 import ItemReference from '../Item/Reference';
 import NPCReference from '../NPC/Reference';
-import Query from '../../Query';
 import SpellReference from '../Spell/Reference';
-import Title from '../../Spelunker/Title';
+import { Box, Query, Tab, TabbedBox, Title } from '../../core';
 
 import EndedByTab from './tabs/EndedBy';
 import EndedByObjectTab from './tabs/EndedByObject';

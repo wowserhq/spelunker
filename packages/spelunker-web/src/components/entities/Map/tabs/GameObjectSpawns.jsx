@@ -1,9 +1,8 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import Collection from '../../../Collection';
 import GameObjectReference from '../../GameObject/Reference';
-import Table, { Column, IDColumn } from '../../../Table';
+import { Collection, Column, IDColumn, Table } from '../../../core';
 import { GameObjectReferenceColumn } from '../../GameObject/columns';
 
 const listObjectSpawnsForMap = gql`

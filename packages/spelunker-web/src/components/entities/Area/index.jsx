@@ -1,9 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import Box from '../../Box';
-import Query from '../../Query';
-import Title from '../../Spelunker/Title';
+import { Box, Query, Title } from '../../core';
 
 import AreaReference from './Reference';
 

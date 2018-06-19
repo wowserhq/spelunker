@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import number from '../formatters/number';
+import number from '../../formatters/number';
 
 import styles from './index.styl';
 

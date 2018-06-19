@@ -1,9 +1,13 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import Collection from '../../../Collection';
-import Table, { ChanceColumn, prefixAccessors } from '../../../Table';
 import itemColumns from '../columns';
+import {
+  ChanceColumn,
+  Collection,
+  Table,
+  prefixAccessors,
+} from '../../../core';
 
 const listContainedInForItem = gql`
   query($id: Int!, $offset: Int) {

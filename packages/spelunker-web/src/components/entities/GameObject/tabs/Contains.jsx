@@ -1,9 +1,8 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import Collection from '../../../Collection';
-import Table, { ChanceColumn } from '../../../Table';
 import itemColumns from '../../Item/columns';
+import { ChanceColumn, Collection, Table } from '../../../core';
 
 const listContainsForGameObject = gql`
   query($id: Int!, $offset: Int) {

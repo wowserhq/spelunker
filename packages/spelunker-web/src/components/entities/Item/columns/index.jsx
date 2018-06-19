@@ -2,7 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import ItemReference from '../Reference';
-import { IDColumn } from '../../../Table';
+import { IDColumn } from '../../../core';
 
 import ItemReferenceColumn from './ReferenceColumn';
 

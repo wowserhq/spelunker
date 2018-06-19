@@ -3,7 +3,7 @@ import React from 'react';
 
 import Pagination from '../Pagination';
 import Query from '../Query';
-import valueByPath from '../../utils/valueByPath';
+import valueByPath from '../../../utils/valueByPath';
 
 const Collection = (props, { router }) => {
   const queryParams = new URLSearchParams(router.route.location.search);

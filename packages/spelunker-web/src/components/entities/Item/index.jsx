@@ -1,10 +1,8 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import Box, { Tab, TabbedBox } from '../../Box';
 import Currency from '../../formatters/Currency';
-import Query from '../../Query';
-import Title from '../../Spelunker/Title';
+import { Box, Query, Tab, TabbedBox, Title } from '../../core';
 
 import ContainedInObjectTab from './tabs/ContainedInObject';
 import ContainedInTab from './tabs/ContainedIn';

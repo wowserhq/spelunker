@@ -2,7 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import AccountReference from '../Reference';
-import { IDColumn, PlaceholderColumn } from '../../../Table';
+import { IDColumn, PlaceholderColumn } from '../../../core';
 
 import AccountReferenceColumn from './ReferenceColumn';
 

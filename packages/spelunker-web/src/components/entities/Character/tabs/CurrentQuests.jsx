@@ -1,9 +1,8 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import Collection from '../../../Collection';
-import Table, { Column, prefixAccessors } from '../../../Table';
 import questColumns from '../../Quest/columns';
+import { Collection, Column, Table, prefixAccessors } from '../../../core';
 
 const listCurrentQuestsForCharacter = gql`
   query($id: Int!, $offset: Int) {

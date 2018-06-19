@@ -1,9 +1,8 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import Collection from '../../../Collection';
-import Table from '../../../Table';
 import gameObjectColumns from '../../GameObject/columns';
+import { Collection, Table } from '../../../core';
 
 const listStartedByObjectForQuest = gql`
   query($id: Int!) {

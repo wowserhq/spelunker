@@ -1,6 +1,6 @@
 import React from 'react';
 
-import valueByPath from '../../utils/valueByPath';
+import valueByPath from '../../../utils/valueByPath';
 
 import styles from './index.styl';
 
@@ -59,4 +59,3 @@ Table.defaultProps = {
 
 export default Table;
 export { default as prefixAccessors } from './utils/prefixAccessors';
-export * from './columns';

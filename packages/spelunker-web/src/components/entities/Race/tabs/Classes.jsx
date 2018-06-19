@@ -1,9 +1,8 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import Collection from '../../../Collection';
-import Table from '../../../Table';
 import classColumns from '../../Class/columns';
+import { Collection, Table } from '../../../core';
 
 const listClassesForRace = gql`
   query($id: Int!, $offset: Int!) {

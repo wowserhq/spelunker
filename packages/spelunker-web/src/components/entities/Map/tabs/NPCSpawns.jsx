@@ -1,9 +1,8 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import Collection from '../../../Collection';
 import NPCReference from '../../NPC/Reference';
-import Table, { Column, IDColumn } from '../../../Table';
+import { Collection, Column, IDColumn, Table } from '../../../core';
 import { NPCReferenceColumn } from '../../NPC/columns';
 
 const listNPCSpawnsForMap = gql`

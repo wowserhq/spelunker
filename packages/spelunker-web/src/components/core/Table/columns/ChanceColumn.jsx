@@ -1,4 +1,4 @@
-import percent from '../../formatters/percent';
+import percent from '../../../formatters/percent';
 
 const ChanceColumn = ({ value }) => percent(value);
 

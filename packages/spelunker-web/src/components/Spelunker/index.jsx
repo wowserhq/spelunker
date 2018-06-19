@@ -11,7 +11,6 @@ import Account from '../entities/Account';
 import AccountList from '../entities/Account/List';
 import Area from '../entities/Area';
 import AreaList from '../entities/Area/List';
-import Box from '../Box';
 import Character from '../entities/Character';
 import CharacterList from '../entities/Character/List';
 import Class from '../entities/Class';
@@ -33,9 +32,8 @@ import RaceList from '../entities/Race/List';
 import Side from '../entities/Side';
 import Spell from '../entities/Spell';
 import SpellList from '../entities/Spell/List';
+import { Box, ProjectLink, Title } from '../core';
 
-import ProjectLink from './ProjectLink';
-import Title from './Title';
 import client from './graphql-client';
 
 import styles from './index.styl';

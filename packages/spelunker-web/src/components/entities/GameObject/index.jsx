@@ -1,9 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import Box, { Tab, TabbedBox } from '../../Box';
-import Query from '../../Query';
-import Title from '../../Spelunker/Title';
+import { Box, Query, Tab, TabbedBox, Title } from '../../core';
 
 import ContainsTab from './tabs/Contains';
 import EndsTab from './tabs/Ends';

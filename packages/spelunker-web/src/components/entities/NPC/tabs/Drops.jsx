@@ -1,9 +1,13 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import Collection from '../../../Collection';
-import Table, { ChanceColumn, prefixAccessors } from '../../../Table';
 import itemColumns from '../../Item/columns';
+import {
+  ChanceColumn,
+  Collection,
+  Table,
+  prefixAccessors,
+} from '../../../core';
 
 const listDropsForNPC = gql`
   query($id: Int!, $offset: Int) {

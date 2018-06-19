@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ProjectLink from '../Spelunker/ProjectLink';
+import ProjectLink from '../ProjectLink';
 
 import styles from './index.styl';
 

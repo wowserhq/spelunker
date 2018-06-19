@@ -1,9 +1,8 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import Collection from '../../../Collection';
-import Table, { Column, prefixAccessors } from '../../../Table';
 import itemColumns from '../../Item/columns';
+import { Collection, Column, Table, prefixAccessors } from '../../../core';
 
 const listInventoryForCharacter = gql`
   query($id: Int!, $offset: Int) {

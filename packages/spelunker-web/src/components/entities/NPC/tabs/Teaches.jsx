@@ -1,9 +1,13 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import Collection from '../../../Collection';
-import Table, { CurrencyColumn, prefixAccessors } from '../../../Table';
 import spellColumns from '../../Spell/columns';
+import {
+  Collection,
+  CurrencyColumn,
+  Table,
+  prefixAccessors,
+} from '../../../core';
 
 const listTeachesForNPC = gql`
   query($id: Int!, $offset: Int) {

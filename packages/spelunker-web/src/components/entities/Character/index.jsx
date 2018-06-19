@@ -2,9 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import AccountReference from '../Account/Reference';
-import Box, { Tab, TabbedBox } from '../../Box';
-import Query from '../../Query';
-import Title from '../../Spelunker/Title';
+import { Box, Query, Tab, TabbedBox, Title } from '../../core';
 
 import CharacterReference from './Reference';
 import CompletedQuestsTab from './tabs/CompletedQuests';

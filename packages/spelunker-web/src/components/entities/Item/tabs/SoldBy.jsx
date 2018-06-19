@@ -1,9 +1,13 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import Collection from '../../../Collection';
-import Table, { PlaceholderColumn, prefixAccessors } from '../../../Table';
 import npcColumns from '../../NPC/columns';
+import {
+  Collection,
+  PlaceholderColumn,
+  Table,
+  prefixAccessors,
+} from '../../../core';
 
 const listSoldByForItem = gql`
   query($id: Int!, $offset: Int) {

@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 
 import RaceReference from '../Reference';
 import SideReference from '../../Side/Reference';
-import { IDColumn } from '../../../Table';
+import { IDColumn } from '../../../core';
 import { SideReferenceColumn } from '../../Side/columns';
 
 import RaceReferenceColumn from './ReferenceColumn';

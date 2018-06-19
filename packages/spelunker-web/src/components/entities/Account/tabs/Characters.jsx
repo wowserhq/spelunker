@@ -1,8 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import Collection from '../../../Collection';
-import Table from '../../../Table';
+import { Collection, Table } from '../../../core';
 import characterColumns from '../../Character/columns';
 
 const listCharactersForAccount = gql`
