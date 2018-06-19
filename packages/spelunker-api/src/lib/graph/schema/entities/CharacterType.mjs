@@ -23,11 +23,7 @@ export default new GraphQLObjectType({
   fields: () => ({
     id: { type: new GraphQLNonNull(GraphQLInt) },
     name: { type: new GraphQLNonNull(GraphQLString) },
-
-    race: { type: new GraphQLNonNull(RaceType) },
-    class: { type: new GraphQLNonNull(ClassType) },
     gender: { type: GenderType },
-
     xp: { type: GraphQLInt },
     level: { type: GraphQLInt },
 
@@ -36,8 +32,10 @@ export default new GraphQLObjectType({
     y: { type: GraphQLFloat },
     z: { type: GraphQLFloat },
     orientation: { type: GraphQLFloat },
-
     account: { type: new GraphQLNonNull(AccountType) },
+    class: { type: new GraphQLNonNull(ClassType) },
+    race: { type: new GraphQLNonNull(RaceType) },
+
     completedQuests: CollectionType.definitionFor(QuestType),
     currentQuests: CollectionType.definitionFor(CharacterQuestType),
     inventory: CollectionType.definitionFor(CharacterItemType),

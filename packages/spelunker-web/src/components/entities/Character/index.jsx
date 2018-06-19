@@ -1,6 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
+import AccountReference from '../Account/Reference';
 import Box, { Tab, TabbedBox } from '../../Box';
 import Query from '../../Query';
 import Title from '../../Spelunker/Title';
@@ -16,6 +17,9 @@ const fetchCharacter = gql`
   query($id: Int!) {
     character(id: $id) {
       ...CharacterReference
+      account {
+        ...AccountReference
+      }
 
       completedQuests {
         totalCount
@@ -35,6 +39,7 @@ const fetchCharacter = gql`
     }
   }
 
+  ${AccountReference.fragment}
   ${CharacterReference.fragment}
 `;
 
@@ -46,6 +51,7 @@ const Character = ({ match }) => {
         const { character } = data;
         const {
           name,
+          account,
 
           completedQuests: { totalCount: completedQuestCount },
           currentQuests: { totalCount: currentQuestCount },
@@ -60,6 +66,10 @@ const Character = ({ match }) => {
               <h1>
                 <CharacterReference character={character} />
               </h1>
+
+              <p>
+                Account: <AccountReference account={account} />
+              </p>
             </Box>
 
             <TabbedBox>
