@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 
 import GameIcon from '../../../images/GameIcon';
 
@@ -11,7 +12,7 @@ const RaceIcon = ({ race, gender, size }) => {
     return null;
   }
 
-  const className = [styles.icon, styles[size], style].join(' ');
+  const className = classNames(styles.icon, styles[size], style);
   return (
     <GameIcon
       file="Interface\GLUES\CHARACTERCREATE\UI-CharacterCreate-Races.BLP"

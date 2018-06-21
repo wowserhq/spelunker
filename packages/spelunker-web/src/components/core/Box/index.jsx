@@ -1,13 +1,14 @@
 import React from 'react';
+import classNames from 'classnames';
 
 import styles from './index.styl';
 
 const Box = (props) => {
-  const className = [
+  const className = classNames(
     styles.box,
-    props.aside ? styles.aside : undefined,
     props.className,
-  ].join(' ');
+    { [styles.aside]: props.aside }
+  );
   return (
     <div className={className}>
       {props.children}

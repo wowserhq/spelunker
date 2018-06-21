@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 
 import GameImage from '../GameImage';
 
@@ -13,11 +14,11 @@ const GameIcon = (props) => {
     file = `${file}.blp`;
   }
 
-  const className = [
+  const className = classNames(
     props.className,
     styles.icon,
-    props.asBackground ? styles.asBackground : undefined,
-  ].join(' ');
+    { [styles.asBackground]: props.asBackground }
+  );
   return (
     <GameImage
       {...props}

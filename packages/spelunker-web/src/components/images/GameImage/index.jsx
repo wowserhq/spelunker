@@ -1,13 +1,14 @@
 import React from 'react';
+import classNames from 'classnames';
 
 import styles from './index.styl';
 
 const GameImageBackground = (props) => {
-  const className = [
+  const className = classNames(
     props.className,
     styles.image,
-    styles.asBackground,
-  ].join(' ');
+    styles.asBackground
+  );
   return (
     <span className={className}>
       <img
@@ -20,7 +21,7 @@ const GameImageBackground = (props) => {
 };
 
 const GameImageElement = (props) => {
-  const className = [props.className, styles.image].join(' ');
+  const className = classNames(props.className, styles.image);
   return (
     <img
       // TODO: Set proper alt texts for all images
