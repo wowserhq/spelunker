@@ -23,6 +23,10 @@ class Character extends DatabaseEntity {
     return 'guid';
   }
 
+  static search(query, searchQuery) {
+    query.whereRaw('name COLLATE utf8_general_ci LIKE ?', `%${searchQuery}%`);
+  }
+
   get id() {
     return this.data.guid;
   }

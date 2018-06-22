@@ -1,4 +1,5 @@
 import DBCEntity from '../dbc/Entity';
+import { contains } from '../utils/string';
 
 import GameObjectSpawn from './GameObjectSpawn';
 import NPCSpawn from './NPCSpawn';
@@ -6,6 +7,10 @@ import NPCSpawn from './NPCSpawn';
 class Map extends DBCEntity {
   static get dbc() {
     return 'Map';
+  }
+
+  static search(query, searchQuery) {
+    query.filter(map => contains(map.name, searchQuery));
   }
 
   npcSpawns() {

@@ -1,4 +1,5 @@
 import DBCEntity from '../dbc/Entity';
+import { contains } from '../utils/string';
 
 import NPCTraining from './NPCTraining';
 import SpellIcon from './SpellIcon';
@@ -6,6 +7,10 @@ import SpellIcon from './SpellIcon';
 class Spell extends DBCEntity {
   static get dbc() {
     return 'Spell';
+  }
+
+  static search(query, searchQuery) {
+    query.filter(spell => contains(spell.name, searchQuery));
   }
 
   async icon() {

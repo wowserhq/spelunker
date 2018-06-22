@@ -13,42 +13,42 @@ import Side from '../entities/Side';
 import Spell from '../entities/Spell';
 
 export default {
-  accounts: () => Account.query,
+  accounts: ({ searchQuery }) => Account.query.search(searchQuery),
   account: ({ id }) => Account.find(id),
 
-  areas: () => Area.query,
+  areas: ({ searchQuery }) => Area.query.search(searchQuery),
   area: ({ id }) => Area.find(id),
 
-  characters: () => Character.query,
+  characters: ({ searchQuery }) => Character.query.search(searchQuery),
   character: ({ id }) => Character.find(id),
 
-  classes: () => Class.query,
+  classes: ({ searchQuery }) => Class.query.search(searchQuery),
   class: ({ id }) => Class.find(id),
 
-  factions: () => Faction.query,
+  factions: ({ searchQuery }) => Faction.query.search(searchQuery),
   faction: ({ id }) => Faction.find(id),
 
-  items: () => Item.query,
+  items: ({ searchQuery }) => Item.query.search(searchQuery),
   item: ({ id }) => Item.find(id),
 
-  maps: () => Map.query,
+  maps: ({ searchQuery }) => Map.query.search(searchQuery),
   map: ({ id }) => Map.find(id),
 
-  npcs: () => NPC.query,
+  npcs: ({ searchQuery }) => NPC.query.search(searchQuery),
   npc: ({ id }) => NPC.find(id),
 
-  objects: () => GameObject.query,
+  objects: ({ searchQuery }) => GameObject.query.search(searchQuery),
   object: ({ id }) => GameObject.find(id),
 
-  quests: () => Quest.query,
+  quests: ({ searchQuery }) => Quest.query.search(searchQuery),
   quest: ({ id }) => Quest.find(id),
 
-  races: () => Race.query,
+  races: ({ searchQuery }) => Race.query.search(searchQuery),
   race: ({ id }) => Race.find(id),
 
-  sides: () => Side.query,
+  sides: ({ searchQuery }) => Side.query.search(searchQuery),
   side: ({ id }) => Side.find(id),
 
-  spells: () => Spell.query,
+  spells: ({ searchQuery }) => Spell.query.search(searchQuery),
   spell: ({ id }) => Spell.find(id),
 };

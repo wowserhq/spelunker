@@ -1,5 +1,6 @@
 import MemoryEntity from '../core/memory/Entity';
 import glueStrings from '../mpq/files/GlueStrings';
+import { contains } from '../utils/string';
 
 import Quest from './Quest';
 import Race from './Race';
@@ -20,6 +21,10 @@ class Side extends MemoryEntity {
         faction: 1,
       },
     ];
+  }
+
+  static search(query, searchQuery) {
+    query.filter(side => contains(side.name, searchQuery));
   }
 
   static async find(id) {

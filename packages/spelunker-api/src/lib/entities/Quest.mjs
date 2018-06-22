@@ -37,6 +37,10 @@ class Quest extends DatabaseEntity {
     ).select('*').select(`${this.primaryKey} AS id`);
   }
 
+  static search(query, searchQuery) {
+    query.where('LogTitle', 'LIKE', `%${searchQuery}%`);
+  }
+
   get name() {
     return this.data.LogTitle;
   }

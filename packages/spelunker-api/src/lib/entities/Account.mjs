@@ -16,6 +16,10 @@ class Account extends DatabaseEntity {
     return 'id';
   }
 
+  static search(query, searchQuery) {
+    query.where('username', 'LIKE', `%${searchQuery}%`);
+  }
+
   get name() {
     return this.data.username;
   }

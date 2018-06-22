@@ -21,55 +21,59 @@ import RaceType from './entities/RaceType';
 import SideType from './entities/SideType';
 import SpellType from './entities/SpellType';
 
-const finderFor = (type, idType = GraphQLInt) => {
-  return {
-    type,
-    args: {
-      id: { type: new GraphQLNonNull(idType) },
-    },
-  };
-};
+const finderFor = (type, idType = GraphQLInt) => ({
+  type,
+  args: {
+    id: { type: new GraphQLNonNull(idType) },
+  },
+});
+
+const searchableCollectionFor = (type) => (
+  CollectionType.definitionFor(type, {
+    searchQuery: { type: GraphQLString },
+  })
+);
 
 export default new GraphQLObjectType({
   name: 'Query',
   fields: {
-    accounts: CollectionType.definitionFor(AccountType),
+    accounts: searchableCollectionFor(AccountType),
     account: finderFor(AccountType),
 
-    areas: CollectionType.definitionFor(AreaType),
+    areas: searchableCollectionFor(AreaType),
     area: finderFor(AreaType),
 
-    characters: CollectionType.definitionFor(CharacterType),
+    characters: searchableCollectionFor(CharacterType),
     character: finderFor(CharacterType),
 
-    classes: CollectionType.definitionFor(ClassType),
+    classes: searchableCollectionFor(ClassType),
     class: finderFor(ClassType),
 
-    factions: CollectionType.definitionFor(FactionType),
+    factions: searchableCollectionFor(FactionType),
     faction: finderFor(FactionType),
 
-    items: CollectionType.definitionFor(ItemType),
+    items: searchableCollectionFor(ItemType),
     item: finderFor(ItemType),
 
-    maps: CollectionType.definitionFor(MapType),
+    maps: searchableCollectionFor(MapType),
     map: finderFor(MapType),
 
-    npcs: CollectionType.definitionFor(NPCType),
+    npcs: searchableCollectionFor(NPCType),
     npc: finderFor(NPCType),
 
-    objects: CollectionType.definitionFor(GameObjectType),
+    objects: searchableCollectionFor(GameObjectType),
     object: finderFor(GameObjectType),
 
-    quests: CollectionType.definitionFor(QuestType),
+    quests: searchableCollectionFor(QuestType),
     quest: finderFor(QuestType),
 
-    races: CollectionType.definitionFor(RaceType),
+    races: searchableCollectionFor(RaceType),
     race: finderFor(RaceType),
 
-    sides: CollectionType.definitionFor(SideType),
+    sides: searchableCollectionFor(SideType),
     side: finderFor(SideType, GraphQLString),
 
-    spells: CollectionType.definitionFor(SpellType),
+    spells: searchableCollectionFor(SpellType),
     spell: finderFor(SpellType),
   },
 });

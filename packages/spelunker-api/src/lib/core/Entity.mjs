@@ -14,6 +14,10 @@ class Entity {
     });
   }
 
+  static search() {
+    notImplemented(this, 'search');
+  }
+
   static get query() {
     notImplemented(this, 'query');
   }

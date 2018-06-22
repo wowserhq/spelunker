@@ -29,10 +29,11 @@ import Quest from '../entities/Quest';
 import QuestList from '../entities/Quest/List';
 import Race from '../entities/Race';
 import RaceList from '../entities/Race/List';
+import Search from '../Search';
 import Side from '../entities/Side';
 import Spell from '../entities/Spell';
 import SpellList from '../entities/Spell/List';
-import { Box, ProjectLink, Title } from '../core';
+import { ProjectLink } from '../core';
 
 import client from './graphql-client';
 
@@ -102,21 +103,8 @@ const Spelunker = () => (
           <Route path="/spells/:id" component={Spell} />
           <Route path="/spells" component={SpellList} />
 
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <Title>
-                <Box>
-                  <h1>Welcome to Spelunker!</h1>
-
-                  <p>
-                    This page will soon™ have search capabilities.
-                  </p>
-                </Box>
-              </Title>
-            )}
-          />
+          <Route path="/search/:query?" component={Search} />
+          <Route path="/" exact component={Search} />
         </Switch>
 
         <footer className={styles.footer}>

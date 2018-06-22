@@ -5,6 +5,13 @@ class Query {
     this.entity = entity;
   }
 
+  search(searchQuery) {
+    if (searchQuery) {
+      this.entity.search(this, searchQuery);
+    }
+    return this;
+  }
+
   slice() {
     notImplemented(this, 'slice');
   }

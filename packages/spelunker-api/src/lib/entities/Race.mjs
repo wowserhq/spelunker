@@ -1,5 +1,6 @@
 import DBCEntity from '../dbc/Entity';
 import glueStrings from '../mpq/files/GlueStrings';
+import { contains } from '../utils/string';
 
 import CharBaseInfo from './CharBaseInfo';
 import Class from './Class';
@@ -9,6 +10,10 @@ import Side from './Side';
 class Race extends DBCEntity {
   static get dbc() {
     return 'ChrRaces';
+  }
+
+  static search(query, searchQuery) {
+    query.filter(race => contains(race.name, searchQuery));
   }
 
   static async filterByMask(mask, { exclusive = false } = {}) {

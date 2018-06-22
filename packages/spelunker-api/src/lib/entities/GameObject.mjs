@@ -20,6 +20,10 @@ class GameObject extends DatabaseEntity {
     return 'entry';
   }
 
+  static search(query, searchQuery) {
+    query.where('name', 'LIKE', `%${searchQuery}%`);
+  }
+
   get id() {
     return this.data.entry;
   }
