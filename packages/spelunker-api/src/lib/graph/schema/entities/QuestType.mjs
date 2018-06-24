@@ -28,6 +28,7 @@ export default new GraphQLObjectType({
     name: { type: new GraphQLNonNull(GraphQLString) },
     description: { type: new GraphQLNonNull(GraphQLString) },
     level: { type: GraphQLInt },
+    repeatable: { type: GraphQLBoolean },
     requiredLevel: { type: GraphQLInt },
     requiredMoney: { type: GraphQLInt },
     rewardMoney: { type: GraphQLInt },

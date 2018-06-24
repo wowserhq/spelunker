@@ -53,6 +53,10 @@ class Quest extends DatabaseEntity {
     return this.data.QuestLevel;
   }
 
+  get repeatable() {
+    return this.data.SpecialFlags & 1;
+  }
+
   get requiredLevel() {
     return this.data.MinLevel;
   }
