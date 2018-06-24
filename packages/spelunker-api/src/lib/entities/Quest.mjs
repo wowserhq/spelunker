@@ -49,6 +49,14 @@ class Quest extends DatabaseEntity {
     return this.data.LogDescription;
   }
 
+  get level() {
+    return this.data.QuestLevel;
+  }
+
+  get requiredLevel() {
+    return this.data.MinLevel;
+  }
+
   get requiredMoney() {
     const value = this.data.RewardMoney;
     if (value >= 0) {

@@ -5,7 +5,7 @@ import ClassReference from '../../Class/Reference';
 import QuestCategory from '../Category';
 import QuestReference from '../Reference';
 import RaceReference from '../../Race/Reference';
-import { IDColumn, PlaceholderColumn } from '../../../core';
+import { IDColumn, LevelColumn } from '../../../core';
 
 import QuestCategoryColumn from './CategoryColumn';
 import QuestRacesClassesColumn from './RacesClassesColumn';
@@ -14,7 +14,7 @@ import QuestReferenceColumn from './ReferenceColumn';
 const columns = [
   <IDColumn />,
   <QuestReferenceColumn />,
-  <PlaceholderColumn label="Level" />,
+  <LevelColumn />,
   <QuestCategoryColumn />,
   <QuestRacesClassesColumn />,
 ];
@@ -22,6 +22,7 @@ const columns = [
 columns.fragment = gql`
   fragment questColumns on Quest {
     ...QuestReference
+    level
     category {
       ...QuestCategory
     }

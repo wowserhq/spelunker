@@ -27,6 +27,8 @@ export default new GraphQLObjectType({
     id: { type: new GraphQLNonNull(GraphQLInt) },
     name: { type: new GraphQLNonNull(GraphQLString) },
     description: { type: new GraphQLNonNull(GraphQLString) },
+    level: { type: GraphQLInt },
+    requiredLevel: { type: GraphQLInt },
     requiredMoney: { type: GraphQLInt },
     rewardMoney: { type: GraphQLInt },
 
