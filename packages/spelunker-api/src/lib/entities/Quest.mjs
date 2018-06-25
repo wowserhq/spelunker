@@ -85,16 +85,20 @@ class Quest extends DatabaseEntity {
   chain() {
     const query = new MemoryQuery(this);
     query.load = async () => {
-      const chain = [this];
+      const prev = [];
+      const next = [];
       let quest = this;
       while (quest = await quest.previous()) {
-        chain.unshift(quest);
+        prev.unshift(quest);
       }
       quest = this;
       while (quest = await quest.next()) {
-        chain.push(quest);
+        next.push(quest);
       }
-      return chain;
+      if (!prev.length && !next.length) {
+        return [];
+      }
+      return prev.concat(this).concat(next);
     };
     return query;
   }
