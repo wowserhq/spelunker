@@ -6,14 +6,14 @@ import QuestgiverIcon from '../../../images/QuestgiverIcon';
 
 import styles from './index.styl';
 
-const NPCReference = ({ npc }) => {
+const NPCReference = ({ npc, withoutSubname }) => {
   const {
     starts: { totalCount: startCount },
     ends: { totalCount: endCount },
   } = npc;
 
   let name = npc.name;
-  if (npc.subname) {
+  if (!withoutSubname && npc.subname) {
     name = (
       <span>
         {npc.name}<br />
@@ -30,6 +30,10 @@ const NPCReference = ({ npc }) => {
       {name}
     </Link>
   );
+};
+
+NPCReference.defaultProps = {
+  withoutSubname: false,
 };
 
 NPCReference.fragment = gql`
