@@ -45,7 +45,8 @@ $races = {
   draenei-female: translate(-50%, -50%)
 }
 
-for $race, $translate in $races
+for $race, $translate in $races {
   .{$race} img {
     transform: scale(8) $translate
   }
+}

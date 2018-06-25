@@ -24,7 +24,8 @@ $classes = {
   druid: translate(-74.3%, 0)
 }
 
-for $class, $translate in $classes
+for $class, $translate in $classes {
   .{$class} img {
     transform: scale(4) $translate
   }
+}
