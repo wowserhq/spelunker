@@ -5,6 +5,9 @@ import {
   GraphQLString,
 } from '../../../graphql';
 
+import CollectionType from '../CollectionType';
+
+import QuestType from './QuestType';
 import WorldMapAreaType from './WorldMapAreaType';
 
 export default new GraphQLObjectType({
@@ -12,10 +15,8 @@ export default new GraphQLObjectType({
   fields: () => ({
     id: { type: new GraphQLNonNull(GraphQLInt) },
     name: { type: new GraphQLNonNull(GraphQLString) },
-
-    mapID: { type: GraphQLInt },
-    parentID: { type: GraphQLInt },
-
     worldMapArea: { type: WorldMapAreaType },
+
+    quests: CollectionType.definitionFor(QuestType),
   }),
 });

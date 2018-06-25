@@ -1,14 +1,19 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import { Box, Query, Title } from '../../core';
+import { Box, Query, Tab, TabbedBox, Title } from '../../core';
 
 import AreaReference from './Reference';
+import QuestsTab from './tabs/Quests';
 
 const fetchArea = gql`
   query($id: Int!) {
     area(id: $id) {
       ...AreaReference
+
+      quests {
+        totalCount
+      }
     }
   }
 
@@ -23,6 +28,8 @@ const Area = ({ match }) => {
         const { area } = data;
         const {
           name,
+
+          quests: { totalCount: questCount },
         } = area;
 
         return (
@@ -35,9 +42,18 @@ const Area = ({ match }) => {
               <h2>In-game map</h2>
 
               <p>
-                Soon
+                Soon™
               </p>
             </Box>
+
+            <TabbedBox>
+              {questCount > 0 && <Tab
+                label={`Quests (${questCount})`}
+                component={QuestsTab}
+                path="quests"
+                match={match}
+              />}
+            </TabbedBox>
           </Title>
         );
       }}
