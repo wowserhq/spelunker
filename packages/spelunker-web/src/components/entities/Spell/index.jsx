@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 
 import { Box, Query, Tab, TabbedBox, Title } from '../../core';
 
+import ProvidedForTab from './tabs/ProvidedFor';
 import RewardFromTab from './tabs/RewardFrom';
 import SpellReference from './Reference';
 import TaughtByTab from './tabs/TaughtBy';
@@ -12,6 +13,9 @@ const fetchSpell = gql`
     spell(id: $id) {
       ...SpellReference
 
+      providedFor {
+        totalCount
+      }
       rewardFrom {
         totalCount
       }
@@ -33,6 +37,7 @@ const Spell = ({ match }) => {
         const {
           name,
 
+          providedFor: { totalCount: providedForCount },
           rewardFrom: { totalCount: rewardFromCount },
           taughtBy: { totalCount: taughtByCount },
         } = spell;
@@ -58,6 +63,13 @@ const Spell = ({ match }) => {
                 label={`Taught by (${taughtByCount})`}
                 component={TaughtByTab}
                 path="taught-by"
+                match={match}
+              />}
+
+              {providedForCount > 0 && <Tab
+                label={`Provided for (${providedForCount})`}
+                component={ProvidedForTab}
+                path="provided-for"
                 match={match}
               />}
             </TabbedBox>

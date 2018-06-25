@@ -17,6 +17,7 @@ export default new GraphQLObjectType({
     name: { type: new GraphQLNonNull(GraphQLString) },
     icon: { type: GraphQLString },
 
+    providedFor: CollectionType.definitionFor(QuestType),
     rewardFrom: CollectionType.definitionFor(QuestType),
     taughtBy: CollectionType.definitionFor(NPCTrainingType),
   }),

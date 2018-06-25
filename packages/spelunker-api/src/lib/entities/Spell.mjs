@@ -19,6 +19,10 @@ class Spell extends DBCEntity {
     return entry ? entry.file : null;
   }
 
+  providedFor() {
+    return Quest.query.where({ SourceSpellID: this.id });
+  }
+
   rewardFrom() {
     const { id } = this;
     return Quest.query
