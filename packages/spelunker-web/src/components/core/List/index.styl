@@ -1,0 +1,17 @@
+.list {
+  list-style-position: outside
+  list-style-image: url('./images/bullet.png')
+  padding-left: 20px
+
+  .item {
+    padding: .5em 0
+
+    &.current {
+      list-style-image: url('./images/bullet-current.png')
+    }
+  }
+
+  .list {
+    margin-top: 1em
+  }
+}

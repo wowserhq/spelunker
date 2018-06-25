@@ -7,7 +7,7 @@ import GameObjectReference from '../GameObject/Reference';
 import ItemReference from '../Item/Reference';
 import NPCReference from '../NPC/Reference';
 import SpellReference from '../Spell/Reference';
-import { Box, Query, Tab, TabbedBox, Title } from '../../core';
+import { Box, List, ListItem, Query, Tab, TabbedBox, Title } from '../../core';
 
 import EndedByTab from './tabs/EndedBy';
 import EndedByObjectTab from './tabs/EndedByObject';
@@ -123,6 +123,7 @@ const Quest = ({ match }) => {
       {({ data }) => {
         const { quest } = data;
         const {
+          id,
           name,
           description,
           chain,
@@ -154,13 +155,13 @@ const Quest = ({ match }) => {
               {chain.totalCount > 0 && (
                 <Box aside>
                   <h2>Quest Chain</h2>
-                  <ul>
+                  <List>
                     {chain.results.map(quest => (
-                      <li key={quest.id}>
+                      <ListItem key={quest.id} current={quest.id === id}>
                         <QuestReference quest={quest} />
-                      </li>
+                      </ListItem>
                     ))}
-                  </ul>
+                  </List>
                 </Box>
               )}
 
@@ -172,81 +173,81 @@ const Quest = ({ match }) => {
                 <div>
                   <h2>Provided item</h2>
 
-                  <ul>
-                    <li>
+                  <List>
+                    <ListItem>
                       <ItemReference item={providedItem} />
-                    </li>
-                  </ul>
+                    </ListItem>
+                  </List>
                 </div>
               )}
 
               <h2>Requirements</h2>
 
-              <ul>
+              <List>
                 {requiredMoney && (
-                  <li>
+                  <ListItem>
                     <Currency value={requiredMoney} />
-                  </li>
+                  </ListItem>
                 )}
 
                 {requiredFactions.results.map(({ value, faction }) => (
-                  <li>
+                  <ListItem>
                     <FactionReference faction={faction} /> ({value})
-                  </li>
+                  </ListItem>
                 ))}
 
                 {requiredItems.results.map(({ count, item }) => (
-                  <li>
+                  <ListItem>
                     <ItemReference item={item} /> {count}x
-                  </li>
+                  </ListItem>
                 ))}
 
                 {requiredNPCs.results.map(({ count, npc }) => (
-                  <li>
+                  <ListItem>
                     Slay <NPCReference npc={npc} /> {count}x
-                  </li>
+                  </ListItem>
                 ))}
 
                 {requiredObjects.results.map(({ count, object }) => (
-                  <li>
+                  <ListItem>
                     <GameObjectReference object={object} /> {count}x
-                  </li>
+                  </ListItem>
                 ))}
-              </ul>
+              </List>
 
               <h2>Rewards</h2>
 
-              <ul>
+              <List>
                 {rewardMoney && (
-                  <li>
+                  <ListItem>
                     <Currency value={rewardMoney} />
-                  </li>
+                  </ListItem>
                 )}
 
                 {rewardItems.results.map(({ count, item }) => (
-                  <li>
+                  <ListItem>
                     <ItemReference item={item} /> {count}x
-                  </li>
+                  </ListItem>
                 ))}
 
                 {rewardChoiceItems.totalCount > 0 && (
-                  <li>One of:
-                    <ul>
+                  <ListItem>One of:
+                    <List>
                       {rewardChoiceItems.results.map(({ count, item }) => (
-                        <li>
+                        <ListItem>
                           <ItemReference item={item} /> {count}x
-                        </li>
+                        </ListItem>
                       ))}
-                    </ul>
-                  </li>
+                    </List>
+                  </ListItem>
                 )}
 
                 {rewardSpell && (
-                  <li>
+                  <ListItem>
                     <SpellReference spell={rewardSpell} />
-                  </li>
+                  </ListItem>
                 )}
-              </ul>
+              </List>
             </Box>
 
             <TabbedBox>
