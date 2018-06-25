@@ -287,7 +287,7 @@ class Quest extends DatabaseEntity {
 
         return {
           count,
-          object: await GameObject.find(id),
+          object: await GameObject.find(-id),
         };
       },
     });
