@@ -137,6 +137,45 @@ class Quest extends DatabaseEntity {
     return Quest.find(id);
   }
 
+  objectiveTexts() {
+    return [
+      this.data.ObjectiveText1,
+      this.data.ObjectiveText2,
+      this.data.ObjectiveText3,
+      this.data.ObjectiveText4,
+    ];
+  }
+
+  prerequisiteFactionReputation() {
+    return new FixedColumnQuery(Faction, {
+      label: `requiredFactions for quest ${this.id}`,
+      end: 2,
+      resolve: async (i) => {
+        const {
+          [`RequiredFactionId${i}`]: id,
+          [`RequiredFactionValue${i}`]: value,
+        } = this.data;
+
+        if (!id) {
+          return null;
+        }
+
+        return {
+          value,
+          faction: await Faction.find(id),
+        };
+      },
+    });
+  }
+
+  prerequisiteLevel() {
+    return this.data.MinLevel;
+  }
+
+  prerequisiteMaxLevel() {
+    return this.data.MaxLevel;
+  }
+
   previous() {
     const id = this.data.PrevQuestID;
     if (!id) {
@@ -153,14 +192,22 @@ class Quest extends DatabaseEntity {
     return Item.find(id);
   }
 
+  providedSpell() {
+    const id = this.data.SourceSpellID;
+    if (!id) {
+      return null;
+    }
+    return Spell.find(id);
+  }
+
   races(args) {
     const mask = this.data.AllowableRaces;
     return Race.filterByMask(mask, args);
   }
 
-  requiredFactions() {
+  requiredFactionReputation() {
     return new FixedColumnQuery(Faction, {
-      label: `requiredFactions for quest ${this.id}`,
+      label: `requiredFactionReputation for quest ${this.id}`,
       end: 2,
       resolve: async (i) => {
         const {
@@ -263,6 +310,31 @@ class Quest extends DatabaseEntity {
         return {
           count,
           item: await Item.find(id),
+        };
+      },
+    });
+  }
+
+  rewardFactionReputation() {
+    return new FixedColumnQuery(Faction, {
+      label: `rewardFactionReputation for quest ${this.id}`,
+      end: 5,
+      resolve: async (i) => {
+        const {
+          [`RewardFactionID${i}`]: id,
+          [`RewardFactionValue${i}`]: value,
+          // [`RewardFactionOverride${i}`]: override,
+        } = this.data;
+
+        if (!id) {
+          return null;
+        }
+
+        // TODO: Lookup faction reward value in DBC
+
+        return {
+          value,
+          faction: await Faction.find(id),
         };
       },
     });
