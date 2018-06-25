@@ -44,6 +44,14 @@ class NPC extends DatabaseEntity {
     });
   }
 
+  objectiveOf() {
+    return Quest.query
+      .orWhere({ RequiredNpcOrGo1: this.id })
+      .orWhere({ RequiredNpcOrGo2: this.id })
+      .orWhere({ RequiredNpcOrGo3: this.id })
+      .orWhere({ RequiredNpcOrGo4: this.id });
+  }
+
   sells() {
     return NPCSale.query.where({ entry: this.id });
   }

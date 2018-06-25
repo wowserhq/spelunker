@@ -6,6 +6,7 @@ import { Box, Query, Tab, TabbedBox, Title } from '../../core';
 import DropsTab from './tabs/Drops';
 import EndsTab from './tabs/Ends';
 import NPCReference from './Reference';
+import ObjectiveOfTab from './tabs/ObjectiveOf';
 import SellsTab from './tabs/Sells';
 import SpawnsTab from './tabs/Spawns';
 import StartsTab from './tabs/Starts';
@@ -20,6 +21,9 @@ const fetchNPC = gql`
         totalCount
       }
       ends {
+        totalCount
+      }
+      objectiveOf {
         totalCount
       }
       sells {
@@ -51,6 +55,7 @@ const NPC = ({ match }) => {
 
           drops: { totalCount: dropCount },
           ends: { totalCount: endCount },
+          objectiveOf: { totalCount: objectiveOfCount },
           sells: { totalCount: sellCount },
           spawns: { totalCount: spawnCount },
           starts: { totalCount: startCount },
@@ -98,6 +103,13 @@ const NPC = ({ match }) => {
                 label={`Ends (${endCount})`}
                 component={EndsTab}
                 path="ends"
+                match={match}
+              />}
+
+              {objectiveOfCount > 0 && <Tab
+                label={`Objective of (${objectiveOfCount})`}
+                component={ObjectiveOfTab}
+                path="objective-of"
                 match={match}
               />}
 

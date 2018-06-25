@@ -42,6 +42,15 @@ class GameObject extends DatabaseEntity {
     });
   }
 
+  objectiveOf() {
+    const id = -this.id;
+    return Quest.query
+      .orWhere({ RequiredNpcOrGo1: id })
+      .orWhere({ RequiredNpcOrGo2: id })
+      .orWhere({ RequiredNpcOrGo3: id })
+      .orWhere({ RequiredNpcOrGo4: id });
+  }
+
   spawns() {
     return GameObjectSpawn.query.where({ id: this.id });
   }

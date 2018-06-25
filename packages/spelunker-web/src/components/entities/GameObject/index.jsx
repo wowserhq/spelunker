@@ -6,6 +6,7 @@ import { Box, Query, Tab, TabbedBox, Title } from '../../core';
 import ContainsTab from './tabs/Contains';
 import EndsTab from './tabs/Ends';
 import GameObjectReference from './Reference';
+import ObjectiveOfTab from './tabs/ObjectiveOf';
 import SpawnsTab from './tabs/Spawns';
 import StartsTab from './tabs/Starts';
 
@@ -18,6 +19,9 @@ const fetchGameObject = gql`
         totalCount
       }
       ends {
+        totalCount
+      }
+      objectiveOf {
         totalCount
       }
       spawns {
@@ -43,6 +47,7 @@ const GameObject = ({ match }) => {
 
           contains: { totalCount: containCount },
           ends: { totalCount: endCount },
+          objectiveOf: { totalCount : objectiveOfCount },
           spawns: { totalCount: spawnCount },
           starts: { totalCount: startCount },
         } = object;
@@ -81,6 +86,13 @@ const GameObject = ({ match }) => {
                 label={`Ends (${endCount})`}
                 component={EndsTab}
                 path="ends"
+                match={match}
+              />}
+
+              {objectiveOfCount > 0 && <Tab
+                label={`Objective of (${objectiveOfCount})`}
+                component={ObjectiveOfTab}
+                path="objective-of"
                 match={match}
               />}
             </TabbedBox>

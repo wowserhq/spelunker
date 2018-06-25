@@ -22,6 +22,7 @@ export default new GraphQLObjectType({
 
     drops: CollectionType.definitionFor(NPCLootType),
     ends: CollectionType.definitionFor(QuestType),
+    objectiveOf: CollectionType.definitionFor(QuestType),
     sells: CollectionType.definitionFor(NPCSaleType),
     spawns: CollectionType.definitionFor(NPCSpawnType),
     starts: CollectionType.definitionFor(QuestType),

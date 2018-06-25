@@ -19,6 +19,7 @@ export default new GraphQLObjectType({
 
     contains: CollectionType.definitionFor(GameObjectLootType),
     ends: CollectionType.definitionFor(QuestType),
+    objectiveOf: CollectionType.definitionFor(QuestType),
     spawns: CollectionType.definitionFor(GameObjectSpawnType),
     starts: CollectionType.definitionFor(QuestType),
   }),
