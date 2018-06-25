@@ -1,5 +1,6 @@
 import DatabaseEntity from '../db/Entity';
 import FixedColumnQuery from '../db/FixedColumnQuery';
+import MemoryQuery from '../core/memory/Query';
 import { worldConnection } from '../db/connections';
 
 import Class from './Class';
@@ -81,6 +82,23 @@ class Quest extends DatabaseEntity {
     return QuestCategory.find(this.data.QuestSortID);
   }
 
+  chain() {
+    const query = new MemoryQuery(this);
+    query.load = async () => {
+      const chain = [this];
+      let quest = this;
+      while (quest = await quest.previous()) {
+        chain.unshift(quest);
+      }
+      quest = this;
+      while (quest = await quest.next()) {
+        chain.push(quest);
+      }
+      return chain;
+    };
+    return query;
+  }
+
   classes() {
     const mask = this.data.AllowableClasses;
     return Class.filterByMask(mask);
@@ -104,6 +122,23 @@ class Quest extends DatabaseEntity {
     ).where({
       [GameObjectQuestFinisher.fqColumn('quest')]: this.id,
     });
+  }
+
+  next() {
+    // TODO: Consider fetching quests that have PrevQuestID pointing to this one
+    const id = this.data.NextQuestID || this.data.RewardNextQuest;
+    if (!id) {
+      return null;
+    }
+    return Quest.find(id);
+  }
+
+  previous() {
+    const id = this.data.PrevQuestID;
+    if (!id) {
+      return null;
+    }
+    return Quest.find(id);
   }
 
   providedItem() {

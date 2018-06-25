@@ -21,7 +21,7 @@ import RaceType from './RaceType';
 import SideType from './SideType';
 import SpellType from './SpellType';
 
-export default new GraphQLObjectType({
+const QuestType = new GraphQLObjectType({
   name: 'Quest',
   fields: () => ({
     id: { type: new GraphQLNonNull(GraphQLInt) },
@@ -34,10 +34,12 @@ export default new GraphQLObjectType({
     rewardMoney: { type: GraphQLInt },
 
     category: { type: QuestCategoryType },
-
+    chain: CollectionType.definitionFor(QuestType),
     classes: CollectionType.definitionFor(ClassType),
     endedBy: CollectionType.definitionFor(NPCType),
     endedByObject: CollectionType.definitionFor(GameObjectType),
+    next: { type: QuestType },
+    previous: { type: QuestType },
     providedItem: { type: ItemType },
     races: CollectionType.definitionFor(RaceType, {
       exclusive: { type: GraphQLBoolean },
@@ -47,8 +49,8 @@ export default new GraphQLObjectType({
     requiredNPCs: CollectionType.definitionFor(QuestNPCType),
     requiredObjects: CollectionType.definitionFor(QuestGameObjectType),
     rewardChoiceItems: CollectionType.definitionFor(QuestItemType),
-    rewardItems: CollectionType.definitionFor(QuestItemType),
     rewardDisplaySpell: { type: SpellType },
+    rewardItems: CollectionType.definitionFor(QuestItemType),
     rewardSpell: { type: SpellType },
     sides: CollectionType.definitionFor(SideType),
     startedBy: CollectionType.definitionFor(NPCType),
@@ -56,3 +58,5 @@ export default new GraphQLObjectType({
     startedByObject: CollectionType.definitionFor(GameObjectType),
   }),
 });
+
+export default QuestType;

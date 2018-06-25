@@ -20,10 +20,13 @@ const fetchQuest = gql`
   query($id: Int!) {
     quest(id: $id) {
       ...QuestReference
+      chain {
+        totalCount
+        results {
+          ...QuestReference
+        }
+      }
       description
-      requiredMoney
-      rewardMoney
-
       providedItem {
         ...ItemReference
       }
@@ -45,6 +48,7 @@ const fetchQuest = gql`
           }
         }
       }
+      requiredMoney
       requiredNPCs {
         totalCount
         results {
@@ -81,6 +85,7 @@ const fetchQuest = gql`
           }
         }
       }
+      rewardMoney
       rewardSpell {
         ...SpellReference
       }
@@ -120,15 +125,15 @@ const Quest = ({ match }) => {
         const {
           name,
           description,
-          requiredMoney,
-          rewardMoney,
-
+          chain,
           providedItem,
           requiredFactions,
           requiredItems,
+          requiredMoney,
           requiredNPCs,
           requiredObjects,
           rewardChoiceItems,
+          rewardMoney,
           rewardItems,
           rewardSpell,
 
@@ -145,6 +150,19 @@ const Quest = ({ match }) => {
               <h1>
                 <QuestReference quest={quest} />
               </h1>
+
+              {chain.totalCount > 0 && (
+                <Box aside>
+                  <h2>Quest Chain</h2>
+                  <ul>
+                    {chain.results.map(quest => (
+                      <li key={quest.id}>
+                        <QuestReference quest={quest} />
+                      </li>
+                    ))}
+                  </ul>
+                </Box>
+              )}
 
               <p>
                 {description}
