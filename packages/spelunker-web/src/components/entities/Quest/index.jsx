@@ -27,10 +27,26 @@ const fetchQuest = gql`
         }
       }
       description
+      level,
+      objectiveTexts
+      prerequisiteFactionReputation {
+        totalCount
+        results {
+          value
+          faction {
+            ...FactionReference
+          }
+        }
+      }
+      prerequisiteLevel
+      prerequisiteMaxLevel
       providedItem {
         ...ItemReference
       }
-      requiredFactions {
+      providedSpell {
+        ...SpellReference
+      }
+      requiredFactionReputation {
         totalCount
         results {
           value
@@ -73,6 +89,15 @@ const fetchQuest = gql`
           count
           item {
             ...ItemReference
+          }
+        }
+      }
+      rewardFactionReputation {
+        totalCount
+        results {
+          value
+          faction {
+            ...FactionReference
           }
         }
       }
@@ -127,13 +152,20 @@ const Quest = ({ match }) => {
           name,
           description,
           chain,
+          level,
+          objectiveTexts,
+          prerequisiteFactionReputation,
+          prerequisiteLevel,
+          prerequisiteMaxLevel,
           providedItem,
-          requiredFactions,
+          providedSpell,
+          requiredFactionReputation,
           requiredItems,
           requiredMoney,
           requiredNPCs,
           requiredObjects,
           rewardChoiceItems,
+          rewardFactionReputation,
           rewardMoney,
           rewardItems,
           rewardSpell,
@@ -169,55 +201,81 @@ const Quest = ({ match }) => {
                 {description}
               </p>
 
-              {providedItem && (
-                <div>
-                  <h2>Provided item</h2>
-
-                  <List>
-                    <ListItem>
-                      <ItemReference item={providedItem} />
-                    </ListItem>
-                  </List>
-                </div>
-              )}
-
-              <h2>Requirements</h2>
-
               <List>
+                {level > 0 && (
+                  <ListItem>
+                    Quest level: {level}
+                  </ListItem>
+                )}
+
+                {providedItem && (
+                  <ListItem>
+                    Provided item: <ItemReference item={providedItem} />
+                  </ListItem>
+                )}
+
+                {providedSpell && (
+                  <ListItem>
+                    Spell cast on start: <SpellReference spell={providedSpell} />
+                  </ListItem>
+                )}
+              </List>
+
+              <List label="Prerequisites">
+                {prerequisiteLevel > 0 && (
+                  <ListItem>
+                    Minimum level: {prerequisiteLevel}
+                  </ListItem>
+                )}
+
+                {prerequisiteMaxLevel > 0 && (
+                  <ListItem>
+                    Maximum level: {prerequisiteMaxLevel}
+                  </ListItem>
+                )}
+
+                {prerequisiteFactionReputation.results.map(({ value, faction }) => (
+                  <ListItem key={faction.id}>
+                    <FactionReference faction={faction} /> ({value})
+                  </ListItem>
+                ))}
+              </List>
+
+              <List label="Objectives">
                 {requiredMoney && (
                   <ListItem>
                     <Currency value={requiredMoney} />
                   </ListItem>
                 )}
 
-                {requiredFactions.results.map(({ value, faction }) => (
-                  <ListItem>
+                {requiredFactionReputation.results.map(({ value, faction }) => (
+                  <ListItem key={faction.id}>
                     <FactionReference faction={faction} /> ({value})
                   </ListItem>
                 ))}
 
                 {requiredItems.results.map(({ count, item }) => (
-                  <ListItem>
+                  <ListItem key={item.id}>
                     <ItemReference item={item} /> {count}x
                   </ListItem>
                 ))}
 
-                {requiredNPCs.results.map(({ count, npc }) => (
-                  <ListItem>
-                    Slay <NPCReference npc={npc} /> {count}x
+                {requiredNPCs.results.map(({ count, npc }, i) => (
+                  <ListItem key={npc.id}>
+                    {objectiveTexts[i] || 'Slay'} <NPCReference npc={npc} withoutSubname /> {count}x
                   </ListItem>
                 ))}
 
                 {requiredObjects.results.map(({ count, object }) => (
-                  <ListItem>
+                  <ListItem key={object.id}>
                     <GameObjectReference object={object} /> {count}x
                   </ListItem>
                 ))}
               </List>
 
-              <h2>Rewards</h2>
+              <List label="Rewards">
+                {/* rewardXP */}
 
-              <List>
                 {rewardMoney && (
                   <ListItem>
                     <Currency value={rewardMoney} />
@@ -225,7 +283,7 @@ const Quest = ({ match }) => {
                 )}
 
                 {rewardItems.results.map(({ count, item }) => (
-                  <ListItem>
+                  <ListItem key={item.id}>
                     <ItemReference item={item} /> {count}x
                   </ListItem>
                 ))}
@@ -234,13 +292,19 @@ const Quest = ({ match }) => {
                   <ListItem>One of:
                     <List>
                       {rewardChoiceItems.results.map(({ count, item }) => (
-                        <ListItem>
+                        <ListItem key={item.id}>
                           <ItemReference item={item} /> {count}x
                         </ListItem>
                       ))}
                     </List>
                   </ListItem>
                 )}
+
+                {rewardFactionReputation.results.map(({ value, faction }) => (
+                  <ListItem key={faction.id}>
+                    <FactionReference faction={faction} /> ({value})
+                  </ListItem>
+                ))}
 
                 {rewardSpell && (
                   <ListItem>
