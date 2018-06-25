@@ -7,7 +7,7 @@ import QuestSortType from './QuestSortType';
 
 export default new GraphQLUnionType({
   name: 'QuestCategory',
-  types: [AreaType, QuestSortType],
+  types: () => [AreaType, QuestSortType],
   resolveType: (value) => {
     const name = value.constructor.name;
     return {
