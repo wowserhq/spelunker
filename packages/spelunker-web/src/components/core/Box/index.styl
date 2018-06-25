@@ -21,10 +21,12 @@
   }
 
   h1, h2, h3 {
-    margin: 1.5em 0 .7em
+    margin: 1em 0 .7em
     color: #FFFFFF
     font-weight: normal
+  }
 
+  > h1, > h2, > h3 {
     &:first-child {
       margin-top: 0
     }
@@ -65,13 +67,18 @@
       left: 0
       background: radial-gradient(circle at top right, transparent 4px, lighten(#610006, 5%) 5px, darken(#610006, 100%) 100%)
     }
+
+    & + ul, & + div > ul {
+      margin-top: .5em
+    }
   }
 
   p, ul {
     font-size: .93em
   }
 
-  > *:last-child {
+  > *:last-child,
+  > *:last-child > *:last-child {
     margin-bottom: 0
   }
 }

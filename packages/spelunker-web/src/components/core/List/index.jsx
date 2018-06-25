@@ -16,15 +16,19 @@ const ListItem = (props) => {
 
 ListItem.defaultProps = {
   current: false,
+  label: null,
 };
 
 const List = (props) => {
+  if (!React.Children.toArray(props.children).length) {
+    return null;
+  }
+
   const className = classNames(styles.list, props.className);
-  return (
-    <ul className={className}>
-      {props.children}
-    </ul>
-  );
+  return [
+    props.label && <h2 key="heading">{props.label}</h2>,
+    <ul className={className} key="list">{props.children}</ul>,
+  ];
 };
 
 export default List;
