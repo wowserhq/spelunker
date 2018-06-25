@@ -18,10 +18,10 @@ const QuestReference = ({ quest }) => {
       ))}
       <Link to={`/quests/${quest.id}`}>
         {quest.name}
-        {quest.previous && (
-          <span className={styles.chain}>*</span>
-        )}
       </Link>
+      {quest.previous && (
+        <span className={styles.chain}>*</span>
+      )}
     </span>
   );
 };
