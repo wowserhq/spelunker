@@ -2,6 +2,7 @@ import DBCEntity from '../dbc/Entity';
 import { contains } from '../utils/string';
 
 import NPCTraining from './NPCTraining';
+import Quest from './Quest';
 import SpellIcon from './SpellIcon';
 
 class Spell extends DBCEntity {
@@ -16,6 +17,13 @@ class Spell extends DBCEntity {
   async icon() {
     const entry = await SpellIcon.find(this.data.iconID);
     return entry ? entry.file : null;
+  }
+
+  rewardFrom() {
+    const { id } = this;
+    return Quest.query
+      .orWhere({ RewardSpell: id })
+      .orWhere({ RewardDisplaySpell: id });
   }
 
   taughtBy() {

@@ -8,6 +8,7 @@ import {
 import CollectionType from '../CollectionType';
 
 import NPCTrainingType from './NPCTrainingType';
+import QuestType from './QuestType';
 
 export default new GraphQLObjectType({
   name: 'Spell',
@@ -16,6 +17,7 @@ export default new GraphQLObjectType({
     name: { type: new GraphQLNonNull(GraphQLString) },
     icon: { type: GraphQLString },
 
+    rewardFrom: CollectionType.definitionFor(QuestType),
     taughtBy: CollectionType.definitionFor(NPCTrainingType),
   }),
 });
