@@ -148,22 +148,10 @@ class Quest extends DatabaseEntity {
 
   prerequisiteFactionReputation() {
     return new FixedColumnQuery(Faction, {
-      label: `requiredFactions for quest ${this.id}`,
+      label: `prerequisiteFactionReputation for quest ${this.id}`,
       end: 2,
-      resolve: async (i) => {
-        const {
-          [`RequiredFactionId${i}`]: id,
-          [`RequiredFactionValue${i}`]: value,
-        } = this.data;
-
-        if (!id) {
-          return null;
-        }
-
-        return {
-          value,
-          faction: await Faction.find(id),
-        };
+      resolve: async () => {
+        return null;
       },
     });
   }
