@@ -31,7 +31,7 @@ class NPC extends DatabaseEntity {
   }
 
   drops() {
-    return NPCLoot.query.where({ Entry: this.id });
+    return NPCLoot.query.where({ Entry: this.id }).orderBy('Chance', 'desc');
   }
 
   ends() {

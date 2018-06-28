@@ -58,7 +58,7 @@ class Item extends DatabaseEntity {
   }
 
   droppedBy() {
-    return NPCLoot.query.where({ Item: this.id });
+    return NPCLoot.query.where({ Item: this.id }).orderBy('Chance', 'desc');
   }
 
   objectiveOf() {
