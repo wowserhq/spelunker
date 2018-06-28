@@ -27,17 +27,17 @@ class CollectionType extends GraphQLObjectType {
     return type;
   }
 
-  static definitionFor(wrappedType, args = {}) {
+  static definitionFor(wrappedType, options = {}) {
     return {
       type: this.for(wrappedType),
       args: {
         limit: { type: GraphQLInt },
         offset: { type: GraphQLInt },
-        ...args,
+        ...options.args,
       },
       resolve: async (obj, args, context, info) => {
         const query = await obj[info.fieldName](args, context, info);
-        return new Collection(query, args);
+        return new Collection(query, options);
       },
     };
   }

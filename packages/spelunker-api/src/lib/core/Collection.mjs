@@ -1,11 +1,17 @@
-const MAX_RESULTS = 25;
+const MAX_RESULTS_PER_PAGE = 25;
 
 class Collection {
-  constructor(query, args = {}) {
+  constructor(
+    query,
+    {
+      args = {},
+      maxResults = MAX_RESULTS_PER_PAGE,
+    } = {},
+  ) {
     this.query = query;
 
     this.offset = args.offset || 0;
-    this.limit = args.limit || MAX_RESULTS;
+    this.limit = args.limit || maxResults;
 
     if (this.offset < 0) {
       throw new Error('offset must be at least 0');
@@ -15,8 +21,8 @@ class Collection {
       throw new Error('limit must be at least 0');
     }
 
-    if (this.limit > MAX_RESULTS) {
-      throw new Error(`limit must not exceed ${MAX_RESULTS}`);
+    if (this.limit > maxResults) {
+      throw new Error(`limit must not exceed ${maxResults}`);
     }
   }
 

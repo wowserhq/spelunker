@@ -24,7 +24,9 @@ export default new GraphQLObjectType({
 
     classes: CollectionType.definitionFor(ClassType),
     quests: CollectionType.definitionFor(QuestType, {
-      exclusive: { type: GraphQLBoolean },
+      args: {
+        exclusive: { type: GraphQLBoolean },
+      },
     }),
   }),
 });

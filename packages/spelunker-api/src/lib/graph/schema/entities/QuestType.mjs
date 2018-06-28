@@ -37,7 +37,9 @@ const QuestType = new GraphQLObjectType({
     rewardMoney: { type: GraphQLInt },
 
     category: { type: QuestCategoryType },
-    chain: CollectionType.definitionFor(QuestType),
+    chain: CollectionType.definitionFor(QuestType, {
+      maxResults: Infinity,
+    }),
     classes: CollectionType.definitionFor(ClassType),
     endedBy: CollectionType.definitionFor(NPCType),
     endedByObject: CollectionType.definitionFor(GameObjectType),
@@ -48,7 +50,9 @@ const QuestType = new GraphQLObjectType({
     providedItem: { type: ItemType },
     providedSpell: { type: SpellType },
     races: CollectionType.definitionFor(RaceType, {
-      exclusive: { type: GraphQLBoolean },
+      args: {
+        exclusive: { type: GraphQLBoolean },
+      },
     }),
     requiredFactionReputation: CollectionType.definitionFor(QuestFactionType),
     requiredItems: CollectionType.definitionFor(QuestItemType),

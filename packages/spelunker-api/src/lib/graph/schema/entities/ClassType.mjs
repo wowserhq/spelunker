@@ -20,7 +20,9 @@ export default new GraphQLObjectType({
     filename: { type: new GraphQLNonNull(GraphQLString) },
 
     quests: CollectionType.definitionFor(QuestType, {
-      exclusive: { type: GraphQLBoolean },
+      args: {
+        exclusive: { type: GraphQLBoolean },
+      },
     }),
     races: CollectionType.definitionFor(RaceType),
   }),

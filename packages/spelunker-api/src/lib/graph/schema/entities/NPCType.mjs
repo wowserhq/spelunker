@@ -24,7 +24,9 @@ export default new GraphQLObjectType({
     ends: CollectionType.definitionFor(QuestType),
     objectiveOf: CollectionType.definitionFor(QuestType),
     sells: CollectionType.definitionFor(NPCSaleType),
-    spawns: CollectionType.definitionFor(NPCSpawnType),
+    spawns: CollectionType.definitionFor(NPCSpawnType, {
+      maxResults: Infinity,
+    }),
     starts: CollectionType.definitionFor(QuestType),
     teaches: CollectionType.definitionFor(NPCTrainingType),
   }),

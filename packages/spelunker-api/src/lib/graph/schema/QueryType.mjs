@@ -30,7 +30,9 @@ const finderFor = (type, idType = GraphQLInt) => ({
 
 const searchableCollectionFor = (type) => (
   CollectionType.definitionFor(type, {
-    searchQuery: { type: GraphQLString },
+    args: {
+      searchQuery: { type: GraphQLString },
+    },
   })
 );
 
