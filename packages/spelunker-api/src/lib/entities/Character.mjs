@@ -47,6 +47,17 @@ class Character extends DatabaseEntity {
     return Account.find(this.data.account);
   }
 
+  async availableQuests() {
+    const race = await this.race();
+    const klass = await this.class();
+
+    return Quest.query.whereRaw(
+      '(AllowableRaces = 0 OR AllowableRaces & ?)', race.mask
+    ).whereRaw(
+      '(AllowableClasses IS NULL OR AllowableClasses = 0 OR AllowableClasses & ?)', klass.mask
+    );
+  }
+
   class() {
     return Class.find(this.data.class);
   }
@@ -78,30 +89,18 @@ class Character extends DatabaseEntity {
   }
 
   async uncompletedQuests() {
-    const race = await this.race();
-    const klass = await this.class();
+    const query = await this.availableQuests();
+    query.leftJoin(CharacterQuestStatusRewarded.fqTableName, (clause) => (
+      clause.on(
+        CharacterQuestStatusRewarded.fqColumn('quest'),
+        Quest.fqColumn('ID')
+      ).andOn(
+        CharacterQuestStatusRewarded.fqColumn('guid'),
+        this.id
+      )
+    )).whereNull(CharacterQuestStatusRewarded.fqColumn('guid'));
 
-    return Quest.query.leftJoin(
-      CharacterQuestStatus.fqTableName,
-      (clause) => {
-        clause.on(
-          CharacterQuestStatus.fqColumn('quest'),
-          Quest.fqColumn('ID')
-        ).andOn(
-          CharacterQuestStatus.fqColumn('guid'),
-          this.id
-        );
-      }
-    )
-      .whereNull(CharacterQuestStatus.fqColumn('guid'))
-      .where((builder) => (
-        builder.where('AllowableRaces', 0)
-          .orWhere('AllowableRaces', '&', race.mask)
-      ))
-      .where((builder) => (
-        builder.where('AllowableClasses', 0)
-          .orWhere('AllowableClasses', '&', klass.mask)
-      ));
+    return query;
   }
 }
 
