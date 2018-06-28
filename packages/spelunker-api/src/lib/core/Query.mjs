@@ -5,6 +5,10 @@ class Query {
     this.entity = entity;
   }
 
+  get none() {
+    notImplemented(this, 'none');
+  }
+
   search(searchQuery) {
     if (searchQuery) {
       this.entity.search(this, searchQuery);

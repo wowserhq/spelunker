@@ -12,6 +12,11 @@ class DatabaseQuery extends Query {
     this.knex = entity.connection(entity.fqTableName);
   }
 
+  get none() {
+    this.whereRaw('1=0');
+    return this;
+  }
+
   slice(offset, limit) {
     this.knex.offset(offset).limit(limit);
     return this;

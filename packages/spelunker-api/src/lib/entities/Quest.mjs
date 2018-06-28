@@ -88,11 +88,11 @@ class Quest extends DatabaseEntity {
       const prev = [];
       const next = [];
       let quest = this;
-      while (quest = await quest.previous()) {
+      while (quest = await quest.previousQuest()) {
         prev.unshift(quest);
       }
       quest = this;
-      while (quest = await quest.next()) {
+      while (quest = await quest.nextQuest()) {
         next.push(quest);
       }
       if (!prev.length && !next.length) {
@@ -128,13 +128,15 @@ class Quest extends DatabaseEntity {
     });
   }
 
-  next() {
-    // TODO: Consider fetching quests that have PrevQuestID pointing to this one
-    const id = this.data.NextQuestID || this.data.RewardNextQuest;
-    if (!id) {
-      return null;
-    }
-    return Quest.find(id);
+  async nextQuest() {
+    return await this.nextQuests().first().execute();
+  }
+
+  nextQuests() {
+    const ids = [this.data.NextQuestID || this.data.RewardNextQuest];
+    return Quest.query
+      .whereIn(Quest.fqColumn('ID'), ids)
+      .orWhere({ PrevQuestID: this.id });
   }
 
   objectiveTexts() {
@@ -144,6 +146,18 @@ class Quest extends DatabaseEntity {
       this.data.ObjectiveText3,
       this.data.ObjectiveText4,
     ];
+  }
+
+  async prerequisiteChoiceQuests() {
+    const prev = await this.previousQuest();
+    if (!prev) {
+      return Quest.query.none;
+    }
+    const group = prev.ExclusiveGroup;
+    if (group > 0) {
+      return Quest.query.where({ ExclusiveGroup: group });
+    }
+    return Quest.query.none;
   }
 
   prerequisiteFactionReputation() {
@@ -164,12 +178,32 @@ class Quest extends DatabaseEntity {
     return this.data.MaxLevel;
   }
 
-  previous() {
-    const id = this.data.PrevQuestID;
-    if (!id) {
-      return null;
+  async prerequisiteQuests() {
+    const prev = await this.previousQuest();
+    if (!prev) {
+      return Quest.query.none;
     }
-    return Quest.find(id);
+    const group = prev.ExclusiveGroup;
+    if (!group) {
+      const query = new MemoryQuery(this);
+      query.load = () => [prev];
+      return query;
+    }
+    if (group < 0) {
+      return Quest.query.where({ ExclusiveGroup: group });
+    }
+    return Quest.query.none;
+  }
+
+  previousQuest() {
+    const id = this.data.PrevQuestID;
+    if (id) {
+      return Quest.find(id);
+    }
+
+    return Quest.query.where({
+      NextQuestID: this.id,
+    }).first().execute();
   }
 
   providedItem() {

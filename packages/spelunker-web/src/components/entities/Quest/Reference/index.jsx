@@ -19,7 +19,7 @@ const QuestReference = ({ quest }) => {
       <Link to={`/quests/${quest.id}`}>
         {quest.name}
       </Link>
-      {quest.previous && (
+      {quest.previousQuest && (
         <span className={styles.chain}>*</span>
       )}
     </span>
@@ -30,7 +30,7 @@ QuestReference.fragment = gql`
   fragment QuestReference on Quest {
     id
     name
-    previous {
+    previousQuest {
       id
     }
     repeatable

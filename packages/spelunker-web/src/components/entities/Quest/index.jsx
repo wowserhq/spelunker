@@ -28,7 +28,19 @@ const fetchQuest = gql`
       }
       description
       level,
+      nextQuests {
+        totalCount
+        results {
+          ...QuestReference
+        }
+      }
       objectiveTexts
+      prerequisiteChoiceQuests {
+        totalCount
+        results {
+          ...QuestReference
+        }
+      }
       prerequisiteFactionReputation {
         totalCount
         results {
@@ -40,6 +52,12 @@ const fetchQuest = gql`
       }
       prerequisiteLevel
       prerequisiteMaxLevel
+      prerequisiteQuests {
+        totalCount
+        results {
+          ...QuestReference
+        }
+      }
       providedItem {
         ...ItemReference
       }
@@ -153,10 +171,13 @@ const Quest = ({ match }) => {
           description,
           chain,
           level,
+          nextQuests,
           objectiveTexts,
+          prerequisiteChoiceQuests,
           prerequisiteFactionReputation,
           prerequisiteLevel,
           prerequisiteMaxLevel,
+          prerequisiteQuests,
           providedItem,
           providedSpell,
           requiredFactionReputation,
@@ -239,6 +260,30 @@ const Quest = ({ match }) => {
                     <FactionReference faction={faction} /> ({value})
                   </ListItem>
                 ))}
+
+                {prerequisiteChoiceQuests.totalCount > 0 && (
+                  <ListItem>Complete <strong>one</strong> of:
+                    <List>
+                      {prerequisiteChoiceQuests.results.map(quest => (
+                        <ListItem key={quest.id}>
+                          <QuestReference quest={quest} />
+                        </ListItem>
+                      ))}
+                    </List>
+                  </ListItem>
+                )}
+
+                {prerequisiteQuests.totalCount > 0 && (
+                  <ListItem>Complete:
+                    <List>
+                      {prerequisiteQuests.results.map(quest => (
+                        <ListItem key={quest.id}>
+                          <QuestReference quest={quest} />
+                        </ListItem>
+                      ))}
+                    </List>
+                  </ListItem>
+                )}
               </List>
 
               <List label="Objectives">
@@ -309,6 +354,18 @@ const Quest = ({ match }) => {
                 {rewardSpell && (
                   <ListItem>
                     <SpellReference spell={rewardSpell} />
+                  </ListItem>
+                )}
+
+                {nextQuests.totalCount > 0 && (
+                  <ListItem>Unlocks:
+                    <List>
+                      {nextQuests.results.map(quest => (
+                        <ListItem key={quest.id}>
+                          <QuestReference quest={quest} />
+                        </ListItem>
+                      ))}
+                    </List>
                   </ListItem>
                 )}
               </List>
