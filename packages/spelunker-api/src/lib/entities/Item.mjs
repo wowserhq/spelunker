@@ -62,13 +62,14 @@ class Item extends DatabaseEntity {
   }
 
   objectiveOf() {
+    const { id } = this;
     return Quest.query
-      .orWhere({ RequiredItemId1: this.id })
-      .orWhere({ RequiredItemId2: this.id })
-      .orWhere({ RequiredItemId3: this.id })
-      .orWhere({ RequiredItemId4: this.id })
-      .orWhere({ RequiredItemId5: this.id })
-      .orWhere({ RequiredItemId6: this.id });
+      .orWhere({ RequiredItemId1: id })
+      .orWhere({ RequiredItemId2: id })
+      .orWhere({ RequiredItemId3: id })
+      .orWhere({ RequiredItemId4: id })
+      .orWhere({ RequiredItemId5: id })
+      .orWhere({ RequiredItemId6: id });
   }
 
   providedFor() {
@@ -76,17 +77,18 @@ class Item extends DatabaseEntity {
   }
 
   rewardFrom() {
+    const { id } = this;
     return Quest.query
-      .orWhere({ RewardItem1: this.id })
-      .orWhere({ RewardItem2: this.id })
-      .orWhere({ RewardItem3: this.id })
-      .orWhere({ RewardItem4: this.id })
-      .orWhere({ RewardChoiceItemID1: this.id })
-      .orWhere({ RewardChoiceItemID2: this.id })
-      .orWhere({ RewardChoiceItemID3: this.id })
-      .orWhere({ RewardChoiceItemID4: this.id })
-      .orWhere({ RewardChoiceItemID5: this.id })
-      .orWhere({ RewardChoiceItemID6: this.id });
+      .orWhere({ RewardItem1: id })
+      .orWhere({ RewardItem2: id })
+      .orWhere({ RewardItem3: id })
+      .orWhere({ RewardItem4: id })
+      .orWhere({ RewardChoiceItemID1: id })
+      .orWhere({ RewardChoiceItemID2: id })
+      .orWhere({ RewardChoiceItemID3: id })
+      .orWhere({ RewardChoiceItemID4: id })
+      .orWhere({ RewardChoiceItemID5: id })
+      .orWhere({ RewardChoiceItemID6: id });
   }
 
   soldBy() {
