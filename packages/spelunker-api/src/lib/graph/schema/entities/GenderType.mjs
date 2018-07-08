@@ -1,11 +1,4 @@
-import {
-  GraphQLEnumType,
-} from '../../../graphql';
+import { generateEnumDefinition } from '../../../graphql/utils';
+import * as types from '../../../entities/Gender';
 
-export default new GraphQLEnumType({
-  name: 'Gender',
-  values: {
-    MALE: { value: 0 },
-    FEMALE: { value: 1 },
-  },
-});
+export default generateEnumDefinition('Gender', types);

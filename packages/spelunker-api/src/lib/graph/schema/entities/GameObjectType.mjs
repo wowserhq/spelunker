@@ -9,6 +9,7 @@ import CollectionType from '../CollectionType';
 
 import GameObjectLootType from './GameObjectLootType';
 import GameObjectSpawnType from './GameObjectSpawnType';
+import GameObjectTypeType from './GameObjectTypeType';
 import QuestType from './QuestType';
 
 export default new GraphQLObjectType({
@@ -16,6 +17,7 @@ export default new GraphQLObjectType({
   fields: () => ({
     id: { type: new GraphQLNonNull(GraphQLInt) },
     name: { type: new GraphQLNonNull(GraphQLString) },
+    type: { type: new GraphQLNonNull(GameObjectTypeType) },
 
     contains: CollectionType.definitionFor(GameObjectLootType),
     ends: CollectionType.definitionFor(QuestType),
