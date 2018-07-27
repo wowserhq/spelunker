@@ -1,6 +1,6 @@
 export { default as Box, Tab, TabbedBox } from './Box';
 export { default as Collection } from './Collection';
-export { default as Error } from './Error';
+export { default as Error, ErrorBoundary } from './Error';
 export { default as Form, Button, Input } from './Form';
 export { default as List, ListItem } from './List';
 export { default as Pagination } from './Pagination';
