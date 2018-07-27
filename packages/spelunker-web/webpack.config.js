@@ -37,6 +37,13 @@ module.exports = {
         ],
       },
       {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+        ],
+      },
+      {
         test: /\.styl$/,
         exclude: /(node_modules|bower_components)/,
         use: [

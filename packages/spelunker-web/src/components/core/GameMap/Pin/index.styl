@@ -1,0 +1,18 @@
+.pin {
+  display: flex
+  align-items: center
+  justify-content: center
+  border-radius: 50%
+  border: 1px solid #000
+  background: #FFCC00
+  box-shadow: rgba(0, 0, 0, .75) 1px 1px
+
+  &:after {
+    content: ''
+    display: block
+    width: 3px
+    height: 3px
+    border-radius: 50%
+    background: darken(#FFCC00, 85%)
+  }
+}
