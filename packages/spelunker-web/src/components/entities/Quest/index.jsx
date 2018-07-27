@@ -1,11 +1,13 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
+import ClassReference from '../Class/Reference';
 import Currency from '../../formatters/Currency';
 import FactionReference from '../Faction/Reference';
 import GameObjectReference from '../GameObject/Reference';
 import ItemReference from '../Item/Reference';
 import NPCReference from '../NPC/Reference';
+import RaceReference from '../Race/Reference';
 import SpellReference from '../Spell/Reference';
 import { Box, List, ListItem, Query, Tab, TabbedBox, Title } from '../../core';
 
@@ -24,6 +26,12 @@ const fetchQuest = gql`
         totalCount
         results {
           ...QuestReference
+        }
+      }
+      classes {
+        totalCount
+        results {
+          ...ClassReference
         }
       }
       description
@@ -63,6 +71,12 @@ const fetchQuest = gql`
       }
       providedSpell {
         ...SpellReference
+      }
+      races(exclusive: true) {
+        totalCount
+        results {
+          ...RaceReference
+        }
       }
       requiredFactionReputation {
         totalCount
@@ -151,11 +165,13 @@ const fetchQuest = gql`
     }
   }
 
+  ${ClassReference.fragment}
   ${FactionReference.fragment}
   ${GameObjectReference.fragment}
   ${ItemReference.fragment}
   ${NPCReference.fragment}
   ${QuestReference.fragment}
+  ${RaceReference.fragment}
   ${SpellReference.fragment}
 `;
 
@@ -170,6 +186,7 @@ const Quest = ({ match }) => {
           name,
           description,
           chain,
+          classes,
           level,
           nextQuests,
           objectiveTexts,
@@ -180,6 +197,7 @@ const Quest = ({ match }) => {
           prerequisiteQuests,
           providedItem,
           providedSpell,
+          races,
           requiredFactionReputation,
           requiredItems,
           requiredMoney,
@@ -252,6 +270,32 @@ const Quest = ({ match }) => {
                 {prerequisiteMaxLevel > 0 && (
                   <ListItem>
                     Maximum level: {prerequisiteMaxLevel}
+                  </ListItem>
+                )}
+
+                {classes.totalCount > 0 && (
+                  <ListItem>
+                    Classes: {classes.results.map(klass => (
+                      <ClassReference
+                        class={klass}
+                        iconSize="small"
+                        key={klass.id}
+                        withoutName
+                      />
+                    ))}
+                  </ListItem>
+                )}
+
+                {races.totalCount > 0 && (
+                  <ListItem>
+                    Races: {races.results.map(race => (
+                      <RaceReference
+                        iconSize="small"
+                        key={race.id}
+                        race={race}
+                        withoutName
+                      />
+                    ))}
                   </ListItem>
                 )}
 
