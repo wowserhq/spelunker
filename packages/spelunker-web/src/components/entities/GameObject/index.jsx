@@ -1,7 +1,16 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import { Box, Query, Tab, TabbedBox, Title } from '../../core';
+import {
+  Box,
+  List,
+  ListItem,
+  Query,
+  Tab,
+  TabbedBox,
+  Title,
+} from '../../core';
+import { humanize } from '../../../utils/inflector';
 
 import ContainsTab from './tabs/Contains';
 import EndsTab from './tabs/Ends';
@@ -14,6 +23,7 @@ const fetchGameObject = gql`
   query($id: Int!) {
     object(id: $id) {
       ...GameObjectReference
+      type
 
       contains {
         totalCount
@@ -44,6 +54,7 @@ const GameObject = ({ match }) => {
         const { object } = data;
         const {
           name,
+          type,
 
           contains: { totalCount: containCount },
           ends: { totalCount: endCount },
@@ -58,6 +69,10 @@ const GameObject = ({ match }) => {
               <h1>
                 <GameObjectReference object={object} />
               </h1>
+
+              <List>
+                <ListItem>Type: {humanize(type)}</ListItem>
+              </List>
             </Box>
 
             <TabbedBox>
