@@ -1,0 +1,19 @@
+.sentence {
+  .item {
+    &.current {
+      font-weight: bold
+    }
+
+    &:after {
+      content: ', '
+    }
+
+    &:nth-last-child(2):after {
+      content: ' and '
+    }
+
+    &:last-child:after {
+      content: none
+    }
+  }
+}

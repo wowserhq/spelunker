@@ -6,6 +6,7 @@ export { default as List, ListItem } from './List';
 export { default as Pagination } from './Pagination';
 export { default as ProjectLink } from './ProjectLink';
 export { default as Query } from './Query';
+export { default as Sentence, SentenceItem } from './Sentence';
 export { default as Table, prefixAccessors } from './Table';
 export { default as Title } from './Title';
 export * from './Table/columns';
