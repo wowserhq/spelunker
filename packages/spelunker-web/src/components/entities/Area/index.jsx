@@ -1,23 +1,44 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import { Box, Query, Tab, TabbedBox, Title } from '../../core';
+import {
+  Box,
+  List,
+  ListItem,
+  Query,
+  Tab,
+  TabbedBox,
+  Title,
+} from '../../core';
+
+import MapReference from '../Map/Reference';
 
 import AreaReference from './Reference';
 import QuestsTab from './tabs/Quests';
+import SubareasTab from './tabs/Subareas';
 
 const fetchArea = gql`
   query($id: Int!) {
     area(id: $id) {
       ...AreaReference
+      map {
+        ...MapReference
+      }
+      parent {
+        ...AreaReference
+      }
 
       quests {
+        totalCount
+      }
+      subareas {
         totalCount
       }
     }
   }
 
   ${AreaReference.fragment}
+  ${MapReference.fragment}
 `;
 
 const Area = ({ match }) => {
@@ -28,8 +49,11 @@ const Area = ({ match }) => {
         const { area } = data;
         const {
           name,
+          map,
+          parent,
 
           quests: { totalCount: questCount },
+          subareas: { totalCount: subareaCount },
         } = area;
 
         return (
@@ -39,7 +63,17 @@ const Area = ({ match }) => {
                 <AreaReference area={area} />
               </h1>
 
-              <h2>In-game map</h2>
+              <List>
+                {parent && (
+                  <ListItem>
+                    Part of <AreaReference area={parent} />
+                  </ListItem>
+                )}
+                <ListItem>
+                  In <MapReference map={map} />
+                </ListItem>
+              </List>
+
 
               <p>
                 Soon™
@@ -47,6 +81,13 @@ const Area = ({ match }) => {
             </Box>
 
             <TabbedBox>
+              {subareaCount > 0 && <Tab
+                label={`Sub-areas (${subareaCount})`}
+                component={SubareasTab}
+                path="sub-areas"
+                match={match}
+              />}
+
               {questCount > 0 && <Tab
                 label={`Quests (${questCount})`}
                 component={QuestsTab}
