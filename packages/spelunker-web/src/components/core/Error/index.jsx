@@ -31,3 +31,4 @@ const Error = ({ error }) => {
 };
 
 export default Error;
+export { default as ErrorBoundary } from './Boundary';
