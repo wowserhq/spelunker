@@ -13,21 +13,8 @@ class DatabaseQuery extends Query {
   }
 
   get none() {
-    this.whereRaw('1=0');
+    this.whereRaw('1 = 0');
     return this;
-  }
-
-  slice(offset, limit) {
-    this.knex.offset(offset).limit(limit);
-    return this;
-  }
-
-  totalCount() {
-    const knex = this.knex.clone().clearSelect().count();
-    log(knex.toString());
-    return knex.then(results => (
-      results[0]['count(*)']
-    ));
   }
 
   execute() {
@@ -37,6 +24,28 @@ class DatabaseQuery extends Query {
     )).catch(error => {
       throw error;
     });
+  }
+
+  find(id) {
+    return this.where({
+      [this.entity.primaryKey]: id,
+    }).first().execute();
+  }
+
+  slice(offset, limit) {
+    this.knex.offset(offset);
+    if (limit !== Infinity) {
+      this.knex.limit(limit);
+    }
+    return this;
+  }
+
+  totalCount() {
+    const knex = this.knex.clone().clearSelect().count();
+    log(knex.toString());
+    return knex.then(results => (
+      results[0]['count(*)']
+    ));
   }
 }
 

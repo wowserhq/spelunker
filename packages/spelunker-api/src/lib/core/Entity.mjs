@@ -22,8 +22,8 @@ class Entity {
     notImplemented(this, 'query');
   }
 
-  static async find() {
-    notImplemented(this, 'find');
+  static async find(filterOrID) {
+    return this.query.find(filterOrID);
   }
 
   static async build(data) {

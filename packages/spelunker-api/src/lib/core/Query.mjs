@@ -9,6 +9,14 @@ class Query {
     notImplemented(this, 'none');
   }
 
+  execute() {
+    notImplemented(this, 'execute');
+  }
+
+  find() {
+    notImplemented(this, 'find');
+  }
+
   search(searchQuery) {
     if (searchQuery) {
       this.entity.search(this, searchQuery);
@@ -22,10 +30,6 @@ class Query {
 
   totalCount() {
     notImplemented(this, 'totalCount');
-  }
-
-  execute() {
-    notImplemented(this, 'execute');
   }
 
   async build(data) {

@@ -15,6 +15,26 @@ class MemoryQuery extends Query {
     this.results = null;
   }
 
+  async execute() {
+    if (this.log) {
+      this.log(`fetching ${this.label}`);
+    }
+
+    const results = await this.filtered();
+    const end = this.limit ? this.offset + this.limit : undefined;
+    return results.slice(this.offset, end);
+  }
+
+  async find(filterOrID) {
+    let filter = filterOrID;
+    if (!(filter instanceof Function)) {
+      filter = (result => result.id === filterOrID);
+    }
+
+    const results = await this.execute();
+    return results.find(filter);
+  }
+
   filter(filter) {
     this.filters.push(filter);
     return this;
@@ -53,16 +73,6 @@ class MemoryQuery extends Query {
 
     const results = await this.filtered();
     return results.length;
-  }
-
-  async execute() {
-    if (this.log) {
-      this.log(`fetching ${this.label}`);
-    }
-
-    const results = await this.filtered();
-    const end = this.limit ? this.offset + this.limit : undefined;
-    return results.slice(this.offset, end);
   }
 }
 

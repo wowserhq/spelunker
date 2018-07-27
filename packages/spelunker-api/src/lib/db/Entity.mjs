@@ -28,12 +28,6 @@ class DatabaseEntity extends Entity {
     return new DatabaseQuery(this);
   }
 
-  static find(id) {
-    return this.query.where({
-      [this.primaryKey]: id,
-    }).first().execute();
-  }
-
   static fqColumn(column) {
     return `${this.fqTableName}.${column}`;
   }

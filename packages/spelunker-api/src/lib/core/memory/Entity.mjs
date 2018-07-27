@@ -16,11 +16,6 @@ class MemoryEntity extends Entity {
     );
     return query;
   }
-
-  static async find(id) {
-    const results = await this.query.execute();
-    return results.find(entry => entry.id === id);
-  }
 }
 
 export default MemoryEntity;
