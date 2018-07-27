@@ -5,18 +5,26 @@ import {
   GraphQLString,
 } from '../../../graphql';
 
+import BoundsType from '../BoundsType';
 import CollectionType from '../CollectionType';
 
+import MapType from './MapType';
 import QuestType from './QuestType';
-import WorldMapAreaType from './WorldMapAreaType';
+import SideType from './SideType';
 
-export default new GraphQLObjectType({
+const AreaType = new GraphQLObjectType({
   name: 'Area',
   fields: () => ({
     id: { type: new GraphQLNonNull(GraphQLInt) },
     name: { type: new GraphQLNonNull(GraphQLString) },
-    worldMapArea: { type: WorldMapAreaType },
+    bounds: { type: BoundsType },
+    map: { type: new GraphQLNonNull(MapType) },
+    parent: { type: AreaType },
 
     quests: CollectionType.definitionFor(QuestType),
+    sides: CollectionType.definitionFor(SideType),
+    subareas: CollectionType.definitionFor(AreaType),
   }),
 });
+
+export default AreaType;
