@@ -2,7 +2,9 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import {
+  Bounds,
   Box,
+  GameMap,
   List,
   ListItem,
   Query,
@@ -21,8 +23,15 @@ const fetchArea = gql`
   query($id: Int!) {
     area(id: $id) {
       ...AreaReference
+      bounds {
+        ...Bounds
+      }
       map {
         ...MapReference
+        filename
+        bounds {
+          ...Bounds
+        }
       }
       parent {
         ...AreaReference
@@ -37,6 +46,7 @@ const fetchArea = gql`
     }
   }
 
+  ${Bounds.fragment}
   ${AreaReference.fragment}
   ${MapReference.fragment}
 `;
@@ -49,6 +59,7 @@ const Area = ({ match }) => {
         const { area } = data;
         const {
           name,
+          bounds,
           map,
           parent,
 
@@ -74,10 +85,16 @@ const Area = ({ match }) => {
                 </ListItem>
               </List>
 
+              {bounds && (
+                <div>
+                  <h2>In-game map</h2>
 
-              <p>
-                Soon™
-              </p>
+                  <GameMap
+                    bounds={bounds}
+                    map={map}
+                  />
+                </div>
+              )}
             </Box>
 
             <TabbedBox>

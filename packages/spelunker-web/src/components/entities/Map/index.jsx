@@ -1,7 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import { Box, Query, Tab, TabbedBox, Title } from '../../core';
+import { Bounds, Box, GameMap, Query, Tab, TabbedBox, Title } from '../../core';
 
 import AreasTab from './tabs/Areas';
 import GameObjectSpawnsTab from './tabs/GameObjectSpawns';
@@ -12,6 +12,10 @@ const fetchMap = gql`
   query($id: Int!) {
     map(id: $id) {
       ...MapReference
+      filename
+      bounds {
+        ...Bounds
+      }
 
       areas {
         totalCount
@@ -25,6 +29,7 @@ const fetchMap = gql`
     }
   }
 
+  ${Bounds.fragment}
   ${MapReference.fragment}
 `;
 
@@ -48,6 +53,12 @@ const Map = ({ match }) => {
               <h1>
                 <MapReference map={map} />
               </h1>
+
+              <h2>In-game map</h2>
+
+              <GameMap
+                map={map}
+              />
             </Box>
 
             <TabbedBox>
