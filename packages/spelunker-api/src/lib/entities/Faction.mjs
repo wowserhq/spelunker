@@ -17,6 +17,19 @@ class Faction extends DBCEntity {
       .orWhere({ RequiredFactionId1: this.id })
       .orWhere({ RequiredFactionId2: this.id });
   }
+
+  parent() {
+    const { parentID } = this.data;
+    if (parentID) {
+      return Faction.find(parentID);
+    }
+    return null;
+  }
+
+  subfactions() {
+    const { id } = this;
+    return Faction.query.filter(faction => faction.parentID === id);
+  }
 }
 
 export default Faction;

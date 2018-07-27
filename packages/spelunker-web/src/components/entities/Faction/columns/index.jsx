@@ -9,11 +9,15 @@ import FactionReferenceColumn from './ReferenceColumn';
 const columns = [
   <IDColumn />,
   <FactionReferenceColumn />,
+  <FactionReferenceColumn id="parent" label="Part of" accessor="parent" />,
 ];
 
 columns.fragment = gql`
   fragment factionColumns on Faction {
     ...FactionReference
+    parent {
+      ...FactionReference
+    }
   }
 
   ${FactionReference.fragment}

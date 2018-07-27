@@ -3,7 +3,7 @@ import React from 'react';
 import FactionReference from '../Reference';
 
 const FactionReferenceColumn = ({ value: faction }) => (
-  <FactionReference faction={faction} />
+  faction && <FactionReference faction={faction} />
 );
 
 FactionReferenceColumn.defaultProps = {
