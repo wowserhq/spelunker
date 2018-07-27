@@ -2,7 +2,9 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import AccountReference from '../Account/Reference';
+import LocationSelector from '../Location/Selector';
 import {
+  Bounds,
   Box,
   List,
   ListItem,
@@ -27,6 +29,38 @@ const fetchCharacter = gql`
         ...AccountReference
       }
 
+      location {
+        areas {
+          results {
+            area {
+              id
+              name
+              bounds {
+                ...Bounds
+              }
+            }
+            spawnCount
+          }
+        }
+
+        map {
+          id
+          name
+          filename
+          bounds {
+            ...Bounds
+          }
+        }
+
+        spawns {
+          totalCount
+          results {
+            x
+            y
+          }
+        }
+      }
+
       completedQuests {
         totalCount
       }
@@ -46,6 +80,7 @@ const fetchCharacter = gql`
   }
 
   ${AccountReference.fragment}
+  ${Bounds.fragment}
   ${CharacterReference.fragment}
 `;
 
@@ -58,6 +93,7 @@ const Character = ({ match }) => {
         const {
           name,
           account,
+          location,
 
           completedQuests: { totalCount: completedQuestCount },
           currentQuests: { totalCount: currentQuestCount },
@@ -78,6 +114,13 @@ const Character = ({ match }) => {
                   Account: <AccountReference account={account} />
                 </ListItem>
               </List>
+
+              <h2>Location</h2>
+
+              <LocationSelector
+                entity="character"
+                locations={[location]}
+              />
             </Box>
 
             <TabbedBox>

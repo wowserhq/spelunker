@@ -1,14 +1,21 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import { Box, Query, Tab, TabbedBox, Title } from '../../core';
+import LocationSelector from '../Location/Selector';
+import {
+  Bounds,
+  Box,
+  Query,
+  Tab,
+  TabbedBox,
+  Title,
+} from '../../core';
 
 import DropsTab from './tabs/Drops';
 import EndsTab from './tabs/Ends';
 import NPCReference from './Reference';
 import ObjectiveOfTab from './tabs/ObjectiveOf';
 import SellsTab from './tabs/Sells';
-import SpawnsTab from './tabs/Spawns';
 import StartsTab from './tabs/Starts';
 import TeachesTab from './tabs/Teaches';
 
@@ -16,6 +23,41 @@ const fetchNPC = gql`
   query($id: Int!) {
     npc(id: $id) {
       ...NPCReference
+
+      locations {
+        results {
+          areas {
+            results {
+              area {
+                id
+                name
+                bounds {
+                  ...Bounds
+                }
+              }
+              spawnCount
+            }
+          }
+
+          map {
+            id
+            name
+            filename
+            bounds {
+              ...Bounds
+            }
+          }
+
+          spawns {
+            totalCount
+            results {
+              id
+              x
+              y
+            }
+          }
+        }
+      }
 
       drops {
         totalCount
@@ -29,9 +71,6 @@ const fetchNPC = gql`
       sells {
         totalCount
       }
-      spawns {
-        totalCount
-      }
       starts {
         totalCount
       }
@@ -41,6 +80,7 @@ const fetchNPC = gql`
     }
   }
 
+  ${Bounds.fragment}
   ${NPCReference.fragment}
 `;
 
@@ -52,12 +92,12 @@ const NPC = ({ match }) => {
         const { npc } = data;
         const {
           name,
+          locations,
 
           drops: { totalCount: dropCount },
           ends: { totalCount: endCount },
           objectiveOf: { totalCount: objectiveOfCount },
           sells: { totalCount: sellCount },
-          spawns: { totalCount: spawnCount },
           starts: { totalCount: startCount },
           teaches: { totalCount: teachCount },
         } = npc;
@@ -68,16 +108,16 @@ const NPC = ({ match }) => {
               <h1>
                 <NPCReference npc={npc} />
               </h1>
+
+              <h2>Location</h2>
+
+              <LocationSelector
+                entity="NPC"
+                locations={locations.results}
+              />
             </Box>
 
             <TabbedBox>
-              {spawnCount > 0 && <Tab
-                label={`Spawns (${spawnCount})`}
-                component={SpawnsTab}
-                path="spawns"
-                match={match}
-              />}
-
               {dropCount > 0 && <Tab
                 label={`Drops (${dropCount})`}
                 component={DropsTab}

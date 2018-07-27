@@ -1,7 +1,9 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
+import LocationSelector from '../Location/Selector';
 import {
+  Bounds,
   Box,
   List,
   ListItem,
@@ -16,7 +18,6 @@ import ContainsTab from './tabs/Contains';
 import EndsTab from './tabs/Ends';
 import GameObjectReference from './Reference';
 import ObjectiveOfTab from './tabs/ObjectiveOf';
-import SpawnsTab from './tabs/Spawns';
 import StartsTab from './tabs/Starts';
 
 const fetchGameObject = gql`
@@ -24,6 +25,41 @@ const fetchGameObject = gql`
     object(id: $id) {
       ...GameObjectReference
       type
+
+      locations {
+        results {
+          areas {
+            results {
+              area {
+                id
+                name
+                bounds {
+                  ...Bounds
+                }
+              }
+              spawnCount
+            }
+          }
+
+          map {
+            id
+            name
+            filename
+            bounds {
+              ...Bounds
+            }
+          }
+
+          spawns {
+            totalCount
+            results {
+              id
+              x
+              y
+            }
+          }
+        }
+      }
 
       contains {
         totalCount
@@ -34,15 +70,13 @@ const fetchGameObject = gql`
       objectiveOf {
         totalCount
       }
-      spawns {
-        totalCount
-      }
       starts {
         totalCount
       }
     }
   }
 
+  ${Bounds.fragment}
   ${GameObjectReference.fragment}
 `;
 
@@ -54,12 +88,12 @@ const GameObject = ({ match }) => {
         const { object } = data;
         const {
           name,
+          locations,
           type,
 
           contains: { totalCount: containCount },
           ends: { totalCount: endCount },
           objectiveOf: { totalCount : objectiveOfCount },
-          spawns: { totalCount: spawnCount },
           starts: { totalCount: startCount },
         } = object;
 
@@ -73,16 +107,16 @@ const GameObject = ({ match }) => {
               <List>
                 <ListItem>Type: {humanize(type)}</ListItem>
               </List>
+
+              <h2>Location</h2>
+
+              <LocationSelector
+                entity="game object"
+                locations={locations.results}
+              />
             </Box>
 
             <TabbedBox>
-              {spawnCount > 0 && <Tab
-                label={`Spawns (${spawnCount})`}
-                component={SpawnsTab}
-                path="spawns"
-                match={match}
-              />}
-
               {containCount > 0 && <Tab
                 label={`Contains (${containCount})`}
                 component={ContainsTab}
