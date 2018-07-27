@@ -39,7 +39,7 @@ class Map extends DBCEntity {
   bounds() {
     return cache([Map, this.id, 'bounds'], () => {
       const wdt = this.wdt();
-      if (wdt.MWMO) {
+      if (wdt.MWMO.size) {
         // TODO: Compute bounds for map with global WMO
         const max = TILE_COUNT * TILE_SIZE;
         return {
