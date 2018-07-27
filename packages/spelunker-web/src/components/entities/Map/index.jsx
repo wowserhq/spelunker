@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 
 import { Box, Query, Tab, TabbedBox, Title } from '../../core';
 
+import AreasTab from './tabs/Areas';
 import GameObjectSpawnsTab from './tabs/GameObjectSpawns';
 import MapReference from './Reference';
 import NPCSpawnsTab from './tabs/NPCSpawns';
@@ -12,6 +13,9 @@ const fetchMap = gql`
     map(id: $id) {
       ...MapReference
 
+      areas {
+        totalCount
+      }
       npcSpawns {
         totalCount
       }
@@ -33,6 +37,7 @@ const Map = ({ match }) => {
         const {
           name,
 
+          areas: { totalCount: areaCount },
           npcSpawns: { totalCount: npcSpawnCount },
           objectSpawns: { totalCount: objectSpawnCount },
         } = map;
@@ -46,6 +51,13 @@ const Map = ({ match }) => {
             </Box>
 
             <TabbedBox>
+              {areaCount > 0 && <Tab
+                label={`Areas (${areaCount})`}
+                component={AreasTab}
+                path="areas"
+                match={match}
+              />}
+
               {npcSpawnCount > 0 && <Tab
                 label={`NPCs (${npcSpawnCount})`}
                 component={NPCSpawnsTab}
