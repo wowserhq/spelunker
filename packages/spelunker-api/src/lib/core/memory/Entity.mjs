@@ -1,4 +1,5 @@
 import Entity from '../Entity';
+import cache from '../../utils/cache';
 import { notImplemented } from '../../utils/abstract';
 
 import MemoryQuery from './Query';
@@ -10,14 +11,9 @@ class MemoryEntity extends Entity {
 
   static get query() {
     const query = new MemoryQuery(this);
-    query.load = async () => {
-      let cache = this.cache;
-      if (!cache) {
-        cache = query.build(this.data);
-        this.cache = cache;
-      }
-      return await cache;
-    };
+    query.load = () => (
+      cache([this], () => query.build(this.data))
+    );
     return query;
   }
 

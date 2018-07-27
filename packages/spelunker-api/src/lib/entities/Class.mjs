@@ -1,4 +1,5 @@
 import DBCEntity from '../dbc/Entity';
+import cache from '../utils/cache';
 import glueStrings from '../mpq/files/GlueStrings';
 import { contains } from '../utils/string';
 
@@ -20,13 +21,14 @@ class Class extends DBCEntity {
   }
 
   static async allMask() {
-    // TODO: This should be cached
-    let mask = 0;
-    const classes = await this.query.execute();
-    for (const klass of classes) {
-      mask |= klass.mask;
-    }
-    return mask;
+    return cache([Class, 'allMask'], async () => {
+      let mask = 0;
+      const classes = await this.query.execute();
+      for (const klass of classes) {
+        mask |= klass.mask;
+      }
+      return mask;
+    });
   }
 
   get description() {

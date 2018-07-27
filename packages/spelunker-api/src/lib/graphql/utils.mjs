@@ -3,6 +3,9 @@
 import {
   GraphQLEnumType,
 } from '../graphql';
+import { createCache } from '../utils/cache';
+
+const cache = createCache();
 
 const generateEnumDefinition = (name, types) => (
   new GraphQLEnumType({
@@ -14,4 +17,4 @@ const generateEnumDefinition = (name, types) => (
   })
 );
 
-export { generateEnumDefinition };
+export { cache, generateEnumDefinition };

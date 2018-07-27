@@ -4,27 +4,24 @@ import {
   GraphQLNonNull,
   GraphQLObjectType,
 } from '../../graphql';
+import { cache } from '../../graphql/utils';
 
 import Collection from '../../core/Collection';
 
-const cache = new Map();
-
 class CollectionType extends GraphQLObjectType {
   static for(wrappedType) {
-    let type = cache.get(wrappedType);
-    if (!type) {
-      type = new GraphQLNonNull(
+    const name = `${wrappedType.toString().replace('!', '')}Collection`;
+    return cache([name], () => (
+      new GraphQLNonNull(
         new this({
-          name: `${wrappedType}Collection`,
+          name,
           fields: {
             totalCount: { type: new GraphQLNonNull(GraphQLInt) },
             results: { type: new GraphQLList(wrappedType) },
           },
         })
-      );
-      cache.set(wrappedType, type);
-    }
-    return type;
+      )
+    ));
   }
 
   static definitionFor(wrappedType, options = {}) {

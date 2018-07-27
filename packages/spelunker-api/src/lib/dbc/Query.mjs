@@ -2,6 +2,7 @@ import DBC from 'blizzardry/lib/dbc/entities';
 import restructure from 'blizzardry/lib/restructure';
 
 import MemoryQuery from '../core/memory/Query';
+import cache from '../utils/cache';
 import logger from '../utils/logger';
 import mpq from '../mpq';
 
@@ -29,12 +30,7 @@ class DBCQuery extends MemoryQuery {
   }
 
   async load() {
-    let cache = this.entity.cache;
-    if (!cache) {
-      cache = this.preload();
-      this.entity.cache = cache;
-    }
-    return await cache;
+    return cache([this.entity], () => this.preload());
   }
 }
 
