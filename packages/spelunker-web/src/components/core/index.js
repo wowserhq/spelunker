@@ -1,3 +1,4 @@
+export { default as Bounds } from './Bounds';
 export { default as Box, Tab, TabbedBox } from './Box';
 export { default as Collection } from './Collection';
 export { default as Error, ErrorBoundary } from './Error';
