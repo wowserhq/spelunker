@@ -1,6 +1,7 @@
 import DatabaseEntity from '../db/Entity';
 import { worldConnection } from '../db/connections';
 
+import Location from './Location';
 import NPCLoot from './NPCLoot';
 import NPCQuestFinisher from './NPCQuestFinisher';
 import NPCQuestStarter from './NPCQuestStarter';
@@ -42,6 +43,10 @@ class NPC extends DatabaseEntity {
     ).where({
       [NPCQuestFinisher.fqColumn('id')]: this.id,
     });
+  }
+
+  locations() {
+    return Location.group(this.spawns());
   }
 
   objectiveOf() {

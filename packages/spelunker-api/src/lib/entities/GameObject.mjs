@@ -5,6 +5,7 @@ import GameObjectLoot from './GameObjectLoot';
 import GameObjectQuestFinisher from './GameObjectQuestFinisher';
 import GameObjectQuestStarter from './GameObjectQuestStarter';
 import GameObjectSpawn from './GameObjectSpawn';
+import Location from './Location';
 import Quest from './Quest';
 
 class GameObject extends DatabaseEntity {
@@ -40,6 +41,10 @@ class GameObject extends DatabaseEntity {
     ).where({
       [GameObjectQuestFinisher.fqColumn('id')]: this.id,
     });
+  }
+
+  locations() {
+    return Location.group(this.spawns());
   }
 
   objectiveOf() {

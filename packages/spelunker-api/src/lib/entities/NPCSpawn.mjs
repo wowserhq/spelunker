@@ -1,6 +1,7 @@
 import DatabaseEntity from '../db/Entity';
 import { worldConnection } from '../db/connections';
 
+import Area from './Area';
 import Map from './Map';
 import NPC from './NPC';
 
@@ -31,6 +32,10 @@ class NPCSpawn extends DatabaseEntity {
 
   get z() {
     return this.data.position_z;
+  }
+
+  area() {
+    return Area.findByCoords(this.data.map, this.x, this.y, this.z);
   }
 
   map() {

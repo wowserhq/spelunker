@@ -12,6 +12,7 @@ import NPCSaleType from './NPCSaleType';
 import NPCSpawnType from './NPCSpawnType';
 import NPCTrainingType from './NPCTrainingType';
 import QuestType from './QuestType';
+import { LocationCollectionType } from './LocationType';
 
 export default new GraphQLObjectType({
   name: 'NPC',
@@ -22,6 +23,7 @@ export default new GraphQLObjectType({
 
     drops: CollectionType.definitionFor(NPCLootType),
     ends: CollectionType.definitionFor(QuestType),
+    locations: LocationCollectionType.definitionFor(NPCSpawnType),
     objectiveOf: CollectionType.definitionFor(QuestType),
     sells: CollectionType.definitionFor(NPCSaleType),
     spawns: CollectionType.definitionFor(NPCSpawnType, {

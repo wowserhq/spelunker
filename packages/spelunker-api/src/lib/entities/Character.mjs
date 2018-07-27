@@ -6,7 +6,9 @@ import CharacterItem from './CharacterItem';
 import CharacterQuestStatus from './CharacterQuestStatus';
 import CharacterQuestStatusRewarded from './CharacterQuestStatusRewarded';
 import CharacterReputation from './CharacterReputation';
+import CharacterSpawn from './CharacterSpawn';
 import Class from './Class';
+import Location from './Location';
 import Race from './Race';
 import Quest from './Quest';
 
@@ -29,18 +31,6 @@ class Character extends DatabaseEntity {
 
   get id() {
     return this.data.guid;
-  }
-
-  get x() {
-    return this.data.position_x;
-  }
-
-  get y() {
-    return this.data.position_y;
-  }
-
-  get z() {
-    return this.data.position_z;
   }
 
   account() {
@@ -80,12 +70,24 @@ class Character extends DatabaseEntity {
     return CharacterItem.query.where({ owner_guid: this.id });
   }
 
+  async location() {
+    const spawn = this.spawn();
+    const map = await spawn.map();
+    const location = new Location(map);
+    await location.add(spawn);
+    return location;
+  }
+
   race() {
     return Race.find(this.data.race);
   }
 
   reputation() {
     return CharacterReputation.query.where({ guid: this.id });
+  }
+
+  spawn() {
+    return new CharacterSpawn(this.data);
   }
 
   async uncompletedQuests() {

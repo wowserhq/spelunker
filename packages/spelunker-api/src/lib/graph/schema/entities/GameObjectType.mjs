@@ -10,6 +10,7 @@ import CollectionType from '../CollectionType';
 import GameObjectLootType from './GameObjectLootType';
 import GameObjectSpawnType from './GameObjectSpawnType';
 import GameObjectTypeType from './GameObjectTypeType';
+import { LocationCollectionType } from './LocationType';
 import QuestType from './QuestType';
 
 export default new GraphQLObjectType({
@@ -21,6 +22,7 @@ export default new GraphQLObjectType({
 
     contains: CollectionType.definitionFor(GameObjectLootType),
     ends: CollectionType.definitionFor(QuestType),
+    locations: LocationCollectionType.definitionFor(GameObjectSpawnType),
     objectiveOf: CollectionType.definitionFor(QuestType),
     spawns: CollectionType.definitionFor(GameObjectSpawnType, {
       maxResults: Infinity,

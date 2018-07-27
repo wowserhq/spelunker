@@ -11,6 +11,16 @@ class Area extends DBCEntity {
     return 'AreaTable';
   }
 
+  static async findByCoords(mapID, x, y, z) {
+    // TODO: Correct way of finding an area by coordinates would be to load up
+    // the corresponding map tile, but that is slow. Once we swap to Kaitai
+    // structures this may be feasible. This current implementation relies on
+    // the world map but is inaccurate for some locations.
+    const wmas = await WorldMapArea.filterByCoords(mapID, x, y, z).execute();
+    const wma = wmas[0];
+    return wma && await wma.area();
+  }
+
   static search(query, searchQuery) {
     query.filter(area => contains(area.name, searchQuery));
   }

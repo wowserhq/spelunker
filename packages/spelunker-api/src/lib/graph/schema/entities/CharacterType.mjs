@@ -1,5 +1,4 @@
 import {
-  GraphQLFloat,
   GraphQLInt,
   GraphQLNonNull,
   GraphQLObjectType,
@@ -13,12 +12,13 @@ import ClassType from './ClassType';
 import CharacterItemType from './CharacterItemType';
 import CharacterQuestType from './CharacterQuestType';
 import CharacterReputationType from './CharacterReputationType';
+import CharacterSpawnType from './CharacterSpawnType';
 import GenderType from './GenderType';
-import MapType from './MapType';
+import LocationType from './LocationType';
 import QuestType from './QuestType';
 import RaceType from './RaceType';
 
-export default new GraphQLObjectType({
+const CharacterType = new GraphQLObjectType({
   name: 'Character',
   fields: () => ({
     id: { type: new GraphQLNonNull(GraphQLInt) },
@@ -27,14 +27,11 @@ export default new GraphQLObjectType({
     xp: { type: GraphQLInt },
     level: { type: GraphQLInt },
 
-    map: { type: MapType },
-    x: { type: GraphQLFloat },
-    y: { type: GraphQLFloat },
-    z: { type: GraphQLFloat },
-    orientation: { type: GraphQLFloat },
     account: { type: new GraphQLNonNull(AccountType) },
     class: { type: new GraphQLNonNull(ClassType) },
+    location: LocationType.definitionFor(CharacterSpawnType),
     race: { type: new GraphQLNonNull(RaceType) },
+    spawn: { type: new GraphQLNonNull(CharacterSpawnType) },
 
     completedQuests: CollectionType.definitionFor(QuestType),
     currentQuests: CollectionType.definitionFor(CharacterQuestType),
@@ -43,3 +40,5 @@ export default new GraphQLObjectType({
     uncompletedQuests: CollectionType.definitionFor(QuestType),
   }),
 });
+
+export default CharacterType;
