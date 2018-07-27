@@ -5,14 +5,16 @@ import {
 import AreaType from './AreaType';
 import QuestSortType from './QuestSortType';
 
+const lookup = {
+  Area: AreaType,
+  QuestSort: QuestSortType,
+};
+
 export default new GraphQLUnionType({
   name: 'QuestCategory',
   types: () => [AreaType, QuestSortType],
   resolveType: (value) => {
     const name = value.constructor.name;
-    return {
-      Area: AreaType,
-      QuestSort: QuestSortType,
-    }[name];
+    return lookup[name];
   },
 });

@@ -28,8 +28,7 @@ class Side extends MemoryEntity {
   }
 
   static async find(id) {
-    const results = await this.query.execute();
-    return results.find(side => (
+    return await this.query.find(side => (
       side.id === id || side.faction === id
     ));
   }
