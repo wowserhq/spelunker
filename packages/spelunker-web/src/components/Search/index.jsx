@@ -59,8 +59,8 @@ const search = gql`
 `;
 
 class Search extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor(props, ...args) {
+    super(props, ...args);
 
     this.state = {
       query: props.match.params.query || '',
