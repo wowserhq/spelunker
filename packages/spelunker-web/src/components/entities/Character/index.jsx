@@ -2,7 +2,15 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import AccountReference from '../Account/Reference';
-import { Box, Query, Tab, TabbedBox, Title } from '../../core';
+import {
+  Box,
+  List,
+  ListItem,
+  Query,
+  Tab,
+  TabbedBox,
+  Title,
+} from '../../core';
 
 import CharacterReference from './Reference';
 import CompletedQuestsTab from './tabs/CompletedQuests';
@@ -65,9 +73,11 @@ const Character = ({ match }) => {
                 <CharacterReference character={character} />
               </h1>
 
-              <p>
-                Account: <AccountReference account={account} />
-              </p>
+              <List>
+                <ListItem>
+                  Account: <AccountReference account={account} />
+                </ListItem>
+              </List>
             </Box>
 
             <TabbedBox>
