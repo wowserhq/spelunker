@@ -16,7 +16,6 @@ const ListItem = (props) => {
 
 ListItem.defaultProps = {
   current: false,
-  label: null,
 };
 
 const List = (props) => {
@@ -29,6 +28,10 @@ const List = (props) => {
     props.label && <h2 key="heading">{props.label}</h2>,
     <ul className={className} key="list">{props.children}</ul>,
   ];
+};
+
+List.defaultProps = {
+  label: null,
 };
 
 export default List;
