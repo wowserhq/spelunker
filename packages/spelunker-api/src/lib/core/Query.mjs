@@ -5,10 +5,6 @@ class Query {
     this.entity = entity;
   }
 
-  get none() {
-    notImplemented(this, 'none');
-  }
-
   execute() {
     notImplemented(this, 'execute');
   }

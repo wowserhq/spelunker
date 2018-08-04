@@ -12,11 +12,6 @@ class DatabaseQuery extends Query {
     this.knex = entity.connection(entity.fqTableName);
   }
 
-  get none() {
-    this.whereRaw('1 = 0');
-    return this;
-  }
-
   execute() {
     log(this.knex.toString());
     return this.knex.then(results => (

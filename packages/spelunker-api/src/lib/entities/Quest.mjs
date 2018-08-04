@@ -151,13 +151,13 @@ class Quest extends DatabaseEntity {
   async prerequisiteChoiceQuests() {
     const prev = await this.previousQuest();
     if (!prev) {
-      return Quest.query.none;
+      return Quest.none;
     }
     const group = prev.ExclusiveGroup;
     if (group > 0) {
       return Quest.query.where({ ExclusiveGroup: group });
     }
-    return Quest.query.none;
+    return Quest.none;
   }
 
   prerequisiteFactionReputation() {
@@ -181,7 +181,7 @@ class Quest extends DatabaseEntity {
   async prerequisiteQuests() {
     const prev = await this.previousQuest();
     if (!prev) {
-      return Quest.query.none;
+      return Quest.none;
     }
     const group = prev.ExclusiveGroup;
     if (!group) {
@@ -192,7 +192,7 @@ class Quest extends DatabaseEntity {
     if (group < 0) {
       return Quest.query.where({ ExclusiveGroup: group });
     }
-    return Quest.query.none;
+    return Quest.none;
   }
 
   previousQuest() {

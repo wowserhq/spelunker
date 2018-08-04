@@ -96,6 +96,10 @@ class Item extends DatabaseEntity {
   }
 
   starts() {
+    if (!this.startquest) {
+      return Quest.none;
+    }
+
     return Quest.query.where({
       [Quest.fqColumn('ID')]: this.startquest,
     });

@@ -1,5 +1,7 @@
 import { notImplemented } from '../utils/abstract';
 
+import NoneQuery from './NoneQuery';
+
 class Entity {
   constructor(data) {
     this.data = data;
@@ -16,6 +18,10 @@ class Entity {
 
   static search() {
     notImplemented(this, 'search');
+  }
+
+  static get none() {
+    return new NoneQuery();
   }
 
   static get query() {
