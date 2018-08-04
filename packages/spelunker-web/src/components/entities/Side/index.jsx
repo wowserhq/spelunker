@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 
 import { Box, Query, Tab, TabbedBox, Title } from '../../core';
 
+import AreasTab from './tabs/Areas';
 import ExclusiveQuestsTab from './tabs/ExclusiveQuests';
 import QuestsTab from './tabs/Quests';
 import RacesTab from './tabs/Races';
@@ -14,6 +15,9 @@ const fetchSide = gql`
       ...SideReference
       description
 
+      areas {
+        totalCount
+      }
       exclusiveQuests: quests(exclusive: true) {
         totalCount
       }
@@ -38,6 +42,8 @@ const Side = ({ match }) => {
         const {
           name,
           description,
+
+          areas: { totalCount: areaCount },
           exclusiveQuests: { totalCount: exclusiveQuestCount },
           quests: { totalCount: questCount },
           races: { totalCount: raceCount },
@@ -60,6 +66,13 @@ const Side = ({ match }) => {
                 label={`Races (${raceCount})`}
                 component={RacesTab}
                 path="races"
+                match={match}
+              />}
+
+              {areaCount > 0 && <Tab
+                label={`Areas (${areaCount})`}
+                component={AreasTab}
+                path="areas"
                 match={match}
               />}
 

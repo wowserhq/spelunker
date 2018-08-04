@@ -51,10 +51,7 @@ class Area extends DBCEntity {
     if (!factionGroupID && parentID) {
       return (await this.parent()).sides();
     }
-    // TODO: Refactor into a method on Side entity
-    return Side.query.filter(
-      side => side.faction === factionGroupID / 2 - 1
-    );
+    return Side.filterByFactionGroup(factionGroupID);
   }
 
   subareas() {

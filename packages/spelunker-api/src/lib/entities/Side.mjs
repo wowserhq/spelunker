@@ -2,6 +2,7 @@ import MemoryEntity from '../core/memory/Entity';
 import glueStrings from '../mpq/files/GlueStrings';
 import { contains } from '../utils/string';
 
+import Area from './Area';
 import Quest from './Quest';
 import Race from './Race';
 
@@ -13,14 +14,20 @@ class Side extends MemoryEntity {
         name: 'Alliance',
         icon: 'Interface\\WorldStateFrame\\AllianceIcon',
         faction: 0,
+        factionGroup: 2,
       },
       {
         id: 'horde',
         name: 'Horde',
         icon: 'Interface\\WorldStateFrame\\HordeIcon',
         faction: 1,
+        factionGroup: 4,
       },
     ];
+  }
+
+  static filterByFactionGroup(factionGroup) {
+    return this.query.filter(side => side.factionGroup & factionGroup);
   }
 
   static search(query, searchQuery) {
@@ -50,6 +57,10 @@ class Side extends MemoryEntity {
   get opposition() {
     const id = this.data.id === 'alliance' ? 'horde' : 'alliance';
     return Side.find(id);
+  }
+
+  areas() {
+    return Area.query.filter(area => area.factionGroupID === this.factionGroup);
   }
 
   async quests({ exclusive } = {}) {
