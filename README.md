@@ -68,6 +68,9 @@ runtimes.
 
    In particular, verify `DATA_DIR` and `DATABASE_*` variables.
 
+   To configure [CORS], specify the allowed origin(s) in `CORS_ALLOWED_ORIGINS`
+   as a comma-separated list.
+
 6. Source the `.envrc` file:
 
    ```shell
@@ -129,6 +132,7 @@ When contributing, please:
 [Babel]: http://babeljs.io/
 [Blizzardry]: https://github.com/wowserhq/blizzardry
 [BLPConverter]: https://github.com/wowserhq/blizzardry#blp
+[CORS]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 [Lerna]: https://github.com/lerna/lerna
 [Node]: http://nodejs.org/#download
 [StormLib]: https://github.com/wowserhq/blizzardry#mpq

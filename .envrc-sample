@@ -1,5 +1,6 @@
 export API_PORT=3001
 export API_URI=http://localhost:$API_PORT/graphql
+export CORS_ALLOWED_ORIGINS=*
 export DATA_DIR='/Applications/World of Warcraft/Data'
 export DATABASE_AUTH_URI=mysql://user:pass@host/auth_database
 export DATABASE_CHARACTERS_URI=mysql://user:pass@host/characters_database

@@ -11,8 +11,11 @@ const { graphqlExpress, graphiqlExpress } = apolloExpress;
 
 const server = express();
 
-// TODO: Secure CORS configuration
-server.use(cors());
+const allowedOrigins = (process.env.CORS_ALLOWED_ORIGINS || '*').split(',');
+server.use(cors({
+  // Necessary to ensure the '*'-default keeps working
+  origin: allowedOrigins.length === 1 ? allowedOrigins[0] : allowedOrigins,
+}));
 
 server.use('/graphql', bodyParser.json(), graphqlExpress({ schema, rootValue }));
 server.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
