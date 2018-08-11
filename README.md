@@ -25,6 +25,9 @@ Spelunker ships with a pipeline serving up resources to the browser over HTTP.
 Depending on your network configuration these may be available to others. Respect
 laws and do not distribute game data you do not own.
 
+Be mindful of any privacy sensitive data – such as account and character names –
+you may expose through Spelunker.
+
 ### Supported servers and game versions
 
 - [Trinity Core] - 3.3.5a
