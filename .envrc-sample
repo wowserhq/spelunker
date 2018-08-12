@@ -5,6 +5,6 @@ export DATA_DIR='/Applications/World of Warcraft/Data'
 export DATABASE_AUTH_URI=mysql://user:pass@host/auth_database
 export DATABASE_CHARACTERS_URI=mysql://user:pass@host/characters_database
 export DATABASE_WORLD_URI=mysql://user:pass@host/world_database
-export DEBUG=spelunker:*,knex:*
+export DEBUG=spelunker:*
 export PIPELINE_URI=http://localhost:$API_PORT/pipeline
 export WEB_PORT=3000
