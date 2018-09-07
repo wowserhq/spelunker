@@ -13,6 +13,7 @@ import ItemDisplayInfoType from './ItemDisplayInfoType';
 import ItemLootType from './ItemLootType';
 import ItemQualityType from './ItemQualityType';
 import NPCLootType from './NPCLootType';
+import ItemSetType from './ItemSetType';
 import NPCSaleType from './NPCSaleType';
 import QuestType from './QuestType';
 
@@ -22,6 +23,7 @@ export default new GraphQLObjectType({
     id: { type: new GraphQLNonNull(GraphQLInt) },
     name: { type: new GraphQLNonNull(GraphQLString) },
     buyPrice: { type: CurrencyType },
+    itemSet: { type: ItemSetType },
     sellPrice: { type: CurrencyType },
     quality: { type: ItemQualityType },
 

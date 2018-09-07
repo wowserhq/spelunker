@@ -14,6 +14,7 @@ import ClassType from './entities/ClassType';
 import FactionType from './entities/FactionType';
 import GameObjectType from './entities/GameObjectType';
 import ItemType from './entities/ItemType';
+import ItemSetType from './entities/ItemSetType';
 import MapType from './entities/MapType';
 import NPCType from './entities/NPCType';
 import QuestType from './entities/QuestType';
@@ -56,6 +57,9 @@ export default new GraphQLObjectType({
 
     items: searchableCollectionFor(ItemType),
     item: finderFor(ItemType),
+
+    itemSets: searchableCollectionFor(ItemSetType),
+    itemSet: finderFor(ItemSetType),
 
     maps: searchableCollectionFor(MapType),
     map: finderFor(MapType),

@@ -5,6 +5,7 @@ import GameObjectLoot from './GameObjectLoot';
 import ItemDisplayInfo from './ItemDisplayInfo';
 import ItemLoot from './ItemLoot';
 import NPCLoot from './NPCLoot';
+import ItemSet from './ItemSet';
 import NPCSale from './NPCSale';
 import Quest from './Quest';
 
@@ -59,6 +60,10 @@ class Item extends DatabaseEntity {
 
   droppedBy() {
     return NPCLoot.query.where({ Item: this.id }).orderBy('Chance', 'desc');
+  }
+
+  itemSet() {
+    return ItemSet.find(this.data.itemset);
   }
 
   objectiveOf() {
