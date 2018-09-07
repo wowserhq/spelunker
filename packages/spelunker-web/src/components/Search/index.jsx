@@ -37,6 +37,9 @@ const search = gql`
     items(searchQuery: $searchQuery) {
       totalCount
     }
+    itemSets(searchQuery: $searchQuery) {
+      totalCount
+    }
     maps(searchQuery: $searchQuery) {
       totalCount
     }
@@ -104,6 +107,7 @@ class Search extends React.Component {
                 factions: { totalCount: factionCount },
                 objects: { totalCount: objectCount },
                 items: { totalCount: itemCount },
+                itemSets: { totalCount: itemSetCount },
                 maps: { totalCount: mapCount },
                 npcs: { totalCount: npcCount },
                 quests: { totalCount: questCount },
@@ -168,6 +172,15 @@ class Search extends React.Component {
                     path="items"
                     match={match}
                     columnsFragmentName="itemColumns"
+                  />}
+
+                  {itemSetCount > 0 && <Tab
+                    label={`Item Sets (${itemSetCount})`}
+                    component={ResultsTab}
+                    path="item-sets"
+                    match={match}
+                    accessor="itemSets"
+                    columnsFragmentName="itemSetColumns"
                   />}
 
                   {mapCount > 0 && <Tab
