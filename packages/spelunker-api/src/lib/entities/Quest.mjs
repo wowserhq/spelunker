@@ -178,6 +178,19 @@ class Quest extends DatabaseEntity {
     return this.data.MaxLevel;
   }
 
+  prerequisiteMutuallyExclusiveQuests() {
+    const group = this.data.ExclusiveGroup;
+    if (group > 0) {
+      return Quest.query.where({
+        ExclusiveGroup: group,
+      }).whereNot(
+        Quest.fqColumn('ID'),
+        this.id
+      );
+    }
+    return Quest.none;
+  }
+
   async prerequisiteQuests() {
     const prev = await this.previousQuest();
     if (!prev) {

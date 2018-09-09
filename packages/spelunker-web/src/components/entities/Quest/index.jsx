@@ -60,6 +60,12 @@ const fetchQuest = gql`
       }
       prerequisiteLevel
       prerequisiteMaxLevel
+      prerequisiteMutuallyExclusiveQuests {
+        totalCount
+        results {
+          ...QuestReference
+        }
+      }
       prerequisiteQuests {
         totalCount
         results {
@@ -194,6 +200,7 @@ const Quest = ({ match }) => {
           prerequisiteFactionReputation,
           prerequisiteLevel,
           prerequisiteMaxLevel,
+          prerequisiteMutuallyExclusiveQuests,
           prerequisiteQuests,
           providedItem,
           providedSpell,
@@ -321,6 +328,18 @@ const Quest = ({ match }) => {
                   <ListItem>Complete:
                     <List>
                       {prerequisiteQuests.results.map(quest => (
+                        <ListItem key={quest.id}>
+                          <QuestReference quest={quest} />
+                        </ListItem>
+                      ))}
+                    </List>
+                  </ListItem>
+                )}
+
+                {prerequisiteMutuallyExclusiveQuests.totalCount > 0 && (
+                  <ListItem>Mutually exclusive with:
+                    <List>
+                      {prerequisiteMutuallyExclusiveQuests.results.map(quest => (
                         <ListItem key={quest.id}>
                           <QuestReference quest={quest} />
                         </ListItem>

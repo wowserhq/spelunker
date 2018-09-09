@@ -48,6 +48,7 @@ const QuestType = new GraphQLObjectType({
     objectiveTexts: { type: new GraphQLList(GraphQLString) },
     prerequisiteChoiceQuests: CollectionType.definitionFor(QuestType),
     prerequisiteFactionReputation: CollectionType.definitionFor(QuestFactionType),
+    prerequisiteMutuallyExclusiveQuests: CollectionType.definitionFor(QuestType),
     prerequisiteQuests: CollectionType.definitionFor(QuestType),
     previousQuest: { type: QuestType },
     providedItem: { type: ItemType },
