@@ -4,8 +4,8 @@ import { worldConnection } from '../db/connections';
 import GameObjectLoot from './GameObjectLoot';
 import ItemDisplayInfo from './ItemDisplayInfo';
 import ItemLoot from './ItemLoot';
-import NPCLoot from './NPCLoot';
 import ItemSet from './ItemSet';
+import NPCLoot from './NPCLoot';
 import NPCSale from './NPCSale';
 import Quest from './Quest';
 
