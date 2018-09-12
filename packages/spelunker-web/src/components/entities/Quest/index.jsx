@@ -36,6 +36,12 @@ const fetchQuest = gql`
       }
       description
       level,
+      mutuallyExclusiveWith {
+        totalCount
+        results {
+          ...QuestReference
+        }
+      }
       nextQuests {
         totalCount
         results {
@@ -60,12 +66,6 @@ const fetchQuest = gql`
       }
       prerequisiteLevel
       prerequisiteMaxLevel
-      prerequisiteMutuallyExclusiveQuests {
-        totalCount
-        results {
-          ...QuestReference
-        }
-      }
       prerequisiteQuests {
         totalCount
         results {
@@ -194,13 +194,13 @@ const Quest = ({ match }) => {
           chain,
           classes,
           level,
+          mutuallyExclusiveWith,
           nextQuests,
           objectiveTexts,
           prerequisiteChoiceQuests,
           prerequisiteFactionReputation,
           prerequisiteLevel,
           prerequisiteMaxLevel,
-          prerequisiteMutuallyExclusiveQuests,
           prerequisiteQuests,
           providedItem,
           providedSpell,
@@ -336,10 +336,10 @@ const Quest = ({ match }) => {
                   </ListItem>
                 )}
 
-                {prerequisiteMutuallyExclusiveQuests.totalCount > 0 && (
-                  <ListItem>Mutually exclusive with:
+                {mutuallyExclusiveWith.totalCount > 0 && (
+                  <ListItem>Must <strong>not</strong> have accepted:
                     <List>
-                      {prerequisiteMutuallyExclusiveQuests.results.map(quest => (
+                      {mutuallyExclusiveWith.results.map(quest => (
                         <ListItem key={quest.id}>
                           <QuestReference quest={quest} />
                         </ListItem>

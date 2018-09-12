@@ -128,6 +128,19 @@ class Quest extends DatabaseEntity {
     });
   }
 
+  mutuallyExclusiveWith() {
+    const group = this.data.ExclusiveGroup;
+    if (group > 0) {
+      return Quest.query.where({
+        ExclusiveGroup: group,
+      }).whereNot(
+        Quest.fqColumn('ID'),
+        this.id
+      );
+    }
+    return Quest.none;
+  }
+
   async nextQuest() {
     return await this.nextQuests().first().execute();
   }
@@ -176,19 +189,6 @@ class Quest extends DatabaseEntity {
 
   prerequisiteMaxLevel() {
     return this.data.MaxLevel;
-  }
-
-  prerequisiteMutuallyExclusiveQuests() {
-    const group = this.data.ExclusiveGroup;
-    if (group > 0) {
-      return Quest.query.where({
-        ExclusiveGroup: group,
-      }).whereNot(
-        Quest.fqColumn('ID'),
-        this.id
-      );
-    }
-    return Quest.none;
   }
 
   async prerequisiteQuests() {
