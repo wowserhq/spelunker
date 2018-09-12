@@ -5,6 +5,7 @@ import Class from '../entities/Class';
 import Faction from '../entities/Faction';
 import GameObject from '../entities/GameObject';
 import Item from '../entities/Item';
+import ItemSet from '../entities/ItemSet';
 import Map from '../entities/Map';
 import NPC from '../entities/NPC';
 import Quest from '../entities/Quest';
@@ -30,6 +31,9 @@ export default {
 
   items: ({ searchQuery }) => Item.query.search(searchQuery),
   item: ({ id }) => Item.find(id),
+
+  itemSets: ({ searchQuery }) => ItemSet.query.search(searchQuery),
+  itemSet: ({ id }) => ItemSet.find(id),
 
   maps: ({ searchQuery }) => Map.query.search(searchQuery),
   map: ({ id }) => Map.find(id),

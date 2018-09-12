@@ -2,6 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import Currency from '../../formatters/Currency';
+import ItemSetReference from '../ItemSet/Reference';
 import { Box, Query, Tab, TabbedBox, Title } from '../../core';
 
 import ContainedInObjectTab from './tabs/ContainedInObject';
@@ -20,6 +21,9 @@ const fetchItem = gql`
     item(id: $id) {
       ...ItemReference
       buyPrice
+      itemSet {
+        ...ItemSetReference
+      }
       sellPrice
 
       containedIn {
@@ -53,6 +57,7 @@ const fetchItem = gql`
   }
 
   ${ItemReference.fragment}
+  ${ItemSetReference.fragment}
 `;
 
 const Item = ({ match }) => {
@@ -62,6 +67,10 @@ const Item = ({ match }) => {
       {({ data }) => {
         const { item } = data;
         const {
+          buyPrice,
+          itemSet,
+          sellPrice,
+
           containedIn: { totalCount: containedInCount },
           containedInObject: { totalCount: containedInObjectCount },
           contains: { totalCount: containCount },
@@ -80,15 +89,21 @@ const Item = ({ match }) => {
                 <ItemReference item={item} />
               </h1>
 
-              {item.buyPrice > 0 && (
+              {itemSet && (
                 <p>
-                  Cost: <Currency value={item.buyPrice} />
+                  Part of: <ItemSetReference itemSet={itemSet} />
                 </p>
               )}
 
-              {item.sellPrice > 0 && (
+              {buyPrice > 0 && (
                 <p>
-                  Sells for: <Currency value={item.sellPrice} />
+                  Cost: <Currency value={buyPrice} />
+                </p>
+              )}
+
+              {sellPrice > 0 && (
+                <p>
+                  Sells for: <Currency value={sellPrice} />
                 </p>
               )}
             </Box>

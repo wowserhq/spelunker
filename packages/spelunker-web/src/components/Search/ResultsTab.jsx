@@ -8,6 +8,7 @@ import classColumns from '../entities/Class/columns';
 import factionColumns from '../entities/Faction/columns';
 import gameObjectColumns from '../entities/GameObject/columns';
 import itemColumns from '../entities/Item/columns';
+import itemSetColumns from '../entities/ItemSet/columns';
 import mapColumns from '../entities/Map/columns';
 import npcColumns from '../entities/NPC/columns';
 import questColumns from '../entities/Quest/columns';
@@ -24,6 +25,7 @@ const columnsLookup = {
   factionColumns,
   gameObjectColumns,
   itemColumns,
+  itemSetColumns,
   mapColumns,
   npcColumns,
   questColumns,
