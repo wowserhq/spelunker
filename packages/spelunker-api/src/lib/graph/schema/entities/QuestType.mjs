@@ -43,6 +43,7 @@ const QuestType = new GraphQLObjectType({
     classes: CollectionType.definitionFor(ClassType),
     endedBy: CollectionType.definitionFor(NPCType),
     endedByObject: CollectionType.definitionFor(GameObjectType),
+    mutuallyExclusiveWith: CollectionType.definitionFor(QuestType),
     nextQuest: { type: QuestType },
     nextQuests: CollectionType.definitionFor(QuestType),
     objectiveTexts: { type: new GraphQLList(GraphQLString) },

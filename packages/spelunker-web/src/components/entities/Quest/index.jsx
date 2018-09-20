@@ -36,6 +36,12 @@ const fetchQuest = gql`
       }
       description
       level,
+      mutuallyExclusiveWith {
+        totalCount
+        results {
+          ...QuestReference
+        }
+      }
       nextQuests {
         totalCount
         results {
@@ -188,6 +194,7 @@ const Quest = ({ match }) => {
           chain,
           classes,
           level,
+          mutuallyExclusiveWith,
           nextQuests,
           objectiveTexts,
           prerequisiteChoiceQuests,
@@ -321,6 +328,18 @@ const Quest = ({ match }) => {
                   <ListItem>Complete:
                     <List>
                       {prerequisiteQuests.results.map(quest => (
+                        <ListItem key={quest.id}>
+                          <QuestReference quest={quest} />
+                        </ListItem>
+                      ))}
+                    </List>
+                  </ListItem>
+                )}
+
+                {mutuallyExclusiveWith.totalCount > 0 && (
+                  <ListItem>Must <strong>not</strong> have accepted:
+                    <List>
+                      {mutuallyExclusiveWith.results.map(quest => (
                         <ListItem key={quest.id}>
                           <QuestReference quest={quest} />
                         </ListItem>
