@@ -1,7 +1,7 @@
 # Spelunker
 
 [![Version](https://img.shields.io/npm/v/@wowserhq/spelunker.svg)](https://www.npmjs.org/package/@wowserhq/spelunker)
-[![Join chat](https://img.shields.io/badge/gitter-join_chat-blue.svg?style=flat)](https://gitter.im/wowserhq/spelunker)
+[![Join Community](https://img.shields.io/badge/discord-join_community-blue.svg?style=flat)](https://discord.gg/DeVVKVg)
 [![Known Vulnerabilities](https://snyk.io/test/github/wowserhq/spelunker/badge.svg)](https://snyk.io/test/github/wowserhq/spelunker)
 [![Maintainability](https://api.codeclimate.com/v1/badges/ad30d93353e35ebfdafe/maintainability)](https://codeclimate.com/github/wowserhq/spelunker/maintainability)
 
