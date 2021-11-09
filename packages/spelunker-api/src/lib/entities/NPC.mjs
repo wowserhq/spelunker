@@ -1,14 +1,14 @@
-import DatabaseEntity from '../db/Entity';
-import { worldConnection } from '../db/connections';
+import DatabaseEntity from '../db/Entity.mjs';
+import { worldConnection } from '../db/connections.mjs';
 
-import Location from './Location';
-import NPCLoot from './NPCLoot';
-import NPCQuestFinisher from './NPCQuestFinisher';
-import NPCQuestStarter from './NPCQuestStarter';
-import NPCSale from './NPCSale';
-import NPCSpawn from './NPCSpawn';
-import NPCTraining from './NPCTraining';
-import Quest from './Quest';
+import Location from './Location.mjs';
+import NPCLoot from './NPCLoot.mjs';
+import NPCQuestFinisher from './NPCQuestFinisher.mjs';
+import NPCQuestStarter from './NPCQuestStarter.mjs';
+import NPCSale from './NPCSale.mjs';
+import NPCSpawn from './NPCSpawn.mjs';
+import NPCTraining from './NPCTraining.mjs';
+import Quest from './Quest.mjs';
 
 class NPC extends DatabaseEntity {
   static get connection() {

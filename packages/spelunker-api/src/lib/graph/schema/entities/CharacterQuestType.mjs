@@ -2,10 +2,10 @@ import {
   GraphQLEnumType,
   GraphQLNonNull,
   GraphQLObjectType,
-} from '../../../graphql';
+} from '../../../graphql/index.mjs';
 
-import CharacterType from './CharacterType';
-import QuestType from './QuestType';
+import CharacterType from './CharacterType.mjs';
+import QuestType from './QuestType.mjs';
 
 const CharacterQuestStatus = new GraphQLEnumType({
   name: 'CharacterQuestStatus',

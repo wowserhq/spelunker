@@ -1,3 +1,3 @@
 export {
   GraphQLInt as default,
-} from '../../graphql';
+} from '../../graphql/index.mjs';

@@ -1,4 +1,4 @@
-import MemoryQuery from '../core/memory/Query';
+import MemoryQuery from '../core/memory/Query.mjs';
 
 class Location {
   constructor(map) {

@@ -1,4 +1,4 @@
-import Query from './Query';
+import Query from './Query.mjs';
 
 class NoneQuery extends Query {
   execute() {

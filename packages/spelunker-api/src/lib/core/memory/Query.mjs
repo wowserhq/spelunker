@@ -1,5 +1,5 @@
-import Query from '../Query';
-import { notImplemented } from '../../utils/abstract';
+import Query from '../Query.mjs';
+import { notImplemented } from '../../utils/abstract.mjs';
 
 class MemoryQuery extends Query {
   constructor(entity, { label } = {}) {

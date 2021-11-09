@@ -3,7 +3,7 @@ import {
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLString,
-} from '../../../graphql';
+} from '../../../graphql/index.mjs';
 
 export default new GraphQLObjectType({
   name: 'QuestSort',

@@ -3,14 +3,14 @@ import {
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLString,
-} from '../../../graphql';
+} from '../../../graphql/index.mjs';
 
-import BoundsType from '../BoundsType';
-import CollectionType from '../CollectionType';
+import BoundsType from '../BoundsType.mjs';
+import CollectionType from '../CollectionType.mjs';
 
-import MapType from './MapType';
-import QuestType from './QuestType';
-import SideType from './SideType';
+import MapType from './MapType.mjs';
+import QuestType from './QuestType.mjs';
+import SideType from './SideType.mjs';
 
 const AreaType = new GraphQLObjectType({
   name: 'Area',

@@ -1,12 +1,12 @@
-import DatabaseEntity from '../db/Entity';
-import { worldConnection } from '../db/connections';
+import DatabaseEntity from '../db/Entity.mjs';
+import { worldConnection } from '../db/connections.mjs';
 
-import GameObjectLoot from './GameObjectLoot';
-import GameObjectQuestFinisher from './GameObjectQuestFinisher';
-import GameObjectQuestStarter from './GameObjectQuestStarter';
-import GameObjectSpawn from './GameObjectSpawn';
-import Location from './Location';
-import Quest from './Quest';
+import GameObjectLoot from './GameObjectLoot.mjs';
+import GameObjectQuestFinisher from './GameObjectQuestFinisher.mjs';
+import GameObjectQuestStarter from './GameObjectQuestStarter.mjs';
+import GameObjectSpawn from './GameObjectSpawn.mjs';
+import Location from './Location.mjs';
+import Quest from './Quest.mjs';
 
 class GameObject extends DatabaseEntity {
   static get connection() {

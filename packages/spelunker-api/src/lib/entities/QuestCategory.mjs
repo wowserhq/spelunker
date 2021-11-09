@@ -1,5 +1,5 @@
-import Area from './Area';
-import QuestSort from './QuestSort';
+import Area from './Area.mjs';
+import QuestSort from './QuestSort.mjs';
 
 class QuestCategory {
   static find(id) {

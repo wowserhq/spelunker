@@ -1,14 +1,14 @@
-import WDT from 'blizzardry/lib/wdt';
-import restructure from 'blizzardry/lib/restructure';
+import WDT from 'blizzardry/lib/wdt/index.js';
+import restructure from 'blizzardry/lib/restructure.js';
 
-import DBCEntity from '../dbc/Entity';
-import cache from '../utils/cache';
-import mpq from '../mpq';
-import { contains } from '../utils/string';
+import DBCEntity from '../dbc/Entity.mjs';
+import cache from '../utils/cache.mjs';
+import mpq from '../mpq/index.mjs';
+import { contains } from '../utils/string.mjs';
 
-import Area from './Area';
-import GameObjectSpawn from './GameObjectSpawn';
-import NPCSpawn from './NPCSpawn';
+import Area from './Area.mjs';
+import GameObjectSpawn from './GameObjectSpawn.mjs';
+import NPCSpawn from './NPCSpawn.mjs';
 
 const { DecodeStream } = restructure;
 

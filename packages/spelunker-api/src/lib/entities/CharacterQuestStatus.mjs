@@ -1,8 +1,8 @@
-import DatabaseEntity from '../db/Entity';
-import { charactersConnection } from '../db/connections';
+import DatabaseEntity from '../db/Entity.mjs';
+import { charactersConnection } from '../db/connections.mjs';
 
-import Character from './Character';
-import Quest from './Quest';
+import Character from './Character.mjs';
+import Quest from './Quest.mjs';
 
 class CharacterQuestStatus extends DatabaseEntity {
   static get connection() {

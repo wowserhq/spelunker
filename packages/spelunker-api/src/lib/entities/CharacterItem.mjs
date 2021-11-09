@@ -1,8 +1,8 @@
-import DatabaseEntity from '../db/Entity';
-import { charactersConnection } from '../db/connections';
+import DatabaseEntity from '../db/Entity.mjs';
+import { charactersConnection } from '../db/connections.mjs';
 
-import Character from './Character';
-import Item from './Item';
+import Character from './Character.mjs';
+import Item from './Item.mjs';
 
 class CharacterItem extends DatabaseEntity {
   static get connection() {

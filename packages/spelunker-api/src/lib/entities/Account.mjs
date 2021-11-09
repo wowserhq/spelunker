@@ -1,7 +1,7 @@
-import DatabaseEntity from '../db/Entity';
-import { authConnection } from '../db/connections';
+import DatabaseEntity from '../db/Entity.mjs';
+import { authConnection } from '../db/connections.mjs';
 
-import Character from './Character';
+import Character from './Character.mjs';
 
 class Account extends DatabaseEntity {
   static get connection() {

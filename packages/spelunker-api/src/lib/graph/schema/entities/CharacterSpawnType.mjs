@@ -2,10 +2,10 @@ import {
   GraphQLFloat,
   GraphQLNonNull,
   GraphQLObjectType,
-} from '../../../graphql';
+} from '../../../graphql/index.mjs';
 
-import AreaType from './AreaType';
-import MapType from './MapType';
+import AreaType from './AreaType.mjs';
+import MapType from './MapType.mjs';
 
 export default new GraphQLObjectType({
   name: 'CharacterSpawn',

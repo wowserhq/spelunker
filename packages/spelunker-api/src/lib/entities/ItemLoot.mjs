@@ -1,7 +1,7 @@
-import DatabaseEntity from '../db/Entity';
-import { worldConnection } from '../db/connections';
+import DatabaseEntity from '../db/Entity.mjs';
+import { worldConnection } from '../db/connections.mjs';
 
-import Item from './Item';
+import Item from './Item.mjs';
 
 class ItemLoot extends DatabaseEntity {
   static get connection() {

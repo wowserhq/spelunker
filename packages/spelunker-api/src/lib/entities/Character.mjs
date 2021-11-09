@@ -1,16 +1,16 @@
-import DatabaseEntity from '../db/Entity';
-import { charactersConnection } from '../db/connections';
+import DatabaseEntity from '../db/Entity.mjs';
+import { charactersConnection } from '../db/connections.mjs';
 
-import Account from './Account';
-import CharacterItem from './CharacterItem';
-import CharacterQuestStatus from './CharacterQuestStatus';
-import CharacterQuestStatusRewarded from './CharacterQuestStatusRewarded';
-import CharacterReputation from './CharacterReputation';
-import CharacterSpawn from './CharacterSpawn';
-import Class from './Class';
-import Location from './Location';
-import Race from './Race';
-import Quest from './Quest';
+import Account from './Account.mjs';
+import CharacterItem from './CharacterItem.mjs';
+import CharacterQuestStatus from './CharacterQuestStatus.mjs';
+import CharacterQuestStatusRewarded from './CharacterQuestStatusRewarded.mjs';
+import CharacterReputation from './CharacterReputation.mjs';
+import CharacterSpawn from './CharacterSpawn.mjs';
+import Class from './Class.mjs';
+import Location from './Location.mjs';
+import Race from './Race.mjs';
+import Quest from './Quest.mjs';
 
 class Character extends DatabaseEntity {
   static get connection() {

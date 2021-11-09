@@ -2,10 +2,10 @@ import {
   GraphQLFloat,
   GraphQLNonNull,
   GraphQLObjectType,
-} from '../../../graphql';
+} from '../../../graphql/index.mjs';
 
-import ItemType from './ItemType';
-import NPCType from './NPCType';
+import ItemType from './ItemType.mjs';
+import NPCType from './NPCType.mjs';
 
 export default new GraphQLObjectType({
   name: 'NPCLoot',

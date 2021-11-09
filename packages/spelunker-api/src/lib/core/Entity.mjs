@@ -1,6 +1,6 @@
-import { notImplemented } from '../utils/abstract';
+import { notImplemented } from '../utils/abstract.mjs';
 
-import NoneQuery from './NoneQuery';
+import NoneQuery from './NoneQuery.mjs';
 
 class Entity {
   constructor(data) {

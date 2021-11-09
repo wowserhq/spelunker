@@ -1,10 +1,10 @@
-import DBCEntity from '../dbc/Entity';
-import { contains } from '../utils/string';
+import DBCEntity from '../dbc/Entity.mjs';
+import { contains } from '../utils/string.mjs';
 
-import Map from './Map';
-import Quest from './Quest';
-import Side from './Side';
-import WorldMapArea from './WorldMapArea';
+import Map from './Map.mjs';
+import Quest from './Quest.mjs';
+import Side from './Side.mjs';
+import WorldMapArea from './WorldMapArea.mjs';
 
 class Area extends DBCEntity {
   static get dbc() {

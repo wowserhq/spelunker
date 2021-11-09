@@ -1,4 +1,4 @@
-import { notImplemented } from '../utils/abstract';
+import { notImplemented } from '../utils/abstract.mjs';
 
 class Query {
   constructor(entity) {

@@ -3,19 +3,19 @@ import {
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLString,
-} from '../../../graphql';
+} from '../../../graphql/index.mjs';
 
-import CollectionType from '../CollectionType';
-import CurrencyType from '../CurrencyType';
+import CollectionType from '../CollectionType.mjs';
+import CurrencyType from '../CurrencyType.mjs';
 
-import GameObjectLootType from './GameObjectLootType';
-import ItemDisplayInfoType from './ItemDisplayInfoType';
-import ItemLootType from './ItemLootType';
-import ItemQualityType from './ItemQualityType';
-import NPCLootType from './NPCLootType';
-import ItemSetType from './ItemSetType';
-import NPCSaleType from './NPCSaleType';
-import QuestType from './QuestType';
+import GameObjectLootType from './GameObjectLootType.mjs';
+import ItemDisplayInfoType from './ItemDisplayInfoType.mjs';
+import ItemLootType from './ItemLootType.mjs';
+import ItemQualityType from './ItemQualityType.mjs';
+import NPCLootType from './NPCLootType.mjs';
+import ItemSetType from './ItemSetType.mjs';
+import NPCSaleType from './NPCSaleType.mjs';
+import QuestType from './QuestType.mjs';
 
 export default new GraphQLObjectType({
   name: 'Item',

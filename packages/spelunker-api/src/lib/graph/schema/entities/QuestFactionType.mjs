@@ -2,9 +2,9 @@ import {
   GraphQLInt,
   GraphQLNonNull,
   GraphQLObjectType,
-} from '../../../graphql';
+} from '../../../graphql/index.mjs';
 
-import FactionType from './FactionType';
+import FactionType from './FactionType.mjs';
 
 export default new GraphQLObjectType({
   name: 'QuestFaction',

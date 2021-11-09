@@ -1,7 +1,7 @@
-import DBCEntity from '../dbc/Entity';
-import { contains } from '../utils/string';
+import DBCEntity from '../dbc/Entity.mjs';
+import { contains } from '../utils/string.mjs';
 
-import Quest from './Quest';
+import Quest from './Quest.mjs';
 
 class Faction extends DBCEntity {
   static get dbc() {

@@ -1,9 +1,9 @@
-import DatabaseEntity from '../db/Entity';
-import { worldConnection } from '../db/connections';
+import DatabaseEntity from '../db/Entity.mjs';
+import { worldConnection } from '../db/connections.mjs';
 
-import Area from './Area';
-import GameObject from './GameObject';
-import Map from './Map';
+import Area from './Area.mjs';
+import GameObject from './GameObject.mjs';
+import Map from './Map.mjs';
 
 class GameObjectSpawn extends DatabaseEntity {
   static get connection() {

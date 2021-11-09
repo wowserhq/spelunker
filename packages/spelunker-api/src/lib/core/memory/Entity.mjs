@@ -1,8 +1,8 @@
-import Entity from '../Entity';
-import cache from '../../utils/cache';
-import { notImplemented } from '../../utils/abstract';
+import Entity from '../Entity.mjs';
+import cache from '../../utils/cache.mjs';
+import { notImplemented } from '../../utils/abstract.mjs';
 
-import MemoryQuery from './Query';
+import MemoryQuery from './Query.mjs';
 
 class MemoryEntity extends Entity {
   static get data() {

@@ -1,5 +1,5 @@
-import MemoryQuery from '../core/memory/Query';
-import logger from '../utils/logger';
+import MemoryQuery from '../core/memory/Query.mjs';
+import logger from '../utils/logger.mjs';
 
 const log = logger('db:fcq');
 

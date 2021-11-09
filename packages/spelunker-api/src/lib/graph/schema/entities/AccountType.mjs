@@ -3,11 +3,11 @@ import {
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLString,
-} from '../../../graphql';
+} from '../../../graphql/index.mjs';
 
-import CollectionType from '../CollectionType';
+import CollectionType from '../CollectionType.mjs';
 
-import CharacterType from './CharacterType';
+import CharacterType from './CharacterType.mjs';
 
 export default new GraphQLObjectType({
   name: 'Account',

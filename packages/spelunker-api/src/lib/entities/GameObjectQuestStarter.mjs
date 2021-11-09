@@ -1,5 +1,5 @@
-import DatabaseEntity from '../db/Entity';
-import { worldConnection } from '../db/connections';
+import DatabaseEntity from '../db/Entity.mjs';
+import { worldConnection } from '../db/connections.mjs';
 
 class GameObjectQuestStarter extends DatabaseEntity {
   static get connection() {

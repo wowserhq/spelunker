@@ -4,13 +4,13 @@ import {
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLString,
-} from '../../../graphql';
+} from '../../../graphql/index.mjs';
 
-import CollectionType from '../CollectionType';
+import CollectionType from '../CollectionType.mjs';
 
-import ClassType from './ClassType';
-import QuestType from './QuestType';
-import SideType from './SideType';
+import ClassType from './ClassType.mjs';
+import QuestType from './QuestType.mjs';
+import SideType from './SideType.mjs';
 
 export default new GraphQLObjectType({
   name: 'Race',

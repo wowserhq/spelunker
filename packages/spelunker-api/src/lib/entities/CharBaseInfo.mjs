@@ -1,7 +1,7 @@
-import DBCEntity from '../dbc/Entity';
+import DBCEntity from '../dbc/Entity.mjs';
 
-import Class from './Class';
-import Race from './Race';
+import Class from './Class.mjs';
+import Race from './Race.mjs';
 
 class CharBaseInfo extends DBCEntity {
   static get dbc() {

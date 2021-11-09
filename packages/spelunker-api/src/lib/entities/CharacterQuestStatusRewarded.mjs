@@ -1,5 +1,5 @@
-import DatabaseEntity from '../db/Entity';
-import { charactersConnection } from '../db/connections';
+import DatabaseEntity from '../db/Entity.mjs';
+import { charactersConnection } from '../db/connections.mjs';
 
 class CharacterQuestStatusRewarded extends DatabaseEntity {
   static get connection() {

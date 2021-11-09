@@ -1,7 +1,7 @@
-import knexQueryMethods from 'knex/lib/query/methods';
+import knexQueryMethods from 'knex/lib/query/methods.js';
 
-import Query from '../core/Query';
-import logger from '../utils/logger';
+import Query from '../core/Query.mjs';
+import logger from '../utils/logger.mjs';
 
 const log = logger('db');
 

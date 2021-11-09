@@ -1,8 +1,8 @@
-import DatabaseEntity from '../db/Entity';
-import { worldConnection } from '../db/connections';
+import DatabaseEntity from '../db/Entity.mjs';
+import { worldConnection } from '../db/connections.mjs';
 
-import GameObject from './GameObject';
-import Item from './Item';
+import GameObject from './GameObject.mjs';
+import Item from './Item.mjs';
 
 class GameObjectLoot extends DatabaseEntity {
   static get connection() {

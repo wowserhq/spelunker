@@ -1,9 +1,9 @@
 import {
   GraphQLUnionType,
-} from '../../../graphql';
+} from '../../../graphql/index.mjs';
 
-import AreaType from './AreaType';
-import QuestSortType from './QuestSortType';
+import AreaType from './AreaType.mjs';
+import QuestSortType from './QuestSortType.mjs';
 
 const lookup = {
   Area: AreaType,
