@@ -3,20 +3,20 @@ import {
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLString,
-} from '../../../graphql';
+} from '../../../graphql/index.mjs';
 
-import CollectionType from '../CollectionType';
+import CollectionType from '../CollectionType.mjs';
 
-import AccountType from './AccountType';
-import ClassType from './ClassType';
-import CharacterItemType from './CharacterItemType';
-import CharacterQuestType from './CharacterQuestType';
-import CharacterReputationType from './CharacterReputationType';
-import CharacterSpawnType from './CharacterSpawnType';
-import GenderType from './GenderType';
-import LocationType from './LocationType';
-import QuestType from './QuestType';
-import RaceType from './RaceType';
+import AccountType from './AccountType.mjs';
+import ClassType from './ClassType.mjs';
+import CharacterItemType from './CharacterItemType.mjs';
+import CharacterQuestType from './CharacterQuestType.mjs';
+import CharacterReputationType from './CharacterReputationType.mjs';
+import CharacterSpawnType from './CharacterSpawnType.mjs';
+import GenderType from './GenderType.mjs';
+import LocationType from './LocationType.mjs';
+import QuestType from './QuestType.mjs';
+import RaceType from './RaceType.mjs';
 
 const CharacterType = new GraphQLObjectType({
   name: 'Character',

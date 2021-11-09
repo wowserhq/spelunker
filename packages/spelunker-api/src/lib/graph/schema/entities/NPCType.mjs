@@ -3,16 +3,16 @@ import {
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLString,
-} from '../../../graphql';
+} from '../../../graphql/index.mjs';
 
-import CollectionType from '../CollectionType';
+import CollectionType from '../CollectionType.mjs';
 
-import NPCLootType from './NPCLootType';
-import NPCSaleType from './NPCSaleType';
-import NPCSpawnType from './NPCSpawnType';
-import NPCTrainingType from './NPCTrainingType';
-import QuestType from './QuestType';
-import { LocationCollectionType } from './LocationType';
+import NPCLootType from './NPCLootType.mjs';
+import NPCSaleType from './NPCSaleType.mjs';
+import NPCSpawnType from './NPCSpawnType.mjs';
+import NPCTrainingType from './NPCTrainingType.mjs';
+import QuestType from './QuestType.mjs';
+import { LocationCollectionType } from './LocationType.mjs';
 
 export default new GraphQLObjectType({
   name: 'NPC',

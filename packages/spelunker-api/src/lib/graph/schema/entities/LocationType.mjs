@@ -2,12 +2,12 @@ import {
   GraphQLInt,
   GraphQLNonNull,
   GraphQLObjectType,
-} from '../../../graphql';
+} from '../../../graphql/index.mjs';
 
-import CollectionType from '../CollectionType';
+import CollectionType from '../CollectionType.mjs';
 
-import AreaType from './AreaType';
-import MapType from './MapType';
+import AreaType from './AreaType.mjs';
+import MapType from './MapType.mjs';
 
 const LocationAreaType = new GraphQLObjectType({
   name: 'LocationArea',

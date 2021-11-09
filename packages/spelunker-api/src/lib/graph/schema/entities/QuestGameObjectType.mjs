@@ -2,9 +2,9 @@ import {
   GraphQLInt,
   GraphQLNonNull,
   GraphQLObjectType,
-} from '../../../graphql';
+} from '../../../graphql/index.mjs';
 
-import GameObjectType from './GameObjectType';
+import GameObjectType from './GameObjectType.mjs';
 
 export default new GraphQLObjectType({
   name: 'QuestGameObject',

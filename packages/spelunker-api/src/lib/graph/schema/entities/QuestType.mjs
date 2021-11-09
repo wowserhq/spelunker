@@ -5,22 +5,22 @@ import {
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLString,
-} from '../../../graphql';
+} from '../../../graphql/index.mjs';
 
-import CollectionType from '../CollectionType';
+import CollectionType from '../CollectionType.mjs';
 
-import ClassType from './ClassType';
-import GameObjectType from './GameObjectType';
-import ItemType from './ItemType';
-import NPCType from './NPCType';
-import QuestCategoryType from './QuestCategoryType';
-import QuestFactionType from './QuestFactionType';
-import QuestItemType from './QuestItemType';
-import QuestNPCType from './QuestNPCType';
-import QuestGameObjectType from './QuestGameObjectType';
-import RaceType from './RaceType';
-import SideType from './SideType';
-import SpellType from './SpellType';
+import ClassType from './ClassType.mjs';
+import GameObjectType from './GameObjectType.mjs';
+import ItemType from './ItemType.mjs';
+import NPCType from './NPCType.mjs';
+import QuestCategoryType from './QuestCategoryType.mjs';
+import QuestFactionType from './QuestFactionType.mjs';
+import QuestItemType from './QuestItemType.mjs';
+import QuestNPCType from './QuestNPCType.mjs';
+import QuestGameObjectType from './QuestGameObjectType.mjs';
+import RaceType from './RaceType.mjs';
+import SideType from './SideType.mjs';
+import SpellType from './SpellType.mjs';
 
 const QuestType = new GraphQLObjectType({
   name: 'Quest',

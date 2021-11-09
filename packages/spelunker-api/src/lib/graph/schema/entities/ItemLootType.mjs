@@ -2,9 +2,9 @@ import {
   GraphQLFloat,
   GraphQLNonNull,
   GraphQLObjectType,
-} from '../../../graphql';
+} from '../../../graphql/index.mjs';
 
-import ItemType from './ItemType';
+import ItemType from './ItemType.mjs';
 
 export default new GraphQLObjectType({
   name: 'ItemLoot',

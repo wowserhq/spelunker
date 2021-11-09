@@ -1,7 +1,7 @@
-import DBCEntity from '../dbc/Entity';
-import { contains } from '../utils/string';
+import DBCEntity from '../dbc/Entity.mjs';
+import { contains } from '../utils/string.mjs';
 
-import Item from './Item';
+import Item from './Item.mjs';
 
 class ItemSet extends DBCEntity {
   static get dbc() {

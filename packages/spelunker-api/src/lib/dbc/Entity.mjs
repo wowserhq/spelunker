@@ -1,7 +1,7 @@
-import MemoryEntity from '../core/memory/Entity';
-import { notImplemented } from '../utils/abstract';
+import MemoryEntity from '../core/memory/Entity.mjs';
+import { notImplemented } from '../utils/abstract.mjs';
 
-import DBCQuery from './Query';
+import DBCQuery from './Query.mjs';
 
 class DBCEntity extends MemoryEntity {
   static get dbc() {

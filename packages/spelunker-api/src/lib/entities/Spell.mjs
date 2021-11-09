@@ -1,9 +1,9 @@
-import DBCEntity from '../dbc/Entity';
-import { contains } from '../utils/string';
+import DBCEntity from '../dbc/Entity.mjs';
+import { contains } from '../utils/string.mjs';
 
-import NPCTraining from './NPCTraining';
-import Quest from './Quest';
-import SpellIcon from './SpellIcon';
+import NPCTraining from './NPCTraining.mjs';
+import Quest from './Quest.mjs';
+import SpellIcon from './SpellIcon.mjs';
 
 class Spell extends DBCEntity {
   static get dbc() {

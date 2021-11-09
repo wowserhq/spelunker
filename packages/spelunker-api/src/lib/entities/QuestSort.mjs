@@ -1,4 +1,4 @@
-import DBCEntity from '../dbc/Entity';
+import DBCEntity from '../dbc/Entity.mjs';
 
 class QuestSort extends DBCEntity {
   static get dbc() {

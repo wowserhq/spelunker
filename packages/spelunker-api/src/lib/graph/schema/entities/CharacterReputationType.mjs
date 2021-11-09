@@ -2,10 +2,10 @@ import {
   GraphQLInt,
   GraphQLNonNull,
   GraphQLObjectType,
-} from '../../../graphql';
+} from '../../../graphql/index.mjs';
 
-import CharacterType from './CharacterType';
-import FactionType from './FactionType';
+import CharacterType from './CharacterType.mjs';
+import FactionType from './FactionType.mjs';
 
 export default new GraphQLObjectType({
   name: 'CharacterReputation',

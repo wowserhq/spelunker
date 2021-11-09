@@ -3,10 +3,10 @@ import {
   GraphQLList,
   GraphQLNonNull,
   GraphQLObjectType,
-} from '../../graphql';
-import { cache } from '../../graphql/utils';
+} from '../../graphql/index.mjs';
+import { cache } from '../../graphql/utils.mjs';
 
-import Collection from '../../core/Collection';
+import Collection from '../../core/Collection.mjs';
 
 class CollectionType extends GraphQLObjectType {
   static for(wrappedType) {

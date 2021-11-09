@@ -1,8 +1,8 @@
 import {
   GraphQLSchema,
-} from '../../graphql';
+} from '../../graphql/index.mjs';
 
-import QueryType from './QueryType';
+import QueryType from './QueryType.mjs';
 
 const schema = new GraphQLSchema({
   query: QueryType,

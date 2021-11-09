@@ -1,4 +1,4 @@
-import mpq from '../';
+import mpq from '../index.mjs';
 
 const file = mpq.files.get('Interface\\GlueXML\\GlueStrings.lua');
 const source = file.data.toString();

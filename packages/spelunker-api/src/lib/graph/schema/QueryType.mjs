@@ -3,24 +3,24 @@ import {
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLString,
-} from '../../graphql';
+} from '../../graphql/index.mjs';
 
-import CollectionType from './CollectionType';
+import CollectionType from './CollectionType.mjs';
 
-import AccountType from './entities/AccountType';
-import AreaType from './entities/AreaType';
-import CharacterType from './entities/CharacterType';
-import ClassType from './entities/ClassType';
-import FactionType from './entities/FactionType';
-import GameObjectType from './entities/GameObjectType';
-import ItemType from './entities/ItemType';
-import ItemSetType from './entities/ItemSetType';
-import MapType from './entities/MapType';
-import NPCType from './entities/NPCType';
-import QuestType from './entities/QuestType';
-import RaceType from './entities/RaceType';
-import SideType from './entities/SideType';
-import SpellType from './entities/SpellType';
+import AccountType from './entities/AccountType.mjs';
+import AreaType from './entities/AreaType.mjs';
+import CharacterType from './entities/CharacterType.mjs';
+import ClassType from './entities/ClassType.mjs';
+import FactionType from './entities/FactionType.mjs';
+import GameObjectType from './entities/GameObjectType.mjs';
+import ItemType from './entities/ItemType.mjs';
+import ItemSetType from './entities/ItemSetType.mjs';
+import MapType from './entities/MapType.mjs';
+import NPCType from './entities/NPCType.mjs';
+import QuestType from './entities/QuestType.mjs';
+import RaceType from './entities/RaceType.mjs';
+import SideType from './entities/SideType.mjs';
+import SpellType from './entities/SpellType.mjs';
 
 const finderFor = (type, idType = GraphQLInt) => ({
   type,

@@ -3,15 +3,15 @@ import {
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLString,
-} from '../../../graphql';
+} from '../../../graphql/index.mjs';
 
-import CollectionType from '../CollectionType';
+import CollectionType from '../CollectionType.mjs';
 
-import GameObjectLootType from './GameObjectLootType';
-import GameObjectSpawnType from './GameObjectSpawnType';
-import GameObjectTypeType from './GameObjectTypeType';
-import { LocationCollectionType } from './LocationType';
-import QuestType from './QuestType';
+import GameObjectLootType from './GameObjectLootType.mjs';
+import GameObjectSpawnType from './GameObjectSpawnType.mjs';
+import GameObjectTypeType from './GameObjectTypeType.mjs';
+import { LocationCollectionType } from './LocationType.mjs';
+import QuestType from './QuestType.mjs';
 
 export default new GraphQLObjectType({
   name: 'GameObject',

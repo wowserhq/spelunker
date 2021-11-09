@@ -1,10 +1,10 @@
-import MemoryEntity from '../core/memory/Entity';
-import glueStrings from '../mpq/files/GlueStrings';
-import { contains } from '../utils/string';
+import MemoryEntity from '../core/memory/Entity.mjs';
+import glueStrings from '../mpq/files/GlueStrings.mjs';
+import { contains } from '../utils/string.mjs';
 
-import Area from './Area';
-import Quest from './Quest';
-import Race from './Race';
+import Area from './Area.mjs';
+import Quest from './Quest.mjs';
+import Race from './Race.mjs';
 
 class Side extends MemoryEntity {
   static get data() {

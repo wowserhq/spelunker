@@ -1,21 +1,21 @@
-import DatabaseEntity from '../db/Entity';
-import FixedColumnQuery from '../db/FixedColumnQuery';
-import MemoryQuery from '../core/memory/Query';
-import { worldConnection } from '../db/connections';
+import DatabaseEntity from '../db/Entity.mjs';
+import FixedColumnQuery from '../db/FixedColumnQuery.mjs';
+import MemoryQuery from '../core/memory/Query.mjs';
+import { worldConnection } from '../db/connections.mjs';
 
-import Class from './Class';
-import Faction from './Faction';
-import GameObject from './GameObject';
-import GameObjectQuestFinisher from './GameObjectQuestFinisher';
-import GameObjectQuestStarter from './GameObjectQuestStarter';
-import Item from './Item';
-import NPC from './NPC';
-import NPCQuestFinisher from './NPCQuestFinisher';
-import NPCQuestStarter from './NPCQuestStarter';
-import QuestCategory from './QuestCategory';
-import Race from './Race';
-import Side from './Side';
-import Spell from './Spell';
+import Class from './Class.mjs';
+import Faction from './Faction.mjs';
+import GameObject from './GameObject.mjs';
+import GameObjectQuestFinisher from './GameObjectQuestFinisher.mjs';
+import GameObjectQuestStarter from './GameObjectQuestStarter.mjs';
+import Item from './Item.mjs';
+import NPC from './NPC.mjs';
+import NPCQuestFinisher from './NPCQuestFinisher.mjs';
+import NPCQuestStarter from './NPCQuestStarter.mjs';
+import QuestCategory from './QuestCategory.mjs';
+import Race from './Race.mjs';
+import Side from './Side.mjs';
+import Spell from './Spell.mjs';
 
 class Quest extends DatabaseEntity {
   static get connection() {

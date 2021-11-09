@@ -1,8 +1,8 @@
-import DatabaseEntity from '../db/Entity';
-import { worldConnection } from '../db/connections';
+import DatabaseEntity from '../db/Entity.mjs';
+import { worldConnection } from '../db/connections.mjs';
 
-import Item from './Item';
-import NPC from './NPC';
+import Item from './Item.mjs';
+import NPC from './NPC.mjs';
 
 class NPCLoot extends DatabaseEntity {
   static get connection() {

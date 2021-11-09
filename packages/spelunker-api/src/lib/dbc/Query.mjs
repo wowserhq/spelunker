@@ -1,10 +1,10 @@
-import DBC from 'blizzardry/lib/dbc/entities';
-import restructure from 'blizzardry/lib/restructure';
+import DBC from 'blizzardry/lib/dbc/entities/index.js';
+import restructure from 'blizzardry/lib/restructure.js';
 
-import MemoryQuery from '../core/memory/Query';
-import cache from '../utils/cache';
-import logger from '../utils/logger';
-import mpq from '../mpq';
+import MemoryQuery from '../core/memory/Query.mjs';
+import cache from '../utils/cache.mjs';
+import logger from '../utils/logger.mjs';
+import mpq from '../mpq/index.mjs';
 
 const { DecodeStream } = restructure;
 

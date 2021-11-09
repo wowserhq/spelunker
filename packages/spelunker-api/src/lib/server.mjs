@@ -3,9 +3,9 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
 
-import pipeline from './pipeline';
-import rootValue from './graph/root';
-import schema from './graph/schema';
+import pipeline from './pipeline/index.mjs';
+import rootValue from './graph/root.mjs';
+import schema from './graph/schema/index.mjs';
 
 const { graphqlExpress, graphiqlExpress } = apolloExpress;
 

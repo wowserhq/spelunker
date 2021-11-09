@@ -2,10 +2,10 @@ import {
   GraphQLFloat,
   GraphQLNonNull,
   GraphQLObjectType,
-} from '../../../graphql';
+} from '../../../graphql/index.mjs';
 
-import GameObjectType from './GameObjectType';
-import ItemType from './ItemType';
+import GameObjectType from './GameObjectType.mjs';
+import ItemType from './ItemType.mjs';
 
 export default new GraphQLObjectType({
   name: 'GameObjectLoot',

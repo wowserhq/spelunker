@@ -3,11 +3,11 @@ import {
   GraphQLInt,
   GraphQLNonNull,
   GraphQLObjectType,
-} from '../../../graphql';
+} from '../../../graphql/index.mjs';
 
-import AreaType from './AreaType';
-import MapType from './MapType';
-import NPCType from './NPCType';
+import AreaType from './AreaType.mjs';
+import MapType from './MapType.mjs';
+import NPCType from './NPCType.mjs';
 
 export default new GraphQLObjectType({
   name: 'NPCSpawn',

@@ -2,9 +2,9 @@ import {
   GraphQLInt,
   GraphQLNonNull,
   GraphQLObjectType,
-} from '../../../graphql';
+} from '../../../graphql/index.mjs';
 
-import NPCType from './NPCType';
+import NPCType from './NPCType.mjs';
 
 export default new GraphQLObjectType({
   name: 'QuestNPC',

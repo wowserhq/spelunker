@@ -1,7 +1,7 @@
-import Entity from '../core/Entity';
-import { notImplemented } from '../utils/abstract';
+import Entity from '../core/Entity.mjs';
+import { notImplemented } from '../utils/abstract.mjs';
 
-import DatabaseQuery from './Query';
+import DatabaseQuery from './Query.mjs';
 
 class DatabaseEntity extends Entity {
   static get connection() {

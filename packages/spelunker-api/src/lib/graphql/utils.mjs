@@ -2,8 +2,8 @@
 
 import {
   GraphQLEnumType,
-} from '../graphql';
-import { createCache } from '../utils/cache';
+} from '../graphql/index.mjs';
+import { createCache } from '../utils/cache.mjs';
 
 const cache = createCache();
 

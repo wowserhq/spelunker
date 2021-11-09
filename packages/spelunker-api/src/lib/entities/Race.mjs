@@ -1,11 +1,11 @@
-import DBCEntity from '../dbc/Entity';
-import glueStrings from '../mpq/files/GlueStrings';
-import { contains } from '../utils/string';
+import DBCEntity from '../dbc/Entity.mjs';
+import glueStrings from '../mpq/files/GlueStrings.mjs';
+import { contains } from '../utils/string.mjs';
 
-import CharBaseInfo from './CharBaseInfo';
-import Class from './Class';
-import Quest from './Quest';
-import Side from './Side';
+import CharBaseInfo from './CharBaseInfo.mjs';
+import Class from './Class.mjs';
+import Quest from './Quest.mjs';
+import Side from './Side.mjs';
 
 class Race extends DBCEntity {
   static get dbc() {

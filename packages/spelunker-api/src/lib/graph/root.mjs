@@ -1,17 +1,17 @@
-import Account from '../entities/Account';
-import Area from '../entities/Area';
-import Character from '../entities/Character';
-import Class from '../entities/Class';
-import Faction from '../entities/Faction';
-import GameObject from '../entities/GameObject';
-import Item from '../entities/Item';
-import ItemSet from '../entities/ItemSet';
-import Map from '../entities/Map';
-import NPC from '../entities/NPC';
-import Quest from '../entities/Quest';
-import Race from '../entities/Race';
-import Side from '../entities/Side';
-import Spell from '../entities/Spell';
+import Account from '../entities/Account.mjs';
+import Area from '../entities/Area.mjs';
+import Character from '../entities/Character.mjs';
+import Class from '../entities/Class.mjs';
+import Faction from '../entities/Faction.mjs';
+import GameObject from '../entities/GameObject.mjs';
+import Item from '../entities/Item.mjs';
+import ItemSet from '../entities/ItemSet.mjs';
+import Map from '../entities/Map.mjs';
+import NPC from '../entities/NPC.mjs';
+import Quest from '../entities/Quest.mjs';
+import Race from '../entities/Race.mjs';
+import Side from '../entities/Side.mjs';
+import Spell from '../entities/Spell.mjs';
 
 export default {
   accounts: ({ searchQuery }) => Account.query.search(searchQuery),

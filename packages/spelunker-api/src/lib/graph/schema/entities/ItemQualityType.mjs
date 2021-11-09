@@ -1,6 +1,6 @@
 import {
   GraphQLEnumType,
-} from '../../../graphql';
+} from '../../../graphql/index.mjs';
 
 export default new GraphQLEnumType({
   name: 'ItemQuality',

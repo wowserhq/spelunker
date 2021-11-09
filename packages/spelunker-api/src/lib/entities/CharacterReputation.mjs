@@ -1,8 +1,8 @@
-import DatabaseEntity from '../db/Entity';
-import { charactersConnection } from '../db/connections';
+import DatabaseEntity from '../db/Entity.mjs';
+import { charactersConnection } from '../db/connections.mjs';
 
-import Character from './Character';
-import Faction from './Faction';
+import Character from './Character.mjs';
+import Faction from './Faction.mjs';
 
 class CharacterReputation extends DatabaseEntity {
   static get connection() {

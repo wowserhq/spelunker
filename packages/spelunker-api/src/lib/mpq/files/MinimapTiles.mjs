@@ -1,4 +1,4 @@
-import mpq from '../';
+import mpq from '../index.mjs';
 
 const file = mpq.files.get('textures\\Minimap\\md5translate.trs');
 const source = file.data.toString();

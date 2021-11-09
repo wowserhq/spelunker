@@ -1,9 +1,9 @@
-import DatabaseEntity from '../db/Entity';
-import { worldConnection } from '../db/connections';
+import DatabaseEntity from '../db/Entity.mjs';
+import { worldConnection } from '../db/connections.mjs';
 
-import Area from './Area';
-import Map from './Map';
-import NPC from './NPC';
+import Area from './Area.mjs';
+import Map from './Map.mjs';
+import NPC from './NPC.mjs';
 
 class NPCSpawn extends DatabaseEntity {
   static get connection() {

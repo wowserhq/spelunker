@@ -1,9 +1,9 @@
-import BLP from 'blizzardry/lib/blp';
+import BLP from 'blizzardry/lib/blp/index.js';
 import express from 'express';
 import pngjs from 'pngjs';
 
-import minimapTiles from '../mpq/files/MinimapTiles';
-import mpq from '../mpq';
+import minimapTiles from '../mpq/files/MinimapTiles.mjs';
+import mpq from '../mpq/index.mjs';
 
 const { PNG } = pngjs;
 

@@ -3,11 +3,11 @@ import {
   GraphQLInt,
   GraphQLNonNull,
   GraphQLObjectType,
-} from '../../../graphql';
+} from '../../../graphql/index.mjs';
 
-import AreaType from './AreaType';
-import GameObjectType from './GameObjectType';
-import MapType from './MapType';
+import AreaType from './AreaType.mjs';
+import GameObjectType from './GameObjectType.mjs';
+import MapType from './MapType.mjs';
 
 export default new GraphQLObjectType({
   name: 'GameObjectSpawn',

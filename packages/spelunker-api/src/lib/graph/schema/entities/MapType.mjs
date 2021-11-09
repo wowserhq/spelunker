@@ -3,14 +3,14 @@ import {
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLString,
-} from '../../../graphql';
+} from '../../../graphql/index.mjs';
 
-import BoundsType from '../BoundsType';
-import CollectionType from '../CollectionType';
+import BoundsType from '../BoundsType.mjs';
+import CollectionType from '../CollectionType.mjs';
 
-import AreaType from './AreaType';
-import GameObjectSpawnType from './GameObjectSpawnType';
-import NPCSpawnType from './NPCSpawnType';
+import AreaType from './AreaType.mjs';
+import GameObjectSpawnType from './GameObjectSpawnType.mjs';
+import NPCSpawnType from './NPCSpawnType.mjs';
 
 export default new GraphQLObjectType({
   name: 'Map',

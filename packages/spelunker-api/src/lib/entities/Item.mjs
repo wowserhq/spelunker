@@ -1,13 +1,13 @@
-import DatabaseEntity from '../db/Entity';
-import { worldConnection } from '../db/connections';
+import DatabaseEntity from '../db/Entity.mjs';
+import { worldConnection } from '../db/connections.mjs';
 
-import GameObjectLoot from './GameObjectLoot';
-import ItemDisplayInfo from './ItemDisplayInfo';
-import ItemLoot from './ItemLoot';
-import ItemSet from './ItemSet';
-import NPCLoot from './NPCLoot';
-import NPCSale from './NPCSale';
-import Quest from './Quest';
+import GameObjectLoot from './GameObjectLoot.mjs';
+import ItemDisplayInfo from './ItemDisplayInfo.mjs';
+import ItemLoot from './ItemLoot.mjs';
+import ItemSet from './ItemSet.mjs';
+import NPCLoot from './NPCLoot.mjs';
+import NPCSale from './NPCSale.mjs';
+import Quest from './Quest.mjs';
 
 class Item extends DatabaseEntity {
   static get connection() {

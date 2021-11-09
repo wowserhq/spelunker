@@ -1,5 +1,5 @@
-import Area from './Area';
-import Map from './Map';
+import Area from './Area.mjs';
+import Map from './Map.mjs';
 
 class CharacterSpawn {
   constructor(data) {

@@ -2,10 +2,10 @@ import {
   GraphQLInt,
   GraphQLNonNull,
   GraphQLObjectType,
-} from '../../../graphql';
+} from '../../../graphql/index.mjs';
 
-import CharacterType from './CharacterType';
-import ItemType from './ItemType';
+import CharacterType from './CharacterType.mjs';
+import ItemType from './ItemType.mjs';
 
 export default new GraphQLObjectType({
   name: 'CharacterItem',

@@ -2,7 +2,7 @@ import {
   GraphQLFloat,
   GraphQLNonNull,
   GraphQLObjectType,
-} from '../../graphql';
+} from '../../graphql/index.mjs';
 
 export default new GraphQLObjectType({
   name: 'Bounds',

@@ -1,6 +1,6 @@
-import DBCEntity from '../dbc/Entity';
+import DBCEntity from '../dbc/Entity.mjs';
 
-import Area from './Area';
+import Area from './Area.mjs';
 
 class WorldMapArea extends DBCEntity {
   static get dbc() {
