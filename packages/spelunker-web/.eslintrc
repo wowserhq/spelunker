@@ -5,8 +5,14 @@
     "eslint-config-airbnb/rules/react-a11y"
   ],
   "rules": {
-    "jsx-a11y/anchor-is-valid": "never",
-    "react/prop-types": ["never"]
+    "jsx-a11y/anchor-is-valid": "off",
+    "react/button-has-type": "off",
+    "react/destructuring-assignment": "off",
+    "react/forbid-prop-types": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-wrap-multilines": "off",
+    "react/prop-types": ["off"]
   },
   "env": {
     "browser": true,
