@@ -56,7 +56,7 @@ class Race extends DBCEntity {
       const side = await this.side();
       return query.whereRaw(
         '(AllowableRaces & ?) != ?',
-        [side.racemask, side.racemask]
+        [side.racemask, side.racemask],
       );
     }
     return query.orWhere('AllowableRaces', 0);

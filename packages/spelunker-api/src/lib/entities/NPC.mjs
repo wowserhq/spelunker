@@ -39,7 +39,7 @@ class NPC extends DatabaseEntity {
     return Quest.query.join(
       NPCQuestFinisher.fqTableName,
       NPCQuestFinisher.fqColumn('quest'),
-      Quest.fqColumn('ID')
+      Quest.fqColumn('ID'),
     ).where({
       [NPCQuestFinisher.fqColumn('id')]: this.id,
     });
@@ -69,7 +69,7 @@ class NPC extends DatabaseEntity {
     return Quest.query.join(
       NPCQuestStarter.fqTableName,
       NPCQuestStarter.fqColumn('quest'),
-      Quest.fqColumn('ID')
+      Quest.fqColumn('ID'),
     ).where({
       [NPCQuestStarter.fqColumn('id')]: this.id,
     });

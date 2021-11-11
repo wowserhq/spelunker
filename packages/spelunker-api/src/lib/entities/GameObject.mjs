@@ -37,7 +37,7 @@ class GameObject extends DatabaseEntity {
     return Quest.query.join(
       GameObjectQuestFinisher.fqTableName,
       GameObjectQuestFinisher.fqColumn('quest'),
-      Quest.fqColumn('ID')
+      Quest.fqColumn('ID'),
     ).where({
       [GameObjectQuestFinisher.fqColumn('id')]: this.id,
     });
@@ -64,7 +64,7 @@ class GameObject extends DatabaseEntity {
     return Quest.query.join(
       GameObjectQuestStarter.fqTableName,
       GameObjectQuestStarter.fqColumn('quest'),
-      Quest.fqColumn('ID')
+      Quest.fqColumn('ID'),
     ).where({
       [GameObjectQuestStarter.fqColumn('id')]: this.id,
     });

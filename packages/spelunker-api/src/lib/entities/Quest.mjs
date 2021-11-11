@@ -112,7 +112,7 @@ class Quest extends DatabaseEntity {
     return NPC.query.join(
       NPCQuestFinisher.fqTableName,
       NPCQuestFinisher.fqColumn('id'),
-      NPC.fqColumn('entry')
+      NPC.fqColumn('entry'),
     ).where({
       [NPCQuestFinisher.fqColumn('quest')]: this.id,
     });
@@ -122,7 +122,7 @@ class Quest extends DatabaseEntity {
     return GameObject.query.join(
       GameObjectQuestFinisher.fqTableName,
       GameObjectQuestFinisher.fqColumn('id'),
-      GameObject.fqColumn('entry')
+      GameObject.fqColumn('entry'),
     ).where({
       [GameObjectQuestFinisher.fqColumn('quest')]: this.id,
     });
@@ -135,7 +135,7 @@ class Quest extends DatabaseEntity {
         ExclusiveGroup: group,
       }).whereNot(
         Quest.fqColumn('ID'),
-        this.id
+        this.id,
       );
     }
     return Quest.none;
@@ -177,9 +177,7 @@ class Quest extends DatabaseEntity {
     return new FixedColumnQuery(Faction, {
       label: `prerequisiteFactionReputation for quest ${this.id}`,
       end: 2,
-      resolve: async () => {
-        return null;
-      },
+      resolve: async () => null,
     });
   }
 
@@ -425,7 +423,7 @@ class Quest extends DatabaseEntity {
     return NPC.query.join(
       NPCQuestStarter.fqTableName,
       NPCQuestStarter.fqColumn('id'),
-      NPC.fqColumn('entry')
+      NPC.fqColumn('entry'),
     ).where({
       [NPCQuestStarter.fqColumn('quest')]: this.id,
     });
@@ -439,7 +437,7 @@ class Quest extends DatabaseEntity {
     return GameObject.query.join(
       GameObjectQuestStarter.fqTableName,
       GameObjectQuestStarter.fqColumn('id'),
-      GameObject.fqColumn('entry')
+      GameObject.fqColumn('entry'),
     ).where({
       [GameObjectQuestStarter.fqColumn('quest')]: this.id,
     });

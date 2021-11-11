@@ -19,7 +19,7 @@ class CollectionType extends GraphQLObjectType {
             totalCount: { type: new GraphQLNonNull(GraphQLInt) },
             results: { type: new GraphQLList(wrappedType) },
           },
-        })
+        }),
       )
     ));
   }

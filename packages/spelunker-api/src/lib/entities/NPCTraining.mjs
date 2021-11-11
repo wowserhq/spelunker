@@ -22,7 +22,7 @@ class NPCTraining extends DatabaseEntity {
     const templates = connection(`${fqTableName} as a`)
       .select(
         'b.ID', 'a.SpellID', 'a.MoneyCost',
-        'a.ReqSkillLine', 'a.ReqSkillRank', 'a.ReqLevel'
+        'a.ReqSkillLine', 'a.ReqSkillRank', 'a.ReqLevel',
       )
       .join(`${fqTableName} as b`, 'a.ID', connection.raw('-b.SpellID'));
 
