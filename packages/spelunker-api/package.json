@@ -31,10 +31,10 @@
     "pngjs": "^3.3.3"
   },
   "devDependencies": {
-    "@wowserhq/eslint-config": "^0.3.1",
-    "eslint": "^4.19.1",
-    "eslint-plugin-import": "^2.11.0",
-    "nodemon": "^1.17.3"
+    "@wowserhq/eslint-config": "^0.4.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-import": "^2.25.3",
+    "nodemon": "^2.0.15"
   },
   "engines": {
     "node": ">= 8"
