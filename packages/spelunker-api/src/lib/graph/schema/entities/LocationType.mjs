@@ -31,7 +31,7 @@ class LocationType extends GraphQLObjectType {
             maxResults: Infinity,
           }),
         },
-      })
+      }),
     );
   }
 

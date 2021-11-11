@@ -42,9 +42,9 @@ class Character extends DatabaseEntity {
     const klass = await this.class();
 
     return Quest.query.whereRaw(
-      '(AllowableRaces = 0 OR AllowableRaces & ?)', race.mask
+      '(AllowableRaces = 0 OR AllowableRaces & ?)', race.mask,
     ).whereRaw(
-      '(AllowableClasses IS NULL OR AllowableClasses = 0 OR AllowableClasses & ?)', klass.mask
+      '(AllowableClasses IS NULL OR AllowableClasses = 0 OR AllowableClasses & ?)', klass.mask,
     );
   }
 
@@ -56,7 +56,7 @@ class Character extends DatabaseEntity {
     return Quest.query.join(
       CharacterQuestStatusRewarded.fqTableName,
       CharacterQuestStatusRewarded.fqColumn('quest'),
-      Quest.fqColumn('ID')
+      Quest.fqColumn('ID'),
     ).where({
       [CharacterQuestStatusRewarded.fqColumn('guid')]: this.id,
     });
@@ -95,10 +95,10 @@ class Character extends DatabaseEntity {
     query.leftJoin(CharacterQuestStatusRewarded.fqTableName, (clause) => (
       clause.on(
         CharacterQuestStatusRewarded.fqColumn('quest'),
-        Quest.fqColumn('ID')
+        Quest.fqColumn('ID'),
       ).andOn(
         CharacterQuestStatusRewarded.fqColumn('guid'),
-        this.id
+        this.id,
       )
     )).whereNull(CharacterQuestStatusRewarded.fqColumn('guid'));
 
