@@ -21,7 +21,7 @@ const listStartedByForQuest = gql`
 `;
 
 const StartedByTab = ({ match }) => {
-  const { id } = match.params;
+  const id = parseInt(match.params.id, 10);
   return (
     <Collection
       accessor="quest.startedBy"

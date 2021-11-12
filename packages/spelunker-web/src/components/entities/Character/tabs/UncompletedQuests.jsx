@@ -21,7 +21,7 @@ const listUncompletedQuestsForCharacter = gql`
 `;
 
 const UncompletedQuestsTab = ({ match }) => {
-  const { id } = match.params;
+  const id = parseInt(match.params.id, 10);
   return (
     <Collection
       accessor="character.uncompletedQuests"

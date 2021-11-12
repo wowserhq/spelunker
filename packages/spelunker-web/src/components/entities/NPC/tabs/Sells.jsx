@@ -32,7 +32,7 @@ const listSellsForNPC = gql`
 `;
 
 const SellsTab = ({ match }) => {
-  const { id } = match.params;
+  const id = parseInt(match.params.id, 10);
   return (
     <Collection
       accessor="npc.sells"

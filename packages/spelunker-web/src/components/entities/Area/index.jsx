@@ -52,7 +52,7 @@ const fetchArea = gql`
 `;
 
 const Area = ({ match }) => {
-  const { id } = match.params;
+  const id = parseInt(match.params.id, 10);
   return (
     <Query query={fetchArea} variables={{ id }}>
       {({ data }) => {

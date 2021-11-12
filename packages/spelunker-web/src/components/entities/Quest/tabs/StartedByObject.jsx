@@ -21,7 +21,7 @@ const listStartedByObjectForQuest = gql`
 `;
 
 const StartedByObjectTab = ({ match }) => {
-  const { id } = match.params;
+  const id = parseInt(match.params.id, 10);
   return (
     <Collection
       accessor="quest.startedByObject"

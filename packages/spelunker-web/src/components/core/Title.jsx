@@ -3,7 +3,7 @@ import React from 'react';
 const SEPARATOR = ' · ';
 
 class Title extends React.Component {
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const path = [
       ...this.props.path,
       'Spelunker',

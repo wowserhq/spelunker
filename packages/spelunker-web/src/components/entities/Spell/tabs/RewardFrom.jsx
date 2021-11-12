@@ -21,7 +21,7 @@ const listRewardFromForSpell = gql`
 `;
 
 const RewardFromTab = ({ match }) => {
-  const { id } = match.params;
+  const id = parseInt(match.params.id, 10);
   return (
     <Collection
       accessor="spell.rewardFrom"

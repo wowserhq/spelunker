@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link, matchPath } from 'react-router-dom';
+import { Link, matchPath, withRouter } from 'react-router-dom';
 
 import styles from './index.styl';
 
-const TabbedBox = (props, { router }) => {
+const TabbedBox = (props) => {
   const children = React.Children.toArray(props.children);
   if (!children.length) {
     return null;
   }
 
-  const { history, route: { location } } = router;
+  const { history, location } = props;
 
   let match = false;
   const tabs = children.map(child => {
@@ -58,8 +58,4 @@ const TabbedBox = (props, { router }) => {
   );
 };
 
-TabbedBox.contextTypes = {
-  router: PropTypes.object.isRequired,
-};
-
-export default TabbedBox;
+export default withRouter(TabbedBox);

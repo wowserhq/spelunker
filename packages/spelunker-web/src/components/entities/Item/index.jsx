@@ -61,7 +61,7 @@ const fetchItem = gql`
 `;
 
 const Item = ({ match }) => {
-  const { id } = match.params;
+  const id = parseInt(match.params.id, 10);
   return (
     <Query query={fetchItem} variables={{ id }}>
       {({ data }) => {

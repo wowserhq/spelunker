@@ -21,7 +21,7 @@ const listStartsForItem = gql`
 `;
 
 const StartsTab = ({ match }) => {
-  const { id } = match.params;
+  const id = parseInt(match.params.id, 10);
   return (
     <Collection
       accessor="item.starts"

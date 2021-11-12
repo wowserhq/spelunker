@@ -21,7 +21,7 @@ const listEndsForGameObject = gql`
 `;
 
 const EndsTab = ({ match }) => {
-  const { id } = match.params;
+  const id = parseInt(match.params.id, 10);
   return (
     <Collection
       accessor="object.ends"
