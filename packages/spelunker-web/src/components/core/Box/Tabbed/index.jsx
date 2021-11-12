@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { Link, matchPath, withRouter } from 'react-router-dom';
 
