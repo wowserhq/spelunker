@@ -16,7 +16,7 @@ const TabbedBox = (props, { router }) => {
   const tabs = children.map(child => {
     const active = matchPath(
       location.pathname,
-      { path: `${child.props.match.path}/${child.props.path}` }
+      { path: `${child.props.match.path}/${child.props.path}` },
     );
 
     if (active) {
@@ -28,7 +28,7 @@ const TabbedBox = (props, { router }) => {
       {
         target: `${child.props.match.url}/${child.props.path}`,
         active,
-      }
+      },
     );
   });
 

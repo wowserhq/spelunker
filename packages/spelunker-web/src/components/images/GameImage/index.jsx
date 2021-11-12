@@ -7,7 +7,7 @@ const GameImageBackground = (props) => {
   const className = classNames(
     props.className,
     styles.image,
-    styles.asBackground
+    styles.asBackground,
   );
   return (
     <span className={className}>

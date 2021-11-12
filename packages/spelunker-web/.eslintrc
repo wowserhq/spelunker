@@ -5,6 +5,7 @@
     "eslint-config-airbnb/rules/react-a11y"
   ],
   "rules": {
+    "no-underscore-dangle": "off",
     "jsx-a11y/anchor-is-valid": "off",
     "react/button-has-type": "off",
     "react/destructuring-assignment": "off",

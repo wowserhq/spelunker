@@ -233,8 +233,7 @@ class Search extends React.Component {
                 </TabbedBox>
               );
             }}
-          </Query>
-        }
+          </Query>}
       </Title>
     );
   }

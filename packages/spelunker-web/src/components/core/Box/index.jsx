@@ -7,7 +7,7 @@ const Box = (props) => {
   const className = classNames(
     styles.box,
     props.className,
-    { [styles.aside]: props.aside }
+    { [styles.aside]: props.aside },
   );
   return (
     <div className={className}>
