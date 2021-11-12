@@ -21,7 +21,7 @@ const listRacesForSide = gql`
 `;
 
 const RacesTab = ({ match }) => {
-  const { id } = match.params;
+  const id = parseInt(match.params.id, 10);
   return (
     <Collection
       accessor="side.races"

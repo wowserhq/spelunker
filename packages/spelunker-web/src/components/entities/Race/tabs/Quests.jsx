@@ -21,7 +21,7 @@ const listQuestsForRace = gql`
 `;
 
 const QuestsTab = ({ match }) => {
-  const { id } = match.params;
+  const id = parseInt(match.params.id, 10);
   return (
     <Collection
       accessor="race.quests"

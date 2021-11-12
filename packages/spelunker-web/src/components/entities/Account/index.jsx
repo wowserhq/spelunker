@@ -21,7 +21,7 @@ const fetchAccount = gql`
 `;
 
 const Account = ({ match }) => {
-  const { id } = match.params;
+  const id = parseInt(match.params.id, 10);
   return (
     <Query query={fetchAccount} variables={{ id }}>
       {({ data }) => {

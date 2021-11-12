@@ -21,7 +21,7 @@ const listSubfactionsForFaction = gql`
 `;
 
 const SubfactionsTab = ({ match }) => {
-  const { id } = match.params;
+  const id = parseInt(match.params.id, 10);
   return (
     <Collection
       accessor="faction.subfactions"

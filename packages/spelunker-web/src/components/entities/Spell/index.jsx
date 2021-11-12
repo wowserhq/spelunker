@@ -29,7 +29,7 @@ const fetchSpell = gql`
 `;
 
 const Spell = ({ match }) => {
-  const { id } = match.params;
+  const id = parseInt(match.params.id, 10);
   return (
     <Query query={fetchSpell} variables={{ id }}>
       {({ data }) => {

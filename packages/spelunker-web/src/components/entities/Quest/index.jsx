@@ -182,7 +182,7 @@ const fetchQuest = gql`
 `;
 
 const Quest = ({ match }) => {
-  const { id } = match.params;
+  const id = parseInt(match.params.id, 10);
   return (
     <Query query={fetchQuest} variables={{ id }}>
       {({ data }) => {

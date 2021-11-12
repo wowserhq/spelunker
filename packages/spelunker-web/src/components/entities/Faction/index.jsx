@@ -30,7 +30,7 @@ const fetchFaction = gql`
 `;
 
 const Faction = ({ match }) => {
-  const { id } = match.params;
+  const id = parseInt(match.params.id, 10);
   return (
     <Query query={fetchFaction} variables={{ id }}>
       {({ data }) => {

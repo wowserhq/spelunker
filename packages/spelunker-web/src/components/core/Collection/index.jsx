@@ -1,12 +1,13 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 import Pagination from '../Pagination';
 import Query from '../Query';
 import valueByPath from '../../../utils/valueByPath';
 
-const Collection = (props, { router }) => {
-  const queryParams = new URLSearchParams(router.route.location.search);
+const Collection = (props) => {
+  const { location } = props;
+  const queryParams = new URLSearchParams(location.search);
   const offset = +queryParams.get('offset') || 0;
   const variables = Object.assign({}, props.variables, { offset });
   return (
@@ -37,8 +38,4 @@ const Collection = (props, { router }) => {
   );
 };
 
-Collection.contextTypes = {
-  router: PropTypes.object.isRequired,
-};
-
-export default Collection;
+export default withRouter(Collection);

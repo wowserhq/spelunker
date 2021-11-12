@@ -30,7 +30,7 @@ const fetchClass = gql`
 `;
 
 const Class = ({ match }) => {
-  const { id } = match.params;
+  const id = parseInt(match.params.id, 10);
   return (
     <Query query={fetchClass} variables={{ id }}>
       {({ data }) => {
