@@ -31,7 +31,7 @@ const client = new ApolloClient({
       if (graphQLErrors) {
         graphQLErrors.map(({ message, path }) =>
           console.error(
-            `${message}${path ? `\n\nPath: ${path}` : ''}`
+            `${message}${path ? `\n\nPath: ${path}` : ''}`,
           ),
         );
       }

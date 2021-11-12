@@ -17,7 +17,7 @@ const GameIcon = (props) => {
   const className = classNames(
     props.className,
     styles.icon,
-    { [styles.asBackground]: props.asBackground }
+    { [styles.asBackground]: props.asBackground },
   );
   return (
     <GameImage
