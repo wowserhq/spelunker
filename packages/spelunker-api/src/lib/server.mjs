@@ -10,17 +10,18 @@ const { ApolloServer } = apolloExpress;
 
 const server = express();
 
+const allowedOrigins = (process.env.CORS_ALLOWED_ORIGINS || '*').split(',');
+// Necessary to ensure the '*'-default keeps working
+const origin = allowedOrigins.length === 1 ? allowedOrigins[0] : allowedOrigins;
+
+server.use(cors({ origin }));
+
 const apollo = new ApolloServer({
   schema,
   rootValue,
+  cors: { origin },
 });
 apollo.applyMiddleware({ app: server, path: '/graphql' });
-
-const allowedOrigins = (process.env.CORS_ALLOWED_ORIGINS || '*').split(',');
-server.use(cors({
-  // Necessary to ensure the '*'-default keeps working
-  origin: allowedOrigins.length === 1 ? allowedOrigins[0] : allowedOrigins,
-}));
 
 // TODO: Use separate pipeline server
 server.use('/pipeline', pipeline);
