@@ -114,7 +114,7 @@ const Spelunker = () => (
         </Switch>
 
         <footer className={styles.footer}>
-          <ProjectLink /> · Copyright (c) 2018 Wowser Contributors
+          <ProjectLink /> · &copy;2018-2021 Wowser Contributors
         </footer>
       </div>
     </Router>
