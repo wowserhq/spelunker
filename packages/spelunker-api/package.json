@@ -18,7 +18,7 @@
     "wowser"
   ],
   "dependencies": {
-    "apollo-server-express": "^2.0.2",
+    "apollo-server-express": "^2.25.3",
     "blizzardry": "^0.5.1",
     "cors": "^2.8.5",
     "debug": "^3.1.0",
