@@ -25,7 +25,7 @@ Spelunker ships with a pipeline serving up resources to the browser over HTTP.
 Depending on your network configuration these may be available to others. Respect
 laws and do not distribute game data you do not own.
 
-Be mindful of any privacy sensitive data – such as account and character names –
+Be mindful of any privacy sensitive data – such as account and character names –
 you may expose through Spelunker.
 
 ### Supported servers and game versions
@@ -51,17 +51,13 @@ runtimes.
    git clone git://github.com/wowserhq/spelunker.git
    ```
 
-2. Download and install [Node] **8.x** – including `npm` – for your platform.
-
-   Versions **7.x and lower** lack required features.
-
-   Versions **9.x and higher** fail installing the [Blizzardry] dependency. This
-   will be addressed in the future.
+2. Download and install [Node] **10+** – including `npm` – for your platform.
 
 3. Install dependencies:
 
    ```shell
-   npm install
+   (cd packages/spelunker-api && npm install)
+   (cd packages/spelunker-web && npm install)
    ```
 
 4. Install [StormLib] and [BLPConverter], which are used to handle Blizzard's
