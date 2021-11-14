@@ -6,11 +6,13 @@ on:
       - master
     paths:
       - packages/spelunker-api/**
+      - .github/workflows/api-ci.yml
   pull_request:
     branches:
       - master
     paths:
       - packages/spelunker-api/**
+      - .github/workflows/api-ci.yml
 
 jobs:
   ci:
