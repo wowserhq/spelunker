@@ -9,6 +9,7 @@ import CollectionType from '../CollectionType.mjs';
 import CurrencyType from '../CurrencyType.mjs';
 
 import GameObjectLootType from './GameObjectLootType.mjs';
+import ItemClassType from './ItemClassType.mjs';
 import ItemDisplayInfoType from './ItemDisplayInfoType.mjs';
 import ItemLootType from './ItemLootType.mjs';
 import ItemQualityType from './ItemQualityType.mjs';
@@ -23,6 +24,7 @@ export default new GraphQLObjectType({
     id: { type: new GraphQLNonNull(GraphQLInt) },
     name: { type: new GraphQLNonNull(GraphQLString) },
     buyPrice: { type: CurrencyType },
+    itemClass: { type: ItemClassType },
     itemSet: { type: ItemSetType },
     sellPrice: { type: CurrencyType },
     quality: { type: ItemQualityType },
