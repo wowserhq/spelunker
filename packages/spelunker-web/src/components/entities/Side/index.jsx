@@ -34,7 +34,7 @@ const fetchSide = gql`
 `;
 
 const Side = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+  const { id } = match.params;
   return (
     <Query query={fetchSide} variables={{ id }}>
       {({ data }) => {
