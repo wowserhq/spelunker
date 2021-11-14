@@ -21,7 +21,7 @@ const listQuestsForSide = gql`
 `;
 
 const QuestsTab = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+  const { id } = match.params;
   return (
     <Collection
       accessor="side.quests"
