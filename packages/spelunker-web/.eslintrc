@@ -5,6 +5,9 @@
     "eslint-config-airbnb/rules/react-a11y"
   ],
   "rules": {
+    "camelcase": ["error", {
+      "allow": ["^UNSAFE_"]
+    }],
     "no-underscore-dangle": "off",
     "jsx-a11y/anchor-is-valid": "off",
     "react/button-has-type": "off",
