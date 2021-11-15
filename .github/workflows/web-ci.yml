@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - packages/spelunker-web/**
+      - .github/workflows/web-ci.yml
+  pull_request:
+    branches:
+      - master
+    paths:
+      - packages/spelunker-web/**
+      - .github/workflows/web-ci.yml
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node:
+          - '10'
+          - '12'
+    name: Node ${{ matrix.node }}
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node }}
+    - name: Cache Node modules
+      uses: actions/cache@v2
+      id: cache-node
+      with:
+        key: node-${{ runner.os }}-${{ matrix.node }}-${{ hashFiles('./packages/spelunker-web/package-lock.json') }}
+        path: ~/.npm
+    - name: Install Node modules
+      run: npm install
+      working-directory: ./packages/spelunker-web
+    - name: Lint
+      run: npm run lint
+      working-directory: ./packages/spelunker-web
+    - name: Build
+      run: npm run build
+      working-directory: ./packages/spelunker-web
