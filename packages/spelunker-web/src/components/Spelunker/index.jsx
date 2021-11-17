@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router,
   NavLink,
   Route,
-  Switch,
+  Routes,
 } from 'react-router-dom';
 
 import Account from '../entities/Account';
@@ -49,7 +49,7 @@ const Spelunker = () => (
         <header className={styles.header}>
           <nav>
             <ul>
-              <li><NavLink exact to="/">Spelunker</NavLink></li>
+              <li><NavLink end to="/">Spelunker</NavLink></li>
               <li><NavLink to="/accounts">Accounts</NavLink></li>
               <li><NavLink to="/areas">Areas</NavLink></li>
               <li><NavLink to="/characters">Characters</NavLink></li>
@@ -67,51 +67,82 @@ const Spelunker = () => (
           </nav>
         </header>
 
-        <Switch>
-          <Route path="/accounts/:id" component={Account} />
-          <Route path="/accounts" component={AccountList} />
+        <Routes>
+          <Route path="/accounts">
+            <Route path=":id/*" element={<Account />} />
+            <Route index element={<AccountList />} />
+          </Route>
 
-          <Route path="/areas/:id" component={Area} />
-          <Route path="/areas" component={AreaList} />
+          <Route path="/areas">
+            <Route path=":id/*" element={<Area />} />
+            <Route index element={<AreaList />} />
+          </Route>
 
-          <Route path="/characters/:id" component={Character} />
-          <Route path="/characters" component={CharacterList} />
+          <Route path="/characters">
+            <Route path=":id/*" element={<Character />} />
+            <Route index element={<CharacterList />} />
+          </Route>
 
-          <Route path="/classes/:id" component={Class} />
-          <Route path="/classes" component={ClassList} />
+          <Route path="/classes">
+            <Route path=":id/*" element={<Class />} />
+            <Route index element={<ClassList />} />
+          </Route>
 
-          <Route path="/factions/:id" component={Faction} />
-          <Route path="/factions" component={FactionList} />
+          <Route path="/factions">
+            <Route path=":id/*" element={<Faction />} />
+            <Route index element={<FactionList />} />
+          </Route>
 
-          <Route path="/items/:id" component={Item} />
-          <Route path="/items" component={ItemList} />
+          <Route path="/items">
+            <Route path=":id/*" element={<Item />} />
+            <Route index element={<ItemList />} />
+          </Route>
 
-          <Route path="/item-sets/:id" component={ItemSet} />
-          <Route path="/item-sets" component={ItemSetList} />
+          <Route path="/item-sets">
+            <Route path=":id/*" element={<ItemSet />} />
+            <Route index element={<ItemSetList />} />
+          </Route>
 
-          <Route path="/maps/:id" component={Map} />
-          <Route path="/maps" component={MapList} />
+          <Route path="/maps">
+            <Route path=":id/*" element={<Map />} />
+            <Route index element={<MapList />} />
+          </Route>
 
-          <Route path="/npcs/:id" component={NPC} />
-          <Route path="/npcs" component={NPCList} />
+          <Route path="/npcs">
+            <Route path=":id/*" element={<NPC />} />
+            <Route index element={<NPCList />} />
+          </Route>
 
-          <Route path="/objects/:id" component={GameObject} />
-          <Route path="/objects" component={GameObjectList} />
+          <Route path="/objects">
+            <Route path=":id/*" element={<GameObject />} />
+            <Route index element={<GameObjectList />} />
+          </Route>
 
-          <Route path="/quests/:id" component={Quest} />
-          <Route path="/quests" component={QuestList} />
+          <Route path="/quests">
+            <Route path=":id/*" element={<Quest />} />
+            <Route index element={<QuestList />} />
+          </Route>
 
-          <Route path="/races/:id" component={Race} />
-          <Route path="/races" component={RaceList} />
+          <Route path="/races">
+            <Route path=":id/*" element={<Race />} />
+            <Route index element={<RaceList />} />
+          </Route>
 
-          <Route path="/sides/:id" component={Side} />
+          <Route path="/sides">
+            <Route path=":id/*" element={<Side />} />
+          </Route>
 
-          <Route path="/spells/:id" component={Spell} />
-          <Route path="/spells" component={SpellList} />
+          <Route path="/spells">
+            <Route path=":id/*" element={<Spell />} />
+            <Route index element={<SpellList />} />
+          </Route>
 
-          <Route path="/search/:query?" component={Search} />
-          <Route path="/" exact component={Search} />
-        </Switch>
+          <Route path="/search">
+            <Route path=":query/*" element={<Search />} />
+          </Route>
+
+          <Route path="/" end element={<Search />} />
+        </Routes>
 
         <footer className={styles.footer}>
           <ProjectLink /> · &copy;2018-2021 Wowser Contributors

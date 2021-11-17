@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import npcColumns from '../../NPC/columns';
@@ -20,8 +21,9 @@ const listEndedByForQuest = gql`
   ${npcColumns.fragment}
 `;
 
-const EndedByTab = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+const EndedByTab = () => {
+  const params = useParams();
+  const id = parseInt(params.id, 10);
   return (
     <Collection
       accessor="quest.endedBy"

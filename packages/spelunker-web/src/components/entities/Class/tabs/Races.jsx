@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import raceColumns from '../../Race/columns';
@@ -20,8 +21,9 @@ const listRacesForClass = gql`
   ${raceColumns.fragment}
 `;
 
-const RacesTab = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+const RacesTab = () => {
+  const params = useParams();
+  const id = parseInt(params.id, 10);
   return (
     <Collection
       accessor="class.races"

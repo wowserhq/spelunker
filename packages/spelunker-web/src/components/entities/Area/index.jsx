@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import {
@@ -51,8 +52,9 @@ const fetchArea = gql`
   ${MapReference.fragment}
 `;
 
-const Area = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+const Area = () => {
+  const params = useParams();
+  const id = parseInt(params.id, 10);
   return (
     <Query query={fetchArea} variables={{ id }}>
       {({ data }) => {
@@ -102,14 +104,12 @@ const Area = ({ match }) => {
                 label={`Sub-areas (${subareaCount})`}
                 component={SubareasTab}
                 path="sub-areas"
-                match={match}
               />}
 
               {questCount > 0 && <Tab
                 label={`Quests (${questCount})`}
                 component={QuestsTab}
                 path="quests"
-                match={match}
               />}
             </TabbedBox>
           </Title>

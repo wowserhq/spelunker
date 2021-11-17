@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import npcColumns from '../../NPC/columns';
@@ -28,8 +29,9 @@ const listDroppedByForItem = gql`
   ${npcColumns.fragment}
 `;
 
-const DroppedByTab = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+const DroppedByTab = () => {
+  const params = useParams();
+  const id = parseInt(params.id, 10);
   return (
     <Collection
       accessor="item.droppedBy"

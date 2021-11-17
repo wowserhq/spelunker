@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import LocationSelector from '../Location/Selector';
@@ -84,8 +85,9 @@ const fetchNPC = gql`
   ${NPCReference.fragment}
 `;
 
-const NPC = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+const NPC = () => {
+  const params = useParams();
+  const id = parseInt(params.id, 10);
   return (
     <Query query={fetchNPC} variables={{ id }}>
       {({ data }) => {
@@ -122,42 +124,36 @@ const NPC = ({ match }) => {
                 label={`Drops (${dropCount})`}
                 component={DropsTab}
                 path="drops"
-                match={match}
               />}
 
               {sellCount > 0 && <Tab
                 label={`Sells (${sellCount})`}
                 component={SellsTab}
                 path="sells"
-                match={match}
               />}
 
               {startCount > 0 && <Tab
                 label={`Starts (${startCount})`}
                 component={StartsTab}
                 path="starts"
-                match={match}
               />}
 
               {endCount > 0 && <Tab
                 label={`Ends (${endCount})`}
                 component={EndsTab}
                 path="ends"
-                match={match}
               />}
 
               {objectiveOfCount > 0 && <Tab
                 label={`Objective of (${objectiveOfCount})`}
                 component={ObjectiveOfTab}
                 path="objective-of"
-                match={match}
               />}
 
               {teachCount > 0 && <Tab
                 label={`Teaches (${teachCount})`}
                 component={TeachesTab}
                 path="teaches"
-                match={match}
               />}
             </TabbedBox>
           </Title>

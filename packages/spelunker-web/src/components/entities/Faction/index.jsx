@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import { Box, Query, List, ListItem, Tab, TabbedBox, Title } from '../../core';
@@ -29,8 +30,9 @@ const fetchFaction = gql`
   ${FactionReference.fragment}
 `;
 
-const Faction = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+const Faction = () => {
+  const params = useParams();
+  const id = parseInt(params.id, 10);
   return (
     <Query query={fetchFaction} variables={{ id }}>
       {({ data }) => {
@@ -67,14 +69,12 @@ const Faction = ({ match }) => {
                 label={`Sub-factions (${subfactionCount})`}
                 component={SubfactionsTab}
                 path="sub-factions"
-                match={match}
               />}
 
               {objectiveOfCount > 0 && <Tab
                 label={`Objective of (${objectiveOfCount})`}
                 component={ObjectiveOfTab}
                 path="objective-of"
-                match={match}
               />}
             </TabbedBox>
           </Title>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import { Bounds, Box, GameMap, Query, Tab, TabbedBox, Title } from '../../core';
@@ -33,8 +34,9 @@ const fetchMap = gql`
   ${MapReference.fragment}
 `;
 
-const Map = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+const Map = () => {
+  const params = useParams();
+  const id = parseInt(params.id, 10);
   return (
     <Query query={fetchMap} variables={{ id }}>
       {({ data }) => {
@@ -66,21 +68,18 @@ const Map = ({ match }) => {
                 label={`Areas (${areaCount})`}
                 component={AreasTab}
                 path="areas"
-                match={match}
               />}
 
               {npcSpawnCount > 0 && <Tab
                 label={`NPCs (${npcSpawnCount})`}
                 component={NPCSpawnsTab}
                 path="npcs"
-                match={match}
               />}
 
               {objectSpawnCount > 0 && <Tab
                 label={`Objects (${objectSpawnCount})`}
                 component={GameObjectSpawnsTab}
                 path="objects"
-                match={match}
               />}
             </TabbedBox>
           </Title>

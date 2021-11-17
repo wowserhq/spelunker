@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import accountColumns from '../entities/Account/columns';
@@ -53,9 +54,9 @@ const ResultsTab = (props) => {
   const {
     columnsFragmentName,
     path,
-    match: { params: { query: searchQuery } },
     accessor = path,
   } = props;
+  const { query: searchQuery } = useParams();
   const columns = columnsLookup[columnsFragmentName];
   const query = resultsQueryFor(accessor, { columnsFragmentName, columns });
   // TODO: Set proper page title

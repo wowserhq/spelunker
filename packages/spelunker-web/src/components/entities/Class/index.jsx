@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import { Box, Query, Tab, TabbedBox, Title } from '../../core';
@@ -29,8 +30,9 @@ const fetchClass = gql`
   ${ClassReference.fragment}
 `;
 
-const Class = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+const Class = () => {
+  const params = useParams();
+  const id = parseInt(params.id, 10);
   return (
     <Query query={fetchClass} variables={{ id }}>
       {({ data }) => {
@@ -60,21 +62,18 @@ const Class = ({ match }) => {
                 label={`Races (${raceCount})`}
                 component={RacesTab}
                 path="races"
-                match={match}
               />}
 
               {exclusiveQuestCount > 0 && <Tab
                 label={`Exclusive quests (${exclusiveQuestCount})`}
                 component={ExclusiveQuestsTab}
                 path="exclusive-quests"
-                match={match}
               />}
 
               {questCount > 0 && <Tab
                 label={`Quests (${questCount})`}
                 component={QuestsTab}
                 path="quests"
-                match={match}
               />}
             </TabbedBox>
           </Title>

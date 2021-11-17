@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import Currency from '../../formatters/Currency';
@@ -60,8 +61,9 @@ const fetchItem = gql`
   ${ItemSetReference.fragment}
 `;
 
-const Item = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+const Item = () => {
+  const params = useParams();
+  const id = parseInt(params.id, 10);
   return (
     <Query query={fetchItem} variables={{ id }}>
       {({ data }) => {
@@ -113,63 +115,54 @@ const Item = ({ match }) => {
                 label={`Dropped by (${droppedByCount})`}
                 component={DroppedByTab}
                 path="dropped-by"
-                match={match}
               />}
 
               {containedInCount > 0 && <Tab
                 label={`Contained in (${containedInCount})`}
                 component={ContainedInTab}
                 path="contained-in"
-                match={match}
               />}
 
               {containedInObjectCount > 0 && <Tab
                 label={`Contained in object (${containedInObjectCount})`}
                 component={ContainedInObjectTab}
                 path="contained-in-object"
-                match={match}
               />}
 
               {containCount > 0 && <Tab
                 label={`Contains (${containCount})`}
                 component={ContainsTab}
                 path="contains"
-                match={match}
               />}
 
               {objectiveOfCount > 0 && <Tab
                 label={`Objective of (${objectiveOfCount})`}
                 component={ObjectiveOfTab}
                 path="objective-of"
-                match={match}
               />}
 
               {providedForCount > 0 && <Tab
                 label={`Provided for (${providedForCount})`}
                 component={ProvidedForTab}
                 path="provided-for"
-                match={match}
               />}
 
               {rewardFromCount > 0 && <Tab
                 label={`Reward from (${rewardFromCount})`}
                 component={RewardFromTab}
                 path="reward-from"
-                match={match}
               />}
 
               {soldByCount > 0 && <Tab
                 label={`Sold by (${soldByCount})`}
                 component={SoldByTab}
                 path="sold-by"
-                match={match}
               />}
 
               {startCount > 0 && <Tab
                 label={`Starts (${startCount})`}
                 component={StartsTab}
                 path="starts"
-                match={match}
               />}
             </TabbedBox>
           </Title>

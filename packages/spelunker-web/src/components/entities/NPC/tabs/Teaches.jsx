@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import spellColumns from '../../Spell/columns';
@@ -28,8 +29,9 @@ const listTeachesForNPC = gql`
   ${spellColumns.fragment}
 `;
 
-const TeachesTab = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+const TeachesTab = () => {
+  const params = useParams();
+  const id = parseInt(params.id, 10);
   return (
     <Collection
       accessor="npc.teaches"
