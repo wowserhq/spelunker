@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import areaColumns from '../../Area/columns';
@@ -20,8 +21,9 @@ const listAreasForSide = gql`
   ${areaColumns.fragment}
 `;
 
-const AreasTab = ({ match }) => {
-  const { id } = match.params;
+const AreasTab = () => {
+  const params = useParams();
+  const { id } = params;
   return (
     <Collection
       accessor="side.areas"

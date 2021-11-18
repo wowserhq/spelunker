@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import gameObjectColumns from '../../GameObject/columns';
@@ -28,8 +29,9 @@ const listContainedInObjectForItem = gql`
   ${gameObjectColumns.fragment}
 `;
 
-const ContainedInObjectTab = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+const ContainedInObjectTab = () => {
+  const params = useParams();
+  const id = parseInt(params.id, 10);
   return (
     <Collection
       accessor="item.containedInObject"

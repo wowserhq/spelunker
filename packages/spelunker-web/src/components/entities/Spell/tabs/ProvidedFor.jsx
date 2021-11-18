@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import questColumns from '../../Quest/columns';
@@ -20,8 +21,9 @@ const listProvidedForForSpell = gql`
   ${questColumns.fragment}
 `;
 
-const ProvidedForTab = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+const ProvidedForTab = () => {
+  const params = useParams();
+  const id = parseInt(params.id, 10);
   return (
     <Collection
       accessor="spell.providedFor"

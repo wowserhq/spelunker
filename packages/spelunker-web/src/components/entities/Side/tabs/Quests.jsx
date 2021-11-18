@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import questColumns from '../../Quest/columns';
@@ -20,8 +21,9 @@ const listQuestsForSide = gql`
   ${questColumns.fragment}
 `;
 
-const QuestsTab = ({ match }) => {
-  const { id } = match.params;
+const QuestsTab = () => {
+  const params = useParams();
+  const { id } = params;
   return (
     <Collection
       accessor="side.quests"

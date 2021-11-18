@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import { Collection, Table } from '../../../core';
@@ -20,8 +21,9 @@ const listCharactersForAccount = gql`
   ${characterColumns.fragment}
 `;
 
-const CharactersTab = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+const CharactersTab = () => {
+  const params = useParams();
+  const id = parseInt(params.id, 10);
   return (
     <Collection
       accessor="account.characters"

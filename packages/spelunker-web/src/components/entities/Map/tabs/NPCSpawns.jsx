@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import NPCReference from '../../NPC/Reference';
@@ -33,8 +34,9 @@ const listNPCSpawnsForMap = gql`
   ${NPCReference.fragment}
 `;
 
-const NPCSpawnsTab = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+const NPCSpawnsTab = () => {
+  const params = useParams();
+  const id = parseInt(params.id, 10);
   return (
     <Collection
       accessor="map.npcSpawns"

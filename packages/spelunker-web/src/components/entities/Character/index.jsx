@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import AccountReference from '../Account/Reference';
@@ -84,8 +85,9 @@ const fetchCharacter = gql`
   ${CharacterReference.fragment}
 `;
 
-const Character = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+const Character = () => {
+  const params = useParams();
+  const id = parseInt(params.id, 10);
   return (
     <Query query={fetchCharacter} variables={{ id }}>
       {({ data }) => {
@@ -128,35 +130,30 @@ const Character = ({ match }) => {
                 label={`Inventory (${inventoryCount})`}
                 component={InventoryTab}
                 path="inventory"
-                match={match}
               />}
 
               {currentQuestCount > 0 && <Tab
                 label={`Current quests (${currentQuestCount})`}
                 component={CurrentQuestsTab}
                 path="current-quests"
-                match={match}
               />}
 
               {completedQuestCount > 0 && <Tab
                 label={`Completed quests (${completedQuestCount})`}
                 component={CompletedQuestsTab}
                 path="completed-quests"
-                match={match}
               />}
 
               {uncompletedQuestCount > 0 && <Tab
                 label={`Uncompleted quests (${uncompletedQuestCount})`}
                 component={UncompletedQuestsTab}
                 path="uncompleted-quests"
-                match={match}
               />}
 
               {reputationCount > 0 && <Tab
                 label={`Reputation (${reputationCount})`}
                 component={ReputationTab}
                 path="reputation"
-                match={match}
               />}
             </TabbedBox>
           </Title>

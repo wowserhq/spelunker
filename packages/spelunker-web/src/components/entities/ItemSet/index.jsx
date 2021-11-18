@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import ItemReference from '../Item/Reference';
@@ -23,8 +24,9 @@ const fetchItemSet = gql`
   ${ItemSetReference.fragment}
 `;
 
-const Item = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+const Item = () => {
+  const params = useParams();
+  const id = parseInt(params.id, 10);
   return (
     <Query query={fetchItemSet} variables={{ id }}>
       {({ data }) => {

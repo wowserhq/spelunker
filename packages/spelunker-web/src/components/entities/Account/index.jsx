@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import { Box, Query, Tab, TabbedBox, Title } from '../../core';
@@ -20,8 +21,9 @@ const fetchAccount = gql`
   ${AccountReference.fragment}
 `;
 
-const Account = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+const Account = () => {
+  const params = useParams();
+  const id = parseInt(params.id, 10);
   return (
     <Query query={fetchAccount} variables={{ id }}>
       {({ data }) => {
@@ -45,7 +47,6 @@ const Account = ({ match }) => {
                 label={`Characters (${characterCount})`}
                 component={CharactersTab}
                 path="characters"
-                match={match}
               />}
             </TabbedBox>
           </Title>

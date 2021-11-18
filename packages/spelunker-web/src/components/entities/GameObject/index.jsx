@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import LocationSelector from '../Location/Selector';
@@ -80,8 +81,9 @@ const fetchGameObject = gql`
   ${GameObjectReference.fragment}
 `;
 
-const GameObject = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+const GameObject = () => {
+  const params = useParams();
+  const id = parseInt(params.id, 10);
   return (
     <Query query={fetchGameObject} variables={{ id }}>
       {({ data }) => {
@@ -121,28 +123,24 @@ const GameObject = ({ match }) => {
                 label={`Contains (${containCount})`}
                 component={ContainsTab}
                 path="contains"
-                match={match}
               />}
 
               {startCount > 0 && <Tab
                 label={`Starts (${startCount})`}
                 component={StartsTab}
                 path="starts"
-                match={match}
               />}
 
               {endCount > 0 && <Tab
                 label={`Ends (${endCount})`}
                 component={EndsTab}
                 path="ends"
-                match={match}
               />}
 
               {objectiveOfCount > 0 && <Tab
                 label={`Objective of (${objectiveOfCount})`}
                 component={ObjectiveOfTab}
                 path="objective-of"
-                match={match}
               />}
             </TabbedBox>
           </Title>

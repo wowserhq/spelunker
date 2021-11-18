@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import ClassReference from '../Class/Reference';
@@ -181,8 +182,9 @@ const fetchQuest = gql`
   ${SpellReference.fragment}
 `;
 
-const Quest = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+const Quest = () => {
+  const params = useParams();
+  const id = parseInt(params.id, 10);
   return (
     <Query query={fetchQuest} variables={{ id }}>
       {({ data }) => {
@@ -439,35 +441,30 @@ const Quest = ({ match }) => {
                 label={`Started by (${startedByCount})`}
                 component={StartedByTab}
                 path="started-by"
-                match={match}
               />}
 
               {startedByObjectCount > 0 && <Tab
                 label={`Started by object (${startedByObjectCount})`}
                 component={StartedByObjectTab}
                 path="started-by-object"
-                match={match}
               />}
 
               {startedByItemCount > 0 && <Tab
                 label={`Started by item (${startedByItemCount})`}
                 component={StartedByItemTab}
                 path="started-by-item"
-                match={match}
               />}
 
               {endedByCount > 0 && <Tab
                 label={`Ended by (${endedByCount})`}
                 component={EndedByTab}
                 path="ended-by"
-                match={match}
               />}
 
               {endedByObjectCount > 0 && <Tab
                 label={`Ended by object (${endedByObjectCount})`}
                 component={EndedByObjectTab}
                 path="ended-by-object"
-                match={match}
               />}
             </TabbedBox>
           </Title>

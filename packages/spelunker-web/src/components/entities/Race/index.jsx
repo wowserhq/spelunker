@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import SideReference from '../Side/Reference';
@@ -34,8 +35,9 @@ const fetchRace = gql`
   ${SideReference.fragment}
 `;
 
-const Race = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+const Race = () => {
+  const params = useParams();
+  const id = parseInt(params.id, 10);
   return (
     <Query query={fetchRace} variables={{ id }}>
       {({ data }) => {
@@ -72,21 +74,18 @@ const Race = ({ match }) => {
                 label={`Classes (${classCount})`}
                 component={ClassesTab}
                 path="classes"
-                match={match}
               />}
 
               {exclusiveQuestCount > 0 && <Tab
                 label={`Exclusive quests (${exclusiveQuestCount})`}
                 component={ExclusiveQuestsTab}
                 path="exclusive-quests"
-                match={match}
               />}
 
               {questCount > 0 && <Tab
                 label={`Quests (${questCount})`}
                 component={QuestsTab}
                 path="quests"
-                match={match}
               />}
             </TabbedBox>
           </Title>

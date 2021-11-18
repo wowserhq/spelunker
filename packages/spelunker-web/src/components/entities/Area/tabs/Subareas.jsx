@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import areaColumns from '../columns';
@@ -20,8 +21,9 @@ const listSubareasForArea = gql`
   ${areaColumns.fragment}
 `;
 
-const SubareasTab = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+const SubareasTab = () => {
+  const params = useParams();
+  const id = parseInt(params.id, 10);
   return (
     <Collection
       accessor="area.subareas"

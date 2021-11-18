@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import gameObjectColumns from '../../GameObject/columns';
@@ -20,8 +21,9 @@ const listStartedByObjectForQuest = gql`
   ${gameObjectColumns.fragment}
 `;
 
-const StartedByObjectTab = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+const StartedByObjectTab = () => {
+  const params = useParams();
+  const id = parseInt(params.id, 10);
   return (
     <Collection
       accessor="quest.startedByObject"

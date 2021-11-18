@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import { Box, Query, Tab, TabbedBox, Title } from '../../core';
@@ -28,8 +29,9 @@ const fetchSpell = gql`
   ${SpellReference.fragment}
 `;
 
-const Spell = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+const Spell = () => {
+  const params = useParams();
+  const id = parseInt(params.id, 10);
   return (
     <Query query={fetchSpell} variables={{ id }}>
       {({ data }) => {
@@ -56,21 +58,18 @@ const Spell = ({ match }) => {
                 label={`Reward from (${rewardFromCount})`}
                 component={RewardFromTab}
                 path="reward-from"
-                match={match}
               />}
 
               {taughtByCount > 0 && <Tab
                 label={`Taught by (${taughtByCount})`}
                 component={TaughtByTab}
                 path="taught-by"
-                match={match}
               />}
 
               {providedForCount > 0 && <Tab
                 label={`Provided for (${providedForCount})`}
                 component={ProvidedForTab}
                 path="provided-for"
-                match={match}
               />}
             </TabbedBox>
           </Title>

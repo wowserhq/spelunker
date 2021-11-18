@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import gql from 'graphql-tag';
 
 import itemColumns from '../../Item/columns';
@@ -24,8 +25,9 @@ const listInventoryForCharacter = gql`
   ${itemColumns.fragment}
 `;
 
-const InventoryTab = ({ match }) => {
-  const id = parseInt(match.params.id, 10);
+const InventoryTab = () => {
+  const params = useParams();
+  const id = parseInt(params.id, 10);
   return (
     <Collection
       accessor="character.inventory"

@@ -1,12 +1,12 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import Pagination from '../Pagination';
 import Query from '../Query';
 import valueByPath from '../../../utils/valueByPath';
 
 const Collection = (props) => {
-  const { location } = props;
+  const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const offset = +queryParams.get('offset') || 0;
   const variables = Object.assign({}, props.variables, { offset });
@@ -38,4 +38,4 @@ const Collection = (props) => {
   );
 };
 
-export default withRouter(Collection);
+export default Collection;
