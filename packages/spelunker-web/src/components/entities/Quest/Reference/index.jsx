@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 import { Link } from 'react-router-dom';
 
 import SideReference from '../../Side/Reference';

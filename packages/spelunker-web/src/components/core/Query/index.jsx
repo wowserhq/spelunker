@@ -1,5 +1,5 @@
 import React from 'react';
-import { Query as ApolloQuery } from 'react-apollo';
+import { Query as ApolloQuery } from '@apollo/client/react/components';
 
 import { Error, ErrorBoundary } from '../';
 

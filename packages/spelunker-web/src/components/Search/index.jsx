@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 
 import {
   Box,

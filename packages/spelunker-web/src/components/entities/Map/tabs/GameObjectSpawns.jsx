@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 
 import GameObjectReference from '../../GameObject/Reference';
 import { Collection, Column, IDColumn, Table } from '../../../core';
