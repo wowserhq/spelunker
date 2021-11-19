@@ -1,6 +1,6 @@
 {
   "presets": [
-    ["env", {
+    ["@babel/preset-env", {
       "targets": {
         "node": "current",
         "browsers": [
@@ -11,6 +11,6 @@
       },
       "modules": false
     }],
-    "react"
+    "@babel/preset-react"
   ]
 }
