@@ -1,5 +1,5 @@
 import React from 'react';
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 
 import ClassReference from '../../Class/Reference';
 import QuestCategory from '../Category';

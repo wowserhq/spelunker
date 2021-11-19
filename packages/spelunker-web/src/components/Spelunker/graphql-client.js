@@ -1,28 +1,11 @@
-import { ApolloClient } from 'apollo-client';
-import { ApolloLink } from 'apollo-link';
-import {
-  InMemoryCache,
-  IntrospectionFragmentMatcher,
-} from 'apollo-cache-inmemory';
-import { HttpLink } from 'apollo-link-http';
-import { onError } from 'apollo-link-error';
+import { ApolloClient, ApolloLink, HttpLink, InMemoryCache } from '@apollo/client';
+import { onError } from '@apollo/client/link/error';
 
-const fragmentMatcher = new IntrospectionFragmentMatcher({
-  introspectionQueryResultData: {
-    __schema: {
-      types: [{
-        kind: 'UNION',
-        name: 'QuestCategory',
-        possibleTypes: [
-          { name: 'Area' },
-          { name: 'QuestSort' },
-        ],
-      }],
-    },
+const cache = new InMemoryCache({
+  possibleTypes: {
+    QuestCategory: ['Area', 'QuestSort'],
   },
 });
-
-const cache = new InMemoryCache({ fragmentMatcher });
 
 const client = new ApolloClient({
   cache,

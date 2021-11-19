@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 
 import factionColumns from '../columns';
 import { Collection, Table } from '../../../core';

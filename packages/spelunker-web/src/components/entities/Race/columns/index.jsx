@@ -1,5 +1,5 @@
 import React from 'react';
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 
 import RaceReference from '../Reference';
 import SideReference from '../../Side/Reference';

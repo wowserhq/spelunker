@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 
 import ClassReference from '../Class/Reference';
 import Currency from '../../formatters/Currency';
