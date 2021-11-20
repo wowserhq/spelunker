@@ -3,7 +3,7 @@ import { getSelectedFields } from '../graphql';
 const DEFAULT_OFFSET = 0;
 const DEFAULT_LIMIT = 25;
 
-const getCollectionResults = (args, collection) => {
+const getCollectionResults = (collection, args) => {
   // Use total if known, otherwise assume results match total
   const total = collection.totalCount ?? collection.results.length;
 
@@ -80,7 +80,7 @@ const read = (existing, { args, field }) => {
       return undefined;
     }
 
-    response.results = getCollectionResults(args, existing);
+    response.results = getCollectionResults(existing, args);
 
     // Cached collection contains incomplete results
     if (response.results.includes(undefined)) {
