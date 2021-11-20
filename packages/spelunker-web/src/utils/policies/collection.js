@@ -4,17 +4,18 @@ const DEFAULT_OFFSET = 0;
 const DEFAULT_LIMIT = 25;
 
 const getCollectionResults = (collection, args) => {
-  // Use total if known, otherwise assume results match total
-  const total = collection.totalCount ?? collection.results.length;
-
   const offset = args?.offset ?? DEFAULT_OFFSET;
-  const limit = Math.min(args?.limit ?? DEFAULT_LIMIT, total - offset);
+  const limit = args?.limit ?? DEFAULT_LIMIT;
 
-  const results = collection.results.slice(offset, offset + limit);
+  // Clamp limit by total
+  const total = collection.totalCount ?? offset + limit;
+  const clampedLimit = Math.min(limit, total - offset);
 
-  // Stretch array to permissable limit
-  if (results.length < limit) {
-    results.push(...new Array(limit - results.length));
+  const results = collection.results.slice(offset, offset + clampedLimit);
+
+  // Stretch array to clamped limit
+  if (results.length < clampedLimit) {
+    results.push(...new Array(clampedLimit - results.length));
   }
 
   return results;
