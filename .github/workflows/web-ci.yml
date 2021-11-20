@@ -23,6 +23,10 @@ jobs:
           - '10'
           - '12'
     name: Node ${{ matrix.node }}
+    env:
+      API_URI: 'http://localhost:3001/graphql'
+      DEBUG: 'spelunker*'
+      PIPELINE_URI: 'http://localhost:3001/pipeline'
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
