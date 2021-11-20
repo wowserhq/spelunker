@@ -2,6 +2,8 @@
 
 import { ApolloClient, ApolloLink, HttpLink, InMemoryCache } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
+import { createPersistedQueryLink } from '@apollo/client/link/persisted-queries';
+import { sha256 } from 'crypto-hash';
 
 import { collectionPolicy } from '../../utils/policies';
 
@@ -40,6 +42,7 @@ const client = new ApolloClient({
         console.error(networkError);
       }
     }),
+    createPersistedQueryLink({ sha256, useGETForHashedQueries: true }),
     new HttpLink({
       uri: process.env.API_URI,
       credentials: 'same-origin',
