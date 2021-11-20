@@ -3,9 +3,25 @@
 import { ApolloClient, ApolloLink, HttpLink, InMemoryCache } from '@apollo/client';
 import { onError } from '@apollo/client/link/error';
 
+import { collectionPolicy } from '../../utils/policies';
+
 const cache = new InMemoryCache({
   possibleTypes: {
     QuestCategory: ['Area', 'QuestSort'],
+  },
+  typePolicies: {
+    Area: {
+      fields: {
+        quests: collectionPolicy(),
+        subareas: collectionPolicy(),
+      },
+    },
+    Quest: {
+      fields: {
+        classes: collectionPolicy(),
+        races: collectionPolicy('exclusive'),
+      },
+    },
   },
 });
 
