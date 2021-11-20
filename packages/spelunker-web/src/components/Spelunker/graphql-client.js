@@ -13,6 +13,7 @@ const cache = new InMemoryCache({
     Area: {
       fields: {
         quests: collectionPolicy(),
+        subareas: collectionPolicy(),
       },
     },
     Quest: {
