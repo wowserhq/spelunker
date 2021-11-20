@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: './src/bootstrap.jsx',
   output: {
-    filename: 'spelunker-[hash].js',
+    filename: 'spelunker-[contenthash].js',
     path: path.resolve(__dirname, 'public'),
     publicPath: '/',
   },
@@ -69,7 +69,9 @@ module.exports = {
   },
 
   devServer: {
-    contentBase: path.resolve(__dirname, 'public'),
+    static: {
+      directory: path.resolve(__dirname, 'public'),
+    },
     historyApiFallback: true,
     port: process.env.WEB_PORT,
   },
