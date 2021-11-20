@@ -1,14 +1,14 @@
 import { getSelectedFields } from '../graphql';
 
+const DEFAULT_OFFSET = 0;
+const DEFAULT_LIMIT = 25;
+
 const getCollectionResults = (args, collection) => {
   // Use total if known, otherwise assume results match total
   const total = collection.totalCount ?? collection.results.length;
 
-  const defaultOffset = 0;
-  const offset = args?.offset ?? defaultOffset;
-
-  const defaultLimit = 25;
-  const limit = Math.min(args?.limit ?? defaultLimit, total - offset);
+  const offset = args?.offset ?? DEFAULT_OFFSET;
+  const limit = Math.min(args?.limit ?? DEFAULT_LIMIT, total - offset);
 
   const results = collection.results.slice(offset, offset + limit);
 
@@ -39,8 +39,7 @@ const merge = (existing, incoming, { args }) => {
       ? existing.results.slice(0)
       : [];
 
-    const defaultOffset = 0;
-    const offset = args?.offset ?? defaultOffset;
+    const offset = args?.offset ?? DEFAULT_OFFSET;
 
     for (let i = 0; i < incoming.results.length; ++i) {
       mergedResults[offset + i] = incoming.results[i];
