@@ -18,7 +18,7 @@ const cache = new InMemoryCache({
     Quest: {
       fields: {
         classes: collectionPolicy(),
-        races: collectionPolicy({ keyArgs: ['exclusive'] }),
+        races: collectionPolicy('exclusive'),
       },
     },
   },
