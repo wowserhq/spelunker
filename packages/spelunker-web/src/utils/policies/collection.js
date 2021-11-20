@@ -20,11 +20,9 @@ const getCollectionResults = (args, collection) => {
   return results;
 };
 
-const merge = (existing, incoming, { args }) => {
-  // If nothing was cached, no merge needs to happen (yet)
-  if (!existing) {
-    return incoming;
-  }
+const merge = (existing = {}, incoming, { args }) => {
+  const offset = args?.offset ?? DEFAULT_OFFSET;
+  const limit = args?.limit ?? DEFAULT_LIMIT;
 
   const merged = { ...existing };
 
@@ -33,13 +31,20 @@ const merge = (existing, incoming, { args }) => {
     merged.totalCount = incoming.totalCount;
   }
 
+  // Synthesize totalCount if missing
+  if (merged.totalCount === undefined) {
+    // If incoming results are present and less than the limit, we can assume we've hit the last
+    // window of results, and calculate the missing totalCount
+    if (incoming.results !== undefined && incoming.results.length < limit) {
+      merged.totalCount = offset + incoming.results.length;
+    }
+  }
+
   // Merge results if present
   if (incoming.results !== undefined) {
     const mergedResults = Array.isArray(existing.results)
       ? existing.results.slice(0)
       : [];
-
-    const offset = args?.offset ?? DEFAULT_OFFSET;
 
     for (let i = 0; i < incoming.results.length; ++i) {
       mergedResults[offset + i] = incoming.results[i];
