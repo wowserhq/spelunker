@@ -26,7 +26,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.png$/,
+        test: /\.(gif|jpe?g|png)$/,
         type: 'asset',
         parser: {
           dataUrlCondition: {
