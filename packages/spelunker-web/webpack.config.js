@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: './src/bootstrap.jsx',
   output: {
-    filename: 'spelunker-[contenthash].js',
+    filename: 'static/js/[name]-[contenthash].js',
     path: path.resolve(__dirname, 'public'),
     publicPath: '/',
   },
@@ -26,15 +26,16 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.png$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192,
-            },
+        test: /\.(gif|jpe?g|png)$/,
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 8 * 1024,
           },
-        ],
+        },
+        generator: {
+          filename: 'static/img/[name]-[contenthash][ext][query]',
+        },
       },
       {
         test: /\.css$/,
