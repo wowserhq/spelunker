@@ -1,6 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
 
+import { toPipelinePath } from '../../../utils/pipeline';
+
 import styles from './index.styl';
 
 const GameImageBackground = (props) => {
@@ -33,7 +35,7 @@ const GameImageElement = (props) => {
 };
 
 const GameImage = (props) => {
-  const encoded = encodeURIComponent(props.file);
+  const encoded = encodeURI(toPipelinePath(props.file));
   const src = `${process.env.PIPELINE_URI}/${encoded}.png`;
 
   const Component = props.asBackground ? GameImageBackground : GameImageElement;

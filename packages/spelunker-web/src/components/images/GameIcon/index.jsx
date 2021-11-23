@@ -1,14 +1,15 @@
 import React from 'react';
 import classNames from 'classnames';
 
+import { isPathBasename } from '../../../utils/pipeline';
 import GameImage from '../GameImage';
 
 import styles from './index.styl';
 
 const GameIcon = (props) => {
   let file = props.file;
-  if (!file.includes('\\')) {
-    file = `Interface\\Icons\\${file}`;
+  if (isPathBasename(file)) {
+    file = `interface/icons/${file}`;
   }
   if (!file.includes('.')) {
     file = `${file}.blp`;
