@@ -15,7 +15,7 @@ const RaceIcon = ({ race, gender, size }) => {
   const className = classNames(styles.icon, styles[size], style);
   return (
     <GameIcon
-      file="Interface\GLUES\CHARACTERCREATE\UI-CharacterCreate-Races.BLP"
+      file="Interface/GLUES/CHARACTERCREATE/UI-CharacterCreate-Races.BLP"
       className={className}
       asBackground
     />

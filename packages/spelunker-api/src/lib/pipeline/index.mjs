@@ -7,10 +7,12 @@ import mpq from '../mpq/index.mjs';
 
 const { PNG } = pngjs;
 
+const toMPQPath = path => path.replace(/\//g, '\\');
+
 const pipeline = express();
 
 pipeline.param('resource', (req, res, next, path) => {
-  req.resource = mpq.files.get(path);
+  req.resource = mpq.files.get(toMPQPath(path));
   if (req.resource) {
     next();
 
@@ -30,7 +32,7 @@ pipeline.get('/minimap/:mapName/:tx/:ty.blp.png', (req, res) => {
   const index = `${mapName}\\map${tx}_${ty}`;
   const tile = minimapTiles[index];
   if (tile) {
-    res.redirect(`${req.baseUrl}/textures\\Minimap\\${tile}.png`);
+    res.redirect(`${req.baseUrl}/textures/minimap/${tile}.png`);
   } else {
     res.sendStatus(404);
   }
