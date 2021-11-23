@@ -9,7 +9,7 @@ import styles from './index.styl';
 const GameIcon = (props) => {
   let file = props.file;
   if (isPathBasename(file)) {
-    file = `interface/icons/${file}`;
+    file = `Interface/Icons/${file}`;
   }
   if (!file.includes('.')) {
     file = `${file}.blp`;

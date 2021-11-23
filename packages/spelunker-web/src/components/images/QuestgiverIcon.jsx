@@ -10,7 +10,7 @@ const QuestgiverIcon = (props) => {
   return (
     <GameIcon
       {...props}
-      file="interface/gossipframe/availablequesticon.blp"
+      file="Interface/GossipFrame/AvailableQuestIcon.blp"
     />
   );
 };

@@ -17,21 +17,21 @@ const Currency = ({ value }) => {
       {gold ? (
         <span>
           {number(gold)}&nbsp;
-          <GameIcon file="interface/moneyframe/ui-goldicon.blp" />
+          <GameIcon file="Interface/MoneyFrame/UI-GoldIcon.blp" />
         </span>
       ) : null}
 
       {silver ? (
         <span>
           {silver}&nbsp;
-          <GameIcon file="interface/moneyframe/ui-silvericon.blp" />
+          <GameIcon file="Interface/MoneyFrame/UI-SilverIcon.blp" />
         </span>
       ) : null}
 
       {copper ? (
         <span>
           {copper}&nbsp;
-          <GameIcon file="interface/moneyframe/ui-coppericon.blp" />
+          <GameIcon file="Interface/MoneyFrame/UI-CopperIcon.blp" />
         </span>
       ) : null}
     </span>

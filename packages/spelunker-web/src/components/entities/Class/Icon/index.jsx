@@ -10,7 +10,7 @@ const ClassIcon = ({ class: klass, size }) => {
   const className = classNames(styles.icon, styles[size], style);
   return (
     <GameIcon
-      file="interface/glues/charactercreate/ui-charactercreate-classes.blp"
+      file="Interface/GLUES/CHARACTERCREATE/UI-CHARACTERCREATE-CLASSES.BLP"
       className={className}
       asBackground
     />
