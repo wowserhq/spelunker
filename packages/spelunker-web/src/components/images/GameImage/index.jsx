@@ -36,7 +36,7 @@ const GameImageElement = (props) => {
 
 const GameImage = (props) => {
   const encoded = encodeURI(toPipelinePath(props.file));
-  const src = `${process.env.PIPELINE_URI}/${encoded}.png`;
+  const src = `${process.env.PIPELINE_URI}/files/${encoded}.png`;
 
   const Component = props.asBackground ? GameImageBackground : GameImageElement;
   return <Component {...props} src={src} />;

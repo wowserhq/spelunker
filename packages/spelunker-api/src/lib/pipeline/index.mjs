@@ -11,15 +11,15 @@ const toMPQPath = path => path.replace(/\//g, '\\');
 
 const pipeline = express();
 
-pipeline.param('resource', (req, res, next, path) => {
-  req.resource = mpq.files.get(toMPQPath(path));
-  if (req.resource) {
+pipeline.param('file', (req, res, next, path) => {
+  req.file = mpq.files.get(toMPQPath(path));
+  if (req.file) {
     next();
 
     // Ensure file is closed in StormLib.
-    req.resource.close();
+    req.file.close();
   } else {
-    const err = new Error('resource not found');
+    const err = new Error('file not found');
     err.status = 404;
     throw err;
   }
@@ -32,14 +32,14 @@ pipeline.get('/minimap/:mapName/:tx/:ty.blp.png', (req, res) => {
   const index = `${mapName}\\map${tx}_${ty}`;
   const tile = minimapTiles[index];
   if (tile) {
-    res.redirect(`${req.baseUrl}/textures/minimap/${tile}.png`);
+    res.redirect(`${req.baseUrl}/files/textures/minimap/${tile}.png`);
   } else {
     res.sendStatus(404);
   }
 });
 
-pipeline.get('/:resource(*.blp).png', (req, res) => {
-  BLP.from(req.resource.data, (blp) => {
+pipeline.get('/files/:file(*.blp).png', (req, res) => {
+  BLP.from(req.file.data, (blp) => {
     const mipmap = blp.largest;
 
     const png = new PNG({ width: mipmap.width, height: mipmap.height });
@@ -50,9 +50,9 @@ pipeline.get('/:resource(*.blp).png', (req, res) => {
   });
 });
 
-pipeline.get('/:resource', (req, res) => {
-  res.type(req.resource.name);
-  res.send(req.resource.data);
+pipeline.get('/files/:file', (req, res) => {
+  res.type(req.file.name);
+  res.send(req.file.data);
 });
 
 export default pipeline;
