@@ -18,14 +18,14 @@ const crs = Object.assign({}, CRS.Simple, {
   infinity: false,
 });
 
-const MinimapTileLayer = TileLayer.extend({
+class MinimapTileLayer extends TileLayer {
   getTileUrl({ x, y }) {
     const tx = 32 + x;
     const ty = 32 + y;
     const mapName = this._url;
     return `${process.env.PIPELINE_URI}/minimap/${mapName}/${tx}/${ty}.blp.png`;
-  },
-});
+  }
+}
 
 const createMinimapLayer = (props, context) => {
   const instance = new MinimapTileLayer(props.mapName, { ...props });
