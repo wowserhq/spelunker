@@ -20,8 +20,8 @@ jobs:
     strategy:
       matrix:
         node:
-          - '10'
-          - '12'
+          - '16'
+          - '18'
     name: Node ${{ matrix.node }}
     env:
       API_URI: 'http://localhost:3001/graphql'
