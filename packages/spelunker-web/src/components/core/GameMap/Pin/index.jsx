@@ -6,7 +6,7 @@ import styles from './index.styl';
 
 const icon = new DivIcon({
   className: styles.pin,
-  iconSize: 9,
+  iconSize: [9, 9],
 });
 
 const Pin = (props) => (

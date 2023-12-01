@@ -1,6 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import Spelunker from './components/Spelunker';
 
-ReactDOM.render(<Spelunker />, document.getElementById('spelunker'));
+const container = document.getElementById('spelunker');
+const root = createRoot(container);
+root.render(<Spelunker />);
