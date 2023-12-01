@@ -60,7 +60,7 @@ jobs:
         git clone https://github.com/Kanma/BLPConverter.git
         cd BLPConverter
         git checkout ${{ env.BLPLIB_COMMIT }}
-        cmake CMakeLists.txt -DWITH_LIBRARY=YES
+        cmake CMakeLists.txt -DWITH_LIBRARY=YES -DCMAKE_CXX_STANDARD=14
     - name: Install BLPLib
       run: |
         cd BLPConverter
