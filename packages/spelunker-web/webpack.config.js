@@ -21,6 +21,7 @@ module.exports = {
       'API_URI',
       'DEBUG',
       'PIPELINE_URI',
+      'DATA_URI',
     ]),
   ],
   module: {

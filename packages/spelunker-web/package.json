@@ -19,6 +19,7 @@
   ],
   "dependencies": {
     "@apollo/client": "^3.4.17",
+    "@wowserhq/format": "^0.1.0",
     "classnames": "^2.3.1",
     "crypto-hash": "^2.0.0",
     "graphql": "^15.7.2",

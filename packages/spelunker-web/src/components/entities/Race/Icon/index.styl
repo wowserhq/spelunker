@@ -8,7 +8,7 @@
 }
 
 .icon {
-  img {
+  canvas {
     transform-origin: top left
   }
 }
@@ -46,7 +46,7 @@ $races = {
 }
 
 for $race, $translate in $races {
-  .{$race} img {
+  .{$race} canvas {
     transform: scale(8) $translate
   }
 }
