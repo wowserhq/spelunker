@@ -11,6 +11,9 @@ module.exports = {
     publicPath: '/',
   },
   resolve: {
+    fallback: {
+      fs: false,
+    },
     extensions: ['.mjs', '.js', '.jsx'],
   },
   plugins: [
@@ -21,6 +24,7 @@ module.exports = {
       'API_URI',
       'DEBUG',
       'PIPELINE_URI',
+      'DATA_URI',
     ]),
   ],
   module: {

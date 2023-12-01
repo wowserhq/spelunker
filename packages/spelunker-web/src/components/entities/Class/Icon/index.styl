@@ -7,7 +7,7 @@
   max-height: 1.3em
 }
 
-.icon img {
+.icon canvas {
   transform-origin: top left
 }
 
@@ -25,7 +25,7 @@ $classes = {
 }
 
 for $class, $translate in $classes {
-  .{$class} img {
+  .{$class} canvas {
     transform: scale(4) $translate
   }
 }
