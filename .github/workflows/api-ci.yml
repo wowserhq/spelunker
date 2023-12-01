@@ -40,7 +40,7 @@ jobs:
     - name: Build StormLib
       if: steps.cache-stormlib.outputs.cache-hit != 'true'
       run: |
-        git clone git://github.com/ladislav-zezula/StormLib.git
+        git clone https://github.com/ladislav-zezula/StormLib.git
         cd StormLib
         git checkout ${{ env.STORMLIB_COMMIT }}
         cmake CMakeLists.txt -DBUILD_SHARED_LIBS=ON
@@ -57,7 +57,7 @@ jobs:
     - name: Build BLPLib
       if: steps.cache-blplib.outputs.cache-hit != 'true'
       run: |
-        git clone git://github.com/Kanma/BLPConverter.git
+        git clone https://github.com/Kanma/BLPConverter.git
         cd BLPConverter
         git checkout ${{ env.BLPLIB_COMMIT }}
         cmake CMakeLists.txt -DWITH_LIBRARY=YES
