@@ -11,6 +11,9 @@ module.exports = {
     publicPath: '/',
   },
   resolve: {
+    fallback: {
+      fs: false,
+    },
     extensions: ['.mjs', '.js', '.jsx'],
   },
   plugins: [
