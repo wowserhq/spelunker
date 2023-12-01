@@ -1,6 +1,7 @@
 import React from 'react';
-import { CRS, TileLayer as LeafletTileLayer, transformation } from 'leaflet';
-import { GridLayer, Map, withLeaflet } from 'react-leaflet';
+import { CRS, TileLayer, transformation } from 'leaflet';
+import { MapContainer } from 'react-leaflet';
+import { createLayerComponent } from '@react-leaflet/core';
 
 import 'leaflet/dist/leaflet.css';
 
@@ -17,27 +18,29 @@ const crs = Object.assign({}, CRS.Simple, {
   infinity: false,
 });
 
-class MinimapTileLayer extends LeafletTileLayer {
+const MinimapTileLayer = TileLayer.extend({
   getTileUrl({ x, y }) {
     const tx = 32 + x;
     const ty = 32 + y;
     const mapName = this._url;
     return `${process.env.PIPELINE_URI}/minimap/${mapName}/${tx}/${ty}.blp.png`;
-  }
-}
+  },
+});
 
-const MinimapLayer = withLeaflet(class extends GridLayer {
-  createLeafletElement(props) {
-    return new MinimapTileLayer(props.mapName, this.getOptions(props));
-  }
+const createMinimapLayer = (props, context) => {
+  const instance = new MinimapTileLayer(props.mapName, { ...props });
+  return { instance, context };
+};
 
-  updateLeafletElement(fromProps, toProps) {
-    super.updateLeafletElement(fromProps, toProps);
-    if (toProps.mapName !== fromProps.mapName) {
-      this.leafletElement.setUrl(toProps.mapName);
+const updateMinimapLayer = (instance, props, prevProps) => {
+  if (prevProps.mapName !== props.mapName) {
+    if (instance.setUrl) {
+      instance.setUrl(props.mapName);
     }
   }
-});
+};
+
+const MinimapLayer = createLayerComponent(createMinimapLayer, updateMinimapLayer);
 
 const normalizeBounds = (bounds) => {
   if (bounds instanceof Array) {
@@ -60,7 +63,7 @@ const GameMap = (props) => {
 
   return (
     <Box className={styles.box}>
-      <Map
+      <MapContainer
         attributionControl={false}
         bounds={normalizeBounds(bounds || maxBounds)}
         className={styles.map}
@@ -77,7 +80,7 @@ const GameMap = (props) => {
         />
 
         {props.children}
-      </Map>
+      </MapContainer>
     </Box>
   );
 };
