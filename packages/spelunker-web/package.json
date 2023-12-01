@@ -23,7 +23,7 @@
     "classnames": "^2.3.1",
     "crypto-hash": "^2.0.0",
     "graphql": "^15.7.2",
-    "leaflet": "^1.7.1",
+    "leaflet": "^1.9.4",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
