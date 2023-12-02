@@ -7,8 +7,8 @@ import 'leaflet/dist/leaflet.css';
 
 import { Box } from '../';
 
+import { drawBlp, loadBlp } from "../../../utils/blp";
 import styles from './index.styl';
-import {drawBlp, loadBlp} from "../../../utils/blp";
 
 const CHUNK_SIZE = 33.3333;
 const TILE_INDEX = {};
