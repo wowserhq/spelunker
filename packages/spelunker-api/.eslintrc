@@ -1,6 +1,9 @@
 {
   "extends": "@wowserhq/eslint-config",
   "rules": {},
+  "parserOptions": {
+    "ecmaVersion": 2022
+  },
   "env": {
     "browser": true,
     "es6": true,

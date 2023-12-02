@@ -5,7 +5,6 @@ import express from 'express';
 import pipeline from './pipeline/index.mjs';
 import rootValue from './graph/root.mjs';
 import schema from './graph/schema/index.mjs';
-import { log } from './utils/logger.mjs';
 
 const { ApolloServer } = apolloExpress;
 
