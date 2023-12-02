@@ -20,23 +20,17 @@ server.use(cors({ origin }));
 // TODO: Use separate pipeline server
 server.use('/pipeline', pipeline);
 
-const startServer = async () => {
-  const apollo = new ApolloServer({
-    schema,
-    rootValue,
-  });
+const apollo = new ApolloServer({
+  schema,
+  rootValue,
+});
 
-  await apollo.start();
+await apollo.start();
 
-  apollo.applyMiddleware({
-    app: server,
-    path: '/graphql',
-    cors: { origin },
-  });
+apollo.applyMiddleware({
+  app: server,
+  path: '/graphql',
+  cors: { origin },
+});
 
-  server.listen(process.env.API_PORT, () => {
-    log(`listening on port ${process.env.API_PORT}`);
-  });
-};
-
-export default startServer;
+export default server;
