@@ -1,33 +1,22 @@
 import React, { useEffect, useRef } from 'react';
-import { Blp, BLP_IMAGE_FORMAT } from '@wowserhq/format';
 import classNames from 'classnames';
 
+import { loadBlp, drawBlp } from '../../../utils/blp';
 import { toPipelinePath } from '../../../utils/pipeline';
 
 import styles from './index.styl';
-
-const loadBlp = async (canvas, src) => {
-  const blpResponse = await fetch(src);
-  const blpData = await blpResponse.arrayBuffer();
-  const blp = new Blp();
-  blp.load(new Uint8Array(blpData));
-
-  const image = blp.getImage(0, BLP_IMAGE_FORMAT.IMAGE_RGBA8888);
-  const imageData = new ImageData(new Uint8ClampedArray(image.data), image.width, image.height);
-
-  canvas.width = image.width;
-  canvas.height = image.height;
-
-  const context = canvas.getContext('2d');
-  context.putImageData(imageData, 0, 0);
-};
 
 const GameImageBackground = (props) => {
   const canvasRef = useRef();
 
   useEffect(() => {
+    const load = async (src, canvas) => {
+      const blp = await loadBlp(src);
+      drawBlp(blp, canvas);
+    };
+
     if (canvasRef.current) {
-      loadBlp(canvasRef.current, props.src);
+      load(props.src, canvasRef.current);
     }
   }, [props.src]);
 
@@ -50,8 +39,13 @@ const GameImageElement = (props) => {
   const canvasRef = useRef();
 
   useEffect(() => {
+    const load = async (src, canvas) => {
+      const blp = await loadBlp(src);
+      drawBlp(blp, canvas);
+    };
+
     if (canvasRef.current) {
-      loadBlp(canvasRef.current, props.src);
+      load(props.src, canvasRef.current);
     }
   }, [props.src]);
 

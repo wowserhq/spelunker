@@ -7,6 +7,7 @@ import 'leaflet/dist/leaflet.css';
 
 import { Box } from '../';
 
+import { drawBlp, loadBlp } from "../../../utils/blp";
 import styles from './index.styl';
 
 const CHUNK_SIZE = 33.3333;
@@ -32,13 +33,33 @@ const loadTileIndex = async (tileDirectory) => {
   TILE_INDEX[tileDirectory] = tileIndex;
 };
 
+const loadTile = async (tileUrl, tile, done) => {
+  const blp = await loadBlp(tileUrl);
+
+  if (!blp) {
+    done(new Error('invalid blp'), tile);
+    return;
+  }
+
+  drawBlp(blp, tile);
+  done(undefined, tile);
+};
+
 class MinimapTileLayer extends TileLayer {
+  createTile(coords, done) {
+    const tile = document.createElement('canvas');
+    const tileUrl = this.getTileUrl(coords);
+    loadTile(tileUrl, tile, done);
+
+    return tile;
+  }
+
   getTileUrl({ x, y }) {
     const tx = 32 + x;
     const ty = 32 + y;
 
     // TODO use real url
-    const unknownTileUrl = `${process.env.PIPELINE_URI}/files/textures/minimap/unknown_${tx}_${ty}`;
+    const unknownTileUrl = `${process.env.DATA_URI}/textures/minimap/unknown_${tx}_${ty}.blp`;
 
     const tileDirectory = this._url;
     if (!tileDirectory) {
@@ -55,7 +76,7 @@ class MinimapTileLayer extends TileLayer {
       return unknownTileUrl;
     }
 
-    return `${process.env.PIPELINE_URI}/files/textures/minimap/${contentPath}.png`;
+    return `${process.env.DATA_URI}/textures/minimap/${contentPath}`;
   }
 }
 
