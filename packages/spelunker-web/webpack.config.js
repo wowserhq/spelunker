@@ -25,6 +25,7 @@ module.exports = {
       'DEBUG',
       'PIPELINE_URI',
       'DATA_URI',
+      'MINIMAP_URI',
     ]),
   ],
   module: {
