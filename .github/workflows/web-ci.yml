@@ -28,6 +28,7 @@ jobs:
       DEBUG: 'spelunker*'
       PIPELINE_URI: 'http://localhost:3001/pipeline'
       DATA_URI: 'http://localhost:3001/data'
+      MINIMAP_URI: 'http://localhost:3001/minimap'
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
