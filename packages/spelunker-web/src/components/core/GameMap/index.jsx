@@ -33,23 +33,27 @@ const loadTileIndex = async (tileDirectory) => {
   TILE_INDEX[tileDirectory] = tileIndex;
 };
 
-const loadTile = async (tileUrl, tile, done) => {
-  const blp = await loadBlp(tileUrl);
+const loadTile = async (tile, tileUrl, done) => {
+  let blp;
+  let error;
 
-  if (!blp) {
-    done(new Error('invalid blp'), tile);
-    return;
+  try {
+    blp = await loadBlp(tileUrl);
+    drawBlp(blp, tile);
+  } catch (e) {
+    error = e;
+  } finally {
+    done(error, tile);
   }
-
-  drawBlp(blp, tile);
-  done(undefined, tile);
 };
 
 class MinimapTileLayer extends TileLayer {
   createTile(coords, done) {
     const tile = document.createElement('canvas');
     const tileUrl = this.getTileUrl(coords);
-    loadTile(tileUrl, tile, done);
+
+    // Load tile asynchronously
+    loadTile(tile, tileUrl, done).catch((error) => done(error, tile));
 
     return tile;
   }
@@ -58,22 +62,19 @@ class MinimapTileLayer extends TileLayer {
     const tx = 32 + x;
     const ty = 32 + y;
 
-    // TODO use real url
-    const unknownTileUrl = `${process.env.DATA_URI}/textures/minimap/unknown_${tx}_${ty}.blp`;
-
     const tileDirectory = this._url;
     if (!tileDirectory) {
-      return unknownTileUrl;
+      return;
     }
 
     const tileIndex = TILE_INDEX[tileDirectory];
     if (!tileIndex) {
-      return unknownTileUrl;
+      return;
     }
 
     const contentPath = tileIndex[`map${tx}_${ty}`];
     if (!contentPath) {
-      return unknownTileUrl;
+      return;
     }
 
     return `${process.env.DATA_URI}/textures/minimap/${contentPath}`;

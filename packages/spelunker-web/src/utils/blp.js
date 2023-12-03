@@ -1,4 +1,5 @@
 import { Blp, BLP_IMAGE_FORMAT } from "@wowserhq/format";
+import { validateResponse } from "./http";
 
 const drawBlp = (blp, canvas, x = 0, y = 0) => {
   const image = blp.getImage(0, BLP_IMAGE_FORMAT.IMAGE_RGBA8888);
@@ -11,15 +12,17 @@ const drawBlp = (blp, canvas, x = 0, y = 0) => {
   context.putImageData(imageData, x, y);
 };
 
-const loadBlp = async (src) => {
-  const blpResponse = await fetch(src);
-  if (!blpResponse.ok) {
-    return null;
+const loadBlp = async (url) => {
+  if (!url || url.length === 0) {
+    throw new Error(`Missing URL`);
   }
 
-  const blpData = await blpResponse.arrayBuffer();
+  const response = await fetch(url);
+  validateResponse(response);
+
+  const data = await response.arrayBuffer();
   const blp = new Blp();
-  blp.load(new Uint8Array(blpData));
+  blp.load(new Uint8Array(data));
 
   return blp;
 };
