@@ -2,6 +2,7 @@ import DatabaseEntity from '../db/Entity.mjs';
 import { worldConnection } from '../db/connections.mjs';
 
 import GameObjectLoot from './GameObjectLoot.mjs';
+import ItemClass from './ItemClass.mjs';
 import ItemDisplayInfo from './ItemDisplayInfo.mjs';
 import ItemLoot from './ItemLoot.mjs';
 import ItemSet from './ItemSet.mjs';
@@ -60,6 +61,10 @@ class Item extends DatabaseEntity {
 
   droppedBy() {
     return NPCLoot.query.where({ Item: this.id }).orderBy('Chance', 'desc');
+  }
+
+  itemClass() {
+    return ItemClass.find(this.data.class);
   }
 
   itemSet() {
