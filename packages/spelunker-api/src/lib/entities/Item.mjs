@@ -27,6 +27,12 @@ class Item extends DatabaseEntity {
     query.where('name', 'LIKE', `%${searchQuery}%`);
   }
 
+  static filter(query, filters) {
+    if (filters?.itemClassIds?.length > 0) {
+      query.andWhere('class', 'IN', filters.itemClassIds);
+    }
+  }
+
   get id() {
     return this.data.entry;
   }

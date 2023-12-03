@@ -1,5 +1,6 @@
 import {
   GraphQLInt,
+  GraphQLList,
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLString,
@@ -29,10 +30,11 @@ const finderFor = (type, idType = GraphQLInt) => ({
   },
 });
 
-const searchableCollectionFor = (type) => (
+const searchableCollectionFor = (type, filters = {}) => (
   CollectionType.definitionFor(type, {
     args: {
       searchQuery: { type: GraphQLString },
+      ...filters,
     },
   })
 );
@@ -55,7 +57,9 @@ export default new GraphQLObjectType({
     factions: searchableCollectionFor(FactionType),
     faction: finderFor(FactionType),
 
-    items: searchableCollectionFor(ItemType),
+    items: searchableCollectionFor(ItemType, {
+      itemClassIds: { type: new GraphQLList(GraphQLInt) },
+    }),
     item: finderFor(ItemType),
 
     itemSets: searchableCollectionFor(ItemSetType),

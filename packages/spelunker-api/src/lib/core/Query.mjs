@@ -20,6 +20,13 @@ class Query {
     return this;
   }
 
+  filter(filters) {
+    if (filters) {
+      this.entity.filter(this, filters);
+    }
+    return this;
+  }
+
   slice() {
     notImplemented(this, 'slice');
   }
