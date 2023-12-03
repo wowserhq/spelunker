@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const ProjectLink = (props) => (
-  <Link to="https://github.com/wowserhq/spelunker" target="_blank">
+  // eslint-disable-next-line react/jsx-no-target-blank
+  <a href="https://github.com/wowserhq/spelunker" target="_blank">
     {props.label}
-  </Link>
+  </a>
 );
 
 ProjectLink.defaultProps = {
