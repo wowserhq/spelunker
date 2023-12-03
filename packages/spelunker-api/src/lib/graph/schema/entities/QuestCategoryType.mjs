@@ -15,6 +15,6 @@ export default new GraphQLUnionType({
   types: () => [AreaType, QuestSortType],
   resolveType: (value) => {
     const name = value.constructor.name;
-    return lookup[name];
+    return lookup[name].name;
   },
 });
