@@ -29,7 +29,7 @@ export default {
   factions: ({ searchQuery }) => Faction.query.search(searchQuery),
   faction: ({ id }) => Faction.find(id),
 
-  items: ({ searchQuery }) => Item.query.search(searchQuery),
+  items: ({ searchQuery, ...filters }) => Item.query.search(searchQuery).filter(filters),
   item: ({ id }) => Item.find(id),
 
   itemSets: ({ searchQuery }) => ItemSet.query.search(searchQuery),
