@@ -1,4 +1,4 @@
-import knexQueryMethods from 'knex/lib/query/methods.js';
+import knexQueryMethods from 'knex/lib/query/method-constants.js';
 
 import Query from '../core/Query.mjs';
 import logger from '../utils/logger.mjs';
