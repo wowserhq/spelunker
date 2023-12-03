@@ -28,7 +28,7 @@ class Item extends DatabaseEntity {
   }
 
   static filter(query, filters) {
-    if (filters?.itemClassIds?.length > 0) {
+    if (filters?.itemClassIds?.length ?? 0 > 0) {
       query.andWhere('class', 'IN', filters.itemClassIds);
     }
   }
