@@ -1,4 +1,5 @@
-import apolloExpress from 'apollo-server-express';
+import { ApolloServer } from '@apollo/server';
+import { expressMiddleware } from '@apollo/server/express4';
 import cors from 'cors';
 import express from 'express';
 
@@ -6,8 +7,6 @@ import pipeline from './pipeline/index.mjs';
 import minimap from './minimap/index.mjs';
 import rootValue from './graph/root.mjs';
 import schema from './graph/schema/index.mjs';
-
-const { ApolloServer } = apolloExpress;
 
 const server = express();
 
@@ -29,10 +28,6 @@ const apollo = new ApolloServer({
 
 await apollo.start();
 
-apollo.applyMiddleware({
-  app: server,
-  path: '/graphql',
-  cors: { origin },
-});
+server.use('/graphql', express.json(), expressMiddleware(apollo));
 
 export default server;
