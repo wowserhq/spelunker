@@ -2,7 +2,7 @@ import { Blp, BLP_IMAGE_FORMAT } from "@wowserhq/format";
 import { validateResponse } from "./http";
 
 const drawBlp = (blp, canvas, x = 0, y = 0) => {
-  const image = blp.getImage(0, BLP_IMAGE_FORMAT.IMAGE_RGBA8888);
+  const image = blp.getImage(0, BLP_IMAGE_FORMAT.IMAGE_ABGR8888);
   const imageData = new ImageData(new Uint8ClampedArray(image.data), image.width, image.height);
 
   canvas.width = image.width;
