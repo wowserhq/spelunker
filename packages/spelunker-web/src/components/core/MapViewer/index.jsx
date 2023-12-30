@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { AssetManager, FormatManager, TextureManager, MapManager, OrbitControls } from '@wowserhq/scene';
+import { AssetManager, FormatManager, TextureManager, MapManager, MapControls } from '@wowserhq/scene';
 import * as THREE from 'three';
 import styles from './index.styl';
 
@@ -45,20 +45,15 @@ const MapViewer = ({ map: { filename } }) => {
       const scene = new THREE.Scene();
       scene.matrixAutoUpdate = false;
 
-      const controls = new OrbitControls(camera, renderer.domElement);
+      const controls = new MapControls(camera, renderer.domElement);
       controls.enableDamping = true;
       controls.dampingFactor = 0.25;
-      controls.minDistance = 10;
-      controls.maxDistance = 900;
       controls.panSpeed = 5.0;
       controls.keyPanSpeed = 20.0;
       controls.zoomSpeed = 5.0;
-      controls.screenSpacePanning = false;
-      controls.update();
 
-      const raycaster = new THREE.Raycaster();
-      const coords = new THREE.Vector2();
-      const targetOffset = 100.0;
+      const position = new THREE.Vector3(100.0, 100.0, 0.0);
+      controls.setView(position);
 
       const mapManager = new MapManager(filename, formatManager, textureManager);
       mapManagerRef.current = mapManager;
@@ -69,9 +64,6 @@ const MapViewer = ({ map: { filename } }) => {
 
       const animate = () => {
         const delta = clock.getDelta();
-
-        raycaster.setFromCamera(coords, camera);
-        raycaster.ray.at(targetOffset, controls.target);
 
         mapManager.setTarget(camera.position.x, camera.position.y);
 
