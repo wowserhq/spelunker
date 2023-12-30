@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { gql } from '@apollo/client';
 
-import { Bounds, Box, GameMap, Query, Tab, TabbedBox, Title } from '../../core';
+import { Bounds, Box, GameMap, MapViewer, Query, Tab, TabbedBox, Title } from '../../core';
 
 import AreasTab from './tabs/Areas';
 import GameObjectSpawnsTab from './tabs/GameObjectSpawns';
@@ -81,6 +81,13 @@ const Map = () => {
                 component={GameObjectSpawnsTab}
                 path="objects"
               />}
+
+              <Tab
+                label="Viewer"
+                component={MapViewer}
+                map={map}
+                path="viewer"
+              />
             </TabbedBox>
           </Title>
         );

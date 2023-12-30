@@ -5,6 +5,7 @@ export { default as Error, ErrorBoundary } from './Error';
 export { default as Form, Button, Input } from './Form';
 export { default as GameMap, GameMapPin } from './GameMap';
 export { default as List, ListItem } from './List';
+export { default as MapViewer } from './MapViewer';
 export { default as Pagination } from './Pagination';
 export { default as ProjectLink } from './ProjectLink';
 export { default as Query } from './Query';
