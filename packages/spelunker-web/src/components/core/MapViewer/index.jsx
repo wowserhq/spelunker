@@ -109,7 +109,7 @@ const MapViewer = ({ map: { id, filename } }) => {
         controls.dispose();
       };
     }
-  }, [filename]);
+  }, [id, filename]);
 
   useEffect(() => {
     const handleResize = () => {
