@@ -20,7 +20,22 @@ const camera = new THREE.PerspectiveCamera(
   1277.0,
 );
 
-const MapViewer = ({ map: { filename } }) => {
+const GENERIC_VIEW = new THREE.Vector3(100.0, 100.0, 0.0);
+const DEFAULT_VIEWS = {
+  // Eastern Kingdoms - The Hinterlands, Aerie Peak
+  0: new THREE.Vector3(323.513, -2227.2, 137.617),
+
+  // Kalimdor - Mulgore, Thunder Bluff
+  1: new THREE.Vector3(-981.917, -74.6465, 20.1265),
+
+  // Outland - Hellfire Peninsula, Honor Hold
+  530: new THREE.Vector3(-803.012, 2702.59, 106.758),
+
+  // Northrend - Grizzly Hills, Amberpine GY
+  571: new THREE.Vector3(3534.13, -2882.06, 204.625),
+};
+
+const MapViewer = ({ map: { id, filename } }) => {
   const containerRef = useRef();
   const canvasRef = useRef();
   const mapManagerRef = useRef();
@@ -61,8 +76,8 @@ const MapViewer = ({ map: { filename } }) => {
       controls.keyPanSpeed = 20.0;
       controls.zoomSpeed = 5.0;
 
-      const position = new THREE.Vector3(100.0, 100.0, 0.0);
-      controls.setView(position);
+      const view = DEFAULT_VIEWS[id] || GENERIC_VIEW;
+      controls.setView(view);
 
       const mapManager = new MapManager(filename, formatManager, textureManager);
       mapManagerRef.current = mapManager;
