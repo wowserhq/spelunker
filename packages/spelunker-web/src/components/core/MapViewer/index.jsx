@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { AssetManager, FormatManager, TextureManager, MapManager, MapControls } from '@wowserhq/scene';
 import * as THREE from 'three';
 import styles from './index.styl';
@@ -25,6 +25,8 @@ const MapViewer = ({ map: { filename } }) => {
   const canvasRef = useRef();
   const mapManagerRef = useRef();
   const rendererRef = useRef();
+
+  const [currentPosition, setCurrentPosition] = useState({ x: 0.0, y: 0.0, z: 0.0 });
 
   useEffect(() => {
     if (filename && containerRef.current) {
@@ -73,6 +75,7 @@ const MapViewer = ({ map: { filename } }) => {
         const delta = clock.getDelta();
 
         mapManager.setTarget(camera.position.x, camera.position.y);
+        setCurrentPosition({ x: camera.position.x, y: camera.position.y, z: camera.position.z });
 
         controls.update(delta);
         mapManager.update(delta, camera);
@@ -116,8 +119,25 @@ const MapViewer = ({ map: { filename } }) => {
   }, []);
 
   return (
-    <div className={styles.container} ref={containerRef}>
-      <canvas ref={canvasRef} className={styles.viewer} />
+    <div>
+      <div ref={containerRef} className={styles.container}>
+        <canvas ref={canvasRef} className={styles.viewer} />
+      </div>
+
+      <div className={styles.position}>
+        <span className={styles.coordinate}>
+          <span className={styles.label}>X:</span>
+          <span className={styles.value}>{currentPosition.x.toFixed(1)}</span>
+        </span>
+        <span className={styles.coordinate}>
+          <span className={styles.label}>Y:</span>
+          <span className={styles.value}>{currentPosition.y.toFixed(1)}</span>
+        </span>
+        <span className={styles.coordinate}>
+          <span className={styles.label}>Z:</span>
+          <span className={styles.value}>{currentPosition.z.toFixed(1)}</span>
+        </span>
+      </div>
     </div>
   );
 };
