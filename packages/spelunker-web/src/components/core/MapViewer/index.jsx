@@ -13,22 +13,27 @@ const assetManager = new AssetManager(process.env.DATA_URI, true);
 const formatManager = new FormatManager(assetManager);
 const textureManager = new TextureManager(formatManager);
 
+const camera = new THREE.PerspectiveCamera(
+  60,
+  16 / 9,
+  0.1,
+  1277.0,
+);
+
 const MapViewer = ({ map: { filename } }) => {
+  const containerRef = useRef();
   const canvasRef = useRef();
   const mapManagerRef = useRef();
+  const rendererRef = useRef();
 
   useEffect(() => {
-    if (filename && canvasRef.current) {
-      const canvasWidth = canvasRef.current.clientWidth;
-      const canvasHeight = canvasRef.current.clientHeight;
+    if (filename && containerRef.current) {
+      const containerWidth = containerRef.current.clientWidth;
+      const containerHeight = containerRef.current.clientHeight;
 
-      const camera = new THREE.PerspectiveCamera(
-        60,
-        canvasWidth / canvasHeight,
-        0.1,
-        1277.0,
-      );
+      camera.aspect = containerWidth / containerHeight;
       camera.position.set(100.0, 100.0, 100.0);
+      camera.updateProjectionMatrix();
 
       const clock = new THREE.Clock();
 
@@ -37,7 +42,9 @@ const MapViewer = ({ map: { filename } }) => {
         alpha: false,
         canvas: canvasRef.current,
       });
-      renderer.setSize(canvasWidth, canvasHeight);
+      rendererRef.current = renderer;
+
+      renderer.setSize(containerWidth, containerHeight);
 
       const clearColor = new THREE.Color(0.25, 0.5, 0.8);
       renderer.setClearColor(clearColor, 1.0);
@@ -86,8 +93,30 @@ const MapViewer = ({ map: { filename } }) => {
     }
   }, [filename]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (containerRef.current) {
+        const containerWidth = containerRef.current.clientWidth;
+        const containerHeight = containerRef.current.clientHeight;
+
+        camera.aspect = containerWidth / containerHeight;
+        camera.updateProjectionMatrix();
+
+        if (rendererRef.current) {
+          rendererRef.current.setSize(containerWidth, containerHeight);
+        }
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} ref={containerRef}>
       <canvas ref={canvasRef} className={styles.viewer} />
     </div>
   );
