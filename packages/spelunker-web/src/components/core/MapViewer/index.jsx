@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { FormatManager, TextureManager, MapManager, MapControls } from '@wowserhq/scene';
+import { TextureManager, MapManager, MapControls } from '@wowserhq/scene';
 import * as THREE from 'three';
 import styles from './index.styl';
 
@@ -10,8 +10,6 @@ THREE.Object3D.DEFAULT_UP.set(0, 0, 1);
 THREE.ColorManagement.enabled = false;
 
 const assetHost = { baseUrl: process.env.DATA_URI, normalizePath: true };
-
-const formatManager = new FormatManager({ host: assetHost });
 const textureManager = new TextureManager({ host: assetHost });
 
 const camera = new THREE.PerspectiveCamera(
@@ -80,7 +78,7 @@ const MapViewer = ({ map: { id, filename } }) => {
       const view = DEFAULT_VIEWS[id] || GENERIC_VIEW;
       controls.setView(view);
 
-      const mapManager = new MapManager({ host: assetHost, formatManager, textureManager });
+      const mapManager = new MapManager({ host: assetHost, textureManager });
       mapManager.load(filename);
       mapManagerRef.current = mapManager;
 
