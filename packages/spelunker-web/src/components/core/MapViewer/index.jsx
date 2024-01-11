@@ -79,7 +79,7 @@ const MapViewer = ({ map: { id, filename } }) => {
       controls.setView(view);
 
       const mapManager = new MapManager({ host: assetHost, textureManager });
-      mapManager.load(filename);
+      mapManager.load(filename, id);
       mapManagerRef.current = mapManager;
 
       scene.add(mapManager.root);
@@ -95,6 +95,7 @@ const MapViewer = ({ map: { id, filename } }) => {
         controls.update(delta);
         mapManager.update(delta, camera);
 
+        renderer.setClearColor(mapManager.clearColor);
         renderer.render(scene, camera);
 
         rafId = requestAnimationFrame(animate);
