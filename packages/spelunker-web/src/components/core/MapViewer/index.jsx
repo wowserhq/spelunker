@@ -95,6 +95,10 @@ const MapViewer = ({ map: { id, filename } }) => {
         controls.update(delta);
         mapManager.update(delta, camera);
 
+        // Adjust far clip (reduce draw calls by matching frustum to fog distance)
+        camera.far = mapManager.cameraFar;
+        camera.updateProjectionMatrix();
+
         renderer.setClearColor(mapManager.clearColor);
         renderer.render(scene, camera);
 
