@@ -41,6 +41,7 @@ const MapViewer = ({ map: { id, filename } }) => {
   const rendererRef = useRef();
 
   const [currentPosition, setCurrentPosition] = useState({ x: 0.0, y: 0.0, z: 0.0 });
+  const [currentArea, setCurrentArea] = useState(null);
 
   useEffect(() => {
     if (filename && containerRef.current) {
@@ -80,6 +81,9 @@ const MapViewer = ({ map: { id, filename } }) => {
 
       const mapManager = new MapManager({ host: assetHost, textureManager });
       mapManager.load(filename, id);
+      mapManager.addEventListener('area:change', (event) => {
+        setCurrentArea(event.detail);
+      });
       mapManagerRef.current = mapManager;
 
       scene.add(mapManager.root);
@@ -144,19 +148,27 @@ const MapViewer = ({ map: { id, filename } }) => {
         <canvas ref={canvasRef} className={styles.viewer} />
       </div>
 
-      <div className={styles.position}>
-        <span className={styles.coordinate}>
-          <span className={styles.label}>X:</span>
-          <span className={styles.value}>{currentPosition.x.toFixed(1)}</span>
-        </span>
-        <span className={styles.coordinate}>
-          <span className={styles.label}>Y:</span>
-          <span className={styles.value}>{currentPosition.y.toFixed(1)}</span>
-        </span>
-        <span className={styles.coordinate}>
-          <span className={styles.label}>Z:</span>
-          <span className={styles.value}>{currentPosition.z.toFixed(1)}</span>
-        </span>
+      <div className={styles.info}>
+        <div className={styles.position}>
+          <span className={styles.coordinate}>
+            <span className={styles.label}>X:</span>
+            <span className={styles.value}>{currentPosition.x.toFixed(1)}</span>
+          </span>
+          <span className={styles.coordinate}>
+            <span className={styles.label}>Y:</span>
+            <span className={styles.value}>{currentPosition.y.toFixed(1)}</span>
+          </span>
+          <span className={styles.coordinate}>
+            <span className={styles.label}>Z:</span>
+            <span className={styles.value}>{currentPosition.z.toFixed(1)}</span>
+          </span>
+        </div>
+
+        <div className={styles.area}>
+          <span className={styles.name}>
+            {currentArea && currentArea.areaName}
+          </span>
+        </div>
       </div>
     </div>
   );

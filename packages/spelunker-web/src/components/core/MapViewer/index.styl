@@ -11,12 +11,16 @@
   height: 100%;
 }
 
-.position {
-  font-family: "Source Code Pro", Monaco, "Courier New", monospace;
+.info {
   border-radius: 0 0 5px 5px;
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-top: none;
+  display: flex;
+}
+
+.position {
+  font-family: "Source Code Pro", Monaco, "Courier New", monospace;
 
   .coordinate {
     padding: 6px 15px;
@@ -32,5 +36,16 @@
     display: inline-block;
     min-width: 80px;
     text-align: right;
+  }
+}
+
+.area {
+  flex-grow: 1;
+  align-self: center;
+  text-align: right;
+
+  .name {
+    padding: 6px 15px;
+    display: inline-block;
   }
 }
