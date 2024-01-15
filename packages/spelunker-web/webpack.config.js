@@ -81,5 +81,5 @@ module.exports = {
     historyApiFallback: true,
     port: process.env.WEB_PORT,
   },
-  devtool: 'cheap-source-map',
+  devtool: 'source-map',
 };
