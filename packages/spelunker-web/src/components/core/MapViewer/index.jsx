@@ -116,6 +116,7 @@ const MapViewer = ({ map: { id, filename } }) => {
 
         renderer.dispose();
         controls.dispose();
+        mapManager.dispose();
       };
     }
   }, [id, filename]);
