@@ -145,7 +145,16 @@ const Spelunker = () => (
         </Routes>
 
         <footer className={styles.footer}>
-          <ProjectLink /> · &copy;2018-2021 Wowser Contributors
+          <p>
+            <ProjectLink /> · &copy;2018-2024 Wowser Contributors
+          </p>
+
+          <p>
+            World of Warcraft &copy; Blizzard Entertainment, Inc. All rights reserved. Wrath of the
+            Lich King is a trademark, and World of Warcraft and Warcraft are trademarks or
+            registered trademarks of Blizzard Entertainment, Inc., in the U.S. and/or other
+            countries.
+          </p>
         </footer>
       </div>
     </Router>
