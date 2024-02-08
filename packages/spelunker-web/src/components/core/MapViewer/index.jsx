@@ -93,15 +93,20 @@ const MapViewer = ({ map: { id, filename } }) => {
       const animate = () => {
         const delta = clock.getDelta();
 
-        mapManager.setTarget(camera.position.x, camera.position.y);
-        setCurrentPosition({ x: camera.position.x, y: camera.position.y, z: camera.position.z });
-
         controls.update(delta);
-        mapManager.update(delta, camera);
 
         // Adjust far clip (reduce draw calls by matching frustum to fog distance)
         camera.far = mapManager.cameraFar;
         camera.updateProjectionMatrix();
+
+        // Ensure camera world matrices are up-to-date before camera is used in culling or bone
+        // matrix calculations
+        camera.updateMatrixWorld();
+
+        mapManager.setTarget(camera.position.x, camera.position.y);
+        setCurrentPosition({ x: camera.position.x, y: camera.position.y, z: camera.position.z });
+
+        mapManager.update(delta, camera);
 
         renderer.setClearColor(mapManager.clearColor);
         renderer.render(scene, camera);
